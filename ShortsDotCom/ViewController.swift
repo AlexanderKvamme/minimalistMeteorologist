@@ -363,7 +363,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .failure(let error as NSError):
                 self.activityIndicator.stopAnimating()
                 
-                self.showAlert(title: "Error", message: "Coult not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+                self.showAlert(title: "Error", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
                 
             default: break
             }
@@ -418,7 +418,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
         
         if currentPreferredUnits == nil {
-            print("første gang kjøres, setter nå verdi til 'SI'")
+            print("First time running, setting value to user preference to 'SI'")
             UserDefaults.standard.set("SI", forKey: "preferredUnits")
             
         }
