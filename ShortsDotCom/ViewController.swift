@@ -93,15 +93,6 @@ var loading_00077: UIImage!
 var loading_00078: UIImage!
 var loading_00079: UIImage!
 
-// Flow cell setup
-
-enum cellType{
-    case image
-    case text
-    case animation
-}
-
-
 // Global variables
 var GPSCoordinatesLocationIsFinished = false
 var reverseGeocodingIsFinished: Bool = false
@@ -136,7 +127,6 @@ var tableData: [myData] = []
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {//setter ViewController som datasource og delegate
 
-    // Flow layout : https://www.youtube.com/watch?v=oyKY9UW9-2M
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewRef: UICollectionView!
     @IBOutlet weak var headerImage: UIImageView!
@@ -147,7 +137,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var settingsButton: UIButton!
     @IBAction func settingsButtonIsTapped(_ sender: AnyObject) {
         print("Click!")
-        
     }
     
     // Location
@@ -204,7 +193,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         checkmarkImages = [loading_00040, loading_00041, loading_00042, loading_00043, loading_00044, loading_00045, loading_00046, loading_00047, loading_00048, loading_00049, loading_00050, loading_00051, loading_00052, loading_00053, loading_00054, loading_00055, loading_00056, loading_00057, loading_00058, loading_00059, loading_00060, loading_00061, loading_00062, loading_00063, loading_00064, loading_00065, loading_00066, loading_00067, loading_00068, loading_00069, loading_00070, loading_00071, loading_00072, loading_00073, loading_00074, loading_00075, loading_00076, loading_00077, loading_00078, loading_00079]
     }
     
-    func playCheckmark(){
+    func playCheckmarkOnce(){
         
         animationView.animationImages = checkmarkImages
         animationView.animationDuration = 1
@@ -214,7 +203,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func playCheckmarkAnimation(){
         setupAnimation()
-        playCheckmark()
+        playCheckmarkOnce()
     }
     
     // Flow layout
@@ -267,10 +256,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             tableData[2].headerInfo = "No"
         }
         
-        print("printer nå temperatureWithUnit")
-        print(newWeather.temperatureWithUnit)
-        
     }
+    
     
     //////////
     
@@ -281,23 +268,31 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        settingsButton.isHidden = false
-        setUserDefaultsIfFirstRun()
+        activityIndicator.stopAnimating()
         activityIndicator.startAnimating()
+        settingsButton.isHidden = false
+        setUserDefaultsIfInitialRun()
         
         //observer setup
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateUserLocationStatus), name: NSNotification.Name(rawValue: Notifications.userLocationGPSDidUpdate), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUserLocationStatus), name: NSNotification.Name(rawValue: Notifications.userLocationGPSDidUpdate), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateReverseGeocodingStatus), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinished), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateReverseGeocodingStatus), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinished), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateCurrentWeatherStatus), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateCurrentWeatherStatus), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.viewDidLoad), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
         setupFlowLayout()
         
         UserLocation.sharedInstance.updateLocation()
         
         updateCurrentWeather()
+    }
+    func settingsDidUpdate(){
+        playCheckmarkOnce()
     }
     
     func updateUserLocationStatus(){
@@ -322,7 +317,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if(currentWeatherFetchIsFinished && reverseGeocodingIsFinished && GPSCoordinatesLocationIsFinished){
             
             self.collectionViewRef.reloadData()
-            print(UserLocation.sharedInstance.locationName)
             
             reverseGeocodingIsFinished = false
             currentWeatherFetchIsFinished = false
@@ -331,7 +325,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.cityAndCountryTextField.isHidden = false
         }
         else{
-            //
+            // do nothing
         }
     }
 
@@ -347,12 +341,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 
             case .success(let currentWeather):
                 
-                // Animation
-                
                 self.activityIndicator.stopAnimating()
                 self.playCheckmarkAnimation()
-                
-                // Update data
                 
                 self.updateDataSource(newWeather: currentWeather)
                 
@@ -370,7 +360,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    // Shake
+    // Reactive functions
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         self.viewDidLoad()
@@ -413,17 +403,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     // Setting standard userPref if first time run
     
-    func setUserDefaultsIfFirstRun(){
+    func setUserDefaultsIfInitialRun(){
         
         let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
         
         if currentPreferredUnits == nil {
-            print("First time running, setting value to user preference to 'SI'")
             UserDefaults.standard.set("SI", forKey: "preferredUnits")
-            
-        }
-        if currentPreferredUnits != nil {
-            print("Var ikke nil, så printer verdien den var:", currentPreferredUnits)
         }
     }
 }

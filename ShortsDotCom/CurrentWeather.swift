@@ -77,10 +77,7 @@ struct unitsOfMeasurement2{
         self.temperature = temperature
         self.visibility = visibility
     }
-    
 }
-
-
 
 enum icon: String{
     
@@ -97,7 +94,6 @@ enum icon: String{
     case partlyCloudyNight = "partly-cloudy-night"
     case unexpectedEnum = "default"
     
-    //rawValue initializer to set enum from JSON response
     init(rawValue: String){
         
         switch rawValue{
@@ -118,8 +114,6 @@ enum icon: String{
         }
     }
 }
-
-// Setting up precipitation as a independent enum for use in its own flowlayout cell
 
 enum precipIcon: String{
     
@@ -143,7 +137,6 @@ struct CurrentWeather{
     
     var timezone: timezone?
     var offset: Int?
-    
     var temperature: Double
     var summary: String
     var WeatherIcon: icon
@@ -152,8 +145,8 @@ struct CurrentWeather{
     
 // Average values:
     
-    //    let precip: Double //Gjennomsnittlig mm med regn
-    //    let precipType: icon //regn, snø eller sludd
+    // let precip: Double //Gjennomsnittlig mm med regn
+    // let precipType: icon //regn, snø eller sludd
     var precipIntensity: Double?
     var precipProbability: Double
     var precipProbabilityPercentage: Int
@@ -176,10 +169,8 @@ extension CurrentWeather: JSONDecodable{
         let time = JSON["time"] as? Double
         
             else {
-                print("\nError initializing CurrentWeather: nil returned")
                 return nil
         }
-       
         
         self.temperature = temperature
         self.summary = summary
@@ -203,8 +194,7 @@ extension CurrentWeather: JSONDecodable{
         } else {
             
             self.precipTypeText = "Precipitation"
-            self.precipIcon = .unexpectedPrecip // default
-            
+            self.precipIcon = .unexpectedPrecip
         }
     }
 }

@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum cellType{
+    case image
+    case text
+    case animation
+}
+
 class MyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageViewPrototype: UIImageView!

@@ -40,6 +40,8 @@ class SettingsViewController: UIViewController {
             print("default selected")
         }
         
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.settingsDidUpdate), object: self)
+
     }
     
     @IBAction func BackgroundButtonDidTouch(_ sender: AnyObject) {
@@ -56,8 +58,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         setupSegmentWithPreferredUnit()
-        
-        
     }
 
 
@@ -70,7 +70,6 @@ class SettingsViewController: UIViewController {
     // Helper methods
     
     func setupSegmentWithPreferredUnit(){
-        
         
         // Setter segmentControl til rett segment
         

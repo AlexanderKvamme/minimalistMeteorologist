@@ -11,4 +11,5 @@ enum Notifications {
     static let userLocationGPSDidUpdate = "userLocationUpdated"
     static let reverseGeocodingDidFinished = "reverseGeocodingFinished"
     static let fetchCurrentWeatherDidFinish = "currentWeatherFinishedFetching"
+    static let settingsDidUpdate = "settingsDidUpdate"
 }

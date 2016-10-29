@@ -199,9 +199,6 @@
 		DD543D8D1DAAE5F900CD6AC4 /* loading_00078.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D651DAAE5F900CD6AC4 /* loading_00078.png */; };
 		DD543D8E1DAAE5F900CD6AC4 /* loading_00079.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D661DAAE5F900CD6AC4 /* loading_00079.png */; };
 		DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65E53C1D944955008198CC /* MyCollectionViewCell.swift */; };
-		DD65E54D1D95D076008198CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD65E54A1D95D076008198CC /* License.txt */; };
-		DD65E54E1D95D076008198CC /* Moon Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD65E54B1D95D076008198CC /* Moon Bold.otf */; };
-		DD65E54F1D95D076008198CC /* Moon Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD65E54C1D95D076008198CC /* Moon Light.otf */; };
 		DD65E5511D96971C008198CC /* MyCollectionViewCellPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */; };
 		DDA0A0D51DB27BBF00011F94 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NSNotificationCenterKeys.swift */; };
 		DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F51DB3A9A500011F94 /* weathercock.png */; };
@@ -411,12 +408,8 @@
 		DD543D651DAAE5F900CD6AC4 /* loading_00078.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00078.png; sourceTree = "<group>"; };
 		DD543D661DAAE5F900CD6AC4 /* loading_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00079.png; sourceTree = "<group>"; };
 		DD65E53C1D944955008198CC /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCollectionViewCell.swift; path = ShortsDotCom/MyCollectionViewCell.swift; sourceTree = "<group>"; };
-		DD65E54A1D95D076008198CC /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		DD65E54B1D95D076008198CC /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
-		DD65E54C1D95D076008198CC /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
 		DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCollectionViewCellPercent.swift; path = ShortsDotCom/MyCollectionViewCellPercent.swift; sourceTree = "<group>"; };
 		DDA0A0D41DB27BBF00011F94 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSNotificationCenterKeys.swift; path = ShortsDotCom/NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
-		DDA0A0F41DB31E0700011F94 /* monaco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = monaco.ttf; path = "MoonTypeface FREE FONT/monaco.ttf"; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
 		DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@3x.png"; sourceTree = "<group>"; };
@@ -665,16 +658,6 @@
 			path = weatherIcons;
 			sourceTree = "<group>";
 		};
-		DD65E5491D95D076008198CC /* MoonTypeface FREE FONT */ = {
-			isa = PBXGroup;
-			children = (
-				DD65E54A1D95D076008198CC /* License.txt */,
-				DD65E54B1D95D076008198CC /* Moon Bold.otf */,
-				DD65E54C1D95D076008198CC /* Moon Light.otf */,
-			);
-			path = "MoonTypeface FREE FONT";
-			sourceTree = "<group>";
-		};
 		DD84EC3E1DBBC212000E7C96 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,10 +674,8 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
-				DDA0A0F41DB31E0700011F94 /* monaco.ttf */,
 				DD375FDE1DB508C0009AE7FC /* Spring */,
 				DD543D3E1DAAE5E900CD6AC4 /* Animations */,
-				DD65E5491D95D076008198CC /* MoonTypeface FREE FONT */,
 				DD65E3911D943AE6008198CC /* weatherIcons */,
 				DDA2770F1D786516001B5FBD /* ShortsDotCom */,
 				DD84EC3E1DBBC212000E7C96 /* Helper Classes */,
@@ -719,8 +700,8 @@
 				DDA2771C1D786516001B5FBD /* Info.plist */,
 				DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */,
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
-				DDA277121D786516001B5FBD /* ViewController.swift */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
+				DDA277121D786516001B5FBD /* ViewController.swift */,
 			);
 			path = ShortsDotCom;
 			sourceTree = "<group>";
@@ -824,7 +805,6 @@
 				DD19ED1C1DAE802D00986C39 /* Path 5.png in Resources */,
 				DD19ECE11DAE802D00986C39 /* clear-day@2x.png in Resources */,
 				DD543D851DAAE5F900CD6AC4 /* loading_00070.png in Resources */,
-				DD65E54D1D95D076008198CC /* License.txt in Resources */,
 				DD19ECFC1DAE802D00986C39 /* Group 2 Copy 15.png in Resources */,
 				DD19ECE01DAE802D00986C39 /* clear-day.png in Resources */,
 				DD19ECF61DAE802D00986C39 /* Group 2 Copy 13.png in Resources */,
@@ -843,7 +823,6 @@
 				DD543D831DAAE5F900CD6AC4 /* loading_00068.png in Resources */,
 				DD543D791DAAE5F900CD6AC4 /* loading_00058.png in Resources */,
 				DD19ECF51DAE802D00986C39 /* Group 2 Copy 2@3x.png in Resources */,
-				DD65E54F1D95D076008198CC /* Moon Light.otf in Resources */,
 				DD543D8E1DAAE5F900CD6AC4 /* loading_00079.png in Resources */,
 				DD37600C1DB508C0009AE7FC /* LoadingView.xib in Resources */,
 				DD19ECF41DAE802D00986C39 /* Group 2 Copy 2@2x.png in Resources */,
@@ -933,7 +912,6 @@
 				DD543D691DAAE5F900CD6AC4 /* loading_00042.png in Resources */,
 				DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */,
 				DD543D701DAAE5F900CD6AC4 /* loading_00049.png in Resources */,
-				DD65E54E1D95D076008198CC /* Moon Bold.otf in Resources */,
 				DD19ED001DAE802D00986C39 /* Group 2 Copy 16@2x.png in Resources */,
 				DD19ECE91DAE802D00986C39 /* cloudy copy 2.png in Resources */,
 				DD19ECDD1DAE802D00986C39 /* clear-day copy.png in Resources */,

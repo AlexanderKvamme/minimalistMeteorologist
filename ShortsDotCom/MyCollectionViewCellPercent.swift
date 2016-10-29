@@ -10,7 +10,6 @@ import UIKit
 
 class MyCollectionViewCellPercent: UICollectionViewCell {
     
-    //legg til headertextfield
     @IBOutlet weak var textFieldHeader: UILabel!
     @IBOutlet weak var textFieldPrototype: UITextView!
 }
