@@ -23,10 +23,13 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     // geoCoder
     
     var geoCoder: CLGeocoder?
-    var country = "CountryName"
-    var locality = "CityName"
+    var country = ""
+    var locality = ""
     var locationName: String {
+        if country != "" {
         return "in \(locality), \(country)"
+        }
+        else {return ""}
     }
     
     
@@ -100,7 +103,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
                 print("country: \(self.country)")
                 print("locality: \(self.locality)")
                 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.reverseGeocodingDidFinished), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: self)
                 
             }
         })

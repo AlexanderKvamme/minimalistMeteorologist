@@ -127,6 +127,7 @@
 		DD19ED4D1DAE802D00986C39 /* wind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECD51DAE802D00986C39 /* wind@2x.png */; };
 		DD19ED4E1DAE802D00986C39 /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECD61DAE802D00986C39 /* wind@3x.png */; };
 		DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD19ED4F1DAE807B00986C39 /* UserLocation.swift */; };
+		DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CB1DC42F4B008F2389 /* Animations.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
 		DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */; };
 		DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */; };
@@ -200,7 +201,7 @@
 		DD543D8E1DAAE5F900CD6AC4 /* loading_00079.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D661DAAE5F900CD6AC4 /* loading_00079.png */; };
 		DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65E53C1D944955008198CC /* MyCollectionViewCell.swift */; };
 		DD65E5511D96971C008198CC /* MyCollectionViewCellPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */; };
-		DDA0A0D51DB27BBF00011F94 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NSNotificationCenterKeys.swift */; };
+		DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */; };
 		DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F51DB3A9A500011F94 /* weathercock.png */; };
 		DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */; };
 		DDA0A0FA1DB3A9A500011F94 /* weathercock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */; };
@@ -335,6 +336,7 @@
 		DD19ECD51DAE802D00986C39 /* wind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind@2x.png"; sourceTree = "<group>"; };
 		DD19ECD61DAE802D00986C39 /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind@3x.png"; sourceTree = "<group>"; };
 		DD19ED4F1DAE807B00986C39 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -409,7 +411,7 @@
 		DD543D661DAAE5F900CD6AC4 /* loading_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00079.png; sourceTree = "<group>"; };
 		DD65E53C1D944955008198CC /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCollectionViewCell.swift; path = ShortsDotCom/MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCollectionViewCellPercent.swift; path = ShortsDotCom/MyCollectionViewCellPercent.swift; sourceTree = "<group>"; };
-		DDA0A0D41DB27BBF00011F94 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSNotificationCenterKeys.swift; path = ShortsDotCom/NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
+		DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCenterKeys.swift; path = ShortsDotCom/NotificationCenterKeys.swift; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
 		DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@3x.png"; sourceTree = "<group>"; };
@@ -666,7 +668,7 @@
 				DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */,
 				DDA277101D786516001B5FBD /* AppDelegate.swift */,
 				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
-				DDA0A0D41DB27BBF00011F94 /* NSNotificationCenterKeys.swift */,
+				DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -702,6 +704,7 @@
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
 				DDA277121D786516001B5FBD /* ViewController.swift */,
+				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 			);
 			path = ShortsDotCom;
 			sourceTree = "<group>";
@@ -956,7 +959,7 @@
 				DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */,
 				DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */,
 				DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */,
-				DDA0A0D51DB27BBF00011F94 /* NSNotificationCenterKeys.swift in Sources */,
+				DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */,
 				DD3760071DB508C0009AE7FC /* DesignableView.swift in Sources */,
 				DD37600D1DB508C0009AE7FC /* Misc.swift in Sources */,
 				DD375FFE1DB508C0009AE7FC /* AsyncImageView.swift in Sources */,
@@ -976,6 +979,7 @@
 				DD3760001DB508C0009AE7FC /* BlurView.swift in Sources */,
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
+				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
 				DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */,
