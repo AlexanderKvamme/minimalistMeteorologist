@@ -48,32 +48,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var animationView: UIImageView!
     
-    func updateDataSource(newWeather: CurrentWeather){
-        
-        self.headerImage.image = UIImage(named: newWeather.WeatherIcon.rawValue)
-        self.headerText.text = newWeather.summary
-        self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
-        self.cityAndCountryTextField.isHidden = false
-        
-            tableData = [
-                
-                // temperature cell
-                myData(firstRowLabel: newWeather.temperatureWithUnit.description, headerInfo: "temperature.png", cellType: cellType.image),
-                
-                // windspeed cell
-                myData(firstRowLabel: newWeather.windSpeedWithUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
-                
-                // precipitation chance cell
-                myData(firstRowLabel: "Chance of", headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
-                
-                // precipitation symbol cell
-                myData(firstRowLabel: newWeather.precipTypeText, headerInfo: newWeather.precipIcon.rawValue, cellType: cellType.image)]
-        
-        if newWeather.precipProbabilityPercentage == 0 {
-            tableData[2].headerInfo = "No"
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -89,8 +63,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateReverseGeocodingStatus), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateCurrentWeatherStatus), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
-        
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.viewDidLoad), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
@@ -136,6 +108,32 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             // do nothing
         }
     }
+    
+    func updateDataSource(newWeather: CurrentWeather){
+        
+        self.headerImage.image = UIImage(named: newWeather.WeatherIcon.rawValue)
+        self.headerText.text = newWeather.summary
+        self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
+        self.cityAndCountryTextField.isHidden = false
+        
+        tableData = [
+            
+            // temperature cell
+            myData(firstRowLabel: newWeather.temperatureWithUnit.description, headerInfo: "temperature.png", cellType: cellType.image),
+            
+            // windspeed cell
+            myData(firstRowLabel: newWeather.windSpeedWithUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
+            
+            // precipitation chance cell
+            myData(firstRowLabel: "Chance of", headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
+            
+            // precipitation symbol cell
+            myData(firstRowLabel: newWeather.precipTypeText, headerInfo: newWeather.precipIcon.rawValue, cellType: cellType.image)]
+        
+        if newWeather.precipProbabilityPercentage == 0 {
+            tableData[2].headerInfo = "No"
+        }
+    }
 
     // UpdateCurrentWeather
     
@@ -159,14 +157,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .failure(let error as NSError):
                 self.activityIndicator.stopAnimating()
                 
-                self.showAlert(title: "Error", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+                showAlert(viewController: self, title: "Error", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
                 
             default: break
             }
         }
     }
-    
-    // Reactive functions
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         self.viewDidLoad()
@@ -183,39 +179,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     // Helper functions
     
-    func showAlert(title: String, message: String, error: NSError?){
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(dismissAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func showAlert(title: String, message: String){
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(dismissAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func setupFlowLayout(){
         flowLayout.itemSize.width = (self.view.frame.size.width/2)
         flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
-    }
-    
-    // Setting standard userPref if first time run
-    
-    func setUserDefaultsIfInitialRun(){
-        
-        let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
-        
-        if currentPreferredUnits == nil {
-            UserDefaults.standard.set("SI", forKey: "preferredUnits")
-        }
     }
     
     // Flow layout

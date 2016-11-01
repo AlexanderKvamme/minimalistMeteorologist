@@ -128,6 +128,7 @@
 		DD19ED4E1DAE802D00986C39 /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECD61DAE802D00986C39 /* wind@3x.png */; };
 		DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD19ED4F1DAE807B00986C39 /* UserLocation.swift */; };
 		DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CB1DC42F4B008F2389 /* Animations.swift */; };
+		DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CD1DC7B4E0008F2389 /* Global.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
 		DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */; };
 		DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */; };
@@ -337,6 +338,7 @@
 		DD19ECD61DAE802D00986C39 /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind@3x.png"; sourceTree = "<group>"; };
 		DD19ED4F1DAE807B00986C39 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				DDA277141D786516001B5FBD /* Main.storyboard */,
 				DDA277121D786516001B5FBD /* ViewController.swift */,
 				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
+				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
 			);
 			path = ShortsDotCom;
 			sourceTree = "<group>";
@@ -952,6 +955,7 @@
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
 				DDA277131D786516001B5FBD /* ViewController.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,
+				DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */,
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,
 				DD3760181DB508C0009AE7FC /* TransitionZoom.swift in Sources */,
 				DD3760141DB508C0009AE7FC /* SpringTextField.swift in Sources */,

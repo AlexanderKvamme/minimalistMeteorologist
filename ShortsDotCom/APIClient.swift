@@ -19,7 +19,7 @@ typealias JSONTaskCompletion = (JSON?, HTTPURLResponse?, NSError?) -> Void
 typealias JSONTask = URLSessionDataTask
 
 protocol Endpoint{
-    var baseURL: URL { get }//get er alltid fast
+    var baseURL: URL { get }
     var path: String { get }
     var request: URLRequest { get }
 }
@@ -30,7 +30,7 @@ enum APIResult<T>{
 }
 
 protocol JSONDecodable {
-    //failable initializer returnerer nil dersom klassen/structen ikke kan initialiseres med json dictionary
+    //failable initializer
     init?(JSON: [String : AnyObject])
 }
 
@@ -46,7 +46,8 @@ protocol APIClient {
 
 }
 
-//DEFAULT IMPLEMENTATION: Implementation som gjør at programmereren kan ha en fungerende implementering av APIClient fra start
+// DEFAULT IMPLEMENTATION:
+// Implementation som gjør at programmereren kan ha en fungerende implementering av APIClient fra start
 
 extension APIClient{
     
@@ -71,17 +72,14 @@ extension APIClient{
                 if let error = error { completion(nil, HTTPResponse, error as NSError?) }
             
             } else {
-                //data er mottatt, og vi har fått en HTTPResponse. Switcher på de mest populære svarene
+            
                 switch HTTPResponse.statusCode{
                 case 200:
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : AnyObject]
                         
-                        //TEST END
-                        
                         completion(json, HTTPResponse, nil)
                     } catch let error as NSError{
-                        print("error caught")
                         completion(nil, HTTPResponse, error)
                         }
                     
@@ -101,7 +99,6 @@ extension APIClient{
             guard let json = json else {
                 
                 if let error = error {
-                    print("error in JSONTaskWithRequest")
                     
                     completion(APIResult.failure(error))
                 }
@@ -112,15 +109,12 @@ extension APIClient{
                 
                 completion(APIResult.success(value))
             } else {
-                
-                print("\nError with parse(json)")
-                
+
                 let error = NSError(domain: AMKNetworkingErrorDomain, code: JSONParsingError, userInfo: nil)
                 completion(APIResult.failure(error))
             
             }
         })
-        
         }
         task.resume()
     }
