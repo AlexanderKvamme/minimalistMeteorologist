@@ -218,7 +218,7 @@
 
 /* Begin PBXFileReference section */
 		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ShortsDotCom/APIClient.swift; sourceTree = "<group>"; };
-		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
+		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
 		DD19EC601DAE802D00986C39 /* Activity Indicators@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators@2x.png"; sourceTree = "<group>"; };
 		DD19EC611DAE802D00986C39 /* Activity Indicators@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators@3x.png"; sourceTree = "<group>"; };
@@ -665,7 +665,6 @@
 		DD84EC3E1DBBC212000E7C96 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
 				DD65E53C1D944955008198CC /* MyCollectionViewCell.swift */,
 				DD65E5501D96971C008198CC /* MyCollectionViewCellPercent.swift */,
 				DDA277101D786516001B5FBD /* AppDelegate.swift */,
@@ -706,6 +705,7 @@
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
 				DDA277121D786516001B5FBD /* ViewController.swift */,
+				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
 				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
 			);

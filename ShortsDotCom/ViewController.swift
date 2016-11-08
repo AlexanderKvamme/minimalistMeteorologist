@@ -73,7 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         updateCurrentWeather()
     }
     func settingsDidUpdate(){
-        Animations.playCheckmarkOnce(inImageView: animationView)
+        Animations.playCheckmarkAnimationOnce(inImageView: animationView)
     }
     
     func updateUserLocationStatus(){
@@ -148,7 +148,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .success(let currentWeather):
                 
                 self.activityIndicator.stopAnimating()
-                Animations.playCheckmarkAnimation(inImageView: self.animationView)
+                
+                Animations.playCheckmarkAnimationOnce(inImageView: self.animationView)
                 
                 self.updateDataSource(newWeather: currentWeather)
                 
