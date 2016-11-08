@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IoU-2Z-I2i">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,6 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-a3-4xE">
+                                <rect key="frame" x="0.0" y="299.5" width="375" height="331.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mwt-fZ-gmn">
                                     <size key="itemSize" width="120" height="160"/>
@@ -41,10 +45,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8Q-FQ-yY6">
+                                                    <rect key="frame" x="0.0" y="124" width="120" height="28"/>
                                                     <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-n6-76N"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-n6-76N">
+                                                    <rect key="frame" x="0.0" y="10" width="120" height="109"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -70,10 +77,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-dy-ptK">
+                                                    <rect key="frame" x="8" y="124" width="104" height="28"/>
                                                     <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-KV-dsc">
+                                                    <rect key="frame" x="8" y="40" width="104" height="47"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                     </accessibility>
@@ -108,29 +117,35 @@
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-p0-XsK">
+                                <rect key="frame" x="75" y="20" width="225" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="YyB-cA-hBI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpp-Rh-2AR">
+                                <rect key="frame" x="94" y="220" width="187" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-14-equ">
+                                <rect key="frame" x="177.5" y="267" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5UQ-5o-VfK" userLabel="animationView">
+                                <rect key="frame" x="157.5" y="257.5" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Zds-A0-8r5"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Test, Testingtown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-kz-elv">
+                                <rect key="frame" x="0.0" y="248" width="375" height="11.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-Bb-g4o">
+                                <rect key="frame" x="123.5" y="626" width="128" height="31"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                                 <inset key="contentEdgeInsets" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button" image="settingsButton.png"/>
@@ -141,6 +156,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VLd-Bb-g4o" firstAttribute="centerX" secondItem="5UQ-5o-VfK" secondAttribute="centerX" id="0GC-2i-cN6"/>
                             <constraint firstItem="xfJ-p0-XsK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1Kt-B1-cTb"/>
@@ -163,6 +179,9 @@
                             <constraint firstItem="5UQ-5o-VfK" firstAttribute="centerX" secondItem="kKR-14-equ" secondAttribute="centerX" id="uB6-RK-JHl"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cbl-a3-4xE" secondAttribute="bottom" constant="36" id="uRj-yS-emN"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="I5S-nd-GT4" appends="YES" id="uV7-AV-Gkm"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="ETk-z9-VbC"/>
                     <connections>
@@ -178,8 +197,218 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="pV2-pO-idl" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="right" id="I5S-nd-GT4">
+                    <connections>
+                        <segue destination="pV2-pO-idl" kind="unwind" unwindAction="unwindToViewController:" id="e6W-ZE-t8a"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1372" y="313.49325337331339"/>
+        </scene>
+        <!--Start Screen View Controller-->
+        <scene sceneID="u6N-Ap-Suq">
+            <objects>
+                <viewController id="IoU-2Z-I2i" customClass="StartScreenViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rsb-yS-Ukg"/>
+                        <viewControllerLayoutGuide type="bottom" id="hel-UJ-yIP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yi3-D2-r3C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1V-Jp-5x4">
+                                <rect key="frame" x="44.5" y="262.5" width="286" height="142"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="100"/>
+                                <state key="normal" title="WEEK"/>
+                                <connections>
+                                    <segue destination="I7e-2P-p60" kind="presentation" id="CZJ-mA-OE6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAL-QA-4nA">
+                                <rect key="frame" x="-39" y="72" width="454" height="142"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <state key="normal" title="CURRENT"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="kKq-ke-HHx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FI-Px-1Id">
+                                <rect key="frame" x="-40" y="461" width="454" height="142"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <state key="normal" title="NEXT 90m"/>
+                                <connections>
+                                    <segue destination="LTW-Yd-5vU" kind="showDetail" id="eq3-iV-w4G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e1V-Jp-5x4" firstAttribute="centerY" secondItem="Yi3-D2-r3C" secondAttribute="centerY" id="8ao-D8-BIq"/>
+                            <constraint firstItem="e1V-Jp-5x4" firstAttribute="centerX" secondItem="Yi3-D2-r3C" secondAttribute="centerX" id="sJ5-Gm-XT7"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ew-VB-dsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="396" y="1118"/>
+        </scene>
+        <!--Week Table View Controller-->
+        <scene sceneID="4u3-Vx-bGo">
+            <objects>
+                <tableViewController id="I7e-2P-p60" customClass="WeekTableViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="641" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q5j-Q8-r4f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeekTableViewCell" rowHeight="641" id="lo1-YR-Jao" customClass="WeekTableViewCell" customModule="ShortsDotCom" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="641"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo1-YR-Jao" id="NLg-FB-sdq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrY-Q4-4aG">
+                                            <rect key="frame" x="13" y="125.5" width="349" height="390"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="300"/>
+                                            <color key="textColor" red="0.81996169919999995" green="1" blue="0.69861101219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnf-4N-bm5">
+                                            <rect key="frame" x="73.5" y="268.5" width="228.5" height="104"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="80"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="0DA-2c-pgF"/>
+                                        <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="C8C-A1-bY1"/>
+                                        <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="QNu-KT-tEY"/>
+                                        <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="b6h-BU-amw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="weekNumberLabel" destination="ZrY-Q4-4aG" id="6FU-QL-Mb6"/>
+                                    <outletCollection property="gestureRecognizers" destination="PsL-ex-spi" appends="YES" id="aHI-aB-tDe"/>
+                                    <segue destination="mTX-2c-Niu" kind="presentation" identifier="WeekTableToDetailed" id="2yG-DH-KQV"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="I7e-2P-p60" id="t3I-ok-znN"/>
+                            <outlet property="delegate" destination="I7e-2P-p60" id="9Hg-eI-KF6"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="swipeLeftRecognizer" destination="MX7-Cf-R0E" id="UTr-22-JbJ"/>
+                        <outlet property="swipeRightRecognizer" destination="PsL-ex-spi" id="Tyb-Dy-dTP"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LeY-WH-aKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TvE-hA-Hxp" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="left" id="MX7-Cf-R0E">
+                    <connections>
+                        <action selector="didSwipeLeft:" destination="I7e-2P-p60" id="Xh7-Ew-aXs"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="PsL-ex-spi">
+                    <connections>
+                        <action selector="didSwipeRight:" destination="I7e-2P-p60" id="kSf-yK-Fe7"/>
+                        <segue destination="TvE-hA-Hxp" kind="unwind" unwindAction="unwindToViewController:" id="pk6-W6-yik"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1354" y="1139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fzF-5Y-9j7">
+            <objects>
+                <viewController id="LTW-Yd-5vU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YZh-Wo-QbL"/>
+                        <viewControllerLayoutGuide type="bottom" id="u8X-LD-X2L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RR2-AE-GPq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDz-zs-YgV">
+                                <rect key="frame" x="28.5" y="323" width="319.5" height="61"/>
+                                <string key="text">This is the viewController.
+That will show you whats going to happen
+the next x minutes</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="dDz-zs-YgV" firstAttribute="top" secondItem="YZh-Wo-QbL" secondAttribute="bottom" constant="303" id="Ovu-XT-lF7"/>
+                            <constraint firstItem="dDz-zs-YgV" firstAttribute="centerX" secondItem="RR2-AE-GPq" secondAttribute="centerX" id="ULO-aB-HJp"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zPU-0S-t0a" appends="YES" id="pZR-Ew-UV7"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ilf-03-UGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="232-LN-sbn" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="right" id="zPU-0S-t0a">
+                    <connections>
+                        <segue destination="232-LN-sbn" kind="unwind" unwindAction="unwindToViewController:" id="l6o-fL-OUu"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1380" y="1925.4872563718143"/>
+        </scene>
+        <!--Week Detailed View Controller-->
+        <scene sceneID="rnz-Q2-xfj">
+            <objects>
+                <viewController id="mTX-2c-Niu" customClass="WeekDetailedViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="avq-Zb-gWC"/>
+                        <viewControllerLayoutGuide type="bottom" id="ws0-Qx-NsY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lds-fV-CKb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the WeekDetailedView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pV-jT-59M">
+                                <rect key="frame" x="74.5" y="323.5" width="226" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="8pV-jT-59M" firstAttribute="centerY" secondItem="lds-fV-CKb" secondAttribute="centerY" id="KMt-OZ-jr0"/>
+                            <constraint firstItem="8pV-jT-59M" firstAttribute="centerX" secondItem="lds-fV-CKb" secondAttribute="centerX" id="Lfm-4O-BHa"/>
+                            <constraint firstItem="8pV-jT-59M" firstAttribute="top" secondItem="avq-Zb-gWC" secondAttribute="bottom" constant="303.5" id="ZpS-Hb-aDx"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zwP-Qh-iYH" appends="YES" id="bIy-w9-icH"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lgd-uG-Ibh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qQ5-5q-8d5" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="right" id="zwP-Qh-iYH">
+                    <connections>
+                        <segue destination="qQ5-5q-8d5" kind="unwind" unwindAction="unwindToViewController:" id="Uvn-HK-jjj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2386" y="1139"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="5s6-1q-lyU">
@@ -194,11 +423,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.34999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfQ-0B-fNK" userLabel="Darken">
-                                <frame key="frameInset" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9F-DV-CKB">
-                                        <frame key="frameInset" width="375" height="668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="BackgroundButtonDidTouch:" destination="Yst-fw-VUa" eventType="touchUpInside" id="U3S-x4-Av8"/>
@@ -209,8 +438,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-Gk-1UU" userLabel="SettingsView" customClass="DesignableView" customModule="ShortsDotCom" customModuleProvider="target">
+                                <rect key="frame" x="36" y="582" width="303" height="75"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vRG-uj-sME">
+                                        <rect key="frame" x="70" y="37" width="163" height="29"/>
                                         <segments>
                                             <segment title="SI"/>
                                             <segment title="US"/>
@@ -223,6 +454,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Units of measurement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0I-8O-7QJ">
+                                        <rect key="frame" x="61" y="10" width="181" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>

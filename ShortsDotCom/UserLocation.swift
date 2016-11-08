@@ -89,8 +89,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         geoCoder?.reverseGeocodeLocation(location, completionHandler: { (placemark, error) in
             
             if error != nil{
+                
                 // TASK: - TODO error message to screen
-                print("error in startReverseGeocoding:", error?.localizedDescription)
+                
                 return
             }
             

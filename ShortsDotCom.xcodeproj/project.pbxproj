@@ -214,6 +214,10 @@
 		DDA277161D786516001B5FBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277141D786516001B5FBD /* Main.storyboard */; };
 		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
+		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
+		DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */; };
+		DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */; };
+		DDD957021DD21D120089FA53 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD957011DD21D120089FA53 /* StartScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -427,6 +431,10 @@
 		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
+		DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDetailedViewController.swift; sourceTree = "<group>"; };
+		DDD957011DD21D120089FA53 /* StartScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -677,6 +685,7 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DDD956FA1DD211020089FA53 /* Weekly */,
 				DD375FDE1DB508C0009AE7FC /* Spring */,
 				DD543D3E1DAAE5E900CD6AC4 /* Animations */,
 				DD65E3911D943AE6008198CC /* weatherIcons */,
@@ -710,6 +719,17 @@
 				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
 			);
 			path = ShortsDotCom;
+			sourceTree = "<group>";
+		};
+		DDD956FA1DD211020089FA53 /* Weekly */ = {
+			isa = PBXGroup;
+			children = (
+				DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */,
+				DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */,
+				DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */,
+				DDD957011DD21D120089FA53 /* StartScreenViewController.swift */,
+			);
+			name = Weekly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -952,6 +972,7 @@
 			files = (
 				DD3760111DB508C0009AE7FC /* SpringButton.swift in Sources */,
 				DD37600E1DB508C0009AE7FC /* SoundPlayer.swift in Sources */,
+				DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */,
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
 				DDA277131D786516001B5FBD /* ViewController.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,
@@ -959,6 +980,7 @@
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,
 				DD3760181DB508C0009AE7FC /* TransitionZoom.swift in Sources */,
 				DD3760141DB508C0009AE7FC /* SpringTextField.swift in Sources */,
+				DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */,
 				DD3760021DB508C0009AE7FC /* DesignableImageView.swift in Sources */,
 				DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */,
 				DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */,
@@ -983,6 +1005,8 @@
 				DD3760001DB508C0009AE7FC /* BlurView.swift in Sources */,
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
+				DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */,
+				DDD957021DD21D120089FA53 /* StartScreenViewController.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
