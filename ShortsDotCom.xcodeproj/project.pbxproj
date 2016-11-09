@@ -214,6 +214,7 @@
 		DDA277161D786516001B5FBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277141D786516001B5FBD /* Main.storyboard */; };
 		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
+		DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA785A21DD2732D00A976D5 /* Extensions.swift */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
 		DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */; };
 		DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */; };
@@ -431,6 +432,7 @@
 		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDA785A21DD2732D00A976D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
 		DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDetailedViewController.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */,
+				DDA785A21DD2732D00A976D5 /* Extensions.swift */,
 				DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */,
 				DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */,
 				DDD957011DD21D120089FA53 /* StartScreenViewController.swift */,
@@ -1001,6 +1004,7 @@
 				DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */,
 				DD37600F1DB508C0009AE7FC /* Spring.swift in Sources */,
 				DD3760171DB508C0009AE7FC /* TransitionManager.swift in Sources */,
+				DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */,
 				DD3760011DB508C0009AE7FC /* DesignableButton.swift in Sources */,
 				DD3760001DB508C0009AE7FC /* BlurView.swift in Sources */,
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,

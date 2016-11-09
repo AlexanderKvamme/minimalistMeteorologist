@@ -145,7 +145,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-Bb-g4o">
-                                <rect key="frame" x="123.5" y="626" width="128" height="31"/>
+                                <rect key="frame" x="119.5" y="626" width="136" height="31"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                                 <inset key="contentEdgeInsets" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button" image="settingsButton.png"/>
@@ -221,7 +221,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1V-Jp-5x4">
                                 <rect key="frame" x="44.5" y="262.5" width="286" height="142"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="100"/>
-                                <state key="normal" title="WEEK"/>
+                                <state key="normal" title="WEEK">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="I7e-2P-p60" kind="presentation" id="CZJ-mA-OE6"/>
                                 </connections>
@@ -230,7 +232,9 @@
                                 <rect key="frame" x="-39" y="72" width="454" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
-                                <state key="normal" title="CURRENT"/>
+                                <state key="normal" title="CURRENT">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="kKq-ke-HHx"/>
                                 </connections>
@@ -239,7 +243,9 @@
                                 <rect key="frame" x="-40" y="461" width="454" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
-                                <state key="normal" title="NEXT 90m"/>
+                                <state key="normal" title="NEXT 90m">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <segue destination="LTW-Yd-5vU" kind="showDetail" id="eq3-iV-w4G"/>
                                 </connections>
@@ -269,7 +275,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="641"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo1-YR-Jao" id="NLg-FB-sdq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrY-Q4-4aG">
@@ -367,7 +373,7 @@ the next x minutes</string>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1380" y="1925.4872563718143"/>
+            <point key="canvasLocation" x="396" y="1917"/>
         </scene>
         <!--Week Detailed View Controller-->
         <scene sceneID="rnz-Q2-xfj">

@@ -24,6 +24,13 @@ class WeekTableViewController: UITableViewController {
     
     var weekArray = [Int]()
     
+    // Mark: Snap behavior in scrolling
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+            tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
+            print("test")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,14 +38,29 @@ class WeekTableViewController: UITableViewController {
             weekArray.append(week)
             print("Added number: ", week)
         }
-        
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    // MARK: Cell animation
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // Animation
+        
+        let rotationTransform =  CATransform3DTranslate(CATransform3DIdentity, 0, 0, -500)
+        cell.layer.transform = rotationTransform
+        
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+        
+            cell.layer.transform = CATransform3DIdentity
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
