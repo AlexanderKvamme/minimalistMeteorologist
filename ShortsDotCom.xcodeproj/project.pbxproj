@@ -129,8 +129,15 @@
 		DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD19ED4F1DAE807B00986C39 /* UserLocation.swift */; };
 		DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CB1DC42F4B008F2389 /* Animations.swift */; };
 		DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CD1DC7B4E0008F2389 /* Global.swift */; };
+		DD28BEED1DD943B500C742D3 /* BebasNeue Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEE81DD943B500C742D3 /* BebasNeue Bold.otf */; };
+		DD28BEEE1DD943B500C742D3 /* BebasNeue Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEE91DD943B500C742D3 /* BebasNeue Book.otf */; };
+		DD28BEEF1DD943B500C742D3 /* BebasNeue Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEEA1DD943B500C742D3 /* BebasNeue Light.otf */; };
+		DD28BEF01DD943B500C742D3 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEEB1DD943B500C742D3 /* BebasNeue Regular.otf */; };
+		DD28BEF11DD943B500C742D3 /* BebasNeue Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEEC1DD943B500C742D3 /* BebasNeue Thin.otf */; };
+		DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */; };
+		DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
-		DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */; };
+		DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* Weather.swift */; };
 		DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */; };
 		DD375FFE1DB508C0009AE7FC /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FE01DB508C0009AE7FC /* AsyncImageView.swift */; };
 		DD375FFF1DB508C0009AE7FC /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FE11DB508C0009AE7FC /* AutoTextView.swift */; };
@@ -210,7 +217,7 @@
 		DDA0A0FF1DB3B20400011F94 /* settingsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0FC1DB3B20400011F94 /* settingsButton@2x.png */; };
 		DDA0A1001DB3B20400011F94 /* settingsButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0FD1DB3B20400011F94 /* settingsButton@3x.png */; };
 		DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA277101D786516001B5FBD /* AppDelegate.swift */; };
-		DDA277131D786516001B5FBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA277121D786516001B5FBD /* ViewController.swift */; };
+		DDA277131D786516001B5FBD /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA277121D786516001B5FBD /* CurrentWeatherViewController.swift */; };
 		DDA277161D786516001B5FBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277141D786516001B5FBD /* Main.storyboard */; };
 		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
@@ -344,8 +351,17 @@
 		DD19ED4F1DAE807B00986C39 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
+		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
+		DD28BEE81DD943B500C742D3 /* BebasNeue Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Bold.otf"; sourceTree = "<group>"; };
+		DD28BEE91DD943B500C742D3 /* BebasNeue Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Book.otf"; sourceTree = "<group>"; };
+		DD28BEEA1DD943B500C742D3 /* BebasNeue Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Light.otf"; sourceTree = "<group>"; };
+		DD28BEEB1DD943B500C742D3 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
+		DD28BEEC1DD943B500C742D3 /* BebasNeue Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Thin.otf"; sourceTree = "<group>"; };
+		DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
+		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
-		DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		DD300BB81D7DBB6000AF95C9 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		DD375FE01DB508C0009AE7FC /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		DD375FE11DB508C0009AE7FC /* AutoTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoTextView.swift; sourceTree = "<group>"; };
@@ -427,7 +443,7 @@
 		DDA0A0FD1DB3B20400011F94 /* settingsButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsButton@3x.png"; sourceTree = "<group>"; };
 		DDA2770D1D786516001B5FBD /* ShortsDotCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortsDotCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDA277101D786516001B5FBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ShortsDotCom/AppDelegate.swift; sourceTree = "<group>"; };
-		DDA277121D786516001B5FBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DDA277121D786516001B5FBD /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
 		DDA277151D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -450,6 +466,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD28BEE51DD936F100C742D3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */,
+				DD28BEE81DD943B500C742D3 /* BebasNeue Bold.otf */,
+				DD28BEE91DD943B500C742D3 /* BebasNeue Book.otf */,
+				DD28BEEA1DD943B500C742D3 /* BebasNeue Light.otf */,
+				DD28BEEB1DD943B500C742D3 /* BebasNeue Regular.otf */,
+				DD28BEEC1DD943B500C742D3 /* BebasNeue Thin.otf */,
+				DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */,
+				DD28BEE71DD9370B00C742D3 /* Moon Light.otf */,
+			);
+			name = Fonts;
+			path = ShortsDotCom;
+			sourceTree = "<group>";
+		};
+		DD28BEF41DD9488F00C742D3 /* WeeksDetailed */ = {
+			isa = PBXGroup;
+			children = (
+				DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */,
+			);
+			name = WeeksDetailed;
+			sourceTree = "<group>";
+		};
 		DD375FDE1DB508C0009AE7FC /* Spring */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,9 +727,11 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DD28BEF41DD9488F00C742D3 /* WeeksDetailed */,
 				DDD956FA1DD211020089FA53 /* Weekly */,
 				DD375FDE1DB508C0009AE7FC /* Spring */,
 				DD543D3E1DAAE5E900CD6AC4 /* Animations */,
+				DD28BEE51DD936F100C742D3 /* Fonts */,
 				DD65E3911D943AE6008198CC /* weatherIcons */,
 				DDA2770F1D786516001B5FBD /* ShortsDotCom */,
 				DD84EC3E1DBBC212000E7C96 /* Helper Classes */,
@@ -708,14 +750,14 @@
 		DDA2770F1D786516001B5FBD /* ShortsDotCom */ = {
 			isa = PBXGroup;
 			children = (
-				DD300BB81D7DBB6000AF95C9 /* CurrentWeather.swift */,
+				DD300BB81D7DBB6000AF95C9 /* Weather.swift */,
 				DDA277171D786516001B5FBD /* Assets.xcassets */,
 				DDA277191D786516001B5FBD /* LaunchScreen.storyboard */,
 				DDA2771C1D786516001B5FBD /* Info.plist */,
 				DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */,
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
-				DDA277121D786516001B5FBD /* ViewController.swift */,
+				DDA277121D786516001B5FBD /* CurrentWeatherViewController.swift */,
 				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
 				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
@@ -835,9 +877,11 @@
 				DD19ECE11DAE802D00986C39 /* clear-day@2x.png in Resources */,
 				DD543D851DAAE5F900CD6AC4 /* loading_00070.png in Resources */,
 				DD19ECFC1DAE802D00986C39 /* Group 2 Copy 15.png in Resources */,
+				DD28BEEE1DD943B500C742D3 /* BebasNeue Book.otf in Resources */,
 				DD19ECE01DAE802D00986C39 /* clear-day.png in Resources */,
 				DD19ECF61DAE802D00986C39 /* Group 2 Copy 13.png in Resources */,
 				DD19ED341DAE802D00986C39 /* precipitationSleet@2x.png in Resources */,
+				DD28BEF01DD943B500C742D3 /* BebasNeue Regular.otf in Resources */,
 				DD19ED011DAE802D00986C39 /* Group 2 Copy 16@3x.png in Resources */,
 				DD543D781DAAE5F900CD6AC4 /* loading_00057.png in Resources */,
 				DD19ED4C1DAE802D00986C39 /* wind.png in Resources */,
@@ -859,6 +903,7 @@
 				DD543D841DAAE5F900CD6AC4 /* loading_00069.png in Resources */,
 				DD19ECDE1DAE802D00986C39 /* clear-day copy@2x.png in Resources */,
 				DD19ED431DAE802D00986C39 /* temperature@1x.png in Resources */,
+				DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */,
 				DD19ECE21DAE802D00986C39 /* clear-day@3x.png in Resources */,
 				DD19ECFA1DAE802D00986C39 /* Group 2 Copy 14@2x.png in Resources */,
 				DD543D671DAAE5F900CD6AC4 /* loading_00040.png in Resources */,
@@ -872,6 +917,7 @@
 				DD19ED1E1DAE802D00986C39 /* precipitation@1x.png in Resources */,
 				DD19ECED1DAE802D00986C39 /* cloudy@1x.png in Resources */,
 				DD19ED291DAE802D00986C39 /* precipitationDefault2@3x.png in Resources */,
+				DD28BEF11DD943B500C742D3 /* BebasNeue Thin.otf in Resources */,
 				DD3760091DB508C0009AE7FC /* Info.plist in Resources */,
 				DDA0A0FA1DB3A9A500011F94 /* weathercock@3x.png in Resources */,
 				DD543D771DAAE5F900CD6AC4 /* loading_00056.png in Resources */,
@@ -904,6 +950,7 @@
 				DD19ED201DAE802D00986C39 /* precipitation@3x.png in Resources */,
 				DD19ED401DAE802D00986C39 /* snow@2x.png in Resources */,
 				DDA277161D786516001B5FBD /* Main.storyboard in Resources */,
+				DD28BEEF1DD943B500C742D3 /* BebasNeue Light.otf in Resources */,
 				DD19ECEF1DAE802D00986C39 /* cloudy@3x.png in Resources */,
 				DD19ECF21DAE802D00986C39 /* fog@3x.png in Resources */,
 				DD19ED4D1DAE802D00986C39 /* wind@2x.png in Resources */,
@@ -957,6 +1004,7 @@
 				DD19ECFF1DAE802D00986C39 /* Group 2 Copy 16.png in Resources */,
 				DD19ECE81DAE802D00986C39 /* clear-night@3x.png in Resources */,
 				DD19ED351DAE802D00986C39 /* precipitationSleet@3x.png in Resources */,
+				DD28BEED1DD943B500C742D3 /* BebasNeue Bold.otf in Resources */,
 				DD19ED2D1DAE802D00986C39 /* precipitationDefault4.png in Resources */,
 				DD19ED321DAE802D00986C39 /* precipitationRain@3x.png in Resources */,
 				DD19ED171DAE802D00986C39 /* partly-cloudy-day@3x.png in Resources */,
@@ -977,7 +1025,7 @@
 				DD37600E1DB508C0009AE7FC /* SoundPlayer.swift in Sources */,
 				DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */,
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
-				DDA277131D786516001B5FBD /* ViewController.swift in Sources */,
+				DDA277131D786516001B5FBD /* CurrentWeatherViewController.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,
 				DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */,
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,
@@ -985,7 +1033,7 @@
 				DD3760141DB508C0009AE7FC /* SpringTextField.swift in Sources */,
 				DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */,
 				DD3760021DB508C0009AE7FC /* DesignableImageView.swift in Sources */,
-				DD300BB91D7DBB6000AF95C9 /* CurrentWeather.swift in Sources */,
+				DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */,
 				DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */,
 				DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */,
 				DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */,
@@ -1015,6 +1063,7 @@
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
 				DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */,
+				DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */,
 				DD37600B1DB508C0009AE7FC /* LoadingView.swift in Sources */,
 				DD3760121DB508C0009AE7FC /* SpringImageView.swift in Sources */,
 			);

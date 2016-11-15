@@ -116,13 +116,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
         self.cityAndCountryTextField.isHidden = false
         
+        print("UKENUMMER:::::::", newWeather.weekNumber)
+        
         tableData = [
             
             // temperature cell
-            myData(firstRowLabel: newWeather.temperatureWithUnit.description, headerInfo: "temperature.png", cellType: cellType.image),
+            myData(firstRowLabel: newWeather.temperatureInPreferredUnit.description, headerInfo: "temperature.png", cellType: cellType.image),
             
             // windspeed cell
-            myData(firstRowLabel: newWeather.windSpeedWithUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
+            myData(firstRowLabel: newWeather.windSpeedInPreferredUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
             
             // precipitation chance cell
             myData(firstRowLabel: "Chance of", headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
@@ -201,6 +203,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.textFieldHeader.text = tableData[indexPath.row].headerInfo
             cell.textFieldHeader.textAlignment = .center
             return cell
+            
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCellPrototypeImage", for: indexPath) as! MyCollectionViewCell

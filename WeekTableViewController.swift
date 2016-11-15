@@ -8,10 +8,17 @@
 
 import UIKit
 
-class WeekTableViewController: UITableViewController {
+class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegate{
 
+    //Variables
+    var weekArray = [Int]()
+    var currentWeekIsAtIndex = Int()
+    var currentWeekIndexPath = Int()
+    var currentlySelectedWeek = Int()
+    
     // MARK: Outlets and actions
     
+    @IBOutlet weak var currentWeek: UILabel!
     @IBAction func didSwipeRight(_ sender: AnyObject) {
         print("didSwipeLeft")
     }
@@ -21,30 +28,38 @@ class WeekTableViewController: UITableViewController {
         print("didSwipeLeft")
         self.performSegue(withIdentifier: "WeekTableToDetailed", sender: self)
     }
-    
-    var weekArray = [Int]()
+
     
     // Mark: Snap behavior in scrolling
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-            tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
-            print("test")
+            tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)		
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("So the current week is: ", getCurrentWeekNumber())
+        
         for week in 1...52{
             weekArray.append(week)
-            print("Added number: ", week)
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        currentWeekIsAtIndex = getCurrentWeekNumber()-1
+        let currentWeekIndexPath = IndexPath(row: currentWeekIsAtIndex, section: 0)
+        tableView.scrollToRow(at: currentWeekIndexPath, at: .middle, animated: true)
     }
+    
+    // Pass data to WeeksDetailedTableViewController
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "WeeksTableToDetailed") {
+            let destination = segue.destination as! WeeksDetailedTableViewController
+            destination.weekNumber = currentlySelectedWeek
+        }
+    }
+
+
     
     // MARK: Cell animation
     
@@ -81,15 +96,37 @@ class WeekTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        currentlySelectedWeek = indexPath.row + 1
+        
         let cellIdentifier = "WeekTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WeekTableViewCell
 
         cell.weekNumberLabel!.text = String(weekArray[indexPath.row])
+        
+        
+        // match hunt funker ikke
+        if cell.weekNumberLabel!.text == String(getCurrentWeekNumber()){
+            
+            // make "this is current week" label and display
+            let label = UILabel()
+            label.frame = CGRect(x: 150, y: 150, width: 100, height: 100)
+            label.text = "(Current week)"
+            self.view.addSubview(label)
+            
+        }
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height
     }
+    
+    // MARK: Gesture settings
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -41,7 +41,6 @@ class SettingsViewController: UIViewController {
         }
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.settingsDidUpdate), object: self)
-
     }
     
     @IBAction func BackgroundButtonDidTouch(_ sender: AnyObject) {
@@ -49,10 +48,6 @@ class SettingsViewController: UIViewController {
         settingsView.animation = "fall"
         settingsView.animate()
     }
-    
-    
-    // ViewDidLoad()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +65,6 @@ class SettingsViewController: UIViewController {
     // Helper methods
     
     func setupSegmentWithPreferredUnit(){
-        
-        // Setter segmentControl til rett segment
         
         let currentPreferredUnits = defaults.string(forKey: "preferredUnits")!
         
@@ -91,7 +84,7 @@ class SettingsViewController: UIViewController {
             UnitsOfMeasurementSegmentedControl.selectedSegmentIndex = 3
             
         default:
-            print("noe annet (default)")
+            print("default")
         }
         
     }
