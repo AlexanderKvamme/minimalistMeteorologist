@@ -18,9 +18,11 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     var dailyWeatherArray = [DailyWeather]()
     var fetchedDays = 0
     
+    
     @IBOutlet weak var weekHeaderLabel: UILabel!
+    //@IBOutlet weak var weekHeaderLabel: UILabel!
     @IBAction func didSwipeRight(_ sender: Any) {
-        print("user didSwipeRight")
+    print("user didSwipeRight")
     }
     @IBOutlet var swipeRightRecognizer: UISwipeGestureRecognizer!
     override func viewDidLoad() {

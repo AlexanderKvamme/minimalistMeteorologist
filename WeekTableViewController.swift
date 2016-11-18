@@ -18,7 +18,8 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     // MARK: Outlets and actions
     
-    @IBOutlet weak var currentWeek: UILabel!
+    //@IBOutlet weak var currentWeek: UILabel!
+    
     @IBAction func didSwipeRight(_ sender: AnyObject) {
         print("didSwipeLeft")
     }
