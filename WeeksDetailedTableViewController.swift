@@ -14,16 +14,9 @@ protocol WeeksTableViewDelegate {
 
 class WeeksDetailedTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
-    func setWeek(_ weekNumber: Int){
-        weekHeaderLabel.text = String(99)
-        
-    }
-    
-    // Variables
-    
     var weekNumber: Int?
-    
-    // Outlets and IBActions
+    var dailyWeatherArray = [DailyWeather]()
+    var fetchedDays = 0
     
     @IBOutlet weak var weekHeaderLabel: UILabel!
     @IBAction func didSwipeRight(_ sender: Any) {
@@ -35,16 +28,109 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         
         updateHeader()
         
-        // setWeek(4)
+        let coordinate = Coordinate(lat: 59.9, lon: 10.75)
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+ 
+        let selectedWeek = weekNumber ?? 99
         
-        //let currentWeekNumber = getCurrentWeekNumber()
+        // MAY HAVE TO return Int64
+        let datesToFetch: [Date] = getFullWeekOfTimestamps(week: selectedWeek)
         
-        //weekHeaderLabel.text = "WEEK " + String(currentWeekNumber)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        for days in 0...2{
+            let request = makeTimeMachineRequest(forDay: datesToFetch[days], atCoordinate: coordinate)
+            fetchDayFromRequestToIndex(request: request, session: session)
+        }
+    }//viewDidLoad
+    
+    func fetchDayFromRequestToIndex(request: URLRequest, session: URLSession){
+        let dataTask = session.dataTask(with: request, completionHandler: { data, error, response in
+            
+            print("tryna fetch by req: ", request)
+            if let data = data{
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : AnyObject]
+                    
+                    //print(json)
+                    
+                    let dailyJSON = json["daily"] as! [String : AnyObject]
+                    
+                    if let daily = dailyJSON["data"] as? [[String : AnyObject]]{
+                        
+                        for days in daily{
+                            if let newDay = DailyWeather(JSONDay: days){
+                                
+                                self.dailyWeatherArray.append(newDay)
+                                self.fetchedDays += 1
+                                print("FETCHED DAYS:", self.fetchedDays)
+                                
+                                if self.fetchedDays == 3 {
+                                    DispatchQueue.main.async(execute: {
+                                        self.updateUI()
+                                    })
+                                }
+                            }}
+                    }
+                } catch{
+                    print("Error: ", error.localizedDescription)
+                }
+            }
+            if error != nil {
+                //print("Fant en error: '\(error)'")
+                print("Error detected")
+            }
+            if data == nil {
+                print("data var nil")
+            }
+        })
+        dataTask.resume()
+    }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    func updateUI(){
+   
+        dailyWeatherArray = sortDailyWeatherArray(dailyWeatherArray)
+        print("KAN NÅ BEGYNNE Å PLOTTE INN I TABELLEN")
+        
+        
+    }
+    
+    func sortDailyWeatherArray(_ array: [DailyWeather]) -> [DailyWeather]{
+        
+        let sortedArray = array.sorted(by: { (day1, day2) -> Bool in
+            return day1.time < day2.time
+        })
+        
+        print("sorted array to:")
+        for index in 0...(sortedArray.count - 1 ) {
+            print(Date.init(timeIntervalSince1970: array[index].time))
+        }
+        return sortedArray
+    }
+    
+    func getFullWeekOfTimestamps(week: Int) -> [Date]{
+        
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        var components = DateComponents()
+        
+        components.yearForWeekOfYear = 2016
+        components.weekOfYear = week
+        components.hour = 12 // Mid day to avoid timezone changes
+        
+        let firstDayOfWeek = calendar.date(from: components)
+        var datesOfRequestedWeek = [Date]()
+        
+        for days in 0...6{
+            
+            let newDay = calendar.date(byAdding: .day, value: days, to: firstDayOfWeek!)!
+            print("Date made for array: " + dateFormatter.string(from: newDay))
+            datesOfRequestedWeek.append(newDay)
+        }
+        
+        return datesOfRequestedWeek
     }
     
     func updateHeader(){
@@ -53,7 +139,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
             
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,4 +212,132 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     }
     */
 
+
+    
+    
+    func getUNIXArrayFromWeek(number weekNumber: Int) -> [Int] {
+            
+            let calendar = Calendar.current
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .long
+            var components = DateComponents()
+            
+            print("mottar uke:", weekNumber)
+            components.yearForWeekOfYear = 2016
+            components.weekOfYear = weekNumber
+        
+            let dateFromComponents = calendar.date(from: components)
+            print("startingdate: ", dateFromComponents!)
+            print("I unix: ", dateFromComponents?.timeIntervalSince1970)
+    
+            var returnDates = [Int]()
+            
+            // bruk denne til å lagre array av denne og de 6 følgende datoene som unix
+            
+            if let dateFromComponents = dateFromComponents{
+                
+                let unixDate = dateFromComponents.timeIntervalSince1970
+                
+                for dayIndex in 0...6 {
+                    let temp = calendar.date(byAdding: .day, value: dayIndex, to: dateFromComponents)
+                    
+                    if let temp = temp{
+                        print(Int(temp.timeIntervalSince1970))
+                     
+                    }
+                    
+                    //returnDates[dayIndex] = Int(calendar.date(byAdding: .day, value: dayIndex, to: unixDate))
+                    
+                    //let tempDate2 = calendar.date(byAdding: .day, value: 2, to: tempDate)
+                    //print("unixresultat: ", )
+                    
+                }
+            
+                return returnDates
+            }
+            
+            return returnDates
+            
+        }
+    
+    func getDayInUNIXFormat(fromDay day: Int, week: Int) -> Int? {
+        
+        print("mottat: dag \(day), and week \(week)")
+        print("getSpecificDayDate mottar ønske om dato fra day: \(day), week: \(week)")
+        
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        var components = DateComponents()
+        
+        components.yearForWeekOfYear = calendar.component(.year, from: Date())
+        components.day = day
+        
+        let dateFromComponents = calendar.date(from: components)
+        
+        if let dateFromComponents = dateFromComponents{
+            print("Date made from components in getDayInUNIXFormat: " + dateFormatter.string(from: dateFromComponents))
+            print(" - Returning: ", Int(dateFromComponents.timeIntervalSince1970))
+            return Int(dateFromComponents.timeIntervalSince1970)
+        }
+        
+        return nil
+        
+    }
+
+    func makeTimeMachineRequest(forDay date: Date, atCoordinate coordinate: Coordinate) -> URLRequest{
+        
+        let baseURLString = "https://api.forecast.io/forecast/\(forecastAPIKey)/"
+        let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")!
+        
+        let timeStamp = Int64(date.timeIntervalSince1970)
+        
+        let pathString = "\(coordinate.latitude),\(coordinate.longitude),\((timeStamp))?units=\(currentPreferredUnits.lowercased())&exclude=hourly,currently,flag"
+        
+        let endpointString = baseURLString + pathString
+        let endpoint = URL(string: endpointString, relativeTo: nil)!
+        
+        return URLRequest(url: endpoint, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 0)
+    }
+    
+    func getFirstDayOfWeekAsUNIX(number weekNumber: Int) -> TimeInterval? {
+        
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        var components = DateComponents()
+        
+        components.yearForWeekOfYear = 2016
+        components.weekOfYear = 6
+        
+        let dateFromComponents = calendar.date(from: components)
+        
+        if let dateFromComponents = dateFromComponents{
+            print("Date made from components:" + dateFormatter.string(from: dateFromComponents))
+        }
+        
+        /* // if you wanna return as a string
+         
+         let UNIXTimestamp = dateFromComponents?.timeIntervalSince1970
+         if let UNIXTimestamp = UNIXTimestamp{
+         let temp = String(UNIXTimestamp)
+         
+         return temp
+         
+         }
+         */
+        
+        return dateFromComponents?.timeIntervalSince1970
+        
+    }
+   
+    func sortDatesChronologically(dates: [Date]){
+        
+        let copiedDates = dates
+        copiedDates.sorted()
+        print(dates)
+        print()
+        //dates.sortInPlace({ $0.compare($1) == ComparisonResult.OrderedAscending })
+        print(dates)
+    }
 }

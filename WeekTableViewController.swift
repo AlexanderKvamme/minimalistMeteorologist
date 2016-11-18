@@ -39,8 +39,6 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("So the current week is: ", getCurrentWeekNumber())
-        
         for week in 1...52{
             weekArray.append(week)
         }

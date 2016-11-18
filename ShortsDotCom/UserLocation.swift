@@ -18,7 +18,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     
     var latitude: Double?
     var longitude: Double?
+    var coordinate: Coordinate?
     let locationManager = CLLocationManager()
+    
     
     // geoCoder
     
@@ -57,6 +59,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         
         self.latitude = center.latitude
         self.longitude = center.longitude
+        self.coordinate = Coordinate(lat: center.latitude, lon: center.longitude)
         
         // Use received location for finding "Country, City"
         self.startReverseGeocoding(CLLocation(latitude: center.latitude, longitude: center.longitude))

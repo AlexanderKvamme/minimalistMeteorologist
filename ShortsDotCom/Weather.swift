@@ -41,9 +41,7 @@ struct DailyWeather{
     var precipProbability: Double
     var precipTypeText: String?
     var windSpeed: Double
-    var humidity: Double
-    
-    
+    var humidity: Double    
     
     var precipProbabilityPercentage: Int{
         return 100
@@ -173,6 +171,14 @@ extension CurrentWeather: JSONDecodable{
             self.precipTypeText = "Precipitation"
             self.precipIcon = .unexpectedPrecip
         }
+    }
+}
+
+// Date
+
+extension DailyWeather{
+    var date: Date {
+        return Date.init(timeIntervalSince1970: self.time)
     }
 }
 
