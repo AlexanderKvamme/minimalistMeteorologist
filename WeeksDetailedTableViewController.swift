@@ -182,10 +182,9 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         // Configure the cell...
         
         let day = dailyWeatherArray[indexPath.row]
-        print("printer day: ", day)
-        print("printer cell: ", cell)
+
         cell.temperatureLabel.text = String(day.time)
-        cell.dayLabel.text = "bam"
+        cell.dayLabel.text = day.precipIcon.rawValue
 
         print("made cell", cell)
         return cell

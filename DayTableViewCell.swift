@@ -12,6 +12,7 @@ class DayTableViewCell: UITableViewCell {
 
     // MARK: Properties
     
+    @IBOutlet weak var firstLetterOfDayLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
