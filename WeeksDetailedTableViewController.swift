@@ -12,12 +12,11 @@ protocol WeeksTableViewDelegate {
     func setWeek(_ weekNumber: Int)
 }
 
-class WeeksDetailedTableViewController: UITableViewController, UIGestureRecognizerDelegate {
+class WeeksDetailedTableViewController: UITableViewController, UIGestureRecognizerDelegate{
     
     var weekNumber: Int?
     var dailyWeatherArray = [DailyWeather]()
     var fetchedDays = 0
-    
     
     @IBOutlet weak var weekHeaderLabel: UILabel!
     //@IBOutlet weak var weekHeaderLabel: UILabel!
@@ -28,8 +27,12 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let nib = UINib(nibName: "DayTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DayTableViewCell")
+        
         updateHeader()
         
+        setUserDefaultsIfInitialRun()
         let coordinate = Coordinate(lat: 59.9, lon: 10.75)
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
@@ -44,6 +47,17 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
             fetchDayFromRequestToIndex(request: request, session: session)
         }
     }//viewDidLoad
+    
+    //Mark: Functions
+    
+    func loadSampleMeals(){
+        
+        let temperatureLabel1 = "bam"
+        let dayLabel1 = "shazam"
+        
+        let temperatureLabel2 = "bam"
+        let dayLabel2 = "shazam"
+    }
     
     func fetchDayFromRequestToIndex(request: URLRequest, session: URLSession){
         let dataTask = session.dataTask(with: request, completionHandler: { data, error, response in
@@ -93,6 +107,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
    
         dailyWeatherArray = sortDailyWeatherArray(dailyWeatherArray)
         print("KAN NÅ BEGYNNE Å PLOTTE INN I TABELLEN")
+        tableView.reloadData()
         
         
     }
@@ -156,18 +171,25 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dailyWeatherArray.count
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DayTableViewCell", for: indexPath) as! DayTableViewCell
 
+        print("printer indexPath: ", indexPath)
         // Configure the cell...
+        
+        let day = dailyWeatherArray[indexPath.row]
+        print("printer day: ", day)
+        print("printer cell: ", cell)
+        cell.temperatureLabel.text = String(day.time)
+        cell.dayLabel.text = "bam"
 
+        print("made cell", cell)
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -218,7 +240,8 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     
     
     func getUNIXArrayFromWeek(number weekNumber: Int) -> [Int] {
-            
+        
+        
             let calendar = Calendar.current
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .long

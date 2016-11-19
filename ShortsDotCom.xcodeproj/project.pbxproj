@@ -222,6 +222,8 @@
 		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
 		DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA785A21DD2732D00A976D5 /* Extensions.swift */; };
+		DDBC8B4E1DDFD1C4005E6FE1 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC8B4C1DDFD1C4005E6FE1 /* DayTableViewCell.swift */; };
+		DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
 		DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */; };
 		DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */; };
@@ -449,6 +451,8 @@
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDA785A21DD2732D00A976D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DDBC8B4C1DDFD1C4005E6FE1 /* DayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
+		DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTableViewCell.xib; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
 		DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDetailedViewController.swift; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 			isa = PBXGroup;
 			children = (
 				DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */,
+				DDBC8B4C1DDFD1C4005E6FE1 /* DayTableViewCell.swift */,
+				DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */,
 			);
 			name = WeeksDetailed;
 			sourceTree = "<group>";
@@ -975,6 +981,7 @@
 				DD543D7D1DAAE5F900CD6AC4 /* loading_00062.png in Resources */,
 				DD19ED0F1DAE802D00986C39 /* logo@2x.png in Resources */,
 				DD19ED331DAE802D00986C39 /* precipitationSleet.png in Resources */,
+				DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */,
 				DD543D741DAAE5F900CD6AC4 /* loading_00053.png in Resources */,
 				DD19ECE41DAE802D00986C39 /* clear-night copy@2x.png in Resources */,
 				DD19ED371DAE802D00986C39 /* precipitationSnow@2x.png in Resources */,
@@ -1049,6 +1056,7 @@
 				DD37600A1DB508C0009AE7FC /* KeyboardLayoutConstraint.swift in Sources */,
 				DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */,
 				DD3760081DB508C0009AE7FC /* ImageLoader.swift in Sources */,
+				DDBC8B4E1DDFD1C4005E6FE1 /* DayTableViewCell.swift in Sources */,
 				DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */,
 				DD37600F1DB508C0009AE7FC /* Spring.swift in Sources */,
 				DD3760171DB508C0009AE7FC /* TransitionManager.swift in Sources */,
