@@ -31,6 +31,7 @@ struct DailyWeather{
     
     var apparentTemperatureMin: Double
     var apparentTemperatureMax: Double
+    var averageTemperature: Double
     var temperatureMin: Double
     var temperatureMax: Double
     var summary: String
@@ -44,7 +45,7 @@ struct DailyWeather{
     var humidity: Double    
     
     var precipProbabilityPercentage: Int{
-        return 100
+        return Int(precipProbability*100)
     }
     
     var precipIcon: PrecipIcon{
@@ -130,7 +131,7 @@ extension DailyWeather{
         self.windSpeed = windSpeed
         self.humidity = humidity
         self.time = time
-        print(self)
+        self.averageTemperature = (temperatureMax+temperatureMin)/2
     }
 }
 
@@ -183,6 +184,40 @@ extension DailyWeather{
 }
 
 // Measurements for displaying unit system specific values and unit
+
+extension DailyWeather{
+    
+    var averageTemperatureInPreferredUnit: Measurement<Unit> {
+        
+        let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
+        
+        switch preferredUnitSystem{
+            
+        case "US":
+            return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.fahrenheit)
+            
+        default:
+            return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.celsius)
+        }
+    }
+    
+    var windSpeedInPreferredUnit: Measurement<Unit> {
+        
+        let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
+        
+        switch preferredUnitSystem{
+            
+        case "CA":
+            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.kilometersPerHour)
+            
+        case "UK2", "US":
+            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.milesPerHour)
+            
+        default:
+            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.metersPerSecond)
+        }
+    }
+}
 
 extension CurrentWeather{
     

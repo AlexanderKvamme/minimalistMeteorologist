@@ -14,18 +14,31 @@ protocol WeeksTableViewDelegate {
 
 class WeeksDetailedTableViewController: UITableViewController, UIGestureRecognizerDelegate{
     
+    @IBAction func swipeRightHandler(_ sender: Any) {
+    print("bam")
+    }
+    @IBOutlet var swipeRecognizer: UISwipeGestureRecognizer!
+    // MARK: Properties
+    
     var weekNumber: Int?
     var dailyWeatherArray = [DailyWeather]()
     var fetchedDays = 0
-    
+    let desiredAmountOfDays = 2
+
     @IBOutlet weak var weekHeaderLabel: UILabel!
-    //@IBOutlet weak var weekHeaderLabel: UILabel!
-    @IBAction func didSwipeRight(_ sender: Any) {
-    print("user didSwipeRight")
+    
+    func swipeRightAction(){
+        print("swiped right")
     }
-    @IBOutlet var swipeRightRecognizer: UISwipeGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tableSwipedRight = UIGestureRecognizer(target: self, action: #selector(WeeksDetailedTableViewController.swipeRightAction))
+        self.tableView.addGestureRecognizer(tableSwipedRight)
+        self.view.isUserInteractionEnabled = true
+    
+        // nib
         
         let nib = UINib(nibName: "DayTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "DayTableViewCell")
@@ -42,22 +55,17 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         // MAY HAVE TO return Int64
         let datesToFetch: [Date] = getFullWeekOfTimestamps(week: selectedWeek)
         
-        for days in 0...2{
+        for days in 0...(desiredAmountOfDays-1){
             let request = makeTimeMachineRequest(forDay: datesToFetch[days], atCoordinate: coordinate)
             fetchDayFromRequestToIndex(request: request, session: session)
         }
     }//viewDidLoad
     
-    //Mark: Functions
-    
-    func loadSampleMeals(){
-        
-        let temperatureLabel1 = "bam"
-        let dayLabel1 = "shazam"
-        
-        let temperatureLabel2 = "bam"
-        let dayLabel2 = "shazam"
+    static func tableDidSwipe(){
+        print("swipe city")
     }
+    
+    //Mark: Functions
     
     func fetchDayFromRequestToIndex(request: URLRequest, session: URLSession){
         let dataTask = session.dataTask(with: request, completionHandler: { data, error, response in
@@ -81,7 +89,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
                                 self.fetchedDays += 1
                                 print("FETCHED DAYS:", self.fetchedDays)
                                 
-                                if self.fetchedDays == 3 {
+                                if self.fetchedDays == self.desiredAmountOfDays {
                                     DispatchQueue.main.async(execute: {
                                         self.updateUI()
                                     })
@@ -139,7 +147,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         
         let firstDayOfWeek = calendar.date(from: components)
         var datesOfRequestedWeek = [Date]()
-        
+    
         for days in 0...6{
             
             let newDay = calendar.date(byAdding: .day, value: days, to: firstDayOfWeek!)!
@@ -153,7 +161,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     func updateHeader(){
         if let weekNumber = weekNumber{
             weekHeaderLabel.text = "WEEK " + String(weekNumber)
-            
         }
     }
     
@@ -178,16 +185,33 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayTableViewCell", for: indexPath) as! DayTableViewCell
 
-        print("printer indexPath: ", indexPath)
         // Configure the cell...
         
         let day = dailyWeatherArray[indexPath.row]
 
-        cell.temperatureLabel.text = String(day.time)
-        cell.dayLabel.text = day.precipIcon.rawValue
+        cell.temperatureLabel.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + day.averageTemperatureInPreferredUnit.unit.symbol
+        
+        cell.percentageLabel.text = String(day.precipProbabilityPercentage) + "%"
+        print(day.precipProbabilityPercentage)
+        
+        var daysOfTheWeek = "MTWTFSS"
+        let dayLetter = [Character](daysOfTheWeek.characters)
+        cell.firstLetterOfDayLabel.text = String(dayLetter[indexPath.row])
+        cell.windSpeedValueLabel.text = String(Int(round(day.windSpeedInPreferredUnit.value)))
+        cell.windSpeedUnitLabel.text = String(day.windSpeedInPreferredUnit.unit.symbol)
+        cell.weatherIconImageView.image = UIImage(named: day.weatherIcon.rawValue)
+        cell.precipitationIconImageView.image = UIImage(named: day.precipIcon.rawValue)
+        
+        /*
+        @IBOutlet weak var windSpeedUnit: UILabel!
+        @IBOutlet weak var windSpeedValueLabel: UILabel!
 
-        print("made cell", cell)
+        */
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.0
     }
 
     /*
@@ -240,19 +264,15 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     
     func getUNIXArrayFromWeek(number weekNumber: Int) -> [Int] {
         
-        
             let calendar = Calendar.current
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .long
             var components = DateComponents()
-            
-            print("mottar uke:", weekNumber)
+        
             components.yearForWeekOfYear = 2016
             components.weekOfYear = weekNumber
         
             let dateFromComponents = calendar.date(from: components)
-            print("startingdate: ", dateFromComponents!)
-            print("I unix: ", dateFromComponents?.timeIntervalSince1970)
     
             var returnDates = [Int]()
             
@@ -260,28 +280,16 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
             
             if let dateFromComponents = dateFromComponents{
                 
-                let unixDate = dateFromComponents.timeIntervalSince1970
-                
-                for dayIndex in 0...6 {
+                for dayIndex in 0...3 {
                     let temp = calendar.date(byAdding: .day, value: dayIndex, to: dateFromComponents)
                     
                     if let temp = temp{
                         print(Int(temp.timeIntervalSince1970))
-                     
                     }
-                    
-                    //returnDates[dayIndex] = Int(calendar.date(byAdding: .day, value: dayIndex, to: unixDate))
-                    
-                    //let tempDate2 = calendar.date(byAdding: .day, value: 2, to: tempDate)
-                    //print("unixresultat: ", )
-                    
                 }
-            
                 return returnDates
             }
-            
             return returnDates
-            
         }
     
     func getDayInUNIXFormat(fromDay day: Int, week: Int) -> Int? {

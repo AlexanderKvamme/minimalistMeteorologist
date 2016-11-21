@@ -20,6 +20,8 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     //@IBOutlet weak var currentWeek: UILabel!
     
+    
+    
     @IBAction func didSwipeRight(_ sender: AnyObject) {
         print("didSwipeLeft")
     }
@@ -48,6 +50,8 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
         let currentWeekIndexPath = IndexPath(row: currentWeekIsAtIndex, section: 0)
         tableView.scrollToRow(at: currentWeekIndexPath, at: .middle, animated: true)
     }
+    
+    
     
     // Pass data to WeeksDetailedTableViewController
     

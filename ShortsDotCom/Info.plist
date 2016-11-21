@@ -40,5 +40,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BebasNeue Bold.otf</string>
+		<string></string>
+	</array>
 </dict>
 </plist>
