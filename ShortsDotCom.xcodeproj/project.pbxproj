@@ -235,8 +235,6 @@
 		DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
 		DDD956FE1DD212360089FA53 /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */; };
-		DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */; };
-		DDD957021DD21D120089FA53 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD957011DD21D120089FA53 /* StartScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -473,8 +471,6 @@
 		DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTableViewCell.xib; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
-		DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDetailedViewController.swift; sourceTree = "<group>"; };
-		DDD957011DD21D120089FA53 /* StartScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -804,8 +800,6 @@
 				DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */,
 				DDA785A21DD2732D00A976D5 /* Extensions.swift */,
 				DDD956FD1DD212360089FA53 /* WeekTableViewController.swift */,
-				DDD956FF1DD21A180089FA53 /* WeekDetailedViewController.swift */,
-				DDD957011DD21D120089FA53 /* StartScreenViewController.swift */,
 			);
 			name = Weeks;
 			sourceTree = "<group>";
@@ -1074,7 +1068,6 @@
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,
 				DD3760181DB508C0009AE7FC /* TransitionZoom.swift in Sources */,
 				DD3760141DB508C0009AE7FC /* SpringTextField.swift in Sources */,
-				DDD957001DD21A190089FA53 /* WeekDetailedViewController.swift in Sources */,
 				DD3760021DB508C0009AE7FC /* DesignableImageView.swift in Sources */,
 				DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */,
 				DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */,
@@ -1102,7 +1095,6 @@
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
 				DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */,
-				DDD957021DD21D120089FA53 /* StartScreenViewController.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,

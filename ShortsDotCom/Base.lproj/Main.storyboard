@@ -362,9 +362,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="aer-Du-tJP" appends="YES" id="knJ-VU-Dyx"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -373,18 +370,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="swipeRecognizer" destination="aer-Du-tJP" id="yy1-oJ-COx"/>
                         <outlet property="weekHeaderLabel" destination="m0F-9t-qFV" id="Qha-sH-YdM"/>
+                        <segue destination="Erg-uO-5UJ" kind="unwind" identifier="unwindToWeeks" unwindAction="unwindToWeeksWithSegue:" id="odf-ra-LZS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huh-hb-pPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Erg-uO-5UJ" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="right" id="aer-Du-tJP">
-                    <connections>
-                        <action selector="swipeRightHandler:" destination="6yA-LD-TX5" id="Wbd-3e-8wb"/>
-                        <segue destination="Erg-uO-5UJ" kind="unwind" unwindAction="unwindToViewController:" id="2AV-VC-iQ7"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2372" y="1136.5817091454273"/>
         </scene>

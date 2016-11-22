@@ -109,7 +109,7 @@ extension DailyWeather{
             let time = JSONDay["time"] as? Double
             
             else {
-                print("initialzer returnered nil")
+                print("'DailyWeather' initializer returnered nil")
                 return nil
         }
         

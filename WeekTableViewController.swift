@@ -20,17 +20,14 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     //@IBOutlet weak var currentWeek: UILabel!
     
-    
-    
-    @IBAction func didSwipeRight(_ sender: AnyObject) {
-        print("didSwipeLeft")
-    }
+    @IBAction func didSwipeRight(_ sender: AnyObject) {}
     @IBOutlet var swipeRightRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var swipeLeftRecognizer: UISwipeGestureRecognizer!
     @IBAction func didSwipeLeft(_ sender: AnyObject) {
         print("didSwipeLeft")
         self.performSegue(withIdentifier: "WeekTableToDetailed", sender: self)
     }
+    @IBAction func unwindToWeeks(segue: UIStoryboardSegue) {}
 
     
     // Mark: Snap behavior in scrolling
@@ -65,21 +62,21 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
     
     // MARK: Cell animation
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        // Animation
-        
-        let rotationTransform =  CATransform3DTranslate(CATransform3DIdentity, 0, 0, -500)
-        cell.layer.transform = rotationTransform
-        
-        
-        UIView.animate(withDuration: 0.3, animations: { () -> Void in
-        
-            cell.layer.transform = CATransform3DIdentity
-            
-        })
-    }
+//    
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//        // Animation
+//        
+//        let rotationTransform =  CATransform3DTranslate(CATransform3DIdentity, 0, 0, -500)
+//        cell.layer.transform = rotationTransform
+//        
+//        
+//        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+//        
+//            cell.layer.transform = CATransform3DIdentity
+//            
+//        })
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
