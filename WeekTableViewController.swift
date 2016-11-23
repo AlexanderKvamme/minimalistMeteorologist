@@ -18,8 +18,6 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     // MARK: Outlets and actions
     
-    //@IBOutlet weak var currentWeek: UILabel!
-    
     @IBAction func didSwipeRight(_ sender: AnyObject) {}
     @IBOutlet var swipeRightRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var swipeLeftRecognizer: UISwipeGestureRecognizer!
@@ -33,9 +31,15 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     // Mark: Snap behavior in scrolling
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-            tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)		
         
+        print("scrollViewWillEndDraging")
+        
+            //tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
     }
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("didEndScrollingAnimation")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,8 +52,6 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
         tableView.scrollToRow(at: currentWeekIndexPath, at: .middle, animated: true)
     }
     
-    
-    
     // Pass data to WeeksDetailedTableViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,25 +60,6 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
             destination.weekNumber = currentlySelectedWeek
         }
     }
-
-
-    
-    // MARK: Cell animation
-//    
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        
-//        // Animation
-//        
-//        let rotationTransform =  CATransform3DTranslate(CATransform3DIdentity, 0, 0, -500)
-//        cell.layer.transform = rotationTransform
-//        
-//        
-//        UIView.animate(withDuration: 0.3, animations: { () -> Void in
-//        
-//            cell.layer.transform = CATransform3DIdentity
-//            
-//        })
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -92,7 +75,6 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekArray.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -103,17 +85,14 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
         cell.weekNumberLabel!.text = String(weekArray[indexPath.row])
         
-        
-        // match hunt funker ikke
+        // set currentWeek
         if cell.weekNumberLabel!.text == String(getCurrentWeekNumber()){
-            
-            // make "this is current week" label and display
-            let label = UILabel()
-            label.frame = CGRect(x: 150, y: 150, width: 100, height: 100)
-            label.text = "(Current week)"
-            self.view.addSubview(label)
-            
+  
+            cell.currentWeekLabel.isHidden = false
+        } else {
+            cell.currentWeekLabel.isHidden = true
         }
+        
         return cell
     }
     
@@ -126,51 +105,4 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

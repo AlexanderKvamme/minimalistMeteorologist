@@ -174,7 +174,22 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
 
         cell.temperatureLabel.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + day.averageTemperatureInPreferredUnit.unit.symbol
         
-        cell.percentageLabel.text = String(day.precipProbabilityPercentage) + "%"
+        if let precipProbabilityPercentage = day.precipProbabilityPercentage{
+         
+            cell.percentageLabel.text = String(precipProbabilityPercentage) + "%"
+        } else {
+            cell.precipitationStackView.isHidden = true
+        }
+        
+    
+        // Set Temperature Unit Label
+        if let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits"){
+            if currentPreferredUnits == "US"{
+                cell.temperatureUnitLabel.text = "FAHRENHEIT"}
+            else {
+                cell.temperatureUnitLabel.text = "CELCIUS"
+            }
+        }
         
         var daysOfTheWeek = "MTWTFSS"
         let dayLetter = [Character](daysOfTheWeek.characters)

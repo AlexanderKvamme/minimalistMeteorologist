@@ -39,13 +39,18 @@ struct DailyWeather{
     var time: Double
     var precipIntensity: Double?
     var precipType: String?
-    var precipProbability: Double
+    var precipProbability: Double?
     var precipTypeText: String?
     var windSpeed: Double
     var humidity: Double    
     
-    var precipProbabilityPercentage: Int{
+    var precipProbabilityPercentage: Int?{
+    
+    if let precipProbability = self.precipProbability{
         return Int(precipProbability*100)
+    } else {
+        return nil
+        }
     }
     
     var precipIcon: PrecipIcon{
@@ -103,7 +108,6 @@ extension DailyWeather{
             let temperatureMax = JSONDay["temperatureMax"] as? Double,
             let summary = JSONDay["summary"] as? String,
             let weatherIconString = JSONDay["icon"] as? String,
-            let precipProbability = JSONDay["precipProbability"] as? Double,
             let windSpeed = JSONDay["windSpeed"] as? Double,
             let humidity = JSONDay["humidity"] as? Double,
             let time = JSONDay["time"] as? Double
@@ -113,8 +117,13 @@ extension DailyWeather{
                 return nil
         }
         
+        if let precipProbability = JSONDay["precipProbability"] as? Double{
+            self.precipProbability = precipProbability
+        } else {
+            self.precipProbability = nil
+        }
+        
         if let precipIntensity = JSONDay["precipIntensity"] as? Double{
-            
             self.precipIntensity = precipIntensity
         } else {
             self.precipIntensity = nil
@@ -126,13 +135,12 @@ extension DailyWeather{
         self.temperatureMax = temperatureMax
         self.summary = summary
         self.weatherIcon = Icon(rawValue: weatherIconString)
-        
-        self.precipProbability = precipProbability
         self.windSpeed = windSpeed
         self.humidity = humidity
         self.time = time
         self.averageTemperature = (temperatureMax+temperatureMin)/2
-    }
+    
+        }
 }
 
 extension CurrentWeather: JSONDecodable{

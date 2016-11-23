@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="EtC-1X-eaQ">
-                        <rect key="frame" x="0.0" y="16.5" width="364" height="45"/>
+                        <rect key="frame" x="0.0" y="17" width="364" height="45"/>
                         <subviews>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="bottom" distribution="equalCentering" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="MSq-3d-o62">
                                 <rect key="frame" x="10" y="0.0" width="344" height="45"/>
@@ -41,11 +41,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-Xw-8dg">
-                                        <rect key="frame" x="46" y="2" width="65" height="43"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-Xw-8dg" userLabel="temperatureStack">
+                                        <rect key="frame" x="39" y="2" width="73.5" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpN-ML-FKU">
-                                                <rect key="frame" x="0.0" y="0.0" width="65" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="lQs-Mv-ABH"/>
                                                 </constraints>
@@ -53,8 +53,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAHRENHEIT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiY-ks-lhr">
-                                                <rect key="frame" x="1.5" y="31" width="63.5" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEMPERATURE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiY-ks-lhr">
+                                                <rect key="frame" x="0.0" y="31" width="73.5" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="YwK-Zt-0Wn"/>
                                                 </constraints>
@@ -63,16 +63,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AiY-ks-lhr" firstAttribute="centerX" secondItem="Kbt-Xw-8dg" secondAttribute="centerX" id="6Qz-tI-1uI"/>
+                                            <constraint firstItem="tpN-ML-FKU" firstAttribute="centerX" secondItem="Kbt-Xw-8dg" secondAttribute="centerX" id="czv-xw-sBq"/>
+                                        </constraints>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9hQ-zc-Hxb" userLabel="summaryIcon">
-                                        <rect key="frame" x="123.5" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="118.5" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="9pB-gw-DpC"/>
                                             <constraint firstAttribute="height" constant="40" id="jqr-W2-Loz"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ky1-FO-CbQ" userLabel="percipitationStack">
-                                        <rect key="frame" x="179" y="2" width="59.5" height="43"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ky1-FO-CbQ" userLabel="precipitationStackView">
+                                        <rect key="frame" x="171.5" y="2" width="59.5" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toM-W2-bq8">
                                                 <rect key="frame" x="0.0" y="0.0" width="59.5" height="31"/>
@@ -95,7 +99,7 @@
                                         </constraints>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="precipitationDefault.png" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-Wf-Sg7" userLabel="precipitationIcon">
-                                        <rect key="frame" x="254" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="244" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="0Ly-fO-vMG"/>
                                             <constraint firstAttribute="height" constant="40" id="NGD-EI-Neg"/>
@@ -137,7 +141,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Sdo-lx-2fG" secondAttribute="trailing" id="2yX-zO-w0j"/>
                                     <constraint firstItem="rSy-WW-Fdd" firstAttribute="top" secondItem="MSq-3d-o62" secondAttribute="top" id="OB3-gN-pf8"/>
                                     <constraint firstAttribute="height" constant="45" id="Uvs-9E-ulI"/>
-                                    <constraint firstItem="Sdo-lx-2fG" firstAttribute="leading" secondItem="fhp-Wf-Sg7" secondAttribute="trailing" id="jPI-HB-IuD"/>
+                                    <constraint firstItem="Sdo-lx-2fG" firstAttribute="leading" secondItem="fhp-Wf-Sg7" secondAttribute="trailing" constant="10" id="jPI-HB-IuD"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -163,7 +167,9 @@
                 <outlet property="firstLetterOfDayLabel" destination="rSy-WW-Fdd" id="6Qk-Th-n5f"/>
                 <outlet property="percentageLabel" destination="toM-W2-bq8" id="SDK-fJ-yJ7"/>
                 <outlet property="precipitationIconImageView" destination="fhp-Wf-Sg7" id="2ke-1E-sor"/>
+                <outlet property="precipitationStackView" destination="Ky1-FO-CbQ" id="NV6-JV-pZ8"/>
                 <outlet property="temperatureLabel" destination="tpN-ML-FKU" id="MSw-lx-GGW"/>
+                <outlet property="temperatureUnitLabel" destination="AiY-ks-lhr" id="FVE-bA-YqO"/>
                 <outlet property="weatherIconImageView" destination="9hQ-zc-Hxb" id="ocv-Nb-KKQ"/>
                 <outlet property="windSpeedUnitLabel" destination="jyn-1T-WOX" id="8fE-iJ-IeZ"/>
                 <outlet property="windSpeedValueLabel" destination="smZ-kg-egB" id="Lp8-ZO-Ljn"/>

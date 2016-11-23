@@ -12,6 +12,7 @@ class DayTableViewCell: UITableViewCell {
 
     // MARK: Properties
     
+    @IBOutlet weak var precipitationStackView: UIStackView!
     @IBOutlet weak var precipitationIconImageView: UIImageView!
     @IBOutlet weak var windSpeedUnitLabel: UILabel!
     @IBOutlet weak var windSpeedValueLabel: UILabel!
@@ -19,6 +20,7 @@ class DayTableViewCell: UITableViewCell {
     @IBOutlet weak var firstLetterOfDayLabel: UILabel!
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var temperatureUnitLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

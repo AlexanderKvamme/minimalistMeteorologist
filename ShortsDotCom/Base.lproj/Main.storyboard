@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -283,6 +285,9 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrY-Q4-4aG">
                                             <rect key="frame" x="13" y="125" width="349" height="390"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="300"/>
                                             <color key="textColor" red="0.81996169919999995" green="1" blue="0.69861101219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -293,16 +298,25 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-NX-u1O">
+                                            <rect key="frame" x="199" y="351" width="103" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="0DA-2c-pgF"/>
+                                        <constraint firstItem="XVv-NX-u1O" firstAttribute="top" secondItem="Jnf-4N-bm5" secondAttribute="firstBaseline" id="3sT-gK-ljf"/>
                                         <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="C8C-A1-bY1"/>
+                                        <constraint firstItem="XVv-NX-u1O" firstAttribute="trailing" secondItem="Jnf-4N-bm5" secondAttribute="trailing" id="Lbb-go-NSG"/>
                                         <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="QNu-KT-tEY"/>
                                         <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="b6h-BU-amw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
                                 <connections>
+                                    <outlet property="currentWeekLabel" destination="XVv-NX-u1O" id="0Kb-n6-MGm"/>
                                     <outlet property="weekNumberLabel" destination="ZrY-Q4-4aG" id="6FU-QL-Mb6"/>
                                     <outletCollection property="gestureRecognizers" destination="PsL-ex-spi" appends="YES" id="aHI-aB-tDe"/>
                                     <segue destination="6yA-LD-TX5" kind="presentation" identifier="WeeksTableToDetailed" id="xUO-4x-b3t"/>
@@ -315,18 +329,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="swipeLeftRecognizer" destination="MX7-Cf-R0E" id="UTr-22-JbJ"/>
                         <outlet property="swipeRightRecognizer" destination="PsL-ex-spi" id="Tyb-Dy-dTP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeY-WH-aKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TvE-hA-Hxp" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="left" id="MX7-Cf-R0E">
-                    <connections>
-                        <action selector="didSwipeLeft:" destination="I7e-2P-p60" id="Xh7-Ew-aXs"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="PsL-ex-spi">
+                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="PsL-ex-spi">
                     <connections>
                         <action selector="didSwipeRight:" destination="I7e-2P-p60" id="kSf-yK-Fe7"/>
                         <segue destination="TvE-hA-Hxp" kind="unwind" unwindAction="unwindToViewController:" id="pk6-W6-yik"/>

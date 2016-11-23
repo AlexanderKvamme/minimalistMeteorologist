@@ -12,6 +12,7 @@ class WeekTableViewCell: UITableViewCell {
 
     @IBOutlet weak var weekNumberLabel: UILabel!
     
+    @IBOutlet weak var currentWeekLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
