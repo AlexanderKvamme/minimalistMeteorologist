@@ -10,38 +10,37 @@ import UIKit
 
 class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegate{
 
-    //Variables
+    // MARK: - Properties
+    
     var weekArray = [Int]()
     var currentWeekIsAtIndex = Int()
     var currentWeekIndexPath = Int()
     var currentlySelectedWeek = Int()
     
-    // MARK: Outlets and actions
+    // MARK: - Outlets and actions
     
-    @IBAction func didSwipeRight(_ sender: AnyObject) {}
-    @IBOutlet var swipeRightRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet var swipeLeftRecognizer: UISwipeGestureRecognizer!
-    @IBAction func didSwipeLeft(_ sender: AnyObject) {
-        print("didSwipeLeft")
-        self.performSegue(withIdentifier: "WeekTableToDetailed", sender: self)
-    }
     @IBAction func unwindToWeeks(segue: UIStoryboardSegue) {}
-
     
-    // Mark: Snap behavior in scrolling
+    // Mark: - Snap behavior in scrolling
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        print("scrollViewWillEndDraging")
-        
-            //tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
+        tableView.autoSnapping(velocity: velocity, targetOffset: targetContentOffset)
     }
+    
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        print("didEndScrollingAnimation")
+        print("didEndScrollingAnimation - snap to something")
     }
+    
+    // Mark: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(printLeft))
+//        swipeLeftRecognizer.direction = .left
+//        swipeLeftRecognizer.cancelsTouchesInView = false // lets touches pass thorough to other recognizers so that it is not blocked
+        
         
         for week in 1...52{
             weekArray.append(week)
@@ -50,6 +49,23 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
         currentWeekIsAtIndex = getCurrentWeekNumber()-1
         let currentWeekIndexPath = IndexPath(row: currentWeekIsAtIndex, section: 0)
         tableView.scrollToRow(at: currentWeekIndexPath, at: .middle, animated: true)
+    }
+    
+    func swipeRightHandler(){
+        self.dismiss(animated: true, completion: nil)
+        print("right swipe")
+        
+    }
+    
+    func presentDetailedView(forWeek selectedWeek: Int){
+        //self.performSegue(withIdentifier: "WeekTableToDetailed", sender: self)
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailedView: WeeksDetailedTableViewController = storyBoard.instantiateViewController(withIdentifier: "WeeksDetailedTableViewControllerID") as! WeeksDetailedTableViewController
+    
+        detailedView.weekNumber = selectedWeek
+        self.present(detailedView, animated: false, completion: nil)
+        
     }
     
     // Pass data to WeeksDetailedTableViewController
@@ -61,12 +77,7 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+    // MARK: - Table View Setup
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -74,6 +85,12 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tapped: ", indexPath.row+1)
+        
+        presentDetailedView(forWeek: indexPath.row+1)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,14 +102,19 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
         cell.weekNumberLabel!.text = String(weekArray[indexPath.row])
         
-        // set currentWeek
+        // set currentWeekLabel
         if cell.weekNumberLabel!.text == String(getCurrentWeekNumber()){
   
             cell.currentWeekLabel.isHidden = false
-        } else {
-            cell.currentWeekLabel.isHidden = true
-        }
+        } else {cell.currentWeekLabel.isHidden = true}
         
+        // Gesture Recognizers - left
+        
+        let swipeRightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeRightHandler))
+        swipeRightRecognizer.direction = .right
+        swipeRightRecognizer.cancelsTouchesInView = true // false lets touches pass thorough to other recognizers so that it is not blocked
+        cell.addGestureRecognizer(swipeRightRecognizer)
+ 
         return cell
     }
     
@@ -102,7 +124,7 @@ class WeekTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     // MARK: Gesture settings
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+    //}
 }

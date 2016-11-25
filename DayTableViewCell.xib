@@ -29,7 +29,7 @@
                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="EtC-1X-eaQ">
                         <rect key="frame" x="0.0" y="17" width="364" height="45"/>
                         <subviews>
-                            <stackView autoresizesSubviews="NO" opaque="NO" contentMode="bottom" distribution="equalCentering" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="MSq-3d-o62">
+                            <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="MSq-3d-o62">
                                 <rect key="frame" x="10" y="0.0" width="344" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSy-WW-Fdd">
@@ -167,6 +167,7 @@
                 <outlet property="firstLetterOfDayLabel" destination="rSy-WW-Fdd" id="6Qk-Th-n5f"/>
                 <outlet property="percentageLabel" destination="toM-W2-bq8" id="SDK-fJ-yJ7"/>
                 <outlet property="precipitationIconImageView" destination="fhp-Wf-Sg7" id="2ke-1E-sor"/>
+                <outlet property="precipitationProbabilityLabel" destination="qLv-us-UBI" id="g1z-Dw-txG"/>
                 <outlet property="precipitationStackView" destination="Ky1-FO-CbQ" id="NV6-JV-pZ8"/>
                 <outlet property="temperatureLabel" destination="tpN-ML-FKU" id="MSw-lx-GGW"/>
                 <outlet property="temperatureUnitLabel" destination="AiY-ks-lhr" id="FVE-bA-YqO"/>

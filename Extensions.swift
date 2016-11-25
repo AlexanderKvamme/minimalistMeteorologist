@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-/*
+
 //private let roundingHeight: CGFloat = 100.0
 private let roundingHeight: CGFloat = UIScreen.main.bounds.height
 
@@ -35,4 +35,4 @@ public extension UITableView {
         }
         targetOffset.pointee = offset
     }
-}*/
+}

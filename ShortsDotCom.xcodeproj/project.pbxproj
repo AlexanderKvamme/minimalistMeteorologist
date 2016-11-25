@@ -128,6 +128,7 @@
 		DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CD1DC7B4E0008F2389 /* Global.swift */; };
 		DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */; };
 		DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */; };
+		DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
 		DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* Weather.swift */; };
 		DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */; };
@@ -361,6 +362,7 @@
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
 		DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
 		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
+		DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuViewController.swift; path = ../MainMenuViewController.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -789,6 +791,7 @@
 		DDA2770F1D786516001B5FBD /* ShortsDotCom */ = {
 			isa = PBXGroup;
 			children = (
+				DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */,
 				DD300BB81D7DBB6000AF95C9 /* Weather.swift */,
 				DDA277171D786516001B5FBD /* Assets.xcassets */,
 				DDA277191D786516001B5FBD /* LaunchScreen.storyboard */,
@@ -1102,6 +1105,7 @@
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
 				DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */,
 				DD4DCBC41DE5D5310003C791 /* WeekTableViewController.swift in Sources */,
+				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,

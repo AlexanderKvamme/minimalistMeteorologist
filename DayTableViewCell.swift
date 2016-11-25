@@ -14,6 +14,8 @@ class DayTableViewCell: UITableViewCell {
     
     @IBOutlet weak var precipitationStackView: UIStackView!
     @IBOutlet weak var precipitationIconImageView: UIImageView!
+    @IBOutlet weak var precipitationProbabilityLabel: UILabel!
+    
     @IBOutlet weak var windSpeedUnitLabel: UILabel!
     @IBOutlet weak var windSpeedValueLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!

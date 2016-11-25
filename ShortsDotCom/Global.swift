@@ -11,8 +11,12 @@ import UIKit
 
 /*
  
- Content:
-
+ Table of content:
+ -----------------
+ 
+ Globals:
+ - Variables
+ 
  Enums:
  - unitSystem
  - unitsOfMeasurement
@@ -23,6 +27,12 @@ import UIKit
  - getCurrentWeekNumber()
 
 */
+
+// MARK: - Globals
+
+var currentCoordinate: Coordinate?
+
+// MARK: - Enums
 
 enum Icon: String{
     

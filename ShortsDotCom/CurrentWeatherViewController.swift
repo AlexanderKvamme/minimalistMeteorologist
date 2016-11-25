@@ -10,8 +10,6 @@ import UIKit
 import Foundation
 import CoreLocation
 
-let sharedUserLocation = UserLocation.sharedInstance
-
 var GPSCoordinatesLocationIsFinished = false
 var reverseGeocodingIsFinished = false
 var currentWeatherFetchIsFinished = false
@@ -33,7 +31,7 @@ var tableData: [myData] = []
 //////////
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewRef: UICollectionView!
     @IBOutlet weak var headerImage: UIImageView!
@@ -42,15 +40,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var settingsButton: UIButton!
-    @IBAction func settingsButtonIsTapped(_ sender: AnyObject) {
-        print("Click!")
-    }
+    @IBAction func settingsButtonIsTapped(_ sender: AnyObject) {print("Click!")}
     
     @IBOutlet weak var animationView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        if let latestGPS = UserLocation.sharedInstance.coordinate{
+            currentCoordinate = latestGPS
+            print("updated Coordinate to: ", currentCoordinate)
+        } else {
+            showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services", error: nil)
+        }
+        
         activityIndicator.stopAnimating()
         activityIndicator.startAnimating()
         settingsButton.isHidden = false
@@ -102,7 +105,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             reverseGeocodingIsFinished = false
             currentWeatherFetchIsFinished = false
             GPSCoordinatesLocationIsFinished = false
-            self.cityAndCountryTextField.text = sharedUserLocation.locationName
+            self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
         }
         else{
             // do nothing
@@ -116,8 +119,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
         self.cityAndCountryTextField.isHidden = false
         
-        print("UKENUMMER:::::::", newWeather.weekNumber)
-        
         tableData = [
             
             // temperature cell
@@ -127,13 +128,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             myData(firstRowLabel: newWeather.windSpeedInPreferredUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
             
             // precipitation chance cell
-            myData(firstRowLabel: "Chance of", headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
+            myData(firstRowLabel: "Chance of".uppercased(), headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
             
             // precipitation symbol cell
-            myData(firstRowLabel: newWeather.precipTypeText, headerInfo: newWeather.precipIcon.rawValue, cellType: cellType.image)]
+            myData(firstRowLabel: newWeather.precipTypeText.uppercased(), headerInfo: newWeather.precipIcon.rawValue, cellType: cellType.image)]
         
         if newWeather.precipProbabilityPercentage == 0 {
-            tableData[2].headerInfo = "No"
+            tableData[2].headerInfo = "NO"
         }
     }
 

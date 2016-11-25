@@ -59,7 +59,6 @@ class ForecastAPIClient: APIClient {
         
         // TASK: TODO - Fiks enklere request creation
         let request = createRequestWithCoordinate(coordinate)
-        print("requesten som sendes i fetchCurrentWeather er:", request)
 
         fetch(request: request, parse: { json -> CurrentWeather? in
             

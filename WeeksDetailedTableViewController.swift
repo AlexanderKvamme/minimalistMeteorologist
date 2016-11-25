@@ -19,7 +19,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     var weekNumber: Int?
     var dailyWeatherArray = [DailyWeather] ()
     var fetchedDays = 0
-    let desiredAmountOfDays = 3
+    let desiredAmountOfDays = 7
 
     @IBOutlet weak var weekHeaderLabel: UILabel!
     
@@ -39,7 +39,14 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         updateHeader()
         
         setUserDefaultsIfInitialRun()
-        let coordinate = Coordinate(lat: 59.9, lon: 10.75)
+        
+        if let latestGPS = UserLocation.sharedInstance.coordinate{
+            currentCoordinate = latestGPS
+            print("updated Coordinate to: ", currentCoordinate)
+        } else {
+            showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services", error: nil)
+        }
+    
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
  
@@ -48,7 +55,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         let datesToFetch: [Date] = getFullWeekOfTimestamps(week: selectedWeek)
         
         for days in 0...(desiredAmountOfDays-1){
-            let request = makeTimeMachineRequest(forDay: datesToFetch[days], atCoordinate: coordinate)
+            let request = makeTimeMachineRequest(forDay: datesToFetch[days], atCoordinate: currentCoordinate)
             fetchDayFromRequestToIndex(request: request, session: session)
         }
     }//viewDidLoad
@@ -75,7 +82,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : AnyObject]
                     
-                    print(json)
+                    //print(json)
                     
                     let dailyJSON = json["daily"] as! [String : AnyObject]
                     
@@ -178,7 +185,9 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
          
             cell.percentageLabel.text = String(precipProbabilityPercentage) + "%"
         } else {
-            cell.precipitationStackView.isHidden = true
+            //cell.precipitationStackView.isHidden = true
+            cell.percentageLabel.text = "N/A"
+            cell.precipitationProbabilityLabel.text = "PROBABILITY"
         }
         
     
@@ -195,7 +204,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         let dayLetter = [Character](daysOfTheWeek.characters)
         cell.firstLetterOfDayLabel.text = String(dayLetter[indexPath.row])
         cell.windSpeedValueLabel.text = String(Int(round(day.windSpeedInPreferredUnit.value)))
-        cell.windSpeedUnitLabel.text = String(day.windSpeedInPreferredUnit.unit.symbol)
+        cell.windSpeedUnitLabel.text = String(day.windSpeedInPreferredUnit.unit.symbol)?.uppercased()
         cell.weatherIconImageView.image = UIImage(named: day.weatherIcon.rawValue)
         cell.precipitationIconImageView.image = UIImage(named: day.precipIcon.rawValue)
         

@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="1372" y="313.49325337331339"/>
         </scene>
-        <!--Start Screen View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="u6N-Ap-Suq">
             <objects>
-                <viewController id="IoU-2Z-I2i" customClass="StartScreenViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IoU-2Z-I2i" customClass="MainMenuViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rsb-yS-Ukg"/>
                         <viewControllerLayoutGuide type="bottom" id="hel-UJ-yIP"/>
@@ -318,8 +318,6 @@
                                 <connections>
                                     <outlet property="currentWeekLabel" destination="XVv-NX-u1O" id="0Kb-n6-MGm"/>
                                     <outlet property="weekNumberLabel" destination="ZrY-Q4-4aG" id="6FU-QL-Mb6"/>
-                                    <outletCollection property="gestureRecognizers" destination="PsL-ex-spi" appends="YES" id="aHI-aB-tDe"/>
-                                    <segue destination="6yA-LD-TX5" kind="presentation" identifier="WeeksTableToDetailed" id="xUO-4x-b3t"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -329,29 +327,23 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="swipeRightRecognizer" destination="PsL-ex-spi" id="Tyb-Dy-dTP"/>
+                        <segue destination="qXv-aD-If9" kind="unwind" identifier="WeeksToMain" unwindAction="unwindToMainMenuWithSegue:" id="HWY-FW-iUE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeY-WH-aKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="TvE-hA-Hxp" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="PsL-ex-spi">
-                    <connections>
-                        <action selector="didSwipeRight:" destination="I7e-2P-p60" id="kSf-yK-Fe7"/>
-                        <segue destination="TvE-hA-Hxp" kind="unwind" unwindAction="unwindToViewController:" id="pk6-W6-yik"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                <exit id="qXv-aD-If9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1546" y="1137"/>
         </scene>
         <!--Weeks Detailed Table View Controller-->
         <scene sceneID="rT0-2y-1Kc">
             <objects>
-                <tableViewController id="6yA-LD-TX5" customClass="WeeksDetailedTableViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WeeksDetailedTableViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6yA-LD-TX5" customClass="WeeksDetailedTableViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="aiF-ES-XfH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK 32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m0F-9t-qFV">
+                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK 32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m0F-9t-qFV">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration">

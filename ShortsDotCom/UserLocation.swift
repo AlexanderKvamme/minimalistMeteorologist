@@ -14,7 +14,7 @@ import CoreLocation
 
 class UserLocation: NSObject, CLLocationManagerDelegate {
     
-    // variables
+    // MARK: - variables
     
     var latitude: Double?
     var longitude: Double?
@@ -22,7 +22,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     
-    // geoCoder
+    // MARK: - geoCoder
     
     var geoCoder: CLGeocoder?
     var country = ""
@@ -38,8 +38,6 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     // Singleton
     
     static let sharedInstance = UserLocation()
-    
-    // Init
     
     private override init() {
         super.init()
@@ -104,17 +102,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
                 
                 self.country = lastMark.country!
                 self.locality = lastMark.locality!
-                print("country: \(self.country)")
-                print("locality: \(self.locality)")
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: self)
-                
             }
         })
     }
-    
-    
-    
-    
-    
 }

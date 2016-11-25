@@ -70,7 +70,6 @@ extension DailyWeather{
     
         let date = NSDate(timeIntervalSince1970: self.time) as Date
         let week = NSCalendar.current.component(.weekOfYear, from: date)
-        print("returning week nr as: ", week)
         return week
     }
     
@@ -81,7 +80,6 @@ extension CurrentWeather{
         
         let date = NSDate(timeIntervalSince1970: self.time) as Date
         let week = NSCalendar.current.component(.weekOfYear, from: date)
-        print("returning week nr as: ", week)
         return week
     }
 }
