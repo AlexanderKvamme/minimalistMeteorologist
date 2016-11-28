@@ -362,7 +362,7 @@
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
 		DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
 		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
-		DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuViewController.swift; path = ../MainMenuViewController.swift; sourceTree = "<group>"; };
+		DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		DD375FDF1DB508C0009AE7FC /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -692,7 +692,6 @@
 			isa = PBXGroup;
 			children = (
 				DDA277121D786516001B5FBD /* CurrentWeatherViewController.swift */,
-				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
 			);
 			name = "Current Weather";
 			sourceTree = "<group>";
@@ -767,6 +766,7 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DDB19B5E1DEC4DEE00E8C012 /* Main Menu */,
 				DD4DCBC21DE5D4B10003C791 /* Current Weather */,
 				DDD956FA1DD211020089FA53 /* Weeks */,
 				DD28BEF41DD9488F00C742D3 /* WeeksDetailed */,
@@ -791,7 +791,6 @@
 		DDA2770F1D786516001B5FBD /* ShortsDotCom */ = {
 			isa = PBXGroup;
 			children = (
-				DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */,
 				DD300BB81D7DBB6000AF95C9 /* Weather.swift */,
 				DDA277171D786516001B5FBD /* Assets.xcassets */,
 				DDA277191D786516001B5FBD /* LaunchScreen.storyboard */,
@@ -803,6 +802,15 @@
 				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
 			);
 			path = ShortsDotCom;
+			sourceTree = "<group>";
+		};
+		DDB19B5E1DEC4DEE00E8C012 /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */,
+				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
+			);
+			name = "Main Menu";
 			sourceTree = "<group>";
 		};
 		DDD956FA1DD211020089FA53 /* Weeks */ = {

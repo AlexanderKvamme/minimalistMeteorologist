@@ -38,30 +38,11 @@ struct DailyWeather{
     var weatherIcon: Icon
     var time: Double
     var precipIntensity: Double?
-    var precipType: String?
     var precipProbability: Double?
     var precipTypeText: String?
+    var precipIcon: PrecipIcon?
     var windSpeed: Double
-    var humidity: Double    
-    
-    var precipProbabilityPercentage: Int?{
-    
-    if let precipProbability = self.precipProbability{
-        return Int(precipProbability*100)
-    } else {
-        return nil
-        }
-    }
-    
-    var precipIcon: PrecipIcon{
-        
-        if precipProbability != 0 {
-            if let precipTypeText = precipTypeText{
-                return .init(rawValue: precipTypeText)
-            }
-        }
-        return .unexpectedPrecip
-    }
+    var humidity: Double
 }
 
 extension DailyWeather{
@@ -72,7 +53,6 @@ extension DailyWeather{
         let week = NSCalendar.current.component(.weekOfYear, from: date)
         return week
     }
-    
 }
 
 extension CurrentWeather{
@@ -100,6 +80,8 @@ extension DailyWeather{
     
     init?(JSONDay: [String : AnyObject]){
         
+        //print(JSONDay)
+        
         guard let apparentTemperatureMin = JSONDay["apparentTemperatureMin"] as? Double,
             let apparentTemperatureMax = JSONDay["apparentTemperatureMax"] as? Double,
             let temperatureMin = JSONDay["temperatureMin"] as? Double,
@@ -115,6 +97,9 @@ extension DailyWeather{
                 return nil
         }
         
+        
+        
+        
         if let precipProbability = JSONDay["precipProbability"] as? Double{
             self.precipProbability = precipProbability
         } else {
@@ -125,6 +110,16 @@ extension DailyWeather{
             self.precipIntensity = precipIntensity
         } else {
             self.precipIntensity = nil
+        }
+        
+        // precip Icon
+        
+        if let precipType = JSONDay["precipType"] as? String{
+            self.precipTypeText = precipType
+            self.precipIcon = PrecipIcon.init(rawValue: precipType)
+        } else{
+            self.precipTypeText = "Precipitation"
+            self.precipIcon = PrecipIcon.unexpectedPrecip
         }
         
         self.apparentTemperatureMin = apparentTemperatureMin
@@ -187,6 +182,16 @@ extension DailyWeather{
     var date: Date {
         return Date.init(timeIntervalSince1970: self.time)
     }
+    
+    var precipProbabilityPercentage: Int?{
+        
+        if let precipProbability = self.precipProbability{
+            return Int(precipProbability*100)
+        } else {
+            return nil
+        }
+    }
+    
 }
 
 // Measurements for displaying unit system specific values and unit

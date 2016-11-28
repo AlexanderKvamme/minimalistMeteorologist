@@ -11,14 +11,11 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     let defaults = UserDefaults.standard
-    //defaults.set("SI", forKey: "preferredUnits")
     
     @IBOutlet weak var settingsView: DesignableView!
     @IBOutlet weak var UnitsOfMeasurementSegmentedControl: UISegmentedControl!
     
-    
     //Action buttons
-    
     
     @IBAction func segmentedDidTouch(_ sender: AnyObject) {
         
@@ -55,20 +52,12 @@ class SettingsViewController: UIViewController {
         setupSegmentWithPreferredUnit()
     }
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     // Helper methods
     
     func setupSegmentWithPreferredUnit(){
         
         let currentPreferredUnits = defaults.string(forKey: "preferredUnits")!
         
-        print("currentPreferredUnits i settingsView var: ", currentPreferredUnits)
         switch currentPreferredUnits{
             
         case "SI":

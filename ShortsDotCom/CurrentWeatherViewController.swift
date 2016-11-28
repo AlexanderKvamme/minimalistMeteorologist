@@ -10,12 +10,9 @@ import UIKit
 import Foundation
 import CoreLocation
 
-var GPSCoordinatesLocationIsFinished = false
-var reverseGeocodingIsFinished = false
 var currentWeatherFetchIsFinished = false
 
 let forecastAPIKey = "fdb7fc33b542deec6680877abc34465a"
-var currentCoordinate = Coordinate(lat: 59.911491, lon: 10.757933)
 var forecastClient = ForecastAPIClient(APIKey: forecastAPIKey)
 
 // Variables for simultaneous update of reverse geocode and weather
@@ -39,39 +36,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var cityAndCountryTextField: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var settingsButton: UIButton!
     @IBAction func settingsButtonIsTapped(_ sender: AnyObject) {print("Click!")}
     
     @IBOutlet weak var animationView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        if let latestGPS = UserLocation.sharedInstance.coordinate{
-            currentCoordinate = latestGPS
-            print("updated Coordinate to: ", currentCoordinate)
-        } else {
-            showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services", error: nil)
-        }
         
+        // Animation
         activityIndicator.stopAnimating()
         activityIndicator.startAnimating()
-        settingsButton.isHidden = false
+        
+        // Settings
         setUserDefaultsIfInitialRun()
+        setupFlowLayout()
         
-        //observer setup
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUserLocationStatus), name: NSNotification.Name(rawValue: Notifications.userLocationGPSDidUpdate), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateReverseGeocodingStatus), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+        // Register observers
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateCurrentWeatherStatus), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
-        
-        setupFlowLayout()
-        
-        UserLocation.sharedInstance.updateLocation()
         
         updateCurrentWeather()
     }
@@ -79,37 +63,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         Animations.playCheckmarkAnimationOnce(inImageView: animationView)
     }
     
-    func updateUserLocationStatus(){
-        
-        GPSCoordinatesLocationIsFinished = true
-        dataCollectedCheck()
-    }
-    
-    func updateReverseGeocodingStatus(){
-    
-        reverseGeocodingIsFinished = true
-        dataCollectedCheck()
-    }
-    
     func updateCurrentWeatherStatus(){
-        currentWeatherFetchIsFinished = true
-        dataCollectedCheck()
-    }
-    
-    func dataCollectedCheck(){
         
-        if(currentWeatherFetchIsFinished && reverseGeocodingIsFinished && GPSCoordinatesLocationIsFinished){
-            
-            self.collectionViewRef.reloadData()
-            
-            reverseGeocodingIsFinished = false
-            currentWeatherFetchIsFinished = false
-            GPSCoordinatesLocationIsFinished = false
-            self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
-        }
-        else{
-            // do nothing
-        }
+        self.collectionViewRef.reloadData()
+        self.cityAndCountryTextField.text = UserLocation.sharedInstance.locationName
     }
     
     func updateDataSource(newWeather: CurrentWeather){
@@ -121,16 +78,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         tableData = [
             
-            // temperature cell
             myData(firstRowLabel: newWeather.temperatureInPreferredUnit.description, headerInfo: "temperature.png", cellType: cellType.image),
-            
-            // windspeed cell
             myData(firstRowLabel: newWeather.windSpeedInPreferredUnit.description, headerInfo: "weathercock.png", cellType: cellType.image),
-            
-            // precipitation chance cell
             myData(firstRowLabel: "Chance of".uppercased(), headerInfo: String(newWeather.precipProbabilityPercentage)+"%", cellType: cellType.text),
-            
-            // precipitation symbol cell
             myData(firstRowLabel: newWeather.precipTypeText.uppercased(), headerInfo: newWeather.precipIcon.rawValue, cellType: cellType.image)]
         
         if newWeather.precipProbabilityPercentage == 0 {
@@ -174,12 +124,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
-        settingsButton.isHidden = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        }
     
     // Helper functions
     

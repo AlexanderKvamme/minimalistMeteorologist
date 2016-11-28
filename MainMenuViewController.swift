@@ -17,18 +17,31 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
-        UserLocation.sharedInstance.updateLocation()
-        
+        UserLocation.sharedInstance.updateLocation() 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func settingsDidUpdate(){
+        print("*playing update animation*")
+    }
 
     func reverseGeocodeHandler(){
-        print("geocode updated")
+        
+        if let latestGPS = UserLocation.sharedInstance.coordinate{
+            currentCoordinate = latestGPS
+            
+        } else {
+            showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services. Please enable Location Services in your settings and restart the app to update GPS.", error: nil)
+        }
     }
     
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        UserLocation.sharedInstance.updateLocation()
+    }
 }

@@ -30,7 +30,7 @@ import UIKit
 
 // MARK: - Globals
 
-var currentCoordinate: Coordinate?
+var currentCoordinate = Coordinate(lat: 59.911491, lon: 10.757933) // Default value lets user test app without having to enable location services
 
 // MARK: - Enums
 

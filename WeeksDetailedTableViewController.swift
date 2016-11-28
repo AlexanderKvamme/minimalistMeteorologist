@@ -19,7 +19,8 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     var weekNumber: Int?
     var dailyWeatherArray = [DailyWeather] ()
     var fetchedDays = 0
-    let desiredAmountOfDays = 7
+    let desiredAmountOfDays = 3
+    var cellHeightForDevice: CGFloat = 0.0
 
     @IBOutlet weak var weekHeaderLabel: UILabel!
     
@@ -27,6 +28,8 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        adjustLayoutToFrame()
         
         // Swipe recognizer
         
@@ -42,7 +45,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         
         if let latestGPS = UserLocation.sharedInstance.coordinate{
             currentCoordinate = latestGPS
-            print("updated Coordinate to: ", currentCoordinate)
         } else {
             showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services", error: nil)
         }
@@ -60,7 +62,20 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         }
     }//viewDidLoad
     
-    //Mark: Functions
+    // MARK: - Functions
+    
+    // MARK: - Todo
+    
+    func adjustLayoutToFrame(){
+        let screenSize = UIScreen.main.bounds
+        let screenHeight = screenSize.height
+        let cellHeight = screenHeight / 9
+        let headerHeight = cellHeight*2
+        
+        weekHeaderLabel.frame.size.height = headerHeight
+        print("header height set to:", headerHeight)
+        cellHeightForDevice = cellHeight
+    }
     
     func addSwipeRecognizer(){
         var swipeRightGestureRecognizer = UISwipeGestureRecognizer()
@@ -180,15 +195,21 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         let day = dailyWeatherArray[indexPath.row]
 
         cell.temperatureLabel.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + day.averageTemperatureInPreferredUnit.unit.symbol
-        
+        /*
         if let precipProbabilityPercentage = day.precipProbabilityPercentage{
-         
-            cell.percentageLabel.text = String(precipProbabilityPercentage) + "%"
-        } else {
-            //cell.precipitationStackView.isHidden = true
+            cell.percentageLabel.text = String(precipProbabilityPercentage) + "%"*/
+        if day.precipProbability == 0 {
+            cell.percentageLabel.text = "NO"
+            
+        } else if day.precipProbability == nil{
             cell.percentageLabel.text = "N/A"
-            cell.precipitationProbabilityLabel.text = "PROBABILITY"
         }
+        else {
+            //cell.precipitationStackView.isHidden = true
+            cell.percentageLabel.text = String(day.precipProbabilityPercentage!) + "%"
+            
+        }
+        cell.precipitationProbabilityLabel.text = "CHANCE OF"
         
     
         // Set Temperature Unit Label
@@ -206,7 +227,14 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         cell.windSpeedValueLabel.text = String(Int(round(day.windSpeedInPreferredUnit.value)))
         cell.windSpeedUnitLabel.text = String(day.windSpeedInPreferredUnit.unit.symbol)?.uppercased()
         cell.weatherIconImageView.image = UIImage(named: day.weatherIcon.rawValue)
-        cell.precipitationIconImageView.image = UIImage(named: day.precipIcon.rawValue)
+        
+        if day.precipIcon != nil {
+            cell.precipitationIconImageView.image = UIImage(named: day.precipIcon!.rawValue)
+        } else {
+            cell.precipitationIconImageView.image = UIImage(named: PrecipIcon.unexpectedPrecip.rawValue)
+        }
+        
+        cell.frame.size.height = cellHeightForDevice
         
         return cell
     }
