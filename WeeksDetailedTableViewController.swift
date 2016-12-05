@@ -73,7 +73,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         let headerHeight = cellHeight*2
         
         weekHeaderLabel.frame.size.height = headerHeight
-        print("header height set to:", headerHeight)
         cellHeightForDevice = cellHeight
     }
     
@@ -171,20 +170,13 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - TableView datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return dailyWeatherArray.count
     }
 
@@ -195,9 +187,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         let day = dailyWeatherArray[indexPath.row]
 
         cell.temperatureLabel.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + day.averageTemperatureInPreferredUnit.unit.symbol
-        /*
-        if let precipProbabilityPercentage = day.precipProbabilityPercentage{
-            cell.percentageLabel.text = String(precipProbabilityPercentage) + "%"*/
+    
         if day.precipProbability == 0 {
             cell.percentageLabel.text = "NO"
             
@@ -205,7 +195,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
             cell.percentageLabel.text = "N/A"
         }
         else {
-            //cell.precipitationStackView.isHidden = true
             cell.percentageLabel.text = String(day.precipProbabilityPercentage!) + "%"
             
         }
@@ -243,32 +232,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         return 80.0
     }
     
-//    func getUNIXArrayFromWeek(number weekNumber: Int) -> [Int] {
-//        
-//            let calendar = Calendar.current
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateStyle = .long
-//            var components = DateComponents()
-//        
-//            components.yearForWeekOfYear = 2016
-//            components.weekOfYear = weekNumber
-//        
-//            let dateFromComponents = calendar.date(from: components)
-//    
-//            let returnDates = [Int]()
-//            
-//            // bruk denne til å lagre array av denne og de 6 følgende datoene som unix
-//            
-//            if let dateFromComponents = dateFromComponents{
-//                
-//                for dayIndex in 0...3 {
-//                    let temp = calendar.date(byAdding: .day, value: dayIndex, to: dateFromComponents)
-//                }
-//                return returnDates
-//            }
-//            return returnDates
-//        }
-    
     func getDayInUNIXFormat(fromDay day: Int, week: Int) -> Int? {
         
         print("mottat: dag \(day), and week \(week)")
@@ -291,7 +254,6 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         }
         
         return nil
-        
     }
 
     func makeTimeMachineRequest(forDay date: Date, atCoordinate coordinate: Coordinate) -> URLRequest{
@@ -326,6 +288,5 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         }
         
         return dateFromComponents?.timeIntervalSince1970
-        
     }
 }

@@ -10,6 +10,34 @@ import Foundation
 
 // Data structures
 
+struct HourData{
+    
+    let apparentTemperature: Double
+    let cloudCover: Double
+    let dewPoint: Double
+    let humidity: Double
+    let icon: Icon
+    let ozone: Double
+    let precipIntensity: Double
+    let precipProbability: Double
+    let precipType: PrecipIcon
+    let pressure: Double
+    let summary: String
+    let temperature: Double
+    let time: Int
+    let windBearing: Double
+    let windSpeed: Double
+}
+
+struct MinuteData{
+    
+    let time: Int
+    let precipIntensity: Double
+    let precipIntensityError: Double
+    let precipProbability: Double
+    let precipType: String
+}
+
 struct CurrentWeather{
     
     var timezone: timezone?
@@ -25,6 +53,73 @@ struct CurrentWeather{
     var windSpeed: Double
     var humidity: Double
     var precipTypeText: String
+}
+
+struct ExtendedCurrentWeather{
+    
+    var timezone: timezone?
+    var offset: Int?
+    var temperature: Double
+    var summary: String
+    var WeatherIcon: Icon
+    var precipIcon: PrecipIcon
+    var time: Double
+    var precipIntensity: Double?
+    var precipProbability: Double
+    var precipProbabilityPercentage: Int
+    var windSpeed: Double
+    var humidity: Double
+    var precipTypeText: String
+    var hourlyWeather: [HourData]?
+    var minutelyWeather: [MinuteData]?
+
+}
+
+extension ExtendedCurrentWeather: JSONDecodable{
+    
+    init?(JSON: [String : AnyObject]) {
+        
+        // TODO
+        
+        print("mottar json i extendedCurrent")
+        print(JSON)
+        
+        // TODO
+        
+        guard let temperature = JSON["temperature"] as? Double,
+            let summary = JSON["summary"] as? String,
+            let windSpeed = JSON["windSpeed"] as? Double,
+            let humidity = JSON["humidity"] as? Double,
+            let precipIntensity = JSON["precipIntensity"] as? Double,
+            let iconString = JSON["icon"] as? String,
+            let precipProbability = JSON["precipProbability"] as? Double,
+            let time = JSON["time"] as? Double
+            
+            else {
+                return nil
+        }
+        
+        self.temperature = temperature
+        self.summary = summary
+        self.windSpeed = windSpeed
+        self.humidity = humidity
+        self.precipIntensity = precipIntensity
+        self.WeatherIcon = Icon(rawValue: iconString)
+        self.precipProbability = precipProbability
+        self.precipProbabilityPercentage = Int(precipProbability*100)
+        self.time = time
+        
+        if precipProbability != 0 {
+            
+            self.precipTypeText = (JSON["precipType"] as? String)!
+            self.precipIcon = .init(rawValue: self.precipTypeText)
+            
+        } else {
+            
+            self.precipTypeText = "Precipitation"
+            self.precipIcon = .unexpectedPrecip
+        }
+    }
 }
 
 struct DailyWeather{

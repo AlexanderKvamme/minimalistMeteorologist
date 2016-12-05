@@ -55,12 +55,16 @@ class ForecastAPIClient: APIClient {
         self.init(configuration: URLSessionConfiguration.default, APIKey: APIKey)
     }
     
+    // Simple versjon of fetchCurrentWeather()
+    
     func fetchCurrentWeather(_ coordinate: Coordinate, completion: @escaping (APIResult<CurrentWeather>) -> Void){
         
         // TASK: TODO - Fiks enklere request creation
         let request = createRequestWithCoordinate(coordinate)
 
         fetch(request: request, parse: { json -> CurrentWeather? in
+            
+            print(json)
             
             if let weatherDict = json["currently"] as? [String : AnyObject]{
                 
@@ -72,4 +76,28 @@ class ForecastAPIClient: APIClient {
             }
             }, completion: completion)
     }
+    
+    // Extended Version of fetchCurrentWeahter()
+    
+
+    func fetchExtendedCurrentWeather(_ coordinate: Coordinate, completion: @escaping (APIResult<ExtendedCurrentWeather>) -> Void){
+        
+        let request = createRequestWithCoordinate(coordinate)
+        
+        fetch(request: request, parse: { json -> ExtendedCurrentWeather? in
+            
+            print(json)
+            
+            if let weatherDict = json["currently"] as? [String : AnyObject]{
+                
+                return ExtendedCurrentWeather(JSON: weatherDict)
+                
+            }else {
+                print("ERROR: no json returned")
+                return nil
+            }
+        }, completion: completion)
+    }
+
+    
 }
