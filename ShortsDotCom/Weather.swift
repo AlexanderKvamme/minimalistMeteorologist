@@ -16,7 +16,7 @@ struct HourData{
     let cloudCover: Double
     let dewPoint: Double
     let humidity: Double
-    let icon: Icon
+    let weatherIcon: Icon
     let ozone: Double
     let precipIntensity: Double
     let precipProbability: Double
@@ -27,6 +27,61 @@ struct HourData{
     let time: Int
     let windBearing: Double
     let windSpeed: Double
+}
+
+extension HourData{
+    
+    // Failable Initializer
+    init?(hourDictionary: [String : AnyObject]) {
+        
+        guard let apparentTemperature = hourDictionary["apparentTemperature"] as? Double,
+            let cloudCover = hourDictionary["cloudCover"] as? Double,
+            let dewPoint = hourDictionary["dewPoint"] as? Double,
+            let humidity = hourDictionary["humidity"] as? Double,
+            let icon = hourDictionary["icon"] as? String,
+            let ozone = hourDictionary["ozone"] as? Double,
+            let precipIntensity = hourDictionary["precipIntensity"] as? Double,
+            let precipProbability = hourDictionary["precipProbability"] as? Double,
+            let pressure = hourDictionary["pressure"] as? Double,
+            let summary = hourDictionary["summary"] as? String,
+            let temperature = hourDictionary["temperature"] as? Double,
+            let time = hourDictionary["time"] as? Int,
+            let windBearing = hourDictionary["windBearing"] as? Double,
+            let windSpeed = hourDictionary["windSpeed"] as? Double
+            
+            else {
+                
+                print("Følgende HourData init feilet:")
+                print(hourDictionary)
+                return nil }
+        
+        self.apparentTemperature = apparentTemperature
+        self.cloudCover = cloudCover
+        self.dewPoint = dewPoint
+        self.humidity = humidity
+        self.weatherIcon = Icon(rawValue: icon)
+        self.ozone = ozone
+        self.precipIntensity = precipIntensity
+        self.precipProbability = precipProbability
+        self.pressure = pressure
+        self.summary = summary
+        self.temperature = temperature
+        self.time = time
+        self.windBearing = windBearing
+        self.windSpeed = windSpeed
+        
+        if precipProbability != 0 {
+        
+            let precipType = hourDictionary["precipType"] as! String
+            self.precipType = PrecipIcon(rawValue: precipType)
+        
+        } else {
+            self.precipType = PrecipIcon.unexpectedPrecip
+        }
+        
+        
+        
+    }
 }
 
 struct MinuteData{
@@ -72,55 +127,83 @@ struct ExtendedCurrentWeather{
     var precipTypeText: String
     var hourlyWeather: [HourData]?
     var minutelyWeather: [MinuteData]?
+    
+    // Has extensions
 
 }
 
 extension ExtendedCurrentWeather: JSONDecodable{
     
-    init?(JSON: [String : AnyObject]) {
+    init?(JSON fullJSON: [String : AnyObject]) {
+        //print(fullJSON)
         
-        // TODO
-        
-        print("mottar json i extendedCurrent")
-        print(JSON)
-        
-        // TODO
-        
-        guard let temperature = JSON["temperature"] as? Double,
-            let summary = JSON["summary"] as? String,
-            let windSpeed = JSON["windSpeed"] as? Double,
-            let humidity = JSON["humidity"] as? Double,
-            let precipIntensity = JSON["precipIntensity"] as? Double,
-            let iconString = JSON["icon"] as? String,
-            let precipProbability = JSON["precipProbability"] as? Double,
-            let time = JSON["time"] as? Double
+        if let currentlyJSON = fullJSON["currently"] as? [String : AnyObject] {
             
-            else {
-                return nil
-        }
-        
-        self.temperature = temperature
-        self.summary = summary
-        self.windSpeed = windSpeed
-        self.humidity = humidity
-        self.precipIntensity = precipIntensity
-        self.WeatherIcon = Icon(rawValue: iconString)
-        self.precipProbability = precipProbability
-        self.precipProbabilityPercentage = Int(precipProbability*100)
-        self.time = time
-        
-        if precipProbability != 0 {
+            guard let temperature = currentlyJSON["temperature"] as? Double,
+                let summary = currentlyJSON["summary"] as? String,
+                let windSpeed = currentlyJSON["windSpeed"] as? Double,
+                let humidity = currentlyJSON["humidity"] as? Double,
+                let precipIntensity = currentlyJSON["precipIntensity"] as? Double,
+                let iconString = currentlyJSON["icon"] as? String,
+                let precipProbability = currentlyJSON["precipProbability"] as? Double,
+                let time = currentlyJSON["time"] as? Double
+                
+                else { return nil }
             
-            self.precipTypeText = (JSON["precipType"] as? String)!
-            self.precipIcon = .init(rawValue: self.precipTypeText)
+            self.temperature = temperature
+            self.summary = summary
+            self.windSpeed = windSpeed
+            self.humidity = humidity
+            self.precipIntensity = precipIntensity
+            self.WeatherIcon = Icon(rawValue: iconString)
+            self.precipProbability = precipProbability
+            self.precipProbabilityPercentage = Int(precipProbability*100)
+            self.time = time
             
+            if precipProbability != 0 {
+                
+                self.precipTypeText = (currentlyJSON["precipType"] as? String)!
+                self.precipIcon = .init(rawValue: self.precipTypeText)
+                
+            } else {
+                
+                self.precipTypeText = "Precipitation"
+                self.precipIcon = .unexpectedPrecip
+            }
+            print("successfully initiated extendedCurrentweaters usual part. Now on to hourly")
         } else {
-            
-            self.precipTypeText = "Precipitation"
-            self.precipIcon = .unexpectedPrecip
+            print("ERROR: making currentlyJSON")
+            return nil
         }
-    }
-}
+        
+        // TASK: - : Initialze Array of HourData
+        
+        print("starter i TODO Initializing hours")
+    
+        if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
+        
+            if let data = hourlyJSON["data"] as? [[String : AnyObject]] {
+            
+                var array: [HourData] = []
+                for hour in data{
+        
+                    print()
+                    let myHourData = HourData(hourDictionary: hour)
+                    if let myHourData = myHourData{
+                        array.append(myHourData)
+                    }
+                
+                }
+                print("count is", array.count)
+                self.hourlyWeather = array
+                
+            }
+            
+        } else {print("errr getting data from hourlyJSON")}
+    
+    } // End of hour init
+    
+}// End of extension
 
 struct DailyWeather{
     

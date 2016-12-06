@@ -57,7 +57,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
-        updateCurrentWeather()
+        //updateCurrentWeather()
+        updateExtendedCurrentWeatherTest()
     }
     func settingsDidUpdate(){
         Animations.playCheckmarkAnimationOnce(inImageView: animationView)
@@ -117,6 +118,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
     }
+    
+    func updateExtendedCurrentWeatherTest(){
+        
+        print(" - kjører extendedCurrentWeatherTest)")
+        
+        forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
+            
+            self.activityIndicator.startAnimating()
+            
+            switch apiresult{
+                
+            case .success(let extendedCurrentWeather):
+                
+                self.activityIndicator.stopAnimating()
+                
+                Animations.playCheckmarkAnimationOnce(inImageView: self.animationView)
+                
+                //self.updateDataSource(newWeather: extendedCurrentWeather)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
+                
+            case .failure(let error as NSError):
+                self.activityIndicator.stopAnimating()
+                
+                showAlert(viewController: self, title: "Error", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+                
+            default: break
+            }
+        }
+    }
+    
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         self.viewDidLoad()
