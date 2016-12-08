@@ -67,6 +67,7 @@ extension HourData{
         self.summary = summary
         self.temperature = temperature
         self.time = time
+        print(time)
         self.windBearing = windBearing
         self.windSpeed = windSpeed
         
@@ -135,6 +136,7 @@ struct ExtendedCurrentWeather{
 extension ExtendedCurrentWeather: JSONDecodable{
     
     init?(JSON fullJSON: [String : AnyObject]) {
+        
         //print(fullJSON)
         
         if let currentlyJSON = fullJSON["currently"] as? [String : AnyObject] {
