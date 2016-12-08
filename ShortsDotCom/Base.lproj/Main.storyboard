@@ -271,7 +271,6 @@
         <!--View Controller-->
         <scene sceneID="yer-HD-VYp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uAy-XI-Rnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="acE-Cl-7Y8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m0h-yW-7Tk"/>
@@ -288,7 +287,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="partly-cloudy-night.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dxc-nI-hGe">
-                                <rect key="frame" x="67" y="91.5" width="240" height="129"/>
+                                <rect key="frame" x="16" y="91.5" width="343" height="129"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-42-AJI">
                                 <rect key="frame" x="169.5" y="60" width="36.5" height="20.5"/>
@@ -303,16 +302,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yRV-9D-0xs" userLabel="imageStack">
-                                <rect key="frame" x="16" y="367" width="343" height="200"/>
+                                <rect key="frame" x="16" y="259" width="343" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-bM-zhw" userLabel="stack1">
-                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="150"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="weathercock.png" translatesAutoresizingMaskIntoConstraints="NO" id="wj8-Vh-pBP">
-                                                <rect key="frame" x="23" y="0.0" width="68" height="179.5"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="weathercock.png" translatesAutoresizingMaskIntoConstraints="NO" id="wj8-Vh-pBP">
+                                                <rect key="frame" x="23" y="0.0" width="68" height="129.5"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="stack1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-bd-QKF">
-                                                <rect key="frame" x="0.0" y="179.5" width="114.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stack1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-bd-QKF">
+                                                <rect key="frame" x="0.0" y="129.5" width="114.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -325,13 +324,13 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wOR-jP-Ubw" userLabel="stack2">
-                                        <rect key="frame" x="114.5" y="0.0" width="114" height="200"/>
+                                        <rect key="frame" x="114.5" y="0.0" width="114" height="150"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="precipitationRain.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yhb-4D-8zJ">
-                                                <rect key="frame" x="42" y="0.0" width="30" height="179.5"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="precipitationRain.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yhb-4D-8zJ">
+                                                <rect key="frame" x="42" y="0.0" width="30" height="129.5"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="stack2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5V-3D-sx0">
-                                                <rect key="frame" x="0.0" y="179.5" width="114" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stack2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5V-3D-sx0">
+                                                <rect key="frame" x="0.0" y="129.5" width="114" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -344,13 +343,13 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cKy-8X-ddF" userLabel="stack3">
-                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="200"/>
+                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="150"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" ambiguous="YES" image="temperature.png" translatesAutoresizingMaskIntoConstraints="NO" id="9dt-5t-AmD">
-                                                <rect key="frame" x="49.5" y="0.0" width="16" height="179.5"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="800" image="temperature.png" translatesAutoresizingMaskIntoConstraints="NO" id="9dt-5t-AmD">
+                                                <rect key="frame" x="49.5" y="0.0" width="16" height="129.5"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" ambiguous="YES" text="stack3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2D-Dd-vEu">
-                                                <rect key="frame" x="0.0" y="179.5" width="114.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="stack3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2D-Dd-vEu">
+                                                <rect key="frame" x="0.0" y="129.5" width="114.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -365,9 +364,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.81996169919999995" green="1" blue="0.69861101219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="2Uf-Ca-jLC"/>
+                                    <constraint firstAttribute="height" constant="150" id="2Uf-Ca-jLC"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphDummy" translatesAutoresizingMaskIntoConstraints="NO" id="a0z-fJ-n55">
+                                <rect key="frame" x="-30.5" y="419" width="435" height="252"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -376,18 +378,21 @@
                             <constraint firstItem="yRV-9D-0xs" firstAttribute="leading" secondItem="TZQ-cd-p7D" secondAttribute="leadingMargin" id="7Vk-M7-6re"/>
                             <constraint firstItem="dYe-P4-hJg" firstAttribute="top" secondItem="b6y-UU-P4t" secondAttribute="bottom" constant="418" id="9hW-an-oym"/>
                             <constraint firstItem="b6y-UU-P4t" firstAttribute="top" secondItem="Dxc-nI-hGe" secondAttribute="bottom" constant="8" id="AnO-08-imR"/>
+                            <constraint firstItem="a0z-fJ-n55" firstAttribute="centerX" secondItem="TZQ-cd-p7D" secondAttribute="centerX" id="Jwp-r3-vC0"/>
                             <constraint firstItem="yRV-9D-0xs" firstAttribute="centerX" secondItem="TZQ-cd-p7D" secondAttribute="centerX" id="MWq-X8-7yo"/>
-                            <constraint firstItem="Dxc-nI-hGe" firstAttribute="leading" secondItem="TZQ-cd-p7D" secondAttribute="leadingMargin" constant="51" id="T8m-UG-agS"/>
+                            <constraint firstItem="Dxc-nI-hGe" firstAttribute="leading" secondItem="TZQ-cd-p7D" secondAttribute="leadingMargin" id="Mgj-s8-tIQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yRV-9D-0xs" secondAttribute="trailing" id="TeU-33-M11"/>
-                            <constraint firstItem="Dxc-nI-hGe" firstAttribute="centerX" secondItem="TZQ-cd-p7D" secondAttribute="centerX" id="USO-ox-ySx"/>
+                            <constraint firstItem="yRV-9D-0xs" firstAttribute="top" secondItem="b6y-UU-P4t" secondAttribute="bottom" constant="10" id="fKb-bQ-TjT"/>
                             <constraint firstItem="F7c-pr-eWg" firstAttribute="centerX" secondItem="TZQ-cd-p7D" secondAttribute="centerX" id="fgS-l1-fm3"/>
+                            <constraint firstItem="a0z-fJ-n55" firstAttribute="top" secondItem="yRV-9D-0xs" secondAttribute="bottom" constant="10" id="hPo-AW-9SJ"/>
                             <constraint firstItem="Dxc-nI-hGe" firstAttribute="top" secondItem="aNZ-42-AJI" secondAttribute="bottom" constant="11" id="nfN-F7-NC1"/>
                             <constraint firstItem="aNZ-42-AJI" firstAttribute="top" secondItem="F7c-pr-eWg" secondAttribute="bottom" constant="10" id="o1z-9a-DTw"/>
-                            <constraint firstItem="dYe-P4-hJg" firstAttribute="top" secondItem="yRV-9D-0xs" secondAttribute="bottom" constant="100" id="pVh-JM-diV"/>
                             <constraint firstItem="b6y-UU-P4t" firstAttribute="centerX" secondItem="TZQ-cd-p7D" secondAttribute="centerX" id="qXo-2G-gt3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dxc-nI-hGe" secondAttribute="trailing" id="wsW-ee-HX1"/>
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAy-XI-Rnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="232.80000000000001" y="1965.9670164917543"/>
         </scene>
@@ -423,7 +428,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT WEEK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-NX-u1O">
-                                            <rect key="frame" x="173.5" y="351" width="128.5" height="23"/>
+                                            <rect key="frame" x="173" y="351" width="129" height="23"/>
                                             <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -599,6 +604,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="graphDummy" width="435" height="252"/>
         <image name="partly-cloudy-night.png" width="184" height="124"/>
         <image name="precipitationRain.png" width="30" height="43"/>
         <image name="settingsButton.png" width="22" height="21"/>
