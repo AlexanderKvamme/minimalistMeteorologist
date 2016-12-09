@@ -126,7 +126,7 @@ struct ExtendedCurrentWeather{
     var humidity: Double
     var precipTypeText: String
     // MARK: TODO - daily array bruk første som bilde og hours til graf
-    // var dailyWeather: [DailyWeather]?
+    var dailyWeather: [DailyWeather]?
     var hourlyWeather: [HourData]?
     var minutelyWeather: [MinuteData]?
     
@@ -179,6 +179,26 @@ extension ExtendedCurrentWeather: JSONDecodable{
             return nil
         }
         
+        // Task: - : Initialize Array of DailyData
+        
+        if let dailyJSON = fullJSON["daily"] as? [String : AnyObject]{
+            
+            if let data = dailyJSON["data"] as? [[String : AnyObject]] {
+                
+                var array: [DailyWeather] = []
+            
+                for day in data{
+                    
+                    let myDayData = DailyWeather(JSONDay: day)
+                    if let myDayData = myDayData{
+                        array.append(myDayData)
+                    }
+                }
+                self.dailyWeather = array
+                
+            }
+        }
+        
         // TASK: - : Initialze Array of HourData
     
         if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
@@ -187,8 +207,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
             
                 var array: [HourData] = []
                 for hour in data{
-        
-                    print()
+                
                     let myHourData = HourData(hourDictionary: hour)
                     if let myHourData = myHourData{
                         array.append(myHourData)
@@ -275,9 +294,6 @@ extension DailyWeather{
                 print("'DailyWeather' initializer returnered nil")
                 return nil
         }
-        
-        
-        
         
         if let precipProbability = JSONDay["precipProbability"] as? Double{
             self.precipProbability = precipProbability

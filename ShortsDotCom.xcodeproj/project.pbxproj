@@ -131,7 +131,6 @@
 		DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CD1DC7B4E0008F2389 /* Global.swift */; };
 		DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */; };
 		DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */; };
-		DD2C3AAF1DF1E21400DA953C /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2C3AAE1DF1E21400DA953C /* TODO.swift */; };
 		DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
 		DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* Weather.swift */; };
@@ -372,7 +371,6 @@
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
 		DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
 		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
-		DD2C3AAE1DF1E21400DA953C /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -516,6 +514,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DD0F13321DFAD2090077FB36 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DD300BB81D7DBB6000AF95C9 /* Weather.swift */,
+			);
+			name = Data;
+			path = ShortsDotCom;
+			sourceTree = "<group>";
+		};
 		DD28BEE51DD936F100C742D3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,7 +561,6 @@
 		DD2C3AAD1DF1E1E300DA953C /* Daily Weather */ = {
 			isa = PBXGroup;
 			children = (
-				DD2C3AAE1DF1E21400DA953C /* TODO.swift */,
 				DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */,
 				DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */,
 				DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */,
@@ -807,6 +813,7 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DD0F13321DFAD2090077FB36 /* Data */,
 				DDB19B5E1DEC4DEE00E8C012 /* Main Menu */,
 				DD2C3AAD1DF1E1E300DA953C /* Daily Weather */,
 				DD4DCBC21DE5D4B10003C791 /* Current Weather */,
@@ -835,7 +842,6 @@
 		DDA2770F1D786516001B5FBD /* ShortsDotCom */ = {
 			isa = PBXGroup;
 			children = (
-				DD300BB81D7DBB6000AF95C9 /* Weather.swift */,
 				DDA277171D786516001B5FBD /* Assets.xcassets */,
 				DDA277191D786516001B5FBD /* LaunchScreen.storyboard */,
 				DDA2771C1D786516001B5FBD /* Info.plist */,
@@ -1175,7 +1181,6 @@
 				DD3760111DB508C0009AE7FC /* SpringButton.swift in Sources */,
 				DD37600E1DB508C0009AE7FC /* SoundPlayer.swift in Sources */,
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
-				DD2C3AAF1DF1E21400DA953C /* TODO.swift in Sources */,
 				DDA277131D786516001B5FBD /* CurrentWeatherViewController.swift in Sources */,
 				DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,

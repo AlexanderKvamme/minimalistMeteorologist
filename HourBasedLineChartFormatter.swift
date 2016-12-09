@@ -34,10 +34,6 @@ class HourBasedLineChartFormatter: NSObject, IAxisValueFormatter{
             i += 1
         }
         
-        print()
-        print("HH: ", HH)
-        print("MM: ", MM)
-        
         let returnString = HH + ":" + MM
         
         return returnString

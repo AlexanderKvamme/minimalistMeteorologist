@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+var latestExtendedWeatherFetched: ExtendedCurrentWeather? = nil
+
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
@@ -33,11 +35,16 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             
             switch apiresult{
                 
-            case .success(let extendedCurrentWeather):
+            case .success(let result):
+                
+                latestExtendedWeatherFetched = result
+                
+                //print("result: ", extendedWeather)
                 
                 //self.activityIndicator.stopAnimating()
                 
                 print("fetch of extended weather request SUCCESSFUL")
+                
                 //print(extendedCurrentWeather)
                 
                 //Animations.playCheckmarkAnimationOnce(inImageView: self.animationView)
@@ -59,7 +66,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         print("*playing update animation*")
     }
 
-    
     func reverseGeocodeHandler(){
         
         if let latestGPS = UserLocation.sharedInstance.coordinate{
