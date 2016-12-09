@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
+		DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */; };
+		DD0F13311DF9B6FF0077FB36 /* tempFaaOppChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */; };
 		DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FF9E71D7B08A900A1B06F /* APIClient.swift */; };
 		DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */; };
 		DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */; };
@@ -237,9 +240,15 @@
 		DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA785A21DD2732D00A976D5 /* Extensions.swift */; };
 		DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
+		FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShortsDotCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
+		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourBasedLineChartFormatter.swift; sourceTree = "<group>"; };
+		DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tempFaaOppChart.swift; sourceTree = "<group>"; };
 		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ShortsDotCom/APIClient.swift; sourceTree = "<group>"; };
 		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
@@ -475,6 +484,7 @@
 		DDA785A21DD2732D00A976D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTableViewCell.xib; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,12 +492,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		289B8FFC5DB462C0910F0E7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E0327292B35588C6BC64B0C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */,
+				6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DD28BEE51DD936F100C742D3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +555,9 @@
 			isa = PBXGroup;
 			children = (
 				DD2C3AAE1DF1E21400DA953C /* TODO.swift */,
+				DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */,
+				DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */,
+				DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */,
 			);
 			name = "Daily Weather";
 			sourceTree = "<group>";
@@ -788,6 +819,8 @@
 				DDA2770F1D786516001B5FBD /* ShortsDotCom */,
 				DD84EC3E1DBBC212000E7C96 /* Helper Classes */,
 				DDA2770E1D786516001B5FBD /* Products */,
+				9E0327292B35588C6BC64B0C /* Pods */,
+				289B8FFC5DB462C0910F0E7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -841,9 +874,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDA2771F1D786516001B5FBD /* Build configuration list for PBXNativeTarget "ShortsDotCom" */;
 			buildPhases = (
+				8645FE73A4BD3F218F7CF856 /* [CP] Check Pods Manifest.lock */,
 				DDA277091D786516001B5FBD /* Sources */,
 				DDA2770A1D786516001B5FBD /* Frameworks */,
 				DDA2770B1D786516001B5FBD /* Resources */,
+				7BC20A359E3BB3CC1F3BC3B7 /* [CP] Embed Pods Frameworks */,
+				9BDDA64C97F476AD4E7F4A82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -861,7 +897,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Alexander Kvamme";
 				TargetAttributes = {
 					DDA2770C1D786516001B5FBD = {
@@ -1083,6 +1119,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7BC20A359E3BB3CC1F3BC3B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8645FE73A4BD3F218F7CF856 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9BDDA64C97F476AD4E7F4A82 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DDA277091D786516001B5FBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1093,6 +1177,7 @@
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
 				DD2C3AAF1DF1E21400DA953C /* TODO.swift in Sources */,
 				DDA277131D786516001B5FBD /* CurrentWeatherViewController.swift in Sources */,
+				DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,
 				DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */,
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,
@@ -1102,6 +1187,7 @@
 				DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */,
 				DD65E53D1D944955008198CC /* MyCollectionViewCell.swift in Sources */,
 				DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */,
+				DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */,
 				DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */,
 				DD3760071DB508C0009AE7FC /* DesignableView.swift in Sources */,
 				DD37600D1DB508C0009AE7FC /* Misc.swift in Sources */,
@@ -1126,6 +1212,7 @@
 				DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */,
 				DD4DCBC41DE5D5310003C791 /* WeekTableViewController.swift in Sources */,
 				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,
+				DD0F13311DF9B6FF0077FB36 /* tempFaaOppChart.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
@@ -1249,7 +1336,9 @@
 		};
 		DDA277201D786516001B5FBD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1262,7 +1351,9 @@
 		};
 		DDA277211D786516001B5FBD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

@@ -67,7 +67,6 @@ extension HourData{
         self.summary = summary
         self.temperature = temperature
         self.time = time
-        print(time)
         self.windBearing = windBearing
         self.windSpeed = windSpeed
         
@@ -126,6 +125,8 @@ struct ExtendedCurrentWeather{
     var windSpeed: Double
     var humidity: Double
     var precipTypeText: String
+    // MARK: TODO - daily array bruk første som bilde og hours til graf
+    // var dailyWeather: [DailyWeather]?
     var hourlyWeather: [HourData]?
     var minutelyWeather: [MinuteData]?
     
@@ -179,8 +180,6 @@ extension ExtendedCurrentWeather: JSONDecodable{
         }
         
         // TASK: - : Initialze Array of HourData
-        
-        print("starter i TODO Initializing hours")
     
         if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
         
@@ -196,7 +195,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
                     }
                 
                 }
-                print("count is", array.count)
+                //print("count is", array.count)
                 self.hourlyWeather = array
                 
             }

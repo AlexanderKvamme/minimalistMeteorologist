@@ -44,6 +44,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         
         print("kjører currentWeatherViewController")
+        
         // Animation
         activityIndicator.stopAnimating()
         activityIndicator.startAnimating()
@@ -133,6 +134,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .success(let extendedCurrentWeather):
                 
                 self.activityIndicator.stopAnimating()
+                
+                print("printing result if fetchExtendedCurrentWeather")
+                print(extendedCurrentWeather)
                 
                 Animations.playCheckmarkAnimationOnce(inImageView: self.animationView)
                 
