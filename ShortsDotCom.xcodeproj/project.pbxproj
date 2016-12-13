@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
 		DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */; };
-		DD0F13311DF9B6FF0077FB36 /* tempFaaOppChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */; };
 		DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FF9E71D7B08A900A1B06F /* APIClient.swift */; };
 		DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */; };
 		DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */; };
@@ -247,7 +246,6 @@
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
 		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourBasedLineChartFormatter.swift; sourceTree = "<group>"; };
-		DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tempFaaOppChart.swift; sourceTree = "<group>"; };
 		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ShortsDotCom/APIClient.swift; sourceTree = "<group>"; };
 		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
@@ -558,14 +556,13 @@
 			name = "Weekly Weather Detailed";
 			sourceTree = "<group>";
 		};
-		DD2C3AAD1DF1E1E300DA953C /* Daily Weather */ = {
+		DD2C3AAD1DF1E1E300DA953C /* Today */ = {
 			isa = PBXGroup;
 			children = (
 				DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */,
 				DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */,
-				DD0F13301DF9B6FF0077FB36 /* tempFaaOppChart.swift */,
 			);
-			name = "Daily Weather";
+			name = Today;
 			sourceTree = "<group>";
 		};
 		DD375FDE1DB508C0009AE7FC /* Spring */ = {
@@ -815,7 +812,7 @@
 			children = (
 				DD0F13321DFAD2090077FB36 /* Data */,
 				DDB19B5E1DEC4DEE00E8C012 /* Main Menu */,
-				DD2C3AAD1DF1E1E300DA953C /* Daily Weather */,
+				DD2C3AAD1DF1E1E300DA953C /* Today */,
 				DD4DCBC21DE5D4B10003C791 /* Current Weather */,
 				DDD956FA1DD211020089FA53 /* Weekly Weather */,
 				DD28BEF41DD9488F00C742D3 /* Weekly Weather Detailed */,
@@ -1217,7 +1214,6 @@
 				DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */,
 				DD4DCBC41DE5D5310003C791 /* WeekTableViewController.swift in Sources */,
 				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,
-				DD0F13311DF9B6FF0077FB36 /* tempFaaOppChart.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,

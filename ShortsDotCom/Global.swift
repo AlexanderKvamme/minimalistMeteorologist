@@ -34,59 +34,6 @@ var currentCoordinate = Coordinate(lat: 59.911491, lon: 10.757933) // Default va
 
 // MARK: - Enums
 
-enum Icon: String{
-    
-    case clearDay = "clear-day"
-    case clearNight = "clear-night"
-    case rain = "rain"
-    case snow = "snow"
-    case sleet = "sleet"
-    case precipitation = "precip"
-    case wind = "wind"
-    case fog = "fog"
-    case cloudy = "cloudy"
-    case partlyCloudyDay = "partly-cloudy-day"
-    case partlyCloudyNight = "partly-cloudy-night"
-    case unexpectedEnum = "default"
-    
-    init(rawValue: String){
-        
-        switch rawValue{
-        case "clear-day": self = .clearDay
-        case "clear-night": self = .clearNight
-        case "rain": self = .rain
-        case "snow": self = .snow
-        case "precipitaion": self = .precipitation
-        case "sleet" : self = .sleet
-        case "wind" : self = .wind
-        case "fog" : self = .fog
-        case "cloudy": self = .cloudy
-        case "partly-cloudy-day": self = .partlyCloudyDay
-        case "partly-cloudy-night": self = .partlyCloudyNight
-            
-        default:
-            self = .unexpectedEnum
-        }
-    }
-}
-
-enum PrecipIcon: String{
-    
-    case sleet = "precipitationSleet"
-    case rain = "precipitationRain"
-    case snow = "precipitationSnow"
-    case unexpectedPrecip = "precipitationDefault"
-    
-    init(rawValue: String){
-        
-        switch rawValue{
-        case "sleet": self = .sleet
-        case "rain": self = .rain
-        case "snow" : self = .snow
-        default: self = .unexpectedPrecip
-        }
-    }
-}
 
 
 enum unitSystem: String {
@@ -137,9 +84,9 @@ struct unitsOfMeasurement {
     
     static var sharedInstance = unitsOfMeasurement()
     
-    var windSpeedUnit: String = "km"
+    var windSpeedUnit: String = "kmz"
     var nearestStormDistance: String = "km"
-    var temperature: String = "°C"
+    var temperature: String = "°Cz"
     var visibility: String = "km"
     
     private init(){}
@@ -186,4 +133,22 @@ func getCurrentWeekNumber() -> Int {
     let currentDate = NSDate()
     let week = NSCalendar.current.component(.weekOfYear, from: currentDate as Date)
     return Int(week)
+}
+
+func getCurrentDate() -> String{
+    
+    let today = Date()
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter.string(from: today)
+}
+
+extension CurrentWeather{
+    var date: String{
+    
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: today)
+    }
 }

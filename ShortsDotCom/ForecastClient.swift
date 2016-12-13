@@ -35,6 +35,22 @@ func createRequestWithCoordinate(_ coordinate: Coordinate) -> URLRequest {
     
 }
 
+func createExtendedRequestWithCoordinate(_ coordinate: Coordinate) -> URLRequest {
+    
+    let baseURLString = "https://api.forecast.io/forecast/\(forecastAPIKey)/"
+    
+    let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")!
+    
+    let pathString = "\(coordinate.latitude),\(coordinate.longitude)?units=\(currentPreferredUnits.lowercased())&extend=hourly"
+    
+    let endpointString = baseURLString + pathString
+    let endpoint = URL(string: endpointString, relativeTo: nil)!
+    
+    return URLRequest(url: endpoint, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 0)
+    
+    //TASK: TODO - Sjekk opp i urlkreasjon ved bruk av enum
+    
+}
 
 
 class ForecastAPIClient: APIClient {
@@ -82,7 +98,7 @@ class ForecastAPIClient: APIClient {
 
     func fetchExtendedCurrentWeather(_ coordinate: Coordinate, completion: @escaping (APIResult<ExtendedCurrentWeather>) -> Void){
         
-        let request = createRequestWithCoordinate(coordinate)
+        let request = createExtendedRequestWithCoordinate(coordinate)
         
         fetch(request: request, parse: { json -> ExtendedCurrentWeather? in
             

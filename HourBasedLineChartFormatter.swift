@@ -14,7 +14,15 @@ class HourBasedLineChartFormatter: NSObject, IAxisValueFormatter{
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
         let newInt = Int(value)
-        let newString = String(newInt)
+        var newString = String(newInt)
+        
+        if newString.length == 3{
+            newString = "0" + newString
+        }
+        
+        if newString.length == 1{
+            newString = "0000"
+        }
         
         let newCharacters  = newString.characters
         
@@ -33,9 +41,6 @@ class HourBasedLineChartFormatter: NSObject, IAxisValueFormatter{
             
             i += 1
         }
-        
-        let returnString = HH + ":" + MM
-        
-        return returnString
+        return HH + ":" + MM
     }
 }
