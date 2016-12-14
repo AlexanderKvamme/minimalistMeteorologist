@@ -410,6 +410,16 @@ extension CurrentWeather: JSONDecodable{
 // Date
 
 extension DailyWeather{
+    
+    var formattedDate: String {
+        
+        let date = Date(timeIntervalSince1970: self.time)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: date)
+        
+    }
+    
     var date: Date {
         return Date.init(timeIntervalSince1970: self.time)
     }
@@ -422,8 +432,9 @@ extension DailyWeather{
             return nil
         }
     }
-    
 }
+
+
 
 // Measurements for displaying unit system specific values and unit
 
@@ -550,34 +561,13 @@ extension UnitSystemInterchangeable {
 extension CurrentWeather{
     
     var dayName: String{
-        let newDate = Date(timeIntervalSince1970: self.time)
-        let calendar = Calendar.current
-        let weekDay = calendar.component(.weekdayOrdinal, from: newDate)
         
-        print("dayName calculated weekday to: ", weekDay)
+        let date = Date(timeIntervalSince1970: self.time)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfWeekString = dateFormatter.string(from: date)
         
-        switch weekDay{
-            
-        case 1:
-            print("returning Sunday")
-            return "Sunday"
-        case 2:
-            print("returning Mon")
-            return "Monday"
-        case 3:
-            print("returning Tuesday")
-            return "Tuesday"
-        case 4:
-            print("returning Wednes")
-            return "Wednesday"
-        case 5:
-            return "Thursday"
-        case 6:
-            return "Friday"
-            
-        default:
-            return "Saturday"
-        }
+        return dayOfWeekString
     }
 }
 

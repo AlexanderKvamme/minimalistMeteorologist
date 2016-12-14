@@ -27,92 +27,88 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var temperatures : [Double] = [-1,1,1,2,4,2,1,2,1,-1]
     var shortenedTimestamps = [Double]()
     var timestamps: [Double] = []
+    var dayIndex: Int = 0
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         getChartData()
-        setUI()
         setChartLayout()
         setChartData()
+        setUI()
         addSwipeRecognizers()
-        
-        //displayDay(1)
-        /*
-        for day in latestExtendedWeatherFetched!.dailyWeather!{
-            print(day.time)
-            print(day.dayName)
-        }
-        */
-        
-        //print("avslutningsvis temp array: ", temperatures)
 
     }
     
-    func displayDay(_ number: Int){
+    func displayNextDay(){
         
-        let number = 3
-        
-       
-        
-        if let day = latestExtendedWeatherFetched?.dailyWeather?[number]{
+        print(" dayIndex: ", dayIndex)
+        if dayIndex == (latestExtendedWeatherFetched!.dailyWeather!.count - 2){
+            // Using 2 to not display last day of the fetch which is often without accurate data
+            print("index out of range")}
+        else {
+        if let day = latestExtendedWeatherFetched?.dailyWeather?[dayIndex+1]{
             
+            dayIndex += 1
             
-            
-        
-            // PSEUDO
-            print("-- displayData --")
+            print("\njobber med dag som har \(day.hourData?.count) hour data")
         
             self.dayLabel.text = day.dayName
-            self.dateLabel.text = "bam"
-//            print("number inn: ", number)
-//            print("gir date: ", day.date)
-//            print("gir dayName: ", day.dayName)
-//            print("gir dayNumber: ", day.dayNumber)
+            self.dateLabel.text = day.formattedDate
+            self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
+            self.summaryLabel.text = day.summary
+            self.stack1Label.text = day.windSpeedInPreferredUnit.description
+            self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
+            self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
+            self.stack3Label.text = day.averageTemperatureInPreferredUnit.description
             
+            }
         }
-        
-        
-        
-        
-        /*
-         if let currentWeather = latestExtendedWeatherFetched?.currentWeather{
-         print(currentWeather)
-         
-         dayLabel.text = getCurrentDayName().uppercased()
-         dateLabel.text = getCurrentDate()
-         
-         weatherIcon.image = UIImage(named: currentWeather.WeatherIcon.rawValue)
-         
-         summaryLabel.text = currentWeather.summary
-         
-         // set temperature, wind and precipitation
-         stack1Label.text = currentWeather.windSpeedInPreferredUnit.description
-         stack1Image.image = UIImage(named: "weathercock.png")
-         
-         stack2Label.text = String(currentWeather.precipProbabilityPercentage) + "%"
-         stack2Image.image = UIImage(named: currentWeather.precipIcon.rawValue + ".png")
-         
-         stack3Image.image = UIImage(named: "temperature.png")
-         stack3Label.text = currentWeather.temperatureInPreferredUnit.description
-         }*/
     }
     
-    func animateBack(){
+    func displayPreviousDay(){
         
-        print("Tryna animate back")
+        print(" dayIndex: ", dayIndex)
+        
+        if dayIndex == 0{
+        print("already at index 0")
+        } else{
+        if let day = latestExtendedWeatherFetched?.dailyWeather?[dayIndex-1]{
+            
+            dayIndex -= 1
+            
+            self.dayLabel.text = day.dayName
+            self.dateLabel.text = day.formattedDate
+            self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
+            self.summaryLabel.text = day.summary
+            self.stack1Label.text = day.windSpeedInPreferredUnit.description
+            self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
+            self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
+            self.stack3Label.text = day.averageTemperatureInPreferredUnit.description
+            
+            }
+        }
     }
     
     func addSwipeRecognizers(){
+        
+        // swipe right
         
         var swipeRightGestureRecognizer = UISwipeGestureRecognizer()
         swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeRightHandler))
         swipeRightGestureRecognizer.direction = .right
         self.view.addGestureRecognizer(swipeRightGestureRecognizer)
         
-        //swipe down
+        // swipe left
+        
+        var swipeLeftGestureRecognizer = UISwipeGestureRecognizer()
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeftHandler))
+        swipeLeftGestureRecognizer.direction = .left
+        self.view.addGestureRecognizer(swipeLeftGestureRecognizer)
+
+        
+        // swipe down
         
         var swipeDownGestureRecognizer = UISwipeGestureRecognizer()
         swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeDownHandler))
@@ -126,12 +122,21 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func swipeRightHandler(){
-        print("swipeRightHandler")
+        print("swipeRightHandler, kjører nå displayday 2")
         //self.performSegue(withIdentifier: "unwindToMainMenu", sender: self)
+        displayPreviousDay()
+    }
+    
+    func swipeLeftHandler(){
+        print("left, kjører nå displayday 3")
+        //self.performSegue(withIdentifier: "unwindToMainMenu", sender: self)
+        displayNextDay()
     }
     
     func setUI(){
     
+        //VELG MELLOM currentWeather for dag en eller day[0]
+        
         if let currentWeather = latestExtendedWeatherFetched?.currentWeather{
             print(currentWeather)
         

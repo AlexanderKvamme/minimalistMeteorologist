@@ -39,17 +39,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let result):
                 
                 latestExtendedWeatherFetched = result
+                print("Extended Fetch Successful")
                 
                 // TASK: TODO - ARRANGE HOURS TO CORRECT DAYS
-                
-                
-                if let dagensStamp = latestExtendedWeatherFetched?.currentWeather?.time {
-                
-                print("samme dag: ", timestampsAreOnSameDay(stamp: 1481574616.0, and: dagensStamp))
-                }
-                
-                
-                
+            
                 // Arrange hours from fetch in corresponding DailyWeather.hourData
                 
                 if var fetchedDays = latestExtendedWeatherFetched?.dailyWeather, let fetchedHours = latestExtendedWeatherFetched?.hourlyWeather{
@@ -64,14 +57,11 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                             newHourlyArray.append(hour)
                         } else{
                             
-                            fetchedDays[dayIndex].hourData = newHourlyArray
+                            //fetchedDays[dayIndex].hourData = newHourlyArray
+                            latestExtendedWeatherFetched!.dailyWeather![dayIndex].hourData = newHourlyArray
                             newHourlyArray.removeAll()
                             dayIndex += 1
                         }
-                    }
-                    
-                    for (index, day) in fetchedDays.enumerated(){
-                        print("hours in day \(day.dayNumber)", fetchedDays[index].hourData?.count)
                     }
                 }
 
