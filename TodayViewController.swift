@@ -44,7 +44,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var labelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     
-    var currentDay = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +86,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.animationDirection = AnimationDirection.right
                 self.animateToXPos = CGPoint(x: self.view.bounds.width - (self.dayLabel.frame.size.width/2), y: labelPositionY)
                 self.setAnimation(direction: AnimationDirection.right)
-                print("left pan detected, target xposition = ", self.animateToXPos)
                 self.dayLabel.textAlignment = .right
             }
         }
@@ -143,6 +141,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             let iconRotationAmount: CGFloat = 0.05
             let iconDownscaleAmount: CGFloat = 0.5
             let precipitationIconDownscaleAmount: CGFloat = 0.75
+            let stackLabelOffset: CGFloat = 5
             
             if direction == AnimationDirection.left{
                 //user swipes right
@@ -150,13 +149,24 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dateLabel.center = CGPoint(x: self.labelPositionLeft + dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
+       
+                for label in [self.stack1Label, self.stack2Label, self.stack3Label]{
+                    let frame = label!.frame
+                    label!.frame = CGRect(x: frame.minX + stackLabelOffset, y: frame.minY, width: frame.width, height: frame.height)
+                }
+                
             } else {
-                //user swipes right
+                //user swipes left
                 self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: yPos)
                 self.dateLabel.center = CGPoint(x: self.labelPositionRight - dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
-                
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
+                
+                for label in [self.stack1Label, self.stack2Label, self.stack3Label]{
+                    let frame = label!.frame
+                    label!.frame = CGRect(x: frame.minX - stackLabelOffset, y: frame.minY, width: frame.width, height: frame.height)
+                 
+                }
             }
 
             self.dateLabel.alpha = 0
@@ -220,8 +230,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 setChartData()
                 setChartLayout()
                 
-                print("\njobber med dag som har \(day.hourData?.count) hour data")
-                
                 self.dayLabel.text = day.dayName.uppercased()
                 self.dateLabel.text = day.formattedDate
                 self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
@@ -238,7 +246,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func displayPreviousDay(){
         
         if dayIndex == 0{
-            print("already at index 0")
+            
+            // already at first day
         
         } else{
             
@@ -300,7 +309,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func setUI(){
         
         if let currentWeather = latestExtendedWeatherFetched?.currentWeather{
-            print(currentWeather)
+            print("currentWeahter: ", currentWeather)
+            print("latestEXTENDEDCurrentWeather temp: ", latestExtendedWeatherFetched?.currentWeather?.temperature)
         
             dayLabel.text = currentWeather.dayName.uppercased()
             dayLabel.sizeToFit()
@@ -362,19 +372,17 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // frame
         
         lineChartView.layer.borderColor = UIColor.black.cgColor
-        //lineChartView.layer.borderWidth = 0
-        lineChartView.layer.borderWidth = 2
+        lineChartView.layer.borderWidth = 1
         lineChartView.isUserInteractionEnabled = false
         
         // animation
         
         lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
         
-        
         // chart
         
         self.lineChartView.delegate = self
-        //self.lineChartView.chartDescription?.text = "Temperature in Celcius"
+        //self.lineChartView.chartDescription?.text = "Temperatures this day in Celcius"
         self.lineChartView.chartDescription?.text = ""
         self.lineChartView.drawGridBackgroundEnabled = false
         self.lineChartView.drawBordersEnabled = false
@@ -406,15 +414,16 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         self.lineChartView.xAxis.drawAxisLineEnabled = false
         self.lineChartView.xAxis.labelPosition = .bottom
 
-        //test
  
-        print(" -- TEST --")
         //print(self.lineChartView.xAxis.axisMinimum)
         
         // Denne neste linjnen bugger seg av og til
         self.lineChartView.xAxis.axisMinimum = shortenedTimestamps[0]
         self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         self.lineChartView.xAxis.granularity = 2
+        
+        // Padding
+        self.lineChartView.extraBottomOffset = 8
     }
     
     
