@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var timestamps: [Double] = []
     var dayIndex: Int = 0
     
-    //animation
+    // animation properties
     
     var myAnimation: UIViewPropertyAnimator!
     var animateToXPos: CGPoint!
@@ -44,23 +44,21 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var labelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     
-    let dummyDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     var currentDay = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // swipe animation
-        labelPositionLeft = CGFloat(10) + labelDummy.frame.width/2
-        labelPositionRight = view.frame.maxX - 10 - labelDummy.frame.width/2
-        labelPositionY = labelDummy.frame.midY
+        labelPositionLeft = CGFloat(10) + dayLabel.frame.width/2
+        labelPositionRight = view.frame.maxX - 10 - dayLabel.frame.width/2
+        labelPositionY = dayLabel.frame.midY
         
-        labelDummy.textAlignment = .center
+        dayLabel.textAlignment = .center
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.move))
         view.addGestureRecognizer(pan)
-        
+
         //content setup
         
         getChartData()
@@ -68,119 +66,108 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         setChartData()
         setUI()
         addSwipeRecognizers()
-
+        
     }
     
     func move(gesture: UIPanGestureRecognizer){
         
         if gesture.state == .began {
             
-            // animate to left
-            
             if gesture.velocity(in: view).x > 0{
+                
                 // Panning right, Animate Left
                 self.animationDirection = .left
                 animateToXPos = CGPoint(x: labelPositionLeft!, y: labelPositionY!)
                 self.setAnimation(direction: AnimationDirection.left)
-                self.labelDummy.textAlignment = .left
+                self.dayLabel.textAlignment = .left
                 
             } else {
                 
                 // Panning left, Animate Right
                 self.animationDirection = AnimationDirection.right
-                self.animateToXPos = CGPoint(x: self.view.bounds.width - (self.labelDummy.frame.size.width/2), y: labelPositionY)
+                self.animateToXPos = CGPoint(x: self.view.bounds.width - (self.dayLabel.frame.size.width/2), y: labelPositionY)
                 self.setAnimation(direction: AnimationDirection.right)
                 print("left pan detected, target xposition = ", self.animateToXPos)
-                self.labelDummy.textAlignment = .right
+                self.dayLabel.textAlignment = .right
             }
         }
         
         self.myAnimation.fractionComplete = abs(gesture.translation(in: self.view).x/100)
-        print(abs(gesture.translation(in: self.view).x/100))
+        //print(abs(gesture.translation(in: self.view).x/100))
         
         if gesture.state == .ended{
             
-            // if swiped far left/right
-            //  switch data
-            //  animate back
+            // if swiped far left/right - update data
             
-            self.labelDummy.textAlignment = .center
+            self.dayLabel.textAlignment = .center
             
-            if abs(gesture.translation(in: self.view).x) > 100{
+            if abs(gesture.translation(in: self.view).x) > 100{ // if hard swipe right
                 
                 // go to next/prev data
                 
                 if animationDirection == .left {
-                    print("swiped hard right")
-                    print("currently at day", currentDay)
-                    
-                    if currentDay > 0 {
-                        currentDay -= 1
-                        labelDummy.text = dummyDays[currentDay]
+
+                        displayPreviousDay()
                         
-                    } else {print("already at first day")}
-                }
+                    }
+
                 
                 if animationDirection == .right {
-                    print("swiped hard left")
-                    
-                    if currentDay < dummyDays.count-1 {
-                        
-                        currentDay += 1
-                        labelDummy.text = dummyDays[currentDay]
-                        print("current day : ", currentDay)
-                        print("btw count is : ", dummyDays.count)
-                        
-                        
-                    } else {
-                        print("already at last day")
-                    }
+        
+                        displayNextDay()
                 }
-                
+             
+                dayLabel.sizeToFit()
             }
             
-            //self.myAnimation.fractionComplete = 0
             self.myAnimation.isReversed = true
             let v = gesture.velocity(in: view)
             let velocity = CGVector(dx: v.x / 200, dy: v.y / 200)
-            let timingParameters = UISpringTimingParameters(mass: 100, stiffness: 50, damping: 100, initialVelocity: velocity)
+            let timingParameters = UISpringTimingParameters(mass: 200, stiffness: 50, damping: 100, initialVelocity: velocity)
             
-            
-            //self.myAnimation.continueAnimation(withTimingParameters: UICubicTimingParameters(animationCurve: .easeOut), durationFactor: 0.1)
             self.myAnimation.continueAnimation(withTimingParameters: timingParameters, durationFactor: 0.2)
+            
             self.myAnimation.addCompletion({ (UIViewAnimatingPosition) in
-                // no need?
+                // TASK: TODO - animation completion
             })
-        }
+        } // if .ended
     }
     
     
     func setAnimation(direction: AnimationDirection){
         self.myAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
-            let bam = direction
-            let yPos = self.labelDummy.center.y
             
-            switch direction{
-            case .left:
-                print("aligning left")
-                self.labelDummy.textAlignment = .left
-                
-            default:
-                print("aligning right")
-                self.labelDummy.textAlignment = .right
-            }
-            if bam == AnimationDirection.left{
-                self.labelDummy.center = CGPoint(x: self.labelPositionLeft, y: yPos)
+            let yPos = self.dayLabel.center.y
+            let dateLabelYPos = self.dateLabel.center.y
+            let dateLabelXShift: CGFloat = 20
+            let iconRotationAmount: CGFloat = 0.05
+            let iconDownscaleAmount: CGFloat = 0.5
+            let precipitationIconDownscaleAmount: CGFloat = 0.75
+            
+            if direction == AnimationDirection.left{
+                //user swipes right
+                self.dayLabel.center = CGPoint(x: self.labelPositionLeft, y: yPos)
+                self.dateLabel.center = CGPoint(x: self.labelPositionLeft + dateLabelXShift, y: dateLabelYPos)
+                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+                self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
             } else {
-                self.labelDummy.center = CGPoint(x: self.labelPositionRight, y: yPos)
+                //user swipes right
+                self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: yPos)
+                self.dateLabel.center = CGPoint(x: self.labelPositionRight - dateLabelXShift, y: dateLabelYPos)
+                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+                
+                self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
             }
-            self.view1.alpha = 0
-            self.view2.alpha = 0
-            self.view3.alpha = 0
+
+            self.dateLabel.alpha = 0
+            self.summaryLabel.alpha = 0
+            self.stack1Label.alpha = 0
+            self.stack2Label.alpha = 0
+            self.stack3Label.alpha = 0
         }
     }
     
-    // not animation
+    // data configuration methods
     
     func getChartDataForSelectedDay(){
         
@@ -316,7 +303,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             print(currentWeather)
         
             dayLabel.text = currentWeather.dayName.uppercased()
+            dayLabel.sizeToFit()
             dateLabel.text = currentWeather.date
+            dateLabel.sizeToFit()
             
             weatherIcon.image = UIImage(named: currentWeather.WeatherIcon.rawValue)
             
@@ -373,7 +362,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // frame
         
         lineChartView.layer.borderColor = UIColor.black.cgColor
-        lineChartView.layer.borderWidth = 0
+        //lineChartView.layer.borderWidth = 0
+        lineChartView.layer.borderWidth = 2
         lineChartView.isUserInteractionEnabled = false
         
         // animation
