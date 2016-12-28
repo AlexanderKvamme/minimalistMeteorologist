@@ -139,8 +139,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             let dateLabelYPos = self.dateLabel.center.y
             let dateLabelXShift: CGFloat = 20
             let iconRotationAmount: CGFloat = 0.05
-            let iconDownscaleAmount: CGFloat = 0.5
+            let iconDownscaleAmount: CGFloat = 0.75
             let precipitationIconDownscaleAmount: CGFloat = 0.75
+            let sideStackImageDownscaleAmount: CGFloat = 0.95
             let stackLabelOffset: CGFloat = 5
             
             if direction == AnimationDirection.left{
@@ -148,11 +149,28 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dayLabel.center = CGPoint(x: self.labelPositionLeft, y: yPos)
                 self.dateLabel.center = CGPoint(x: self.labelPositionLeft + dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+               
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
        
+                // move labels right
                 for label in [self.stack1Label, self.stack2Label, self.stack3Label]{
                     let frame = label!.frame
                     label!.frame = CGRect(x: frame.minX + stackLabelOffset, y: frame.minY, width: frame.width, height: frame.height)
+                    
+                }
+                
+                // twist images
+                
+                for image in [self.stack1Image, self.stack2Image, self.stack3Image]{
+                    //var frame = image!.frame
+                    if image == self.stack2Image {
+                 
+                        image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
+                    } else {
+                        
+                        image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: sideStackImageDownscaleAmount, y: sideStackImageDownscaleAmount)
+                        
+                    }
                 }
                 
             } else {
@@ -160,13 +178,29 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: yPos)
                 self.dateLabel.center = CGPoint(x: self.labelPositionRight - dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+                
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
                 
+                // twist images
+                for image in [self.stack1Image, self.stack2Image, self.stack3Image]{
+                    //var frame = image!.frame
+                    if image == self.stack2Image {
+                        
+                        image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
+                    } else {
+                        
+                        image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: sideStackImageDownscaleAmount, y: sideStackImageDownscaleAmount)
+                        
+                    }
+                }
+                
+                // move labels left
                 for label in [self.stack1Label, self.stack2Label, self.stack3Label]{
                     let frame = label!.frame
                     label!.frame = CGRect(x: frame.minX - stackLabelOffset, y: frame.minY, width: frame.width, height: frame.height)
-                 
                 }
+                
+                
             }
 
             self.dateLabel.alpha = 0
@@ -372,7 +406,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // frame
         
         lineChartView.layer.borderColor = UIColor.black.cgColor
-        lineChartView.layer.borderWidth = 1
+        lineChartView.layer.borderWidth = 0
         lineChartView.isUserInteractionEnabled = false
         
         // animation
