@@ -516,13 +516,13 @@ protocol ComparableDays {
 extension ComparableDays {
     func isSameDay(firstDayTimestamp: Double, secondDay secondDayTimestamp: Double) -> Bool{
         
-        let calendar = Calendar.current
+        //let calendar = Calendar.current
         
-        let firstDate = Date(timeIntervalSinceReferenceDate: firstDayTimestamp)
-        let firstComponents = calendar.dateComponents( [], from: firstDate)
+        //let firstDate = Date(timeIntervalSinceReferenceDate: firstDayTimestamp)
+        //let firstComponents = calendar.dateComponents( [], from: firstDate)
         
-        let secondDate = Date(timeIntervalSinceReferenceDate: secondDayTimestamp)
-        let secondComponents = calendar.dateComponents( [], from: secondDate)
+        //let secondDate = Date(timeIntervalSinceReferenceDate: secondDayTimestamp)
+        //let secondComponents = calendar.dateComponents( [], from: secondDate)
 
         return false
     }

@@ -13,6 +13,9 @@ var latestExtendedWeatherFetched: ExtendedCurrentWeather? = nil
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var buttonStack: UIStackView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var checkmarkView: UIImageView!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
@@ -26,7 +29,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         updateExtendedCurrentWeatherTest()
         
-        UserLocation.sharedInstance.updateLocation() 
+        UserLocation.sharedInstance.updateLocation()
+        
+        //animation test
+        
+        activityIndicator.startAnimating()
+    
+        self.buttonStack.isUserInteractionEnabled = false
+        self.buttonStack.alpha = 0.7
+    
     }
 
     func updateExtendedCurrentWeatherTest(){
@@ -41,10 +52,13 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 
                 latestExtendedWeatherFetched = result
                 print("Extended Fetch Successful")
-                
-                // TASK: TODO - ARRANGE HOURS TO CORRECT DAYS
-            
-                // Arrange hours from fetch in corresponding DailyWeather.hourData
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.checkmarkView.isHidden = false
+                Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
+             
+                self.buttonStack.isUserInteractionEnabled = true
+                self.buttonStack.alpha = 1
                 
                 if var fetchedDays = latestExtendedWeatherFetched?.dailyWeather, let fetchedHours = latestExtendedWeatherFetched?.hourlyWeather{
                     
@@ -122,7 +136,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     
     func settingsDidUpdate(){
-        print("*playing update animation*")
+        Animations.playCheckmarkAnimationOnce(inImageView: checkmarkView)
     }
 
     func reverseGeocodeHandler(){

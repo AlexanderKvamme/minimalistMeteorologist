@@ -135,20 +135,28 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func setAnimation(direction: AnimationDirection){
         self.myAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
             
-            let yPos = self.dayLabel.center.y
+            let dayLabelPos = self.dayLabel.center.y
             let dateLabelYPos = self.dateLabel.center.y
             let dateLabelXShift: CGFloat = 20
             let iconRotationAmount: CGFloat = 0.05
             let iconDownscaleAmount: CGFloat = 0.75
-            let precipitationIconDownscaleAmount: CGFloat = 0.75
-            let sideStackImageDownscaleAmount: CGFloat = 0.95
+            let iconTranslationAmount: CGFloat = 100
+            
+            let summaryYShift: CGFloat = -8
+            let summaryXShift: CGFloat = 40
+            let summaryRotation = -CGFloat.pi * 0.005
+            
+            let precipitationIconDownscaleAmount: CGFloat = 0.50
+            let sideStackImageDownscaleAmount: CGFloat = 0.9
             let stackLabelOffset: CGFloat = 5
             
             if direction == AnimationDirection.left{
                 //user swipes right
-                self.dayLabel.center = CGPoint(x: self.labelPositionLeft, y: yPos)
+                self.dayLabel.center = CGPoint(x: self.labelPositionLeft, y: dayLabelPos)
                 self.dateLabel.center = CGPoint(x: self.labelPositionLeft + dateLabelXShift, y: dateLabelYPos)
-                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: iconTranslationAmount, y: 0)
+                
+                self.summaryLabel.transform = CGAffineTransform(translationX: summaryXShift, y: summaryYShift).rotated(by: summaryRotation)
                
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
        
@@ -175,9 +183,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
             } else {
                 //user swipes left
-                self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: yPos)
+                self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: dayLabelPos)
                 self.dateLabel.center = CGPoint(x: self.labelPositionRight - dateLabelXShift, y: dateLabelYPos)
-                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount)
+                
+                self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: -iconTranslationAmount, y: 0)
+                
+                self.summaryLabel.transform = CGAffineTransform(translationX: -summaryXShift, y: summaryYShift).rotated(by: -summaryRotation)
                 
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
                 
@@ -202,7 +213,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 
             }
-
+            
             self.dateLabel.alpha = 0
             self.summaryLabel.alpha = 0
             self.stack1Label.alpha = 0
@@ -215,7 +226,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func getChartDataForSelectedDay(){
         
-        print("selected day: ", dayIndex)
             if let hourlyData = latestExtendedWeatherFetched?.dailyWeather?[dayIndex].hourData{
                 
                 var temperatureArray: [Double] = []
@@ -301,7 +311,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
                 self.stack3Label.text = day.averageTemperatureInPreferredUnit.description
-                
             }
         }
     }
@@ -354,6 +363,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             weatherIcon.image = UIImage(named: currentWeather.WeatherIcon.rawValue)
             
             summaryLabel.text = currentWeather.summary
+            summaryLabel.sizeToFit()
             
             // set temperature, wind and precipitation
             stack1Label.text = currentWeather.windSpeedInPreferredUnit.description
