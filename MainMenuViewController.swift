@@ -36,7 +36,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         activityIndicator.startAnimating()
     
         self.buttonStack.isUserInteractionEnabled = false
-        self.buttonStack.alpha = 0.7
+        self.buttonStack.alpha = 0.4
     
     }
 

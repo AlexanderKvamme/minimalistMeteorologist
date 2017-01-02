@@ -28,6 +28,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var stack2Label: UILabel!
     @IBOutlet weak var stack3Image: UIImageView!
     @IBOutlet weak var stack3Label: UILabel!
+    @IBOutlet weak var iconStack: UIStackView!
     
     let combinedLineColor = UIColor.black
     var temperatures : [Double] = [-1,1,1,2,4,2,1,2,1,-1]
@@ -70,6 +71,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func move(gesture: UIPanGestureRecognizer){
         
+        print(gesture.translation(in: view))
+        
+        if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) {
+            self.swipeDownHandler()
+        }
+        
         if gesture.state == .began {
             
             if gesture.velocity(in: view).x > 0{
@@ -106,7 +113,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 if animationDirection == .left {
 
                         displayPreviousDay()
-                        
                     }
 
                 
@@ -146,6 +152,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             let summaryXShift: CGFloat = 40
             let summaryRotation = -CGFloat.pi * 0.005
             
+            let iconStackXShift: CGFloat = 10
+            let iconStackYShift: CGFloat = 0
+            
             let precipitationIconDownscaleAmount: CGFloat = 0.50
             let sideStackImageDownscaleAmount: CGFloat = 0.9
             let stackLabelOffset: CGFloat = 5
@@ -161,10 +170,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
        
                 // move labels right
+                
+                self.iconStack.transform = CGAffineTransform(translationX: iconStackXShift, y: iconStackYShift)
+                
                 for label in [self.stack1Label, self.stack2Label, self.stack3Label]{
                     let frame = label!.frame
                     label!.frame = CGRect(x: frame.minX + stackLabelOffset, y: frame.minY, width: frame.width, height: frame.height)
-                    
                 }
                 
                 // twist images
@@ -190,6 +201,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 self.summaryLabel.transform = CGAffineTransform(translationX: -summaryXShift, y: summaryYShift).rotated(by: -summaryRotation)
                 
+                
+                self.iconStack.transform = CGAffineTransform(translationX: -iconStackXShift, y: iconStackYShift)
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
                 
                 // twist images
@@ -421,7 +434,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         // animation
         
-        lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+        //lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+        lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
         
         // chart
         
