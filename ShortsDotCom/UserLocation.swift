@@ -21,7 +21,6 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     var coordinate: Coordinate?
     let locationManager = CLLocationManager()
     
-    
     // MARK: - geoCoder
     
     var geoCoder: CLGeocoder?
@@ -33,7 +32,6 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         }
         else {return ""}
     }
-    
     
     // Singleton
     
@@ -98,7 +96,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
             
             if let lastMark = placemark?.last{
                 
-                //print("\nLast registered placemark:\n \(lastMark) \n")
+                print("\nLast registered placemark:\n \(lastMark.locality) \n")
                 
                 self.country = lastMark.country!
                 self.locality = lastMark.locality!

@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "graphDummy.png",
+      "filename" : "weathercock.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "weathercock@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "weathercock@3x.png",
       "scale" : "3x"
     }
   ],

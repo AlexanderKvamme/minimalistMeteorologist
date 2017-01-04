@@ -18,14 +18,26 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var checkmarkView: UIImageView!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
     
+    // Refresh Control
+    
+    var refreshControl: UIRefreshControl!
+    var isAnimating = false
+    
+    // ViewDidLoad
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         setUserDefaultsIfInitialRun()
         
         // Set observers
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
+        
+        refreshControl = UIRefreshControl()
+        //view.addSubview(refreshControl)
+        
         
         updateExtendedCurrentWeatherTest()
         
@@ -40,6 +52,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     }
 
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        self.viewDidLoad()
+    }
+    
+    // Data
+    
     func updateExtendedCurrentWeatherTest(){
         
         forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
@@ -81,41 +99,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 }
 
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+           
                 //print("result: ", extendedWeather)
                 
                 //self.activityIndicator.stopAnimating()
                 
                 // TASK: TODO - EXTENDED HOURS TO DAYS
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 //print(extendedCurrentWeather)
                 
@@ -144,6 +133,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         if let latestGPS = UserLocation.sharedInstance.coordinate{
             
             currentCoordinate = latestGPS
+            print("setting gps to:", latestGPS)
         
         } else {
             showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services. Please enable Location Services in your settings and restart the app to update GPS.", error: nil)

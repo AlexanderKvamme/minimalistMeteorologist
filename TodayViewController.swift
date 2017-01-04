@@ -40,19 +40,22 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     var myAnimation: UIViewPropertyAnimator!
     var animateToXPos: CGPoint!
-    var labelPositionLeft: CGFloat!
-    var labelPositionRight: CGFloat!
-    var labelPositionY: CGFloat!
+    var headerLabelPositionLeft: CGFloat!
+    var headerLabelPositionRight: CGFloat!
+    var headerLabelpositionX: CGFloat!
+    var headerLabelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     
+    var headerXShift: CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // swipe animation
-        labelPositionLeft = CGFloat(10) + dayLabel.frame.width/2
-        labelPositionRight = view.frame.maxX - 10 - dayLabel.frame.width/2
-        labelPositionY = dayLabel.frame.midY
+        headerLabelPositionLeft = dayLabel.frame.midX + headerXShift
+        headerLabelPositionRight = dayLabel.frame.midX - headerXShift
+        headerLabelPositionY = dayLabel.frame.midY
+        headerLabelpositionX = dayLabel.frame.midX
         
         dayLabel.textAlignment = .center
         
@@ -66,12 +69,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         setChartData()
         setUI()
         addSwipeRecognizers()
-        
     }
     
     func move(gesture: UIPanGestureRecognizer){
-        
-        print(gesture.translation(in: view))
         
         if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) {
             self.swipeDownHandler()
@@ -83,7 +83,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 // Panning right, Animate Left
                 self.animationDirection = .left
-                animateToXPos = CGPoint(x: labelPositionLeft!, y: labelPositionY!)
+                self.animateToXPos = CGPoint(x: headerLabelPositionLeft!, y: headerLabelPositionY!)
                 self.setAnimation(direction: AnimationDirection.left)
                 self.dayLabel.textAlignment = .left
                 
@@ -91,7 +91,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 // Panning left, Animate Right
                 self.animationDirection = AnimationDirection.right
-                self.animateToXPos = CGPoint(x: self.view.bounds.width - (self.dayLabel.frame.size.width/2), y: labelPositionY)
+                self.animateToXPos = CGPoint(x: self.view.bounds.width - (self.dayLabel.frame.size.width/2), y: headerLabelPositionY)
                 self.setAnimation(direction: AnimationDirection.right)
                 self.dayLabel.textAlignment = .right
             }
@@ -130,10 +130,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             let timingParameters = UISpringTimingParameters(mass: 200, stiffness: 50, damping: 100, initialVelocity: velocity)
             
             self.myAnimation.continueAnimation(withTimingParameters: timingParameters, durationFactor: 0.2)
-            
-            self.myAnimation.addCompletion({ (UIViewAnimatingPosition) in
-                // TASK: TODO - animation completion
-            })
         } // if .ended
     }
     
@@ -161,8 +157,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             
             if direction == AnimationDirection.left{
                 //user swipes right
-                self.dayLabel.center = CGPoint(x: self.labelPositionLeft, y: dayLabelPos)
-                self.dateLabel.center = CGPoint(x: self.labelPositionLeft + dateLabelXShift, y: dateLabelYPos)
+                self.dayLabel.center = CGPoint(x: self.headerLabelPositionLeft, y: dayLabelPos)
+                self.dateLabel.center = CGPoint(x: self.headerLabelPositionLeft + dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: iconTranslationAmount, y: 0)
                 
                 self.summaryLabel.transform = CGAffineTransform(translationX: summaryXShift, y: summaryYShift).rotated(by: summaryRotation)
@@ -194,8 +190,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
             } else {
                 //user swipes left
-                self.dayLabel.center = CGPoint(x: self.labelPositionRight, y: dayLabelPos)
-                self.dateLabel.center = CGPoint(x: self.labelPositionRight - dateLabelXShift, y: dateLabelYPos)
+                self.dayLabel.center = CGPoint(x: self.headerLabelPositionRight, y: dayLabelPos)
+                self.dateLabel.center = CGPoint(x: self.headerLabelPositionRight - dateLabelXShift, y: dateLabelYPos)
                 
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: -iconTranslationAmount, y: 0)
                 
@@ -300,6 +296,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         }
     }
     
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        self.viewDidLoad()
+    }
+    
     func displayPreviousDay(){
         
         if dayIndex == 0{
@@ -365,8 +365,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func setUI(){
         
         if let currentWeather = latestExtendedWeatherFetched?.currentWeather{
-            print("currentWeahter: ", currentWeather)
-            print("latestEXTENDEDCurrentWeather temp: ", latestExtendedWeatherFetched?.currentWeather?.temperature)
+            //print("currentWeahter: ", currentWeather)
+            print("latestEXTENDEDCurrentWeather temp: ", latestExtendedWeatherFetched?.currentWeather?.temperature as Double!)
         
             dayLabel.text = currentWeather.dayName.uppercased()
             dayLabel.sizeToFit()

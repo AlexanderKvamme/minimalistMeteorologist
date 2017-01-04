@@ -43,8 +43,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("kjører currentWeatherViewController")
-        
         // Animation
         activityIndicator.stopAnimating()
         activityIndicator.startAnimating()
