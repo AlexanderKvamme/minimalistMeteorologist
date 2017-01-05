@@ -375,8 +375,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             
             weatherIcon.image = UIImage(named: currentWeather.WeatherIcon.rawValue)
             
+            // summary label
             summaryLabel.text = currentWeather.summary
+            summaryLabel.text =
+            summaryLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
             summaryLabel.sizeToFit()
+            summaryLabel.text = summaryLabel.text?.uppercased()
             
             // set temperature, wind and precipitation
             stack1Label.text = currentWeather.windSpeedInPreferredUnit.description

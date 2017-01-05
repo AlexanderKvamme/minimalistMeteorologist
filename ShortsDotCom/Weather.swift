@@ -161,7 +161,7 @@ struct DailyWeather{
     var precipTypeText: String?
     var precipIcon: PrecipIcon?
     var windSpeed: Double
-    var humidity: Double
+    var humidity: Double?
     var dayNumber: Int{
         let calendar = Calendar.current
         let date = Date(timeIntervalSince1970: self.time)
@@ -316,6 +316,8 @@ extension DailyWeather{
     
     init?(JSONDay: [String : AnyObject]){
         
+        print(JSONDay)
+        
         guard let apparentTemperatureMin = JSONDay["apparentTemperatureMin"] as? Double,
             let apparentTemperatureMax = JSONDay["apparentTemperatureMax"] as? Double,
             let temperatureMin = JSONDay["temperatureMin"] as? Double,
@@ -323,7 +325,7 @@ extension DailyWeather{
             let summary = JSONDay["summary"] as? String,
             let weatherIconString = JSONDay["icon"] as? String,
             let windSpeed = JSONDay["windSpeed"] as? Double,
-            let humidity = JSONDay["humidity"] as? Double,
+            //let humidity = JSONDay["humidity"] as? Double,
             let time = JSONDay["time"] as? Double
             
             else {
@@ -360,7 +362,8 @@ extension DailyWeather{
         self.summary = summary
         self.weatherIcon = Icon(rawValue: weatherIconString)
         self.windSpeed = windSpeed
-        self.humidity = humidity
+        //self.humidity = humidity
+        self.humidity = nil
         self.time = time
         self.averageTemperature = (temperatureMax+temperatureMin)/2
     

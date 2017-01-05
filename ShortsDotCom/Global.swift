@@ -31,6 +31,8 @@ import UIKit
 // MARK: - Globals
 
 var currentCoordinate = Coordinate(lat: 59.911491, lon: 10.757933) // Default value lets user test app without having to enable location services
+let forecastAPIKey = "fdb7fc33b542deec6680877abc34465a"
+var forecastClient = ForecastAPIClient(APIKey: forecastAPIKey)
 
 // MARK: - Enums
 

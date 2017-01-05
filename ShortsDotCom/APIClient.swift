@@ -10,7 +10,7 @@
 
 import Foundation
 
-public let AMKNetworkingErrorDomain = "com.Alexander.Misterbizniz.NetworkingError"
+public let AMKNetworkingErrorDomain = "com.Alexander.NetworkingError"
 public let MissingHTTPResponseError: Int = 10
 public let JSONParsingError: Int = 11
 
@@ -46,8 +46,7 @@ protocol APIClient {
 
 }
 
-// DEFAULT IMPLEMENTATION:
-// Implementation som gjør at programmereren kan ha en fungerende implementering av APIClient fra start
+// Default Implementation
 
 extension APIClient{
     
