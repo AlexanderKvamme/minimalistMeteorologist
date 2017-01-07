@@ -16,10 +16,10 @@ final class Animations{
     
      class func playCheckmarkAnimationOnce(inImageView imageView: UIImageView){
         
+        if imageView.isAnimating {return}
         if (checkmarkImages.count == 0){
             self.setupAnimation()
         }
-        
         imageView.animationImages = checkmarkImages
         imageView.animationDuration = 1
         imageView.animationRepeatCount = 1

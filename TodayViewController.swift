@@ -22,6 +22,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var stackHeader: UILabel!
     @IBOutlet weak var stack1Image: UIImageView!
     @IBOutlet weak var stack1Label: UILabel!
     @IBOutlet weak var stack2Image: UIImageView!
@@ -29,6 +30,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var stack3Image: UIImageView!
     @IBOutlet weak var stack3Label: UILabel!
     @IBOutlet weak var iconStack: UIStackView!
+    @IBOutlet weak var graphHeader: UILabel!
     
     let combinedLineColor = UIColor.black
     var temperatures : [Double] = [-1,1,1,2,4,2,1,2,1,-1]
@@ -64,10 +66,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
 
         //content setup
         
-        getChartData()
+        getChartDataForSelectedDay()
         setChartLayout()
         setChartData()
         setUI()
+        displayFirstDay()
         addSwipeRecognizers()
     }
     
@@ -243,7 +246,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 for day in hourlyData{
                     
-                    temperatureArray.append(day.temperature)
+                    if day.temperature >= -0.5 && day.temperature <= 0{
+                        temperatureArray.append(0)
+                    } else{
+                        temperatureArray.append(day.temperature)
+                    }
                     timestampArray.append(day.time)
                     shortenedTimestampArray.append(shortenTimestamp(day.time))
                     if shortenTimestamp(day.time) == 0{
@@ -287,10 +294,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dateLabel.text = day.formattedDate
                 self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
                 self.summaryLabel.text = day.summary
-                self.stack1Label.text = day.windSpeedInPreferredUnit.description
+                self.stack3Label.text = day.windSpeedInPreferredUnit.description
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-                self.stack3Label.text = day.averageTemperatureInPreferredUnit.description
+                self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
             
             }
         }
@@ -298,6 +305,26 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         self.viewDidLoad()
+    }
+    
+    func displayFirstDay(){
+        if let day = latestExtendedWeatherFetched?.dailyWeather?[0]{
+            
+            dayIndex = 0
+            
+            getChartDataForSelectedDay()
+            setChartData()
+            setChartLayout()
+            
+            self.dayLabel.text = day.dayName.uppercased()
+            self.dateLabel.text = day.formattedDate
+            self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
+            self.summaryLabel.text = day.summary
+            self.stack3Label.text = day.windSpeedInPreferredUnit.description
+            self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
+            self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
+            self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
+        }
     }
     
     func displayPreviousDay(){
@@ -320,10 +347,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dateLabel.text = day.formattedDate
                 self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
                 self.summaryLabel.text = day.summary
-                self.stack1Label.text = day.windSpeedInPreferredUnit.description
+                self.stack3Label.text = day.windSpeedInPreferredUnit.description
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-                self.stack3Label.text = day.averageTemperatureInPreferredUnit.description
+                self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
             }
         }
     }
@@ -364,68 +391,16 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func setUI(){
         
-        if let currentWeather = latestExtendedWeatherFetched?.currentWeather{
-            //print("currentWeahter: ", currentWeather)
-            print("latestEXTENDEDCurrentWeather temp: ", latestExtendedWeatherFetched?.currentWeather?.temperature as Double!)
+        stackHeader.alpha = 0.3
+        graphHeader.alpha = 0.3
         
-            dayLabel.text = currentWeather.dayName.uppercased()
-            dayLabel.sizeToFit()
-            dateLabel.text = currentWeather.date
-            dateLabel.sizeToFit()
-            
-            weatherIcon.image = UIImage(named: currentWeather.WeatherIcon.rawValue)
-            
-            // summary label
-            summaryLabel.text = currentWeather.summary
-            summaryLabel.text =
-            summaryLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-            summaryLabel.sizeToFit()
-            summaryLabel.text = summaryLabel.text?.uppercased()
-            
-            // set temperature, wind and precipitation
-            stack1Label.text = currentWeather.windSpeedInPreferredUnit.description
-            stack1Image.image = UIImage(named: "weathercock.png")
-            
-            stack2Label.text = String(currentWeather.precipProbabilityPercentage) + "%"
-            stack2Image.image = UIImage(named: currentWeather.precipIcon.rawValue + ".png")
-            
-            stack3Image.image = UIImage(named: "temperature.png")
-            stack3Label.text = currentWeather.temperatureInPreferredUnit.description
-        }
+            stack3Image.image = UIImage(named: "weathercock.png")
+            stack1Image.image = UIImage(named: "temperature.png")
     }
     
     
     
-    
-    func getChartData(){
-        
-        if let extendedData = latestExtendedWeatherFetched{
-            
-            if let hourlyData = extendedData.hourlyWeather{
-                
-                var temperatureArray: [Double] = []
-                var timestampArray: [Double] = []
-                var shortenedTimestampArray: [Double] = []
-                
-                for day in hourlyData{
-                    
-                    temperatureArray.append(day.temperature)
-                    timestampArray.append(day.time)
-                    shortenedTimestampArray.append(shortenTimestamp(day.time))
-                    if shortenTimestamp(day.time) == 0{
-                        break // End of day reached
-                    }
-                }
-                
-                temperatures = temperatureArray
-                timestamps = timestampArray
-                shortenedTimestamps = shortenedTimestampArray
-            
-            }
-        } else {
-            // send new extendedDataRequest or wait for the previous one to finish
-        }
-    }
+
     
     func setChartLayout(){
         
@@ -454,7 +429,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // - leftAxis
         
         self.lineChartView.leftAxis.zeroLineColor = combinedLineColor
-        self.lineChartView.leftAxis.drawZeroLineEnabled = true
+        //self.lineChartView.leftAxis.drawZeroLineEnabled = true
         self.lineChartView.leftAxis.axisLineWidth = 0
         self.lineChartView.leftAxis.drawLabelsEnabled = false
         self.lineChartView.leftAxis.drawAxisLineEnabled = false

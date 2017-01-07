@@ -204,7 +204,7 @@ extension HourData{
             
             else {
                 
-                print("Følgende HourData init feilet:")
+                print("HourData failed:")
                 print(hourDictionary)
                 return nil }
         
@@ -228,9 +228,7 @@ extension HourData{
             let precipType = hourDictionary["precipType"] as! String
             self.precipType = PrecipIcon(rawValue: precipType)
         
-        } else {
-            self.precipType = PrecipIcon.unexpectedPrecip
-        }
+        } else {self.precipType = PrecipIcon.unexpectedPrecip}
     }
 }
 
@@ -245,7 +243,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
             if let temp = CurrentWeather(JSON: currentlyJSON){
                 self.currentWeather = temp
             } else {
-                print("error initializing currentweahter in ExtendedCurrentWahter")
+                print("error initializing currentweather in ExtendedCurrentWahter")
                 self.currentWeather = nil
             }
         }
@@ -315,7 +313,6 @@ extension CurrentWeather{
 extension DailyWeather{
     
     init?(JSONDay: [String : AnyObject]){
-        
         print(JSONDay)
         
         guard let apparentTemperatureMin = JSONDay["apparentTemperatureMin"] as? Double,
@@ -450,9 +447,12 @@ extension DailyWeather{
         switch preferredUnitSystem{
             
         case "US":
+            if round(self.averageTemperature) == -0{ return Measurement(value: 0, unit: UnitTemperature.fahrenheit)}
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.fahrenheit)
             
         default:
+            
+            if round(self.averageTemperature) == -0{return Measurement(value: 0, unit: UnitTemperature.celsius)}
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.celsius)
         }
     }

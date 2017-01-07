@@ -124,9 +124,10 @@ func showAlert(viewController: UIViewController, title: String, message: String,
 func setUserDefaultsIfInitialRun(){
     
     let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
-    
+
     if currentPreferredUnits == nil {
         UserDefaults.standard.set("SI", forKey: "preferredUnits")
+        
     }
 }
 

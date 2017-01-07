@@ -72,10 +72,6 @@
 		DD19ED111DAE802D00986C39 /* Moon.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC991DAE802D00986C39 /* Moon.png */; };
 		DD19ED121DAE802D00986C39 /* Moon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9A1DAE802D00986C39 /* Moon@2x.png */; };
 		DD19ED131DAE802D00986C39 /* Moon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9B1DAE802D00986C39 /* Moon@3x.png */; };
-		DD19ED141DAE802D00986C39 /* partly-cloudy-day.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9C1DAE802D00986C39 /* partly-cloudy-day.png */; };
-		DD19ED151DAE802D00986C39 /* partly-cloudy-day@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9D1DAE802D00986C39 /* partly-cloudy-day@1x.png */; };
-		DD19ED161DAE802D00986C39 /* partly-cloudy-day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9E1DAE802D00986C39 /* partly-cloudy-day@2x.png */; };
-		DD19ED171DAE802D00986C39 /* partly-cloudy-day@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC9F1DAE802D00986C39 /* partly-cloudy-day@3x.png */; };
 		DD19ED1B1DAE802D00986C39 /* Path 5 Copy.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECA31DAE802D00986C39 /* Path 5 Copy.png */; };
 		DD19ED1C1DAE802D00986C39 /* Path 5.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECA41DAE802D00986C39 /* Path 5.png */; };
 		DD19ED1D1DAE802D00986C39 /* precipitation.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECA51DAE802D00986C39 /* precipitation.png */; };
@@ -112,10 +108,6 @@
 		DD19ED3C1DAE802D00986C39 /* Sleet.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECC41DAE802D00986C39 /* Sleet.png */; };
 		DD19ED3D1DAE802D00986C39 /* Sleet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECC51DAE802D00986C39 /* Sleet@2x.png */; };
 		DD19ED3E1DAE802D00986C39 /* Sleet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECC61DAE802D00986C39 /* Sleet@3x.png */; };
-		DD19ED421DAE802D00986C39 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCA1DAE802D00986C39 /* temperature.png */; };
-		DD19ED431DAE802D00986C39 /* temperature@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCB1DAE802D00986C39 /* temperature@1x.png */; };
-		DD19ED441DAE802D00986C39 /* temperature@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCC1DAE802D00986C39 /* temperature@2x.png */; };
-		DD19ED451DAE802D00986C39 /* temperature@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCD1DAE802D00986C39 /* temperature@3x.png */; };
 		DD19ED461DAE802D00986C39 /* unexpectedEnum.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCE1DAE802D00986C39 /* unexpectedEnum.png */; };
 		DD19ED471DAE802D00986C39 /* unexpectedEnum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECCF1DAE802D00986C39 /* unexpectedEnum@2x.png */; };
 		DD19ED481DAE802D00986C39 /* unexpectedEnum@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19ECD01DAE802D00986C39 /* unexpectedEnum@3x.png */; };
@@ -127,8 +119,13 @@
 		DD1F340B1E1D982500A83BF3 /* Moon Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEE71DD9370B00C742D3 /* Moon Light.otf */; };
 		DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CB1DC42F4B008F2389 /* Animations.swift */; };
 		DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2736CD1DC7B4E0008F2389 /* Global.swift */; };
-		DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */; };
 		DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */; };
+		DD2BF8CA1E20A44400661983 /* partly-cloudy-day.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8C71E20A44400661983 /* partly-cloudy-day.png */; };
+		DD2BF8CB1E20A44400661983 /* partly-cloudy-day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8C81E20A44400661983 /* partly-cloudy-day@2x.png */; };
+		DD2BF8CC1E20A44400661983 /* partly-cloudy-day@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8C91E20A44400661983 /* partly-cloudy-day@3x.png */; };
+		DD2BF8DC1E20BB9B00661983 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8D91E20BB9B00661983 /* temperature.png */; };
+		DD2BF8DD1E20BB9B00661983 /* temperature@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8DA1E20BB9B00661983 /* temperature@2x.png */; };
+		DD2BF8DE1E20BB9B00661983 /* temperature@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2BF8DB1E20BB9B00661983 /* temperature@3x.png */; };
 		DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */; };
 		DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */; };
 		DD300BB91D7DBB6000AF95C9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD300BB81D7DBB6000AF95C9 /* Weather.swift */; };
@@ -209,20 +206,6 @@
 		DD543D8C1DAAE5F900CD6AC4 /* loading_00077.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D641DAAE5F900CD6AC4 /* loading_00077.png */; };
 		DD543D8D1DAAE5F900CD6AC4 /* loading_00078.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D651DAAE5F900CD6AC4 /* loading_00078.png */; };
 		DD543D8E1DAAE5F900CD6AC4 /* loading_00079.png in Resources */ = {isa = PBXBuildFile; fileRef = DD543D661DAAE5F900CD6AC4 /* loading_00079.png */; };
-		DD9565541DE0678D00F70B49 /* BebasNeue Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD95654F1DE0678D00F70B49 /* BebasNeue Bold.ttf */; };
-		DD9565551DE0678D00F70B49 /* BebasNeue Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565501DE0678D00F70B49 /* BebasNeue Book.ttf */; };
-		DD9565561DE0678D00F70B49 /* BebasNeue Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565511DE0678D00F70B49 /* BebasNeue Light.ttf */; };
-		DD9565571DE0678D00F70B49 /* BebasNeue Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565521DE0678D00F70B49 /* BebasNeue Regular.ttf */; };
-		DD9565581DE0678D00F70B49 /* BebasNeue Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565531DE0678D00F70B49 /* BebasNeue Thin.ttf */; };
-		DD95655E1DE067B200F70B49 /* BebasNeue Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565591DE067B200F70B49 /* BebasNeue Bold.otf */; };
-		DD95655F1DE067B200F70B49 /* BebasNeue Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD95655A1DE067B200F70B49 /* BebasNeue Book.otf */; };
-		DD9565601DE067B200F70B49 /* BebasNeue Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD95655B1DE067B200F70B49 /* BebasNeue Light.otf */; };
-		DD9565611DE067B200F70B49 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD95655C1DE067B200F70B49 /* BebasNeue Regular.otf */; };
-		DD9565621DE067B200F70B49 /* BebasNeue Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD95655D1DE067B200F70B49 /* BebasNeue Thin.otf */; };
-		DD9565671DE0731C00F70B49 /* Stellar-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565631DE0731C00F70B49 /* Stellar-Bold.otf */; };
-		DD9565681DE0731C00F70B49 /* Stellar-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565641DE0731C00F70B49 /* Stellar-light.otf */; };
-		DD9565691DE0731C00F70B49 /* Stellar-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565651DE0731C00F70B49 /* Stellar-Medium.otf */; };
-		DD95656A1DE0731C00F70B49 /* Stellar-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD9565661DE0731C00F70B49 /* Stellar-Regular.otf */; };
 		DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */; };
 		DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F51DB3A9A500011F94 /* weathercock.png */; };
 		DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */; };
@@ -308,10 +291,6 @@
 		DD19EC991DAE802D00986C39 /* Moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Moon.png; sourceTree = "<group>"; };
 		DD19EC9A1DAE802D00986C39 /* Moon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Moon@2x.png"; sourceTree = "<group>"; };
 		DD19EC9B1DAE802D00986C39 /* Moon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Moon@3x.png"; sourceTree = "<group>"; };
-		DD19EC9C1DAE802D00986C39 /* partly-cloudy-day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day.png"; sourceTree = "<group>"; };
-		DD19EC9D1DAE802D00986C39 /* partly-cloudy-day@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day@1x.png"; sourceTree = "<group>"; };
-		DD19EC9E1DAE802D00986C39 /* partly-cloudy-day@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day@2x.png"; sourceTree = "<group>"; };
-		DD19EC9F1DAE802D00986C39 /* partly-cloudy-day@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day@3x.png"; sourceTree = "<group>"; };
 		DD19ECA31DAE802D00986C39 /* Path 5 Copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Path 5 Copy.png"; sourceTree = "<group>"; };
 		DD19ECA41DAE802D00986C39 /* Path 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Path 5.png"; sourceTree = "<group>"; };
 		DD19ECA51DAE802D00986C39 /* precipitation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = precipitation.png; sourceTree = "<group>"; };
@@ -348,10 +327,6 @@
 		DD19ECC41DAE802D00986C39 /* Sleet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sleet.png; sourceTree = "<group>"; };
 		DD19ECC51DAE802D00986C39 /* Sleet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sleet@2x.png"; sourceTree = "<group>"; };
 		DD19ECC61DAE802D00986C39 /* Sleet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sleet@3x.png"; sourceTree = "<group>"; };
-		DD19ECCA1DAE802D00986C39 /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
-		DD19ECCB1DAE802D00986C39 /* temperature@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperature@1x.png"; sourceTree = "<group>"; };
-		DD19ECCC1DAE802D00986C39 /* temperature@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperature@2x.png"; sourceTree = "<group>"; };
-		DD19ECCD1DAE802D00986C39 /* temperature@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperature@3x.png"; sourceTree = "<group>"; };
 		DD19ECCE1DAE802D00986C39 /* unexpectedEnum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unexpectedEnum.png; sourceTree = "<group>"; };
 		DD19ECCF1DAE802D00986C39 /* unexpectedEnum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unexpectedEnum@2x.png"; sourceTree = "<group>"; };
 		DD19ECD01DAE802D00986C39 /* unexpectedEnum@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unexpectedEnum@3x.png"; sourceTree = "<group>"; };
@@ -363,8 +338,13 @@
 		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
-		DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
 		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
+		DD2BF8C71E20A44400661983 /* partly-cloudy-day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day.png"; sourceTree = "<group>"; };
+		DD2BF8C81E20A44400661983 /* partly-cloudy-day@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day@2x.png"; sourceTree = "<group>"; };
+		DD2BF8C91E20A44400661983 /* partly-cloudy-day@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-day@3x.png"; sourceTree = "<group>"; };
+		DD2BF8D91E20BB9B00661983 /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
+		DD2BF8DA1E20BB9B00661983 /* temperature@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperature@2x.png"; sourceTree = "<group>"; };
+		DD2BF8DB1E20BB9B00661983 /* temperature@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperature@3x.png"; sourceTree = "<group>"; };
 		DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		DD300BB81D7DBB6000AF95C9 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -446,20 +426,6 @@
 		DD543D641DAAE5F900CD6AC4 /* loading_00077.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00077.png; sourceTree = "<group>"; };
 		DD543D651DAAE5F900CD6AC4 /* loading_00078.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00078.png; sourceTree = "<group>"; };
 		DD543D661DAAE5F900CD6AC4 /* loading_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00079.png; sourceTree = "<group>"; };
-		DD95654F1DE0678D00F70B49 /* BebasNeue Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Bold.ttf"; sourceTree = "<group>"; };
-		DD9565501DE0678D00F70B49 /* BebasNeue Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Book.ttf"; sourceTree = "<group>"; };
-		DD9565511DE0678D00F70B49 /* BebasNeue Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Light.ttf"; sourceTree = "<group>"; };
-		DD9565521DE0678D00F70B49 /* BebasNeue Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.ttf"; sourceTree = "<group>"; };
-		DD9565531DE0678D00F70B49 /* BebasNeue Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Thin.ttf"; sourceTree = "<group>"; };
-		DD9565591DE067B200F70B49 /* BebasNeue Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Bold.otf"; sourceTree = "<group>"; };
-		DD95655A1DE067B200F70B49 /* BebasNeue Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Book.otf"; sourceTree = "<group>"; };
-		DD95655B1DE067B200F70B49 /* BebasNeue Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Light.otf"; sourceTree = "<group>"; };
-		DD95655C1DE067B200F70B49 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
-		DD95655D1DE067B200F70B49 /* BebasNeue Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Thin.otf"; sourceTree = "<group>"; };
-		DD9565631DE0731C00F70B49 /* Stellar-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stellar-Bold.otf"; sourceTree = "<group>"; };
-		DD9565641DE0731C00F70B49 /* Stellar-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stellar-light.otf"; sourceTree = "<group>"; };
-		DD9565651DE0731C00F70B49 /* Stellar-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stellar-Medium.otf"; sourceTree = "<group>"; };
-		DD9565661DE0731C00F70B49 /* Stellar-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stellar-Regular.otf"; sourceTree = "<group>"; };
 		DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCenterKeys.swift; path = ShortsDotCom/NotificationCenterKeys.swift; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
@@ -520,21 +486,6 @@
 		DD28BEE51DD936F100C742D3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				DD9565631DE0731C00F70B49 /* Stellar-Bold.otf */,
-				DD9565641DE0731C00F70B49 /* Stellar-light.otf */,
-				DD9565651DE0731C00F70B49 /* Stellar-Medium.otf */,
-				DD9565661DE0731C00F70B49 /* Stellar-Regular.otf */,
-				DD9565591DE067B200F70B49 /* BebasNeue Bold.otf */,
-				DD95655A1DE067B200F70B49 /* BebasNeue Book.otf */,
-				DD95655B1DE067B200F70B49 /* BebasNeue Light.otf */,
-				DD95655C1DE067B200F70B49 /* BebasNeue Regular.otf */,
-				DD95655D1DE067B200F70B49 /* BebasNeue Thin.otf */,
-				DD95654F1DE0678D00F70B49 /* BebasNeue Bold.ttf */,
-				DD9565501DE0678D00F70B49 /* BebasNeue Book.ttf */,
-				DD9565511DE0678D00F70B49 /* BebasNeue Light.ttf */,
-				DD9565521DE0678D00F70B49 /* BebasNeue Regular.ttf */,
-				DD9565531DE0678D00F70B49 /* BebasNeue Thin.ttf */,
-				DD28BEF21DD9477400C742D3 /* BEBAS___.TTF */,
 				DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */,
 				DD28BEE71DD9370B00C742D3 /* Moon Light.otf */,
 			);
@@ -712,15 +663,17 @@
 				DD19EC991DAE802D00986C39 /* Moon.png */,
 				DD19EC9A1DAE802D00986C39 /* Moon@2x.png */,
 				DD19EC9B1DAE802D00986C39 /* Moon@3x.png */,
-				DD19EC9C1DAE802D00986C39 /* partly-cloudy-day.png */,
-				DD19EC9D1DAE802D00986C39 /* partly-cloudy-day@1x.png */,
-				DD19EC9E1DAE802D00986C39 /* partly-cloudy-day@2x.png */,
-				DD19EC9F1DAE802D00986C39 /* partly-cloudy-day@3x.png */,
+				DD2BF8C71E20A44400661983 /* partly-cloudy-day.png */,
+				DD2BF8C81E20A44400661983 /* partly-cloudy-day@2x.png */,
+				DD2BF8C91E20A44400661983 /* partly-cloudy-day@3x.png */,
 				DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */,
 				DD4DCBB91DE5AA4F0003C791 /* partly-cloudy-night@2x.png */,
 				DD4DCBBA1DE5AA4F0003C791 /* partly-cloudy-night@3x.png */,
 				DD19ECA31DAE802D00986C39 /* Path 5 Copy.png */,
 				DD19ECA41DAE802D00986C39 /* Path 5.png */,
+				DD2BF8D91E20BB9B00661983 /* temperature.png */,
+				DD2BF8DA1E20BB9B00661983 /* temperature@2x.png */,
+				DD2BF8DB1E20BB9B00661983 /* temperature@3x.png */,
 				DD19ECA51DAE802D00986C39 /* precipitation.png */,
 				DD19ECA61DAE802D00986C39 /* precipitation@1x.png */,
 				DD19ECA71DAE802D00986C39 /* precipitation@2x.png */,
@@ -758,10 +711,6 @@
 				DD19ECC41DAE802D00986C39 /* Sleet.png */,
 				DD19ECC51DAE802D00986C39 /* Sleet@2x.png */,
 				DD19ECC61DAE802D00986C39 /* Sleet@3x.png */,
-				DD19ECCA1DAE802D00986C39 /* temperature.png */,
-				DD19ECCB1DAE802D00986C39 /* temperature@1x.png */,
-				DD19ECCC1DAE802D00986C39 /* temperature@2x.png */,
-				DD19ECCD1DAE802D00986C39 /* temperature@3x.png */,
 				DD19ECCE1DAE802D00986C39 /* unexpectedEnum.png */,
 				DD19ECCF1DAE802D00986C39 /* unexpectedEnum@2x.png */,
 				DD19ECD01DAE802D00986C39 /* unexpectedEnum@3x.png */,
@@ -917,15 +866,12 @@
 				DD543D871DAAE5F900CD6AC4 /* loading_00072.png in Resources */,
 				DD19ED1F1DAE802D00986C39 /* precipitation@2x.png in Resources */,
 				DD19ED231DAE802D00986C39 /* precipitationDefault Copy@3x.png in Resources */,
-				DD19ED421DAE802D00986C39 /* temperature.png in Resources */,
 				DD19ED1B1DAE802D00986C39 /* Path 5 Copy.png in Resources */,
 				DD19ED241DAE802D00986C39 /* precipitationDefault.png in Resources */,
 				DD19ECF81DAE802D00986C39 /* Group 2 Copy 13@3x.png in Resources */,
-				DD19ED151DAE802D00986C39 /* partly-cloudy-day@1x.png in Resources */,
 				DDA0A1001DB3B20400011F94 /* settingsButton@3x.png in Resources */,
 				DD543D6B1DAAE5F900CD6AC4 /* loading_00044.png in Resources */,
 				DD19ED391DAE802D00986C39 /* rain.png in Resources */,
-				DD19ED441DAE802D00986C39 /* temperature@2x.png in Resources */,
 				DD19ECFE1DAE802D00986C39 /* Group 2 Copy 15@3x.png in Resources */,
 				DD543D801DAAE5F900CD6AC4 /* loading_00065.png in Resources */,
 				DD543D7E1DAAE5F900CD6AC4 /* loading_00063.png in Resources */,
@@ -933,14 +879,11 @@
 				DD19ED2B1DAE802D00986C39 /* precipitationDefault3@2x.png in Resources */,
 				DD19ED121DAE802D00986C39 /* Moon@2x.png in Resources */,
 				DD19ED261DAE802D00986C39 /* precipitationDefault@3x.png in Resources */,
-				DD9565621DE067B200F70B49 /* BebasNeue Thin.otf in Resources */,
 				DD543D6A1DAAE5F900CD6AC4 /* loading_00043.png in Resources */,
 				DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */,
 				DD19ED221DAE802D00986C39 /* precipitationDefault Copy@2x.png in Resources */,
-				DD9565691DE0731C00F70B49 /* Stellar-Medium.otf in Resources */,
 				DD19ED0B1DAE802D00986C39 /* Group 6.png in Resources */,
 				DD19ED1D1DAE802D00986C39 /* precipitation.png in Resources */,
-				DD9565551DE0678D00F70B49 /* BebasNeue Book.ttf in Resources */,
 				DD19ECEA1DAE802D00986C39 /* cloudy copy 2@2x.png in Resources */,
 				DD19ED031DAE802D00986C39 /* Group 2 Copy@2x.png in Resources */,
 				DD19ED3C1DAE802D00986C39 /* Sleet.png in Resources */,
@@ -949,10 +892,8 @@
 				DD543D731DAAE5F900CD6AC4 /* loading_00052.png in Resources */,
 				DD19ECEB1DAE802D00986C39 /* cloudy copy 2@3x.png in Resources */,
 				DD19ED2E1DAE802D00986C39 /* precipitationDefault4@2x.png in Resources */,
-				DD95655E1DE067B200F70B49 /* BebasNeue Bold.otf in Resources */,
 				DD19ECDA1DAE802D00986C39 /* checkMark.png in Resources */,
 				DD4DCBBD1DE5AA4F0003C791 /* partly-cloudy-night@3x.png in Resources */,
-				DD95656A1DE0731C00F70B49 /* Stellar-Regular.otf in Resources */,
 				DD19ED1C1DAE802D00986C39 /* Path 5.png in Resources */,
 				DD19ECE11DAE802D00986C39 /* clear-day@2x.png in Resources */,
 				DD543D851DAAE5F900CD6AC4 /* loading_00070.png in Resources */,
@@ -975,17 +916,16 @@
 				DD543D791DAAE5F900CD6AC4 /* loading_00058.png in Resources */,
 				DD19ECF51DAE802D00986C39 /* Group 2 Copy 2@3x.png in Resources */,
 				DD543D8E1DAAE5F900CD6AC4 /* loading_00079.png in Resources */,
-				DD9565571DE0678D00F70B49 /* BebasNeue Regular.ttf in Resources */,
 				DD37600C1DB508C0009AE7FC /* LoadingView.xib in Resources */,
 				DD19ECF41DAE802D00986C39 /* Group 2 Copy 2@2x.png in Resources */,
 				DD19ECF91DAE802D00986C39 /* Group 2 Copy 14.png in Resources */,
 				DD543D841DAAE5F900CD6AC4 /* loading_00069.png in Resources */,
+				DD2BF8DD1E20BB9B00661983 /* temperature@2x.png in Resources */,
 				DD19ECDE1DAE802D00986C39 /* clear-day copy@2x.png in Resources */,
-				DD19ED431DAE802D00986C39 /* temperature@1x.png in Resources */,
-				DD28BEF31DD9477400C742D3 /* BEBAS___.TTF in Resources */,
 				DD19ECE21DAE802D00986C39 /* clear-day@3x.png in Resources */,
 				DD19ECFA1DAE802D00986C39 /* Group 2 Copy 14@2x.png in Resources */,
 				DD543D671DAAE5F900CD6AC4 /* loading_00040.png in Resources */,
+				DD2BF8CC1E20A44400661983 /* partly-cloudy-day@3x.png in Resources */,
 				DD19ECE61DAE802D00986C39 /* clear-night.png in Resources */,
 				DD543D7B1DAAE5F900CD6AC4 /* loading_00060.png in Resources */,
 				DD19ECDB1DAE802D00986C39 /* checkMark@2x.png in Resources */,
@@ -996,7 +936,6 @@
 				DD19ED1E1DAE802D00986C39 /* precipitation@1x.png in Resources */,
 				DD19ECED1DAE802D00986C39 /* cloudy@1x.png in Resources */,
 				DD19ED291DAE802D00986C39 /* precipitationDefault2@3x.png in Resources */,
-				DD9565561DE0678D00F70B49 /* BebasNeue Light.ttf in Resources */,
 				DD3760091DB508C0009AE7FC /* Info.plist in Resources */,
 				DD4DCBBB1DE5AA4F0003C791 /* partly-cloudy-night.png in Resources */,
 				DDA0A0FA1DB3A9A500011F94 /* weathercock@3x.png in Resources */,
@@ -1005,25 +944,21 @@
 				DD543D7C1DAAE5F900CD6AC4 /* loading_00061.png in Resources */,
 				DD543D681DAAE5F900CD6AC4 /* loading_00041.png in Resources */,
 				DD19ED461DAE802D00986C39 /* unexpectedEnum.png in Resources */,
-				DD19ED141DAE802D00986C39 /* partly-cloudy-day.png in Resources */,
-				DD9565671DE0731C00F70B49 /* Stellar-Bold.otf in Resources */,
 				DD543D6E1DAAE5F900CD6AC4 /* loading_00047.png in Resources */,
-				DD9565581DE0678D00F70B49 /* BebasNeue Thin.ttf in Resources */,
 				DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */,
 				DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */,
 				DDA277181D786516001B5FBD /* Assets.xcassets in Resources */,
 				DD543D861DAAE5F900CD6AC4 /* loading_00071.png in Resources */,
 				DD19ED211DAE802D00986C39 /* precipitationDefault Copy.png in Resources */,
-				DD19ED161DAE802D00986C39 /* partly-cloudy-day@2x.png in Resources */,
-				DD9565611DE067B200F70B49 /* BebasNeue Regular.otf in Resources */,
+				DD2BF8DE1E20BB9B00661983 /* temperature@3x.png in Resources */,
 				DD19ED131DAE802D00986C39 /* Moon@3x.png in Resources */,
 				DDA0A0FF1DB3B20400011F94 /* settingsButton@2x.png in Resources */,
 				DD543D6F1DAAE5F900CD6AC4 /* loading_00048.png in Resources */,
 				DD19ECF11DAE802D00986C39 /* fog@2x.png in Resources */,
 				DD543D6C1DAAE5F900CD6AC4 /* loading_00045.png in Resources */,
 				DD38E5531E15C18F0060BABE /* snow@2x.png in Resources */,
-				DD19ED451DAE802D00986C39 /* temperature@3x.png in Resources */,
 				DD19ECF31DAE802D00986C39 /* Group 2 Copy 2.png in Resources */,
+				DD2BF8DC1E20BB9B00661983 /* temperature.png in Resources */,
 				DD19ED091DAE802D00986C39 /* Group 5@2x.png in Resources */,
 				DD19ED041DAE802D00986C39 /* Group 2 Copy@3x.png in Resources */,
 				DD543D8C1DAAE5F900CD6AC4 /* loading_00077.png in Resources */,
@@ -1053,13 +988,13 @@
 				DD19ECEE1DAE802D00986C39 /* cloudy@2x.png in Resources */,
 				DD19ED2A1DAE802D00986C39 /* precipitationDefault3.png in Resources */,
 				DD19ED4E1DAE802D00986C39 /* wind@3x.png in Resources */,
-				DD9565601DE067B200F70B49 /* BebasNeue Light.otf in Resources */,
 				DD543D7D1DAAE5F900CD6AC4 /* loading_00062.png in Resources */,
 				DD19ED0F1DAE802D00986C39 /* logo@2x.png in Resources */,
 				DD38E5541E15C18F0060BABE /* snow@3x.png in Resources */,
 				DD19ED331DAE802D00986C39 /* precipitationSleet.png in Resources */,
 				DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */,
 				DD543D741DAAE5F900CD6AC4 /* loading_00053.png in Resources */,
+				DD2BF8CB1E20A44400661983 /* partly-cloudy-day@2x.png in Resources */,
 				DD19ECE41DAE802D00986C39 /* clear-night copy@2x.png in Resources */,
 				DD19ED371DAE802D00986C39 /* precipitationSnow@2x.png in Resources */,
 				DD19ED301DAE802D00986C39 /* precipitationRain.png in Resources */,
@@ -1072,7 +1007,6 @@
 				DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */,
 				DD543D701DAAE5F900CD6AC4 /* loading_00049.png in Resources */,
 				DD19ED001DAE802D00986C39 /* Group 2 Copy 16@2x.png in Resources */,
-				DD9565541DE0678D00F70B49 /* BebasNeue Bold.ttf in Resources */,
 				DD19ECE91DAE802D00986C39 /* cloudy copy 2.png in Resources */,
 				DD19ECDD1DAE802D00986C39 /* clear-day copy.png in Resources */,
 				DD19ECFB1DAE802D00986C39 /* Group 2 Copy 14@3x.png in Resources */,
@@ -1080,19 +1014,17 @@
 				DD19ED471DAE802D00986C39 /* unexpectedEnum@2x.png in Resources */,
 				DD543D821DAAE5F900CD6AC4 /* loading_00067.png in Resources */,
 				DD543D6D1DAAE5F900CD6AC4 /* loading_00046.png in Resources */,
-				DD95655F1DE067B200F70B49 /* BebasNeue Book.otf in Resources */,
 				DD19ED3A1DAE802D00986C39 /* rain@2x.png in Resources */,
 				DD19ED251DAE802D00986C39 /* precipitationDefault@2x.png in Resources */,
 				DD19ECFD1DAE802D00986C39 /* Group 2 Copy 15@2x.png in Resources */,
 				DD19ED101DAE802D00986C39 /* logo@3x.png in Resources */,
+				DD2BF8CA1E20A44400661983 /* partly-cloudy-day.png in Resources */,
 				DD19ED2C1DAE802D00986C39 /* precipitationDefault3@3x.png in Resources */,
 				DD19ECFF1DAE802D00986C39 /* Group 2 Copy 16.png in Resources */,
 				DD19ECE81DAE802D00986C39 /* clear-night@3x.png in Resources */,
 				DD19ED351DAE802D00986C39 /* precipitationSleet@3x.png in Resources */,
 				DD19ED2D1DAE802D00986C39 /* precipitationDefault4.png in Resources */,
-				DD9565681DE0731C00F70B49 /* Stellar-light.otf in Resources */,
 				DD19ED321DAE802D00986C39 /* precipitationRain@3x.png in Resources */,
-				DD19ED171DAE802D00986C39 /* partly-cloudy-day@3x.png in Resources */,
 				DD19ED021DAE802D00986C39 /* Group 2 Copy.png in Resources */,
 				DD19ECF71DAE802D00986C39 /* Group 2 Copy 13@2x.png in Resources */,
 				DD543D761DAAE5F900CD6AC4 /* loading_00055.png in Resources */,
