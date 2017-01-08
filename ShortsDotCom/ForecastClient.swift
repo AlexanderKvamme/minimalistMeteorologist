@@ -86,8 +86,8 @@ class ForecastAPIClient: APIClient {
                 
                 return CurrentWeather(JSON: weatherDict)
             
-            }else {
-                print("ERROR: no json returned")
+            } else {
+                print("No json returned")
                 return nil
             }
             }, completion: completion)
@@ -95,27 +95,23 @@ class ForecastAPIClient: APIClient {
     
     // Extended Version of fetchCurrentWeahter()
     
-
     func fetchExtendedCurrentWeather(_ coordinate: Coordinate, completion: @escaping (APIResult<ExtendedCurrentWeather>) -> Void){
         
         let request = createExtendedRequestWithCoordinate(coordinate)
         
         fetch(request: request, parse: { json -> ExtendedCurrentWeather? in
-            
+        
     
-            /*
-             if let weatherDict = json["currently"] as? [String : AnyObject]{
-                return ExtendedCurrentWeather(JSON: weatherDict)
-            }
-            
-            */
-            if let fullWeatherDict = json as? [String : AnyObject] {
+             if let fullWeatherDict = json as? [String : AnyObject] {
                 return ExtendedCurrentWeather(JSON:fullWeatherDict)
-            }
-            else {
+             }
+             else {
                 print("ERROR: no json returned")
                 return nil
-            }
+             }
+
+            //return ExtendedCurrentWeather(JSON: fullWeatherDict)
+         
         }, completion: completion)
     }
 

@@ -16,7 +16,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var checkmarkView: UIImageView!
+    @IBOutlet weak var settingsButton: UIButton!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
+    
+    var isFetching: Bool = true
     
     // ViewDidLoad
     
@@ -24,33 +27,62 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
 
+        toggleLoadingUI(true)
         setUserDefaultsIfInitialRun()
+        UserLocation.sharedInstance.updateLocation() // fetches weather after gps update
         
         // Set observers
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
-        
-        UserLocation.sharedInstance.updateLocation() // fetches weather after gps update
-    
-        // grey out UI
-        activityIndicator.startAnimating()
-        self.buttonStack.isUserInteractionEnabled = false
-        self.buttonStack.alpha = 0.4
-    
-    }
 
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        self.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
+
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
+            notification in
+
+            if self.presentedViewController == nil {
+                    showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
+            }
+        }
     }
     
     // Data
     
+    func toggleLoadingUI(_ status: Bool){
+    
+        switch status{
+        
+        case true:
+            self.isFetching = true
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.isHidden = false
+            
+            self.buttonStack.alpha = 0.4
+            self.settingsButton.alpha = 0.4
+            self.buttonStack.isUserInteractionEnabled = false
+            self.settingsButton.isUserInteractionEnabled = false
+        
+        default:
+            
+            self.isFetching = false
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+            
+            self.buttonStack.alpha = 1
+            self.settingsButton.alpha = 1
+            self.buttonStack.isUserInteractionEnabled = true
+            self.settingsButton.isUserInteractionEnabled = true
+            
+            Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
+        }
+    }
+    
     func updateExtendedCurrentWeather(){
+        
+        toggleLoadingUI(true)
         
         forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
             
-            //self.activityIndicator.startAnimating()
+            self.toggleLoadingUI(false)
             
             switch apiresult{
                 
@@ -58,13 +90,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 
                 latestExtendedWeatherFetched = result
                 print("Extended Fetch Successful")
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
-                self.checkmarkView.isHidden = false
-                Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
-             
-                self.buttonStack.isUserInteractionEnabled = true
-                self.buttonStack.alpha = 1
                 
                 if var fetchedDays = latestExtendedWeatherFetched?.dailyWeather, let fetchedHours = latestExtendedWeatherFetched?.hourlyWeather{
                     
@@ -85,34 +110,29 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-
-                
-           
-                //print("result: ", extendedWeather)
-                
-                //self.activityIndicator.stopAnimating()
-                
-                // TASK: TODO - EXTENDED HOURS TO DAYS
-                
-                //print(extendedCurrentWeather)
-                
-                
-                //Animations.playCheckmarkAnimationOnce(inImageView: self.animationView)
              
                 NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
                 
             case .failure(let error as NSError):
-                //self.activityIndicator.stopAnimating()
                 
-                showAlert(viewController: self, title: "Error", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+                print("Extended Fetch Failed")
+                self.toggleLoadingUI(true)
+                showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
                 
             default: break
             }
         }
     }
-
     
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if isFetching == false {
+            self.updateExtendedCurrentWeather()
+        }
+    }
+
     func settingsDidUpdate(){
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
         updateExtendedCurrentWeather()
     }
 
@@ -127,24 +147,4 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services. Please enable Location Services in your settings and restart the app to update GPS.", error: nil)
         }
     }
-}
-
-func timestampsAreOnSameDay(stamp: Double, and stamp2: Double) -> Bool{
-    
-    let calendar = Calendar.current
-    
-    let date1 = Date(timeIntervalSince1970: stamp)
-    let date2 = Date(timeIntervalSince1970: stamp2)
-    
-    let components1 = calendar.dateComponents([.day,.month,.year], from: date1)
-    let components2 = calendar.dateComponents([.day,.month,.year], from: date2)
-    
-    //print("day1:", components1.day ?? "no day")
-    //print("day2:", components2.day ?? "no day 2")
-
-    if components1.day! == components2.day! {
-        return true
-    } else
-    {return false}
-    
 }

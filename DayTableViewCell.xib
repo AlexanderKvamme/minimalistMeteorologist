@@ -75,16 +75,16 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ky1-FO-CbQ" userLabel="precipitationStackView">
-                                        <rect key="frame" x="169.5" y="0.0" width="59.5" height="45"/>
+                                        <rect key="frame" x="166.5" y="0.0" width="65.5" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toM-W2-bq8">
-                                                <rect key="frame" x="0.0" y="0.0" width="59.5" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="33"/>
                                                 <fontDescription key="fontDescription" name="Stellar-Light" family="Stellar" pointSize="31"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANCE OF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLv-us-UBI">
-                                                <rect key="frame" x="0.0" y="33" width="59.5" height="12"/>
+                                                <rect key="frame" x="0.0" y="33" width="65.5" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="Xou-iv-9xm"/>
                                                 </constraints>

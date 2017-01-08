@@ -150,7 +150,7 @@ struct DailyWeather{
     
     var apparentTemperatureMin: Double
     var apparentTemperatureMax: Double
-    var averageTemperature: Double
+    //var averageTemperature: Double
     var temperatureMin: Double
     var temperatureMax: Double
     var summary: String
@@ -170,6 +170,20 @@ struct DailyWeather{
     }
     
     var hourData: [HourData]?
+    
+    var averageTemperature: Double{
+        
+        var sum: Double = 0
+        
+        if let hourData = hourData{
+        
+            for hour in hourData{
+            
+                sum += hour.temperature
+            }
+        }
+           return sum/Double(hourData!.count)
+    }
     
 }
 
@@ -248,7 +262,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
             }
         }
         
-        // Task: - Initialize Array of DailyData
+        // TASK: - Initialize Array of DailyData
         
         if let dailyJSON = fullJSON["daily"] as? [String : AnyObject]{
             
@@ -313,7 +327,7 @@ extension CurrentWeather{
 extension DailyWeather{
     
     init?(JSONDay: [String : AnyObject]){
-        print(JSONDay)
+        //print(JSONDay)
         
         guard let apparentTemperatureMin = JSONDay["apparentTemperatureMin"] as? Double,
             let apparentTemperatureMax = JSONDay["apparentTemperatureMax"] as? Double,
@@ -362,9 +376,9 @@ extension DailyWeather{
         //self.humidity = humidity
         self.humidity = nil
         self.time = time
-        self.averageTemperature = (temperatureMax+temperatureMin)/2
-    
         }
+    
+    
 }
 
 extension CurrentWeather: JSONDecodable{
@@ -448,11 +462,13 @@ extension DailyWeather{
             
         case "US":
             if round(self.averageTemperature) == -0{ return Measurement(value: 0, unit: UnitTemperature.fahrenheit)}
+            
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.fahrenheit)
             
         default:
             
             if round(self.averageTemperature) == -0{return Measurement(value: 0, unit: UnitTemperature.celsius)}
+            
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.celsius)
         }
     }

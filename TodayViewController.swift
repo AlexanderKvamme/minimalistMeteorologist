@@ -32,8 +32,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var iconStack: UIStackView!
     @IBOutlet weak var graphHeader: UILabel!
     
-    let combinedLineColor = UIColor.black
-    var temperatures : [Double] = [-1,1,1,2,4,2,1,2,1,-1]
+    let combinedLineColor = UIColor.black // Graph dots and lines
+    var temperatures : [Double] = []
     var shortenedTimestamps = [Double]()
     var timestamps: [Double] = []
     var dayIndex: Int = 0
@@ -48,25 +48,22 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var headerLabelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     
-    var headerXShift: CGFloat = 10
+    var headerXShift: CGFloat = 10 // animation x length
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // swipe animation
+        // swipe animation translation endpoints
         headerLabelPositionLeft = dayLabel.frame.midX + headerXShift
         headerLabelPositionRight = dayLabel.frame.midX - headerXShift
         headerLabelPositionY = dayLabel.frame.midY
         headerLabelpositionX = dayLabel.frame.midX
         
-        dayLabel.textAlignment = .center
-        
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.move))
         view.addGestureRecognizer(pan)
 
         //content setup
-        
-        getChartDataForSelectedDay()
+        getChartDataForIndexedDay()
         setChartLayout()
         setChartData()
         setUI()
@@ -101,39 +98,31 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         }
         
         self.myAnimation.fractionComplete = abs(gesture.translation(in: self.view).x/100)
-        //print(abs(gesture.translation(in: self.view).x/100))
         
         if gesture.state == .ended{
             
-            // if swiped far left/right - update data
+            // if long swipe, update labels with next/previous day
             
             self.dayLabel.textAlignment = .center
             
-            if abs(gesture.translation(in: self.view).x) > 100{ // if hard swipe right
+            if abs(gesture.translation(in: self.view).x) > 100{
                 
                 // go to next/prev data
                 
-                if animationDirection == .left {
-
-                        displayPreviousDay()
-                    }
-
-                
-                if animationDirection == .right {
-        
-                        displayNextDay()
-                }
+                if animationDirection == .left { displayPreviousDay() }
+                if animationDirection == .right { displayNextDay() }
              
                 dayLabel.sizeToFit()
             }
             
+            // animate UI back to original position
             self.myAnimation.isReversed = true
             let v = gesture.velocity(in: view)
             let velocity = CGVector(dx: v.x / 200, dy: v.y / 200)
             let timingParameters = UISpringTimingParameters(mass: 200, stiffness: 50, damping: 100, initialVelocity: velocity)
             
             self.myAnimation.continueAnimation(withTimingParameters: timingParameters, durationFactor: 0.2)
-        } // if .ended
+        }
     }
     
     
@@ -158,8 +147,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             let sideStackImageDownscaleAmount: CGFloat = 0.9
             let stackLabelOffset: CGFloat = 5
             
+            // Set animation direction
+            
             if direction == AnimationDirection.left{
-                //user swipes right
+                
+                // user swipes left
+                
                 self.dayLabel.center = CGPoint(x: self.headerLabelPositionLeft, y: dayLabelPos)
                 self.dateLabel.center = CGPoint(x: self.headerLabelPositionLeft + dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: iconTranslationAmount, y: 0)
@@ -168,7 +161,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                
                 self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
        
-                // move labels right
+                // move labels
                 
                 self.iconStack.transform = CGAffineTransform(translationX: iconStackXShift, y: iconStackYShift)
                 
@@ -180,7 +173,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 // twist images
                 
                 for image in [self.stack1Image, self.stack2Image, self.stack3Image]{
-                    //var frame = image!.frame
+
                     if image == self.stack2Image {
                  
                         image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
@@ -192,7 +185,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 }
                 
             } else {
-                //user swipes left
+                
+                // user swipes left
+                
                 self.dayLabel.center = CGPoint(x: self.headerLabelPositionRight, y: dayLabelPos)
                 self.dateLabel.center = CGPoint(x: self.headerLabelPositionRight - dateLabelXShift, y: dateLabelYPos)
                 
@@ -206,7 +201,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 // twist images
                 for image in [self.stack1Image, self.stack2Image, self.stack3Image]{
-                    //var frame = image!.frame
+                    
                     if image == self.stack2Image {
                         
                         image!.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
@@ -236,7 +231,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     // data configuration methods
     
-    func getChartDataForSelectedDay(){
+    func getChartDataForIndexedDay(){
         
             if let hourlyData = latestExtendedWeatherFetched?.dailyWeather?[dayIndex].hourData{
                 
@@ -280,13 +275,13 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         if dayIndex == (latestExtendedWeatherFetched!.dailyWeather!.count - 2){
             
             // Using 2 to not display last day of the fetch which is often without accurate data
-            print("index out of range")}
-        else {
+            print("index out of range")
+        } else {
             
             if let day = latestExtendedWeatherFetched?.dailyWeather?[dayIndex+1]{
             
                 dayIndex += 1
-                getChartDataForSelectedDay()
+                getChartDataForIndexedDay()
                 setChartData()
                 setChartLayout()
                 
@@ -298,7 +293,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
                 self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
-            
             }
         }
     }
@@ -312,7 +306,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             
             dayIndex = 0
             
-            getChartDataForSelectedDay()
+            getChartDataForIndexedDay()
             setChartData()
             setChartLayout()
             
@@ -331,7 +325,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         if dayIndex == 0{
             
-            // already at first day
+            // already at first day. Do nothing
         
         } else{
             
@@ -339,7 +333,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             
                 dayIndex -= 1
                 
-                getChartDataForSelectedDay()
+                getChartDataForIndexedDay()
                 setChartData()
                 setChartLayout()
             
@@ -394,16 +388,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         stackHeader.alpha = 0.3
         graphHeader.alpha = 0.3
         
-            stack3Image.image = UIImage(named: "weathercock.png")
-            stack1Image.image = UIImage(named: "temperature.png")
+        stack3Image.image = UIImage(named: "weathercock.png")
+        stack1Image.image = UIImage(named: "temperature.png")
     }
     
-    
-    
-
-    
     func setChartLayout(){
-        
         
         // frame
         
@@ -413,13 +402,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         // animation
         
-        //lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
         lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
         
         // chart
         
         self.lineChartView.delegate = self
-        //self.lineChartView.chartDescription?.text = "Temperatures this day in Celcius"
+        //self.lineChartView.chartDescription?.text = "Temperatures this day in INSERT UNIT TYPE"
         self.lineChartView.chartDescription?.text = ""
         self.lineChartView.drawGridBackgroundEnabled = false
         self.lineChartView.drawBordersEnabled = false
@@ -451,10 +439,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         self.lineChartView.xAxis.drawAxisLineEnabled = false
         self.lineChartView.xAxis.labelPosition = .bottom
 
- 
-        //print(self.lineChartView.xAxis.axisMinimum)
         
-        // Denne neste linjnen bugger seg av og til
+        // TASK: - TODO: Denne neste linjnen bugger seg av og til
         self.lineChartView.xAxis.axisMinimum = shortenedTimestamps[0]
         self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         self.lineChartView.xAxis.granularity = 2
@@ -474,9 +460,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         var valuesToGraph: [ChartDataEntry] = [ChartDataEntry]()
         
-        //for i in 0 ..< temperatures.count {
-        for i in 0 ... (temperatures.count-1) {
-            //valuesToGraph.append(ChartDataEntry(x: Double(timestamps[i]), y: temperatures[i]))
+        for i in 0 ..< temperatures.count {
             valuesToGraph.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
         }
         
@@ -485,7 +469,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         let hourBasedFormatter = HourBasedLineChartFormatter()
         let xAxis = XAxis()
         xAxis.valueFormatter = hourBasedFormatter
-        //lineChartView.xAxis.valueFormatter = xAxis.valueFormatter
         lineChartView.xAxis.valueFormatter = hourBasedFormatter
         
         for i in 0 ... (timestamps.count-1){
@@ -519,7 +502,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         var dataSets = [LineChartDataSet]()
         dataSets.append(set1)
-        //print("\ndataSets: \n", dataSets)
         
         // 4 - pass our months in for our x-axis label value along with our dataSets
         
@@ -529,12 +511,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // 5 - set our data
         
         self.lineChartView.data = data
-        
     }
-    
-    // Prepare timestamps for formatter
-    
-    
     
     func shortenTimestamp(_ value: Double) -> Double {
         
@@ -545,10 +522,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         let hour = Calendar.current.component(.hour, from: date)
         let minute = Calendar.current.component(.minute, from: date)
         let newNumber: Double = Double(hour) * 100 + Double(minute)
-        
-        //print("value: ", value)
-        //print("newNumber: ", newNumber)
-        //print()
         
         return newNumber
     }

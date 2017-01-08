@@ -12,4 +12,5 @@ enum Notifications {
     static let reverseGeocodingDidFinish = "reverseGeocodingFinish"
     static let fetchCurrentWeatherDidFinish = "currentWeatherFinishedFetching"
     static let settingsDidUpdate = "settingsDidUpdate"
+    static let fetchCurrentWeatherDidFail = "fetchCurrentWeatherDidFail"
 }

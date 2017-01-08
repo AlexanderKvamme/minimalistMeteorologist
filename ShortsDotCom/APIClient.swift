@@ -60,7 +60,6 @@ extension APIClient{
                     NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment:"")
                 ]
                 
-                //En NSError krever 3 ting. Et Domain, en feilmeldingskode, og userInfo
                 let error = NSError(domain: AMKNetworkingErrorDomain, code: MissingHTTPResponseError, userInfo: userInfo)
                 completion(nil, nil, error)
                 return
@@ -82,8 +81,14 @@ extension APIClient{
                         completion(nil, HTTPResponse, error)
                         }
                     
-                    default: print("Received HTTPResponse with statuscode: \(HTTPResponse.statusCode) - not handled ")
-                    }
+                case 403:
+                    print("ERROR 403\n")
+             
+                    NotificationCenter.default.post(name: Notification.Name(rawValue:Notifications.fetchCurrentWeatherDidFail), object: nil, userInfo:  ["errorCode": 20, "errorMessage": "this is the errormessage"])
+                    
+                    
+                default: print("Received HTTPResponse with statuscode: \(HTTPResponse.statusCode) - not handled ")
+                }
             }
         })
          return task
