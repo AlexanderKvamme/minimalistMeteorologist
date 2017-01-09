@@ -442,11 +442,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         // TASK: - TODO: Denne neste linjnen bugger seg av og til
         self.lineChartView.xAxis.axisMinimum = shortenedTimestamps[0]
-        self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
+        //self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         self.lineChartView.xAxis.granularity = 2
         
         // Padding
-        self.lineChartView.extraBottomOffset = 8
+        self.lineChartView.setExtraOffsets(left: 20, top: 0, right: 20, bottom: 10)
     }
     
     
