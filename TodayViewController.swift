@@ -289,10 +289,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dateLabel.text = day.formattedDate
                 self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
                 self.summaryLabel.text = day.summary
-                self.stack3Label.text = day.windSpeedInPreferredUnit.description
+                self.stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value)))  + " " + day.windSpeedInPreferredUnit.unit.symbol
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-                self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
+                print(Int(round(day.averageTemperatureInPreferredUnit.value)))
+                self.stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
             }
         }
     }
@@ -314,10 +315,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             self.dateLabel.text = day.formattedDate
             self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
             self.summaryLabel.text = day.summary
-            self.stack3Label.text = day.windSpeedInPreferredUnit.description
+            self.stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value))) + " " + day.windSpeedInPreferredUnit.unit.symbol
             self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
             self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-            self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
+            self.stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
+            
         }
     }
     
@@ -341,11 +343,14 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.dateLabel.text = day.formattedDate
                 self.weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
                 self.summaryLabel.text = day.summary
-                self.stack3Label.text = day.windSpeedInPreferredUnit.description
+                
+                self.stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value))) + " " + day.windSpeedInPreferredUnit.unit.symbol
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-                self.stack1Label.text = day.averageTemperatureInPreferredUnit.description
-            }
+                self.stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
+    
+    
+        }
         }
     }
     
@@ -364,7 +369,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeftHandler))
         swipeLeftGestureRecognizer.direction = .left
         self.view.addGestureRecognizer(swipeLeftGestureRecognizer)
-
         
         // swipe down
         
@@ -372,6 +376,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeDownHandler))
         swipeDownGestureRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeDownGestureRecognizer)
+        
     }
     
     func swipeDownHandler(){
@@ -526,4 +531,3 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         return newNumber
     }
 }
-
