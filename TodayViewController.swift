@@ -464,6 +464,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         // 1 - Creating an array of data entries
         
         var valuesToGraph: [ChartDataEntry] = [ChartDataEntry]()
+    
         
         for i in 0 ..< temperatures.count {
             valuesToGraph.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
@@ -507,6 +508,14 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         var dataSets = [LineChartDataSet]()
         dataSets.append(set1)
+        print("datasets")
+        print(dataSets)
+        
+        if temperatures.count == 1 {
+            print(" few temps. Check out ")
+            print("datasets:")
+            print(dataSets)
+        }
         
         // 4 - pass our months in for our x-axis label value along with our dataSets
         
