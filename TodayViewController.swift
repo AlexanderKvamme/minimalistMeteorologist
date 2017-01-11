@@ -127,6 +127,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     
     func setAnimation(direction: AnimationDirection){
+        
         self.myAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
             
             let dayLabelPos = self.dayLabel.center.y
