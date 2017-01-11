@@ -235,6 +235,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
             if let hourlyData = latestExtendedWeatherFetched?.dailyWeather?[dayIndex].hourData{
                 
+                print("TODO:hourlyData: \n", hourlyData)
                 var temperatureArray: [Double] = []
                 var timestampArray: [Double] = []
                 var shortenedTimestampArray: [Double] = []
@@ -292,7 +293,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value)))  + " " + day.windSpeedInPreferredUnit.unit.symbol
                 self.stack2Label.text = (day.precipProbabilityPercentage?.description)! + "%"
                 self.stack2Image.image = UIImage(named: (day.precipIcon?.rawValue)!)
-                print(Int(round(day.averageTemperatureInPreferredUnit.value)))
                 self.stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
             }
         }
@@ -508,8 +508,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         var dataSets = [LineChartDataSet]()
         dataSets.append(set1)
-        print("datasets")
-        print(dataSets)
         
         if temperatures.count == 1 {
             print(" few temps. Check out ")

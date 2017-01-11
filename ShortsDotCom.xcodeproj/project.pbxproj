@@ -223,6 +223,7 @@
 		DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA785A21DD2732D00A976D5 /* Extensions.swift */; };
 		DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
+		DDED7FA01E2571E7002B7E1C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDED7F9F1E2571E7002B7E1C /* MapKit.framework */; };
 		FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */; };
 /* End PBXBuildFile section */
 
@@ -448,6 +449,7 @@
 		DDA785A21DD2732D00A976D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTableViewCell.xib; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		DDED7F9F1E2571E7002B7E1C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -456,6 +458,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDED7FA01E2571E7002B7E1C /* MapKit.framework in Frameworks */,
 				FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +469,7 @@
 		289B8FFC5DB462C0910F0E7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDED7F9F1E2571E7002B7E1C /* MapKit.framework */,
 				1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */,
 			);
 			name = Frameworks;
@@ -840,8 +844,13 @@
 				TargetAttributes = {
 					DDA2770C1D786516001B5FBD = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = RMURDMDZGD;
+						DevelopmentTeam = 52VSB9N5CT;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1261,10 +1270,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderkvamme.ShortsDotCom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HomeOfficesInternational.WindVane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1276,10 +1286,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderkvamme.ShortsDotCom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HomeOfficesInternational.WindVane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

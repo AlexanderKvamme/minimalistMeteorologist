@@ -27,7 +27,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
 
-        toggleLoadingUI(true)
+        toggleLoadingMode(true)
         setUserDefaultsIfInitialRun()
         UserLocation.sharedInstance.updateLocation() // fetches weather after gps update
         
@@ -47,7 +47,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     // Data
     
-    func toggleLoadingUI(_ status: Bool){
+    func toggleLoadingMode(_ status: Bool){
     
         switch status{
         
@@ -78,11 +78,11 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     func updateExtendedCurrentWeather(){
         
-        toggleLoadingUI(true)
+        toggleLoadingMode(true)
         
         forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
             
-            self.toggleLoadingUI(false)
+            self.toggleLoadingMode(false)
             
             switch apiresult{
                 
@@ -116,7 +116,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             case .failure(let error as NSError):
                 
                 print("Extended Fetch Failed")
-                self.toggleLoadingUI(true)
+                self.toggleLoadingMode(true)
                 showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
                 
             default: break

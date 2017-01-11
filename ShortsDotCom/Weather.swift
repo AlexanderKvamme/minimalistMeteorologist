@@ -251,7 +251,6 @@ extension ExtendedCurrentWeather: JSONDecodable{
     init?(JSON fullJSON: [String : AnyObject]) {
         
         // Task: - Initialize currentWeather
-        
         if let currentlyJSON = fullJSON["currently"] as? [String : AnyObject] {
         
             if let temp = CurrentWeather(JSON: currentlyJSON){
@@ -291,6 +290,8 @@ extension ExtendedCurrentWeather: JSONDecodable{
                 for hour in data{
                 
                     let myHourData = HourData(hourDictionary: hour)
+                    print("hourlyJson temp:", myHourData?.temperature)
+                    print("hourlyJson time:", myHourData?.time)
                     if let myHourData = myHourData{
                         array.append(myHourData)
                     }
