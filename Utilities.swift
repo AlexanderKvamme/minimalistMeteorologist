@@ -20,7 +20,6 @@ extension UILabel {
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: CGFloat.greatestFiniteMagnitude))
         
-        print("WILLBTRUNCATED WORKING WITH LABEL WIDTH: ", label.bounds.width)
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = self.font

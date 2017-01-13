@@ -326,21 +326,16 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func balanceText(_ text: String, overLines: Int) -> String {
         
-        print()
-        print("- start -")
-        print()
-        
         var i = [Int]()
         var x = [Int]()
         var chars = Array(text.characters)
         
-        print("char count: ", chars.count)
         for index in 0..<overLines-1{
-            // 56 / 2 skal bli 28 men blir 18?
+        
             i.append(chars.count/overLines * (index+1))
             x.append(chars.count/overLines * (index+1))
         }
-        print("array har valgt splitpunkter: ", i)
+        
         
         for index in (0..<i.count).reversed(){
             
@@ -356,73 +351,9 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             } else {
                 chars.insert("\n", at: x[index]+1)
             }
-            
-            print()
-            print("after this split string is now: \n", String(chars))
-            print("--- ")
-            print()
         }
         
         return String(chars)
-    }
-    
-    func newSplittedString(text input: String, targetLabel: UILabel) -> String {
-        
-        var i = [Int]()
-        var x = [Int]()
-        //var text = input.replacingOccurrences(of: "\n", with: "", options: NSString.CompareOptions.literal, range:nil)
-        var text = input
-        var chars = Array(text.characters)
-        print("mottar initial:", input)
-        print("mottar uten newLines", text)
-        print()
-        print("while loop start")
-        print("---")
-        
-        //targetLabel.numberOfLines = 1
-        print("will b truncated? ", targetLabel.willBeTruncated())
-        // Start splitting if willBeTruncated - begynner med 2 linjer, men truncated, så vi legger til en tredje linje
-        while targetLabel.willBeTruncated(){
-            
-            targetLabel.numberOfLines += 1 // Må splittes. øker med en linjer
-            print("will b truncated: ", targetLabel.willBeTruncated())
-            print("så legger til en linje og vi har nå ant linjer: ", targetLabel.numberOfLines)
-            text = input // starter med ren tekst igjen
-            
-            for index in 0..<targetLabel.numberOfLines-1{
-                
-                // generate search starting point for each
-                
-                i.append(chars.count/targetLabel.numberOfLines * (index+1))
-                x.append(chars.count/targetLabel.numberOfLines * (index+1))
-            }
-            
-            print("array har valgt splitpunkter: ", i)
-            
-            // move pointers
-            print("chars før greien: ", String(chars))
-            for index in (0..<i.count).reversed(){
-                
-                while chars[i[index]] != " " && chars[x[index]] != " " {
-                    i[index] -= 1
-                    x[index] += 1
-                }
-                
-                if chars[i[index]] == " " {
-                    chars.insert("\n", at: i[index]+1)
-                } else {
-                    chars.insert("\n", at: x[index]+1)
-                }
-                print("string so far: \n", String(chars))
-                print(" --------- ")
-            }
-            
-            print("number of lines is now: ", targetLabel.numberOfLines)
-            print("returning:\n", String(chars))
-            return String(chars)
-        }
-        print("didnt have to split lines. returning original text")
-        return input
     }
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {

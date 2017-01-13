@@ -17,6 +17,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var checkmarkView: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var todayButton: UIButton!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
     
     var isFetching: Bool = true
@@ -28,6 +29,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
 
+        todayButton.layer.borderWidth = 2
+        //todayButton.layer.cornerRadius = 5
+        todayButton.layer.borderColor = UIColor.black.cgColor
+        
         toggleLoadingMode(true)
         setUserDefaultsIfInitialRun()
         UserLocation.sharedInstance.updateLocation() // fetches weather after gps update

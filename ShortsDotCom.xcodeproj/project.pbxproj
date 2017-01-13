@@ -232,7 +232,7 @@
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
 		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourBasedLineChartFormatter.swift; sourceTree = "<group>"; };
-		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ShortsDotCom/APIClient.swift; sourceTree = "<group>"; };
+		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
 		DD19EC601DAE802D00986C39 /* Activity Indicators@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators@2x.png"; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 		DD19ECD61DAE802D00986C39 /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind@3x.png"; sourceTree = "<group>"; };
 		DD19ED4F1DAE807B00986C39 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
-		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = ShortsDotCom/Global.swift; sourceTree = "<group>"; };
 		DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
 		DD28BEF51DD948E900C742D3 /* WeeksDetailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeksDetailedTableViewController.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 		DD543D641DAAE5F900CD6AC4 /* loading_00077.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00077.png; sourceTree = "<group>"; };
 		DD543D651DAAE5F900CD6AC4 /* loading_00078.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00078.png; sourceTree = "<group>"; };
 		DD543D661DAAE5F900CD6AC4 /* loading_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_00079.png; sourceTree = "<group>"; };
-		DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCenterKeys.swift; path = ShortsDotCom/NotificationCenterKeys.swift; sourceTree = "<group>"; };
+		DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenterKeys.swift; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
 		DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@3x.png"; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 		DDA0A0FC1DB3B20400011F94 /* settingsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsButton@2x.png"; sourceTree = "<group>"; };
 		DDA0A0FD1DB3B20400011F94 /* settingsButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsButton@3x.png"; sourceTree = "<group>"; };
 		DDA2770D1D786516001B5FBD /* ShortsDotCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortsDotCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDA277101D786516001B5FBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ShortsDotCom/AppDelegate.swift; sourceTree = "<group>"; };
+		DDA277101D786516001B5FBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDA277151D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -737,9 +737,7 @@
 		DD84EC3E1DBBC212000E7C96 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DDA277101D786516001B5FBD /* AppDelegate.swift */,
-				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
-				DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */,
+				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
 				DD3F308D1E2451D300AA4C33 /* Utilities.swift */,
 			);
 			name = "Helper Classes";
@@ -782,7 +780,9 @@
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
 				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
-				DD2736CD1DC7B4E0008F2389 /* Global.swift */,
+				DDA277101D786516001B5FBD /* AppDelegate.swift */,
+				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
+				DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */,
 			);
 			path = ShortsDotCom;
 			sourceTree = "<group>";
