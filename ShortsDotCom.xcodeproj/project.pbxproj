@@ -161,7 +161,7 @@
 		DD38E5521E15C18F0060BABE /* snow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD38E54F1E15C18E0060BABE /* snow@1x.png */; };
 		DD38E5531E15C18F0060BABE /* snow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD38E5501E15C18E0060BABE /* snow@2x.png */; };
 		DD38E5541E15C18F0060BABE /* snow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD38E5511E15C18E0060BABE /* snow@3x.png */; };
-		DD3F308E1E2451D300AA4C33 /* BalancedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F308D1E2451D300AA4C33 /* BalancedLabel.swift */; };
+		DD3F308E1E2451D300AA4C33 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F308D1E2451D300AA4C33 /* Utilities.swift */; };
 		DD3F30911E24520400AA4C33 /* Poly-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD3F308F1E24520400AA4C33 /* Poly-Italic.ttf */; };
 		DD3F30921E24520400AA4C33 /* Poly-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD3F30901E24520400AA4C33 /* Poly-Regular.ttf */; };
 		DD4DCBBB1DE5AA4F0003C791 /* partly-cloudy-night.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */; };
@@ -385,7 +385,7 @@
 		DD38E54F1E15C18E0060BABE /* snow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow@1x.png"; sourceTree = "<group>"; };
 		DD38E5501E15C18E0060BABE /* snow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow@2x.png"; sourceTree = "<group>"; };
 		DD38E5511E15C18E0060BABE /* snow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow@3x.png"; sourceTree = "<group>"; };
-		DD3F308D1E2451D300AA4C33 /* BalancedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancedLabel.swift; sourceTree = "<group>"; };
+		DD3F308D1E2451D300AA4C33 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		DD3F308F1E24520400AA4C33 /* Poly-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poly-Italic.ttf"; sourceTree = "<group>"; };
 		DD3F30901E24520400AA4C33 /* Poly-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poly-Regular.ttf"; sourceTree = "<group>"; };
 		DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night.png"; sourceTree = "<group>"; };
@@ -740,7 +740,7 @@
 				DDA277101D786516001B5FBD /* AppDelegate.swift */,
 				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
 				DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */,
-				DD3F308D1E2451D300AA4C33 /* BalancedLabel.swift */,
+				DD3F308D1E2451D300AA4C33 /* Utilities.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -1145,7 +1145,7 @@
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
-				DD3F308E1E2451D300AA4C33 /* BalancedLabel.swift in Sources */,
+				DD3F308E1E2451D300AA4C33 /* Utilities.swift in Sources */,
 				DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */,
 				DD28BEF61DD948E900C742D3 /* WeeksDetailedTableViewController.swift in Sources */,
 				DD4DCBC11DE5D2630003C791 /* DayTableViewCell.swift in Sources */,

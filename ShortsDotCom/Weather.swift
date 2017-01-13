@@ -290,8 +290,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
                 for hour in data{
                 
                     let myHourData = HourData(hourDictionary: hour)
-                    print("hourlyJson temp:", myHourData?.temperature)
-                    print("hourlyJson time:", myHourData?.time)
+                   
                     if let myHourData = myHourData{
                         array.append(myHourData)
                     }

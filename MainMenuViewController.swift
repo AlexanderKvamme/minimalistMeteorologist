@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     // ViewDidLoad
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
