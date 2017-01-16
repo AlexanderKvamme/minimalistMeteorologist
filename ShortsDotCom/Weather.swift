@@ -280,7 +280,7 @@ extension ExtendedCurrentWeather: JSONDecodable{
             }
         }
         
-        // TASK: - Initialze Array of HourData
+        // TASK: - Initialze Array of HourData 
     
         if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
         
