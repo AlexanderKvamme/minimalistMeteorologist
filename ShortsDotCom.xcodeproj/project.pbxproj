@@ -223,8 +223,9 @@
 		DDA785A31DD2732D00A976D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA785A21DD2732D00A976D5 /* Extensions.swift */; };
 		DDBC8B4F1DDFD1C4005E6FE1 /* DayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */; };
 		DDD956FC1DD2113E0089FA53 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */; };
-		DDED7FA01E2571E7002B7E1C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDED7F9F1E2571E7002B7E1C /* MapKit.framework */; };
-		FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */; };
+		DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B11E2D31BF0030E45A /* OnboardingView.swift */; };
+		DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B51E2D39610030E45A /* OnboardingViewController.swift */; };
+		DDEDDEE71E2D424B00D298EE /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -449,7 +450,10 @@
 		DDA785A21DD2732D00A976D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DDBC8B4D1DDFD1C4005E6FE1 /* DayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTableViewCell.xib; sourceTree = "<group>"; };
 		DDD956FB1DD2113E0089FA53 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		DDE215B11E2D31BF0030E45A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		DDE215B51E2D39610030E45A /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DDED7F9F1E2571E7002B7E1C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_ShortsDotCom.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ShortsDotCom-ghuyujaxsdtkxvabwrlpykixxvwd/Build/Products/Debug-iphonesimulator/Pods_ShortsDotCom.framework"; sourceTree = "<group>"; };
 		F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -458,8 +462,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDED7FA01E2571E7002B7E1C /* MapKit.framework in Frameworks */,
-				FEFED28E1F23DFB88AFFDDCC /* Pods_ShortsDotCom.framework in Frameworks */,
+				DDEDDEE71E2D424B00D298EE /* Pods_ShortsDotCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +472,7 @@
 		289B8FFC5DB462C0910F0E7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */,
 				DDED7F9F1E2571E7002B7E1C /* MapKit.framework */,
 				1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */,
 			);
@@ -746,6 +750,7 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DDE215B01E2D31650030E45A /* Onboarding */,
 				DD0F13321DFAD2090077FB36 /* Data */,
 				DDB19B5E1DEC4DEE00E8C012 /* Main Menu */,
 				DD2C3AAD1DF1E1E300DA953C /* Today */,
@@ -807,6 +812,15 @@
 				DDA785A21DD2732D00A976D5 /* Extensions.swift */,
 			);
 			name = "Weekly Weather";
+			sourceTree = "<group>";
+		};
+		DDE215B01E2D31650030E45A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DDE215B11E2D31BF0030E45A /* OnboardingView.swift */,
+				DDE215B51E2D39610030E45A /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1127,6 +1141,7 @@
 				DD375FFF1DB508C0009AE7FC /* AutoTextView.swift in Sources */,
 				DD3760191DB508C0009AE7FC /* UnwindSegue.swift in Sources */,
 				DD3760161DB508C0009AE7FC /* SpringView.swift in Sources */,
+				DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */,
 				DD3760131DB508C0009AE7FC /* SpringLabel.swift in Sources */,
 				DD37600A1DB508C0009AE7FC /* KeyboardLayoutConstraint.swift in Sources */,
 				DD375FFD1DB508C0009AE7FC /* AsyncButton.swift in Sources */,
@@ -1143,6 +1158,7 @@
 				DD4DCBC41DE5D5310003C791 /* WeekTableViewController.swift in Sources */,
 				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
+				DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */,
 				DD3760031DB508C0009AE7FC /* DesignableLabel.swift in Sources */,
 				DD3760101DB508C0009AE7FC /* SpringAnimation.swift in Sources */,
 				DD3F308E1E2451D300AA4C33 /* Utilities.swift in Sources */,
@@ -1268,7 +1284,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;
@@ -1284,7 +1299,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = ShortsDotCom/Info.plist;

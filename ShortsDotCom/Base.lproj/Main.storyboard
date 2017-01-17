@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IoU-2Z-I2i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sd5-Pg-gL6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -196,6 +196,77 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1372" y="313.49325337331339"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="dEu-nu-yGd">
+            <objects>
+                <viewController id="sd5-Pg-gL6" customClass="OnboardingViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a7k-mu-pOQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ywq-RL-2HN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jhf-r3-FtC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYw-c7-495" customClass="OnboardingView" customModule="ShortsDotCom" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFO-PD-eiF" userLabel="Button Stack">
+                                <rect key="frame" x="26" y="496" width="268" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKr-af-7vZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="50"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="3" maxX="10" maxY="3"/>
+                                        <state key="normal" title="NO THANKS">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="noButton:" destination="sd5-Pg-gL6" eventType="touchUpInside" id="Xnp-3w-dxO"/>
+                                            <segue destination="IoU-2Z-I2i" kind="show" id="YdJ-hH-SNp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD4-Rw-x3m">
+                                        <rect key="frame" x="106" y="0.0" width="162" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="ALLOW">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="yesButton:" destination="sd5-Pg-gL6" eventType="touchUpInside" id="6QT-d6-xyS"/>
+                                            <segue destination="IoU-2Z-I2i" kind="show" id="n86-vy-eyb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Pq3-1a-Yot"/>
+                                    <constraint firstAttribute="height" constant="50" id="w2K-1h-L8A"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JYw-c7-495" firstAttribute="leading" secondItem="jhf-r3-FtC" secondAttribute="leading" id="3l6-8y-5Ar"/>
+                            <constraint firstAttribute="trailing" secondItem="JYw-c7-495" secondAttribute="trailing" id="76Q-ce-OUU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DFO-PD-eiF" secondAttribute="trailing" constant="10" id="7g2-cw-0gj"/>
+                            <constraint firstItem="DFO-PD-eiF" firstAttribute="centerX" secondItem="JYw-c7-495" secondAttribute="centerX" id="922-j3-74R"/>
+                            <constraint firstItem="ywq-RL-2HN" firstAttribute="top" secondItem="JYw-c7-495" secondAttribute="bottom" id="TCc-xr-iWM"/>
+                            <constraint firstItem="DFO-PD-eiF" firstAttribute="leading" secondItem="jhf-r3-FtC" secondAttribute="leadingMargin" constant="10" id="TlP-Pd-fFR"/>
+                            <constraint firstItem="JYw-c7-495" firstAttribute="top" secondItem="jhf-r3-FtC" secondAttribute="top" id="q3S-Df-isq"/>
+                            <constraint firstItem="ywq-RL-2HN" firstAttribute="top" secondItem="DFO-PD-eiF" secondAttribute="centerY" constant="47" id="v2F-AO-WSd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonStack" destination="DFO-PD-eiF" id="jsa-zc-xX5"/>
+                        <outlet property="onboardingView" destination="JYw-c7-495" id="nZx-j5-bAL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZa-Oj-K3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1215" y="1135.5633802816901"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="u6N-Ap-Suq">
@@ -693,7 +764,7 @@
                                 <rect key="frame" x="36" y="483" width="248" height="75"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vRG-uj-sME">
-                                        <rect key="frame" x="42.5" y="37" width="163" height="29"/>
+                                        <rect key="frame" x="43" y="37" width="163" height="29"/>
                                         <segments>
                                             <segment title="SI"/>
                                             <segment title="US"/>
@@ -706,7 +777,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Units of measurement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0I-8O-7QJ">
-                                        <rect key="frame" x="33.5" y="10" width="181" height="21"/>
+                                        <rect key="frame" x="34" y="10" width="181" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -764,4 +835,7 @@
         <image name="temperature.png" width="8" height="84"/>
         <image name="weathercock.png" width="68" height="99"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="n86-vy-eyb"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,5 +7,6 @@ target 'ShortsDotCom' do
 
   # Pods for ShortsDotCom
   pod 'Charts'
+  pod 'paper-onboarding'
 
 end
