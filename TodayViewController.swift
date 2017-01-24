@@ -75,7 +75,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func move(gesture: UIPanGestureRecognizer){
         
-        if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) {
+        //if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) {
+        if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50)  && gesture.state == .ended{
             self.swipeDownHandler()
         }
         
@@ -442,6 +443,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func swipeDownHandler(){
 
+        print("swiping down handler")
         self.performSegue(withIdentifier: "unwindToMainMenu", sender: self)
     }
     

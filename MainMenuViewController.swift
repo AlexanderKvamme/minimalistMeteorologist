@@ -18,39 +18,64 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var checkmarkView: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var todayButton: UIButton!
-    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {
+        print("unWindToMainMenu()")
+    }
     
-    var isFetching: Bool = true
+    var isFetching = false
     
     // ViewDidLoad
     
-    
     override func viewDidLoad() {
         
+        print("vdl starter med isFetchint:", isFetching)
+        
         super.viewDidLoad()
-
+        
+        setUserDefaultsIfInitialRun()
+        
+        buttonStack.isUserInteractionEnabled = false
+        activityIndicator.isHidden = true
+        
         todayButton.layer.borderWidth = 2
-        //todayButton.layer.cornerRadius = 5
         todayButton.layer.borderColor = UIColor.black.cgColor
         
-        toggleLoadingMode(true)
-        setUserDefaultsIfInitialRun()
-        UserLocation.sharedInstance.updateLocation() // fetches weather after gps update
-        
         // Set observers
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
-
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
             notification in
-
+            
             if self.presentedViewController == nil {
-                    showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
+                showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
             }
         }
+        
+        
+        // willAllowLocationServices test
+        UserDefaults.standard.synchronize()
+        print("tester om vi har allowed: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
+        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true{
+            
+            UserLocation.sharedInstance.updateLocation()
+        } else {
+            
+            toggleLoadingMode(true)
+            isFetching = false
+            activityIndicator.isHidden = true
+        }
+        
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // TOOO
+        print("vda")
+        UIApplication.shared.keyWindow?.rootViewController = self
+    }
+
     // Data
     
     func toggleLoadingMode(_ status: Bool){
@@ -81,6 +106,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
         }
     }
+    
+    //override func viewDidAppear(_ animated: Bool) {
+        //
+    //}
     
     func updateExtendedCurrentWeather(){
         
@@ -131,8 +160,33 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        if isFetching == false {
-            self.updateExtendedCurrentWeather()
+
+        print("\nWhen starting motionBegan:")
+        print(" - willAllowLocationServices: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
+        print(" - isFetching: ", isFetching)
+        
+        // test
+        
+        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true && isFetching == false {
+            
+            print("willAllowLocationServices is true and isFetching is false, so starting fetch")
+            UserLocation.sharedInstance.updateLocation() // Fetches weather after gps update
+        } else {
+            
+            // User has not allowed Location Services
+            
+            let alertMe = UIAlertController(title: "Location Services needed", message: "In order to provide you with the latest local weather, you need to give us access to your location!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alertMe.addAction(UIAlertAction(title: "No thanks", style: UIAlertActionStyle.cancel, handler: nil))
+            
+            alertMe.addAction(UIAlertAction(title: "Allow", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+                UserDefaults.standard.setValue(true, forKey: "willAllowLocationServices")
+                UserDefaults.standard.synchronize()
+                UserLocation.sharedInstance.updateLocation()
+            }))
+            
+            present(alertMe, animated: true, completion: nil)
         }
     }
 

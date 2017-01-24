@@ -13,14 +13,32 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
 
     @IBOutlet weak var buttonStack: UIStackView!
 
-    @IBAction func yesButton(_ sender: Any) {
-        print("set global flag 'didAllowGPS' or something")
+    override func viewDidDisappear(_ animated: Bool) {
+        print("OnBoardingView did disappear")
     }
+    @IBAction func yesButton(_ sender: Any) {
+        
+        print("yesButton kjøres NÅ")
+        print("tapped yes, setting TRUE for willAllowLocationServices")
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "onboardingComplete")
+        userDefaults.set(true, forKey: "willAllowLocationServices")
+        userDefaults.synchronize()
+        
+        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+    }
+    
     @IBAction func noButton(_ sender: Any) {
-        print("set global flag 'didAllowGPS' or something")
+        
+        print("tapped no, setting FALSE for willAllowLocationServices")
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "onboardingComplete")
+        userDefaults.set(false, forKey: "willAllowLocationServices")
+        userDefaults.synchronize()
     }
 
-    
     @IBOutlet weak var onboardingView: OnboardingView!
     
     override func viewDidLoad() {
@@ -33,6 +51,10 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         // Do any additional setup after loading the view.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        print("prepare for segue Ruinning")
+    }
     
     // Delegate Functions
     
@@ -44,6 +66,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
                 UIView.animate(withDuration: 0.4, animations: {
                     self.buttonStack.alpha = 1
                 })
+    
             }
         } else {
             if self.buttonStack.alpha != 0{
@@ -57,26 +80,35 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         //print
     }
     func onboardingConfigurationItem(_ item: OnboardingContentViewItem, index: Int) {
-        //bam
+        
+        //item.
     }
     
     // DataSource functions
     
     func onboardingItemAtIndex(_ index: Int) -> OnboardingItemInfo {
         
-        let backgroundColor1 = UIColor(red: 217/255, green: 72/255, blue: 89/255, alpha: 1)
-        let backgroundColor2 = UIColor(red: 200/255, green: 72/255, blue: 89/255, alpha: 1)
-        let backgroundColor3 = UIColor(red: 180/255, green: 72/255, blue: 89/255, alpha: 1)
+        let backgroundColor1 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        let backgroundColor2 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        let backgroundColor3 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         let titleFont = UIFont(name: "AvenirNext-Bold", size: 24)!
         let descriptionFont = UIFont(name: "AvenirNext-Regular", size: 18)!
         
         return [(
-            "onboardingScreen1", "Welcome!", "blabla lots of text goes here check it out", "test", backgroundColor1, UIColor.white, UIColor.white, titleFont, descriptionFont),
+            "onboarding1",
+            "Lets get started!",
+            "Learn how to get a quick and simple overview of your current weather. \n\nSwipe left to get going!",
+            "1test",
+            backgroundColor1,
+            UIColor.black,
+            UIColor.black,
+            titleFont,
+            descriptionFont),
                 
-                ("onboardingScreen2", "Shake it up", "blabla lots of text goes here check it out", "test", backgroundColor2, UIColor.white, UIColor.white, titleFont, descriptionFont),
+                ("onboarding2", "Shake to refresh!", "To stay up to date, remember to shake your device to fetch the newest weather forecast when you start the application. \n\nNew data available every hour.", "2test", backgroundColor2, UIColor.black, UIColor.black, titleFont, descriptionFont),
                 
-                ("onboardingScreen3", "Lets get started!", "blabla lots of text goes here check it out", "", backgroundColor3, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
+                ("onboarding3", "Share your location!", "To get started, enable location services so we can see what  weather to fetch for you! \n\n Have fun!", "", backgroundColor3, UIColor.black, UIColor.black, titleFont, descriptionFont)][index]
     }
     
     func onboardingItemsCount() -> Int {

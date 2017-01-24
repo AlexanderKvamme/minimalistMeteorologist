@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sd5-Pg-gL6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-a3-4xE">
-                                <rect key="frame" x="0.0" y="297" width="320" height="271"/>
+                                <rect key="frame" x="0.0" y="296.5" width="320" height="271.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mwt-fZ-gmn">
                                     <size key="itemSize" width="120" height="160"/>
@@ -128,23 +128,23 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpp-Rh-2AR">
-                                <rect key="frame" x="42" y="220" width="237" height="27"/>
+                                <rect key="frame" x="42.5" y="220" width="236.5" height="26.5"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-14-equ">
-                                <rect key="frame" x="150" y="265" width="20" height="20"/>
+                                <rect key="frame" x="150" y="264.5" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5UQ-5o-VfK" userLabel="animationView">
-                                <rect key="frame" x="130" y="255" width="60" height="39"/>
+                                <rect key="frame" x="130" y="254.5" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Zds-A0-8r5"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Test, Testingtown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-kz-elv">
-                                <rect key="frame" x="0.0" y="246" width="320" height="12"/>
+                                <rect key="frame" x="0.0" y="245.5" width="320" height="12"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -200,7 +200,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="dEu-nu-yGd">
             <objects>
-                <viewController id="sd5-Pg-gL6" customClass="OnboardingViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingBoard" id="sd5-Pg-gL6" customClass="OnboardingViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a7k-mu-pOQ"/>
                         <viewControllerLayoutGuide type="bottom" id="ywq-RL-2HN"/>
@@ -217,7 +217,7 @@
                                 <rect key="frame" x="26" y="496" width="268" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKr-af-7vZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="134" height="50"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="3" maxX="10" maxY="3"/>
                                         <state key="normal" title="NO THANKS">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -228,7 +228,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD4-Rw-x3m">
-                                        <rect key="frame" x="106" y="0.0" width="162" height="50"/>
+                                        <rect key="frame" x="134" y="0.0" width="134" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -242,6 +242,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="CD4-Rw-x3m" firstAttribute="width" secondItem="ZKr-af-7vZ" secondAttribute="width" id="L9h-Cr-bWV"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Pq3-1a-Yot"/>
                                     <constraint firstAttribute="height" constant="50" id="w2K-1h-L8A"/>
                                 </constraints>
@@ -271,7 +272,7 @@
         <!--Main Menu View Controller-->
         <scene sceneID="u6N-Ap-Suq">
             <objects>
-                <viewController id="IoU-2Z-I2i" customClass="MainMenuViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenuBoard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IoU-2Z-I2i" customClass="MainMenuViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rsb-yS-Ukg"/>
                         <viewControllerLayoutGuide type="bottom" id="hel-UJ-yIP"/>
@@ -533,7 +534,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-42-AJI">
-                                <rect key="frame" x="141" y="72.5" width="39" height="17"/>
+                                <rect key="frame" x="140.5" y="72.5" width="39" height="17"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
