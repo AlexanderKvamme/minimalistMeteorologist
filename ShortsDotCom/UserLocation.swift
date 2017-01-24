@@ -77,6 +77,11 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        // TASK: TODO - Vise feilmelding hvor det står at bruker må enable Location Services
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.locationManagerFailed), object: self)
+        
         print("locationManager failed, returning error: \"\(error)\"")
     }
     

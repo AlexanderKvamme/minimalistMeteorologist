@@ -18,25 +18,24 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
     }
     @IBAction func yesButton(_ sender: Any) {
         
-        print("yesButton kjøres NÅ")
-        print("tapped yes, setting TRUE for willAllowLocationServices")
+        print("yesButton kjøres NÅ - tapped yes, setting TRUE for willAllowLocationServices")
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "onboardingComplete")
         userDefaults.set(true, forKey: "willAllowLocationServices")
         userDefaults.synchronize()
         
-        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        performSegue(withIdentifier: "onboardingToMainMenu", sender: self)
     }
     
     @IBAction func noButton(_ sender: Any) {
-        
-        print("tapped no, setting FALSE for willAllowLocationServices")
+        print("noButton kjøres NÅ - Tapped no, setting FALSE for willAllowLocationServices")
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "onboardingComplete")
         userDefaults.set(false, forKey: "willAllowLocationServices")
         userDefaults.synchronize()
+        performSegue(withIdentifier: "onboardingToMainMenu", sender: self)
     }
 
     @IBOutlet weak var onboardingView: OnboardingView!

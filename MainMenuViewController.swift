@@ -18,6 +18,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var checkmarkView: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var todayButton: UIButton!
+    @IBOutlet weak var shakeToRefreshImage: UIImageView!
+    @IBOutlet weak var enableGPSImage: UIImageView!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {
         print("unWindToMainMenu()")
     }
@@ -28,13 +30,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         
-        print("vdl starter med isFetchint:", isFetching)
-        
         super.viewDidLoad()
         
         setUserDefaultsIfInitialRun()
         
         buttonStack.isUserInteractionEnabled = false
+        shakeToRefreshImage.isHidden = true
         activityIndicator.isHidden = true
         
         todayButton.layer.borderWidth = 2
@@ -46,6 +47,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
             notification in
             
@@ -55,7 +58,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         
+        //SKAL MOTTA DET SOM SENDES FRA
+        
+        // NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        
         // willAllowLocationServices test
+        
         UserDefaults.standard.synchronize()
         print("tester om vi har allowed: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true{
@@ -66,16 +76,25 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             toggleLoadingMode(true)
             isFetching = false
             activityIndicator.isHidden = true
+            shakeToRefreshImage.isHidden = false
         }
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        // TOOO
-        print("vda")
+        
+        // Stops unwind from "TODAY" from unwinding further back (Onboarding)
         UIApplication.shared.keyWindow?.rootViewController = self
+        
     }
 
+    // UI
+    
+    func fetchDidFinishHandler(){
+
+        self.shakeToRefreshImage.isHidden = true
+        self.enableGPSImage.isHidden = true
+    }
+    
     // Data
     
     func toggleLoadingMode(_ status: Bool){
@@ -145,8 +164,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-             
+        
                 NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
+                
+                
                 
             case .failure(let error as NSError):
                 
@@ -161,6 +182,10 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
 
+        //test
+        
+        //start
+        
         print("\nWhen starting motionBegan:")
         print(" - willAllowLocationServices: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
         print(" - isFetching: ", isFetching)
@@ -190,6 +215,11 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
+    func locationManagerFailedHandler(){
+        print("handling no gps allowed")
+        self.enableGPSImage.isHidden = false
+    }
+    
     func settingsDidUpdate(){
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
