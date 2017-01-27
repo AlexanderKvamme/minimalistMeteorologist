@@ -20,13 +20,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var shakeToRefreshImage: UIImageView!
     @IBOutlet weak var enableGPSImage: UIImageView!
-    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {
-        print("unWindToMainMenu()")
-    }
+    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
     
     var isFetching = false
-    
-    // ViewDidLoad
     
     override func viewDidLoad() {
         
@@ -49,6 +45,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
             notification in
             
@@ -57,19 +55,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         
-        
-        //SKAL MOTTA DET SOM SENDES FRA
-        
-        // NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
-        
-        // willAllowLocationServices test
-        
-        UserDefaults.standard.synchronize()
-        print("tester om vi har allowed: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true{
-            
             UserLocation.sharedInstance.updateLocation()
         } else {
             
@@ -82,8 +68,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         
-        // Stops unwind from "TODAY" from unwinding further back (Onboarding)
         UIApplication.shared.keyWindow?.rootViewController = self
+        // Stops unwind from "TODAY" from unwinding further back (Onboarding)
         
     }
 
@@ -126,10 +112,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    //override func viewDidAppear(_ animated: Bool) {
-        //
-    //}
-    
     func updateExtendedCurrentWeather(){
         
         toggleLoadingMode(true)
@@ -156,8 +138,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         
                             newHourlyArray.append(hour)
                         } else{
-                            
-                            //fetchedDays[dayIndex].hourData = newHourlyArray
+                        
                             latestExtendedWeatherFetched!.dailyWeather![dayIndex].hourData = newHourlyArray
                             newHourlyArray.removeAll()
                             dayIndex += 1
@@ -166,8 +147,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 }
         
                 NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
-                
-                
                 
             case .failure(let error as NSError):
                 
@@ -181,16 +160,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-
-        //test
-        
-        //start
-        
-        print("\nWhen starting motionBegan:")
-        print(" - willAllowLocationServices: ", UserDefaults.standard.bool(forKey: "willAllowLocationServices"))
-        print(" - isFetching: ", isFetching)
-        
-        // test
         
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true && isFetching == false {
             
@@ -198,7 +167,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             UserLocation.sharedInstance.updateLocation() // Fetches weather after gps update
         } else {
             
-            // User has not allowed Location Services
+            // If user has not allowed Location Services
             
             let alertMe = UIAlertController(title: "Location Services needed", message: "In order to provide you with the latest local weather, you need to give us access to your location!", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -216,7 +185,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     func locationManagerFailedHandler(){
-        print("handling no gps allowed")
         self.enableGPSImage.isHidden = false
     }
     

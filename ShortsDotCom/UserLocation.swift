@@ -82,7 +82,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.locationManagerFailed), object: self)
         
-        print("locationManager failed, returning error: \"\(error)\"")
+        print("locationManager failed. Enable Location services.")
     }
     
     
