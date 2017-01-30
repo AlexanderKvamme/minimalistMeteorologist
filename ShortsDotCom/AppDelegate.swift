@@ -16,20 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Defines storyboard filename Main.storyboard
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var initialViewController: UIViewController
         
         if UserDefaults.standard.bool(forKey: "onboardingComplete"){
-        
-            print("onboarding was previously completed. Presenting Main")
-            
             initialViewController = storyboard.instantiateViewController(withIdentifier: "MainMenuBoard") as! MainMenuViewController
-            
         } else {
-            print("onboarding was not completed. heading to onboarding")
-            
             initialViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingBoard") as! OnboardingViewController
         }
         

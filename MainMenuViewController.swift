@@ -13,6 +13,8 @@ var latestExtendedWeatherFetched: ExtendedCurrentWeather? = nil
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
+    //MARK: - Properties
+    
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var checkmarkView: UIImageView!
@@ -23,6 +25,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
     
     var isFetching = false
+    
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         
@@ -37,15 +41,29 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         todayButton.layer.borderWidth = 2
         todayButton.layer.borderColor = UIColor.black.cgColor
         
-        // Set observers
+        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true{
+            UserLocation.sharedInstance.updateLocation()
+        } else {
+            toggleLoadingMode(true)
+            isFetching = false
+            activityIndicator.isHidden = true
+            shakeToRefreshImage.isHidden = false
+        }
+    }
+    
+    // MARK: - viewWillAppear
+
+    override func viewWillAppear(_ animated: Bool) {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+        // MARK: Set observers
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
             notification in
@@ -54,34 +72,17 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
             }
         }
-        
-        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true{
-            UserLocation.sharedInstance.updateLocation()
-        } else {
-            
-            toggleLoadingMode(true)
-            isFetching = false
-            activityIndicator.isHidden = true
-            shakeToRefreshImage.isHidden = false
-        }
     }
+    
+    // MARK: viewDidDisappear
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         UIApplication.shared.keyWindow?.rootViewController = self
         // Stops unwind from "TODAY" from unwinding further back (Onboarding)
-        
     }
 
-    // UI
-    
-    func fetchDidFinishHandler(){
-
-        self.shakeToRefreshImage.isHidden = true
-        self.enableGPSImage.isHidden = true
-    }
-    
-    // Data
+    // FIXME: DU ER HER
+    // MARK: -
     
     func toggleLoadingMode(_ status: Bool){
     
@@ -97,8 +98,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             self.buttonStack.isUserInteractionEnabled = false
             self.settingsButton.isUserInteractionEnabled = false
         
-        default:
-            
+        case false:
             self.isFetching = false
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
@@ -107,7 +107,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             self.settingsButton.alpha = 1
             self.buttonStack.isUserInteractionEnabled = true
             self.settingsButton.isUserInteractionEnabled = true
-            
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
         }
     }
@@ -125,7 +124,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let result):
                 
                 latestExtendedWeatherFetched = result
-                print("Extended Fetch Successful")
                 
                 if var fetchedDays = latestExtendedWeatherFetched?.dailyWeather, let fetchedHours = latestExtendedWeatherFetched?.hourlyWeather{
                     
@@ -150,7 +148,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 
             case .failure(let error as NSError):
                 
-                print("Extended Fetch Failed")
                 self.toggleLoadingMode(true)
                 showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
                 
@@ -158,6 +155,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    // MARK: - motionBegan
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         
@@ -182,6 +181,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             
             present(alertMe, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Observer Handlers
+    
+    func fetchDidFinishHandler(){
+        
+        self.shakeToRefreshImage.isHidden = true
+        self.enableGPSImage.isHidden = true
     }
 
     func locationManagerFailedHandler(){

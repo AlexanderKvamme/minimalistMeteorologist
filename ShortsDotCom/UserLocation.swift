@@ -9,19 +9,16 @@
 import Foundation
 import CoreLocation
 
-// Singleton class Location:
-// - Includes all location related functionality across app
-
 class UserLocation: NSObject, CLLocationManagerDelegate {
     
-    // MARK: - variables
+    // MARK: - Properties
     
     var latitude: Double?
     var longitude: Double?
     var coordinate: Coordinate?
     let locationManager = CLLocationManager()
     
-    // MARK: - geoCoder
+    // Geocoder
     
     var geoCoder: CLGeocoder?
     var country = ""
@@ -62,7 +59,6 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         
         // post notification
         NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.userLocationGPSDidUpdate), object: self)
-        
     }
     
     // Update function
@@ -81,6 +77,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         // TASK: TODO - Vise feilmelding hvor det står at bruker må enable Location Services
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.locationManagerFailed), object: self)
+        
         
         print("locationManager failed. Enable Location services.")
     }
