@@ -11,68 +11,42 @@ import paper_onboarding
 
 class OnboardingViewController: UIViewController, PaperOnboardingDataSource, PaperOnboardingDelegate {
 
+    // MARK: Outlets And Buttons
+    
     @IBOutlet weak var buttonStack: UIStackView!
-
-    override func viewDidDisappear(_ animated: Bool) {
-        print("OnBoardingView did disappear")
-    }
+    @IBOutlet weak var onboardingView: OnboardingView!
     @IBAction func yesButton(_ sender: Any) {
-        
-        print("yesButton kjøres NÅ - tapped yes, setting TRUE for willAllowLocationServices")
-        
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "onboardingComplete")
-        userDefaults.set(true, forKey: "willAllowLocationServices")
-        userDefaults.synchronize()
-        
+        UserDefaults.standard.set(true, forKey: "onboardingComplete")
+        UserDefaults.standard.set(true, forKey: "willAllowLocationServices")
+        UserDefaults.standard.synchronize()
         performSegue(withIdentifier: "onboardingToMainMenu", sender: self)
     }
     
     @IBAction func noButton(_ sender: Any) {
-        print("noButton kjøres NÅ - Tapped no, setting FALSE for willAllowLocationServices")
-        
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "onboardingComplete")
-        userDefaults.set(false, forKey: "willAllowLocationServices")
-        userDefaults.synchronize()
+        UserDefaults.standard.set(true, forKey: "onboardingComplete")
+        UserDefaults.standard.set(false, forKey: "willAllowLocationServices")
+        UserDefaults.standard.synchronize()
         performSegue(withIdentifier: "onboardingToMainMenu", sender: self)
     }
 
-    @IBOutlet weak var onboardingView: OnboardingView!
-    
+    // MARK: - viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         onboardingView.dataSource = self
         onboardingView.delegate = self
         buttonStack.alpha = 0
-        
-        // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        print("prepare for segue Ruinning")
-    }
-    
-    // Delegate Functions
+    // MARK: - Delegate Functions
     
     func onboardingWillTransitonToIndex(_ index: Int) {
         
-        // show buttonstack at index 2
-        if index == 2{
-            if self.buttonStack.alpha != 1{
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.buttonStack.alpha = 1
-                })
-    
-            }
+        if index == 2 {
+            UIView.animate(withDuration: 0.4, animations: { self.buttonStack.alpha = 1 })
         } else {
-            if self.buttonStack.alpha != 0{
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.buttonStack.alpha = 0
-                })
-            }
+            UIView.animate(withDuration: 0.4, animations: { self.buttonStack.alpha = 0 })
         }
     }
     func onboardingDidTransitonToIndex(_ index: Int) {

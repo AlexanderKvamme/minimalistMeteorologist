@@ -101,7 +101,6 @@ class ForecastAPIClient: APIClient {
         
         fetch(request: request, parse: { json -> ExtendedCurrentWeather? in
         
-    
              if let fullWeatherDict = json as? [String : AnyObject] {
                 return ExtendedCurrentWeather(JSON:fullWeatherDict)
              }

@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-var latestExtendedWeatherFetched: ExtendedCurrentWeather? = nil
+var latestExtendedWeatherFetch: ExtendedCurrentWeather? = nil
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -51,14 +51,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - viewWillAppear
+    // MARK: - viewWillAppear - Set Observers
 
     override func viewWillAppear(_ animated: Bool) {
         
-        // MARK: Set observers
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeFinishedHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
@@ -74,20 +72,40 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: viewDidDisappear
+    // MARK: - viewDidDisappear - update rootViewController
     
     override func viewDidDisappear(_ animated: Bool) {
-        UIApplication.shared.keyWindow?.rootViewController = self
-        // Stops unwind from "TODAY" from unwinding further back (Onboarding)
+        UIApplication.shared.keyWindow?.rootViewController = self // Stops unwind from "TODAY" from unwinding further back, to Onboarding
     }
-
-    // FIXME: DU ER HER
-    // MARK: -
+    
+    // MARK: - motionBegan
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        
+        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true && isFetching == false {
+            UserLocation.sharedInstance.updateLocation() // this will then fetch new weather after gps update
+        } else {
+            let missingLocationServicesAlert = UIAlertController(title: "Location Services needed", message: "In order to provide you with the latest local weather, you need to give us access to your location!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            missingLocationServicesAlert.addAction(UIAlertAction(title: "No thanks", style: UIAlertActionStyle.cancel, handler: nil))
+            
+            missingLocationServicesAlert.addAction(UIAlertAction(title: "Allow", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+                UserDefaults.standard.setValue(true, forKey: "willAllowLocationServices")
+                UserDefaults.standard.synchronize()
+                UserLocation.sharedInstance.updateLocation()
+            }))
+            
+            present(missingLocationServicesAlert, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Functions
     
     func toggleLoadingMode(_ status: Bool){
-    
-        switch status{
         
+        switch status{
+            
         case true:
             self.isFetching = true
             self.activityIndicator.startAnimating()
@@ -97,7 +115,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             self.settingsButton.alpha = 0.4
             self.buttonStack.isUserInteractionEnabled = false
             self.settingsButton.isUserInteractionEnabled = false
-        
+            
         case false:
             self.isFetching = false
             self.activityIndicator.stopAnimating()
@@ -110,8 +128,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
         }
     }
-    
-    func updateExtendedCurrentWeather(){
+
+    func fetchWeather(){
         
         toggleLoadingMode(true)
         
@@ -123,9 +141,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 
             case .success(let result):
                 
-                latestExtendedWeatherFetched = result
+                latestExtendedWeatherFetch = result
                 
-                if var fetchedDays = latestExtendedWeatherFetched?.dailyWeather, let fetchedHours = latestExtendedWeatherFetched?.hourlyWeather{
+                if let fetchedDays = latestExtendedWeatherFetch?.dailyWeather, let fetchedHours = latestExtendedWeatherFetch?.hourlyWeather{
                     
                     var dayIndex = 0
                     var newHourlyArray = [HourData]()
@@ -133,11 +151,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                     for hour in fetchedHours {
                        
                         if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
-                        
                             newHourlyArray.append(hour)
                         } else{
-                        
-                            latestExtendedWeatherFetched!.dailyWeather![dayIndex].hourData = newHourlyArray
+                            latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = newHourlyArray
                             newHourlyArray.removeAll()
                             dayIndex += 1
                         }
@@ -156,34 +172,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - motionBegan
-    
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        
-        if UserDefaults.standard.bool(forKey: "willAllowLocationServices") == true && isFetching == false {
-            
-            print("willAllowLocationServices is true and isFetching is false, so starting fetch")
-            UserLocation.sharedInstance.updateLocation() // Fetches weather after gps update
-        } else {
-            
-            // If user has not allowed Location Services
-            
-            let alertMe = UIAlertController(title: "Location Services needed", message: "In order to provide you with the latest local weather, you need to give us access to your location!", preferredStyle: UIAlertControllerStyle.alert)
-            
-            alertMe.addAction(UIAlertAction(title: "No thanks", style: UIAlertActionStyle.cancel, handler: nil))
-            
-            alertMe.addAction(UIAlertAction(title: "Allow", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-                
-                UserDefaults.standard.setValue(true, forKey: "willAllowLocationServices")
-                UserDefaults.standard.synchronize()
-                UserLocation.sharedInstance.updateLocation()
-            }))
-            
-            present(alertMe, animated: true, completion: nil)
-        }
-    }
-    
-    // MARK: - Observer Handlers
+    // MARK: - Handlers for observers
     
     func fetchDidFinishHandler(){
         
@@ -198,15 +187,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     func settingsDidUpdate(){
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
-        updateExtendedCurrentWeather()
+        fetchWeather()
     }
 
-    func reverseGeocodeHandler(){
+    func reverseGeocodeFinishedHandler(){
         
         if let latestGPS = UserLocation.sharedInstance.coordinate{
-            
             currentCoordinate = latestGPS
-            updateExtendedCurrentWeather()
+            fetchWeather()
         
         } else {
             showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services. Please enable Location Services in your settings and restart the app to update GPS.", error: nil)
