@@ -3,7 +3,9 @@ import Foundation
 
 final class Animations{
     
-    static var checkmarkImages: [UIImage] = [] // static keyword makes this a type property (property is static in that its assosciated with the Animations class and not an instance)
+    // MARK: - Animation Resources
+    
+    static var checkmarkImages: [UIImage] = []
 
     class func setupAnimation(){
         for i in 40...79 {
@@ -23,12 +25,11 @@ final class Animations{
                 self.setupAnimation()
             }
             
-            imageView.isHidden = false // test Jan 8
+            imageView.isHidden = false
             imageView.animationImages = checkmarkImages
             imageView.animationDuration = 1
             imageView.animationRepeatCount = 1
             imageView.startAnimating()
         }
-
      }
 }

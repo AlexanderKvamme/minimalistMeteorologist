@@ -378,7 +378,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         if dayIndex == (latestExtendedWeatherFetch!.dailyWeather!.count - 2){ // Using 2 to avoid last days often inaccurate data
         } else {
             if let day = latestExtendedWeatherFetch?.dailyWeather?[dayIndex+1]{
-                
                 dayIndex += 1
                 getChartDataForIndexedDay()
                 setChartData()

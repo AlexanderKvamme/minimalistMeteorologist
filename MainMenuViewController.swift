@@ -13,6 +13,12 @@ var latestExtendedWeatherFetch: ExtendedCurrentWeather? = nil
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
+    // FIXME: - Sjekk ut
+    
+    deinit {
+        print("deinitted")
+    }
+    
     //MARK: - Properties
     
     @IBOutlet weak var buttonStack: UIStackView!

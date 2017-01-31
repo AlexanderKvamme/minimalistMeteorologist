@@ -8,10 +8,9 @@
 
 import Foundation
 
-// Building blocks
+// MARK: - Enum
 
 enum Icon: String{
-    
     case clearDay = "clear-day"
     case clearNight = "clear-night"
     case rain = "rain"
@@ -26,7 +25,6 @@ enum Icon: String{
     case unexpectedEnum = "default"
     
     init(rawValue: String){
-        
         switch rawValue{
         case "clear-day": self = .clearDay
         case "clear-night": self = .clearNight
@@ -46,15 +44,13 @@ enum Icon: String{
     }
 }
 
-enum PrecipIcon: String{
-    
+enum PrecipitationIcon: String{
     case sleet = "precipitationSleet"
     case rain = "precipitationRain"
     case snow = "precipitationSnow"
     case unexpectedPrecip = "precipitationDefault"
     
     init(rawValue: String){
-        
         switch rawValue{
         case "sleet": self = .sleet
         case "rain": self = .rain
@@ -64,10 +60,9 @@ enum PrecipIcon: String{
     }
 }
 
-// Data structures
+// MARK: - Data structures
 
 struct DayData{
-    
     var apparentTemperatureMin: Double
     var apparentTemperatureMax: Double
     var averageTemperature: Double
@@ -79,13 +74,12 @@ struct DayData{
     var precipIntensity: Double?
     var precipProbability: Double?
     var precipTypeText: String?
-    var precipIcon: PrecipIcon?
+    var precipIcon: PrecipitationIcon?
     var windSpeed: Double
     var humidity: Double
 }
 
-struct HourData: ComparableDays{
-    
+struct HourData{
     let apparentTemperature: Double
     let cloudCover: Double
     let dewPoint: Double
@@ -94,7 +88,7 @@ struct HourData: ComparableDays{
     let ozone: Double
     let precipIntensity: Double
     let precipProbability: Double
-    let precipType: PrecipIcon
+    let precipType: PrecipitationIcon
     let pressure: Double
     let summary: String
     let temperature: Double
@@ -110,7 +104,6 @@ struct HourData: ComparableDays{
 }
 
 struct MinuteData{
-    
     let time: Double
     let precipIntensity: Double
     let precipIntensityError: Double
@@ -118,14 +111,13 @@ struct MinuteData{
     let precipType: String
 }
 
-struct CurrentWeather: UnitSystemInterchangeable, ComparableDays{
-    
+struct CurrentWeather: DayNameable{
     var timezone: timezone?
     var offset: Int?
     var temperature: Double
     var summary: String
     var WeatherIcon: Icon
-    var precipIcon: PrecipIcon
+    var precipIcon: PrecipitationIcon
     var time: Double
     var precipIntensity: Double?
     var precipProbability: Double
@@ -136,21 +128,16 @@ struct CurrentWeather: UnitSystemInterchangeable, ComparableDays{
 }
 
 struct ExtendedCurrentWeather{
-    
     var currentWeather: CurrentWeather?
     var dailyWeather: [DailyWeather]?
     var hourlyWeather: [HourData]?
     var minutelyWeather: [MinuteData]?
-    
 }
 
-struct DailyWeather{
-    
-    // TASK: - TODO:  med DayData
-    
+struct DailyWeather: DayNameable, windSpeedInPreferredUnit{
+    // FIXME: - Use DayData
     var apparentTemperatureMin: Double
     var apparentTemperatureMax: Double
-    //var averageTemperature: Double
     var temperatureMin: Double
     var temperatureMax: Double
     var summary: String
@@ -159,7 +146,7 @@ struct DailyWeather{
     var precipIntensity: Double?
     var precipProbability: Double?
     var precipTypeText: String?
-    var precipIcon: PrecipIcon?
+    var precipIcon: PrecipitationIcon?
     var windSpeed: Double
     var humidity: Double?
     var dayNumber: Int{
@@ -168,39 +155,31 @@ struct DailyWeather{
         let components = calendar.dateComponents([.day,.month,.year], from: date)
         return components.day!
     }
-    
     var hourData: [HourData]?
-    
     var averageTemperature: Double{
-        
         var sum: Double = 0
-        
         if let hourData = hourData{
-        
             for hour in hourData{
-            
                 sum += hour.temperature
             }
         }
-           return sum/Double(hourData!.count)
+        return sum/Double(hourData!.count)
     }
-    
 }
 
 struct WeeklyWeather{
-    
     var DailyWeatherArray: [DailyWeather]
     
     init(Days: [DailyWeather]){
-        
         self.DailyWeatherArray = Days
     }
 }
 
+// MARK: Failable initializers
+
 extension HourData{
     
     init?(hourDictionary: [String : AnyObject]) {
-        
         guard let apparentTemperature = hourDictionary["apparentTemperature"] as? Double,
             let cloudCover = hourDictionary["cloudCover"] as? Double,
             let dewPoint = hourDictionary["dewPoint"] as? Double,
@@ -215,13 +194,9 @@ extension HourData{
             let time = hourDictionary["time"] as? Double,
             let windBearing = hourDictionary["windBearing"] as? Double,
             let windSpeed = hourDictionary["windSpeed"] as? Double
-            
             else {
-                
-                print("HourData failed:")
-                print(hourDictionary)
-                return nil }
-        
+                return nil
+        }
         self.apparentTemperature = apparentTemperature
         self.cloudCover = cloudCover
         self.dewPoint = dewPoint
@@ -238,39 +213,27 @@ extension HourData{
         self.windSpeed = windSpeed
         
         if precipProbability != 0 {
-        
-            let precipType = hourDictionary["precipType"] as! String
-            self.precipType = PrecipIcon(rawValue: precipType)
-        
-        } else {self.precipType = PrecipIcon.unexpectedPrecip}
+            self.precipType = PrecipitationIcon(rawValue: hourDictionary["precipType"] as! String)
+        } else {
+            self.precipType = PrecipitationIcon.unexpectedPrecip
+        }
     }
 }
 
 extension ExtendedCurrentWeather: JSONDecodable{
     
     init?(JSON fullJSON: [String : AnyObject]) {
-        
-        // Task: - Initialize currentWeather
         if let currentlyJSON = fullJSON["currently"] as? [String : AnyObject] {
-        
-            if let temp = CurrentWeather(JSON: currentlyJSON){
-                self.currentWeather = temp
+            if let currentWeather = CurrentWeather(JSON: currentlyJSON){
+                self.currentWeather = currentWeather
             } else {
-                print("error initializing currentweather in ExtendedCurrentWahter")
                 self.currentWeather = nil
             }
         }
-        
-        // TASK: - Initialize Array of DailyData
-        
         if let dailyJSON = fullJSON["daily"] as? [String : AnyObject]{
-            
             if let data = dailyJSON["data"] as? [[String : AnyObject]] {
-                
                 var array: [DailyWeather] = []
-            
                 for day in data{
-                    
                     let myDayData = DailyWeather(JSONDay: day)
                     if let myDayData = myDayData{
                         array.append(myDayData)
@@ -279,56 +242,27 @@ extension ExtendedCurrentWeather: JSONDecodable{
                 self.dailyWeather = array
             }
         }
-        
-        // TASK: - Initialze Array of HourData 
-    
+
         if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
-        
             if let data = hourlyJSON["data"] as? [[String : AnyObject]] {
-            
                 var array: [HourData] = []
                 for hour in data{
-                
                     let myHourData = HourData(hourDictionary: hour)
-                   
                     if let myHourData = myHourData{
                         array.append(myHourData)
                     }
                 }
                 self.hourlyWeather = array
             }
-        } else {print("error getting data from hourlyJSON")}
+        } else {
+            print("Error getting data from hourlyJSON")
+        }
     }
 }
-
-
-extension DailyWeather{
-    
-    var weekNumber: Int{
-    
-        let date = NSDate(timeIntervalSince1970: self.time) as Date
-        let week = NSCalendar.current.component(.weekOfYear, from: date)
-        return week
-    }
-}
-
-extension CurrentWeather{
-    var weekNumber: Int{
-        
-        let date = NSDate(timeIntervalSince1970: self.time) as Date
-        let week = NSCalendar.current.component(.weekOfYear, from: date)
-        return week
-    }
-}
-
-
-// Failable Initializers
 
 extension DailyWeather{
     
     init?(JSONDay: [String : AnyObject]){
-        //print(JSONDay)
-        
         guard let apparentTemperatureMin = JSONDay["apparentTemperatureMin"] as? Double,
             let apparentTemperatureMax = JSONDay["apparentTemperatureMax"] as? Double,
             let temperatureMin = JSONDay["temperatureMin"] as? Double,
@@ -336,36 +270,27 @@ extension DailyWeather{
             let summary = JSONDay["summary"] as? String,
             let weatherIconString = JSONDay["icon"] as? String,
             let windSpeed = JSONDay["windSpeed"] as? Double,
-            //let humidity = JSONDay["humidity"] as? Double,
             let time = JSONDay["time"] as? Double
-            
             else {
-                print("'DailyWeather' initializer returnered nil")
                 return nil
         }
-        
         if let precipProbability = JSONDay["precipProbability"] as? Double{
             self.precipProbability = precipProbability
         } else {
             self.precipProbability = nil
         }
-        
         if let precipIntensity = JSONDay["precipIntensity"] as? Double{
             self.precipIntensity = precipIntensity
         } else {
             self.precipIntensity = nil
         }
-        
-        // precip Icon
-        
         if let precipType = JSONDay["precipType"] as? String{
             self.precipTypeText = precipType
-            self.precipIcon = PrecipIcon.init(rawValue: precipType)
-        } else{
+            self.precipIcon = PrecipitationIcon.init(rawValue: precipType)
+        } else {
             self.precipTypeText = "Precipitation"
-            self.precipIcon = PrecipIcon.unexpectedPrecip
+            self.precipIcon = PrecipitationIcon.unexpectedPrecip
         }
-        
         self.apparentTemperatureMin = apparentTemperatureMin
         self.apparentTemperatureMax = apparentTemperatureMax
         self.temperatureMin = temperatureMin
@@ -373,18 +298,14 @@ extension DailyWeather{
         self.summary = summary
         self.weatherIcon = Icon(rawValue: weatherIconString)
         self.windSpeed = windSpeed
-        //self.humidity = humidity
         self.humidity = nil
         self.time = time
-        }
-    
-    
+    }
 }
 
 extension CurrentWeather: JSONDecodable{
     
     init?(JSON: [String : AnyObject]) {
-        
         guard let temperature = JSON["temperature"] as? Double,
             let summary = JSON["summary"] as? String,
             let windSpeed = JSON["windSpeed"] as? Double,
@@ -393,11 +314,9 @@ extension CurrentWeather: JSONDecodable{
             let iconString = JSON["icon"] as? String,
             let precipProbability = JSON["precipProbability"] as? Double,
             let time = JSON["time"] as? Double
-            
             else {
                 return nil
         }
-        
         self.temperature = temperature
         self.summary = summary
         self.windSpeed = windSpeed
@@ -407,39 +326,27 @@ extension CurrentWeather: JSONDecodable{
         self.precipProbability = precipProbability
         self.precipProbabilityPercentage = Int(precipProbability*100)
         self.time = time
-        
         if precipProbability != 0 {
-            
             self.precipTypeText = (JSON["precipType"] as? String)!
             self.precipIcon = .init(rawValue: self.precipTypeText)
-            
         } else {
-            
             self.precipTypeText = "Precipitation"
             self.precipIcon = .unexpectedPrecip
         }
     }
 }
 
-// Date
-
 extension DailyWeather{
-    
     var formattedDate: String {
-        
         let date = Date(timeIntervalSince1970: self.time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         return dateFormatter.string(from: date)
-        
     }
-    
     var date: Date {
         return Date.init(timeIntervalSince1970: self.time)
     }
-    
     var precipProbabilityPercentage: Int?{
-        
         if let precipProbability = self.precipProbability{
             return Int(precipProbability*100)
         } else {
@@ -448,157 +355,79 @@ extension DailyWeather{
     }
 }
 
+// MARK: - Extensions
 
-
-// Measurements for displaying unit system specific values and unit
+// MARK: - averageTemperatureInPreferredUnit
 
 extension DailyWeather{
-    
     var averageTemperatureInPreferredUnit: Measurement<Unit> {
-        
         let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
-        
         switch preferredUnitSystem{
-            
         case "US":
-            if round(self.averageTemperature) == -0{ return Measurement(value: 0, unit: UnitTemperature.fahrenheit)}
-            
+            if round(self.averageTemperature) == -0 {
+                return Measurement(value: 0, unit: UnitTemperature.fahrenheit)
+            }
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.fahrenheit)
-            
         default:
-            
-            if round(self.averageTemperature) == -0{return Measurement(value: 0, unit: UnitTemperature.celsius)}
-            
+            if round(self.averageTemperature) == -0 {
+                return Measurement(value: 0, unit: UnitTemperature.celsius)
+            }
             return Measurement(value: round(self.averageTemperature), unit: UnitTemperature.celsius)
-        }
-    }
-    
-    var windSpeedInPreferredUnit: Measurement<Unit> {
-        
-        let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
-        
-        switch preferredUnitSystem{
-            
-        case "CA":
-            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.kilometersPerHour)
-            
-        case "UK2", "US":
-            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.milesPerHour)
-            
-        default:
-            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.metersPerSecond)
         }
     }
 }
 
+// MARK: windSpeedInPreferredUnit
+
 extension CurrentWeather{
-    
-    var temperatureInPreferredUnit: Measurement<Unit> {
-        
-        let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
-        
-        switch preferredUnitSystem{
-            
-        case "US":
-            return Measurement(value: self.temperature, unit: UnitTemperature.fahrenheit)
-            
-        default:
-            return Measurement(value: self.temperature, unit: UnitTemperature.celsius)
-        }
-    }
-    
     var windSpeedInPreferredUnit: Measurement<Unit> {
-        
         let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
-        
         switch preferredUnitSystem{
-            
         case "CA":
             return Measurement(value: self.windSpeed, unit: UnitSpeed.kilometersPerHour)
-            
         case "UK2", "US":
             return Measurement(value: self.windSpeed, unit: UnitSpeed.milesPerHour)
-            
         default:
             return Measurement(value: self.windSpeed, unit: UnitSpeed.metersPerSecond)
         }
     }
 }
 
+// MARK: - Extensions with default implementations
 
-// ComparableDays
+// MARK: - Wind speed in preferred units
 
-protocol ComparableDays {
-    func isSameDay(firstDayTimestamp firstDay: Double, secondDay: Double) -> Bool
+protocol windSpeedInPreferredUnit{
+    var windSpeed: Double { get set }
+    var windSpeedInPreferredUnit: Measurement<Unit> { get }
 }
 
-extension ComparableDays {
-    func isSameDay(firstDayTimestamp: Double, secondDay secondDayTimestamp: Double) -> Bool{
-        
-        //let calendar = Calendar.current
-        
-        //let firstDate = Date(timeIntervalSinceReferenceDate: firstDayTimestamp)
-        //let firstComponents = calendar.dateComponents( [], from: firstDate)
-        
-        //let secondDate = Date(timeIntervalSinceReferenceDate: secondDayTimestamp)
-        //let secondComponents = calendar.dateComponents( [], from: secondDate)
-
-        return false
-    }
-}
-
-// UnitSystemInterchangable
-
-protocol UnitSystemInterchangeable {
-    func temperatureInPreferredUnit(temperature: Double) -> Measurement<Unit>
-    //func windspeedInPreferredUnit()
-}
-
-extension UnitSystemInterchangeable {
-    
-    // Default implementation
-    func temperatureInPreferredUnit(temperature: Double) -> Measurement<Unit> {
-        
+extension windSpeedInPreferredUnit{
+    var windSpeedInPreferredUnit: Measurement<Unit> {
         let preferredUnitSystem = UserDefaults.standard.string(forKey: "preferredUnits") ?? "SI"
-        
         switch preferredUnitSystem{
-        case "US":
-            print("You are using US system")
-            print("RETURNING:", Measurement(value: temperature, unit: UnitTemperature.fahrenheit))
-            return Measurement(value: temperature, unit: UnitTemperature.fahrenheit)
-            
-        default:
-            print("You are NOT using US system")
-            print("RETURNING:", Measurement(value: temperature, unit: UnitTemperature.fahrenheit))
-            return Measurement(value: temperature, unit: UnitTemperature.celsius)
+        case "CA":
+            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.kilometersPerHour)
+        case "UK2", "US":
+            return Measurement(value: round(self.windSpeed), unit: UnitSpeed.milesPerHour)
+        default: return Measurement(value: round(self.windSpeed), unit: UnitSpeed.metersPerSecond)
         }
     }
-    
-    // TASK: TODO - WINDSPEED
 }
 
-extension CurrentWeather{
-    
+// MARK: DayName
+
+protocol DayNameable{
+    var dayName: String { get }
+    var time: Double { get set }
+}
+
+extension DayNameable{
     var dayName: String{
-        
         let date = Date(timeIntervalSince1970: self.time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let dayOfWeekString = dateFormatter.string(from: date)
-        
-        return dayOfWeekString
-    }
-}
-
-extension DailyWeather{
-    
-    var dayName: String{
-        
-        let date = Date(timeIntervalSince1970: self.time)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let dayOfWeekString = dateFormatter.string(from: date)
-        
         return dayOfWeekString
     }
 }

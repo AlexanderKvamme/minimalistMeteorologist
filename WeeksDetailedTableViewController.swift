@@ -220,7 +220,7 @@ class WeeksDetailedTableViewController: UITableViewController, UIGestureRecogniz
         if day.precipIcon != nil {
             cell.precipitationIconImageView.image = UIImage(named: day.precipIcon!.rawValue)
         } else {
-            cell.precipitationIconImageView.image = UIImage(named: PrecipIcon.unexpectedPrecip.rawValue)
+            cell.precipitationIconImageView.image = UIImage(named: PrecipitationIcon.unexpectedPrecip.rawValue)
         }
         
         cell.frame.size.height = cellHeightForDevice

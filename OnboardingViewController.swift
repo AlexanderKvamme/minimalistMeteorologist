@@ -39,7 +39,10 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         buttonStack.alpha = 0
     }
     
-    // MARK: - Delegate Functions
+    // MARK: - Paper Onboarding Functions
+    
+    public func onboardingConfigurationItem(_ item: OnboardingContentViewItem, index: Int) {}
+    public func onboardingDidTransitonToIndex(_ index: Int) {}
     
     func onboardingWillTransitonToIndex(_ index: Int) {
         
@@ -49,15 +52,6 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
             UIView.animate(withDuration: 0.4, animations: { self.buttonStack.alpha = 0 })
         }
     }
-    func onboardingDidTransitonToIndex(_ index: Int) {
-        //print
-    }
-    func onboardingConfigurationItem(_ item: OnboardingContentViewItem, index: Int) {
-        
-        //item.
-    }
-    
-    // DataSource functions
     
     func onboardingItemAtIndex(_ index: Int) -> OnboardingItemInfo {
         
@@ -69,15 +63,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         let descriptionFont = UIFont(name: "AvenirNext-Regular", size: 18)!
         
         return [(
-            "onboarding1",
-            "Lets get started!",
-            "Learn how to get a quick and simple overview of your current weather. \n\nSwipe left to get going!",
-            "1test",
-            backgroundColor1,
-            UIColor.black,
-            UIColor.black,
-            titleFont,
-            descriptionFont),
+            "onboarding1", "Lets get started!", "Learn how to get a quick and simple overview of your current weather. \n\nSwipe left to get going!", "1test", backgroundColor1, UIColor.black, UIColor.black, titleFont, descriptionFont),
                 
                 ("onboarding2", "Shake to refresh!", "To stay up to date, remember to shake your device to fetch the newest weather forecast when you start the application. \n\nNew data available every hour.", "2test", backgroundColor2, UIColor.black, UIColor.black, titleFont, descriptionFont),
                 
@@ -87,12 +73,4 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
     func onboardingItemsCount() -> Int {
         return 3
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-
 }
