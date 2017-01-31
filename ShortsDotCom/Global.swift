@@ -146,9 +146,8 @@ func getCurrentDate() -> String{
     return formatter.string(from: today)
 }
 
-extension CurrentWeather{
+extension CurrentData{
     var date: String{
-    
         let today = Date()
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

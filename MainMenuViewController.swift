@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-var latestExtendedWeatherFetch: ExtendedCurrentWeather? = nil
+var latestExtendedWeatherFetch: ExtendedCurrentData? = nil
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
