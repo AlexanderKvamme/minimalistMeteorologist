@@ -13,18 +13,13 @@ import Foundation
 struct HourData: HasDayNumber{
     let apparentTemperature: Double
     let cloudCover: Double
-    let dewPoint: Double
-    let humidity: Double
     let weatherIcon: Icon
-    let ozone: Double
     let precipIntensity: Double
     let precipProbability: Double
     let precipType: PrecipitationIcon
-    let pressure: Double
     let summary: String
     let temperature: Double
     let time: Double
-    let windBearing: Double
     let windSpeed: Double
 }
 
@@ -37,7 +32,6 @@ struct CurrentData: HasDayName{
     let precipProbability: Double
     let precipIcon: PrecipitationIcon
     let windSpeed: Double
-    let humidity: Double
 }
 
 struct ExtendedCurrentData{
@@ -64,32 +58,22 @@ extension HourData{
     init?(hourDictionary: [String : AnyObject]) {
         guard let apparentTemperature = hourDictionary["apparentTemperature"] as? Double,
             let cloudCover = hourDictionary["cloudCover"] as? Double,
-            let dewPoint = hourDictionary["dewPoint"] as? Double,
-            let humidity = hourDictionary["humidity"] as? Double,
             let icon = hourDictionary["icon"] as? String,
-            let ozone = hourDictionary["ozone"] as? Double,
             let precipIntensity = hourDictionary["precipIntensity"] as? Double,
             let precipProbability = hourDictionary["precipProbability"] as? Double,
-            let pressure = hourDictionary["pressure"] as? Double,
             let summary = hourDictionary["summary"] as? String,
             let temperature = hourDictionary["temperature"] as? Double,
             let time = hourDictionary["time"] as? Double,
-            let windBearing = hourDictionary["windBearing"] as? Double,
             let windSpeed = hourDictionary["windSpeed"] as? Double
             else {
                 return nil
         }
         self.apparentTemperature = apparentTemperature
         self.cloudCover = cloudCover
-        self.dewPoint = dewPoint
-        self.humidity = humidity
         self.weatherIcon = Icon(rawValue: icon)
-        self.ozone = ozone
-        self.pressure = pressure
         self.summary = summary
         self.temperature = temperature
         self.time = time
-        self.windBearing = windBearing
         self.windSpeed = windSpeed
         self.precipIntensity = precipIntensity
         self.precipProbability = precipProbability
@@ -100,40 +84,18 @@ extension HourData{
 extension ExtendedCurrentData: JSONDecodable{
     
     init?(JSON fullJSON: [String : AnyObject]) {
-        if let currentlyJSON = fullJSON["currently"] as? [String : AnyObject] {
-            if let currentWeather = CurrentData(JSON: currentlyJSON){
-                self.currentWeather = currentWeather
-            } else {
-                self.currentWeather = nil
-            }
+        guard let currentlyJSON = fullJSON["currently"] as? [String : AnyObject],
+            
+            let dailyJSON = fullJSON["daily"] as? [String : AnyObject],
+            let dailyData = dailyJSON["data"] as? [[String : AnyObject]],
+            let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject],
+            let hourlyData = hourlyJSON["data"] as? [[String : AnyObject]]
+            else {
+                return nil
         }
-        if let dailyJSON = fullJSON["daily"] as? [String : AnyObject]{
-            if let data = dailyJSON["data"] as? [[String : AnyObject]] {
-                var array: [DayData] = []
-                for day in data{
-                    let myDayData = DayData(JSONDay: day)
-                    if let myDayData = myDayData{
-                        array.append(myDayData)
-                    }
-                }
-                self.dailyWeather = array
-            }
-        }
-        
-        if let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject] {
-            if let data = hourlyJSON["data"] as? [[String : AnyObject]] {
-                var array: [HourData] = []
-                for hour in data{
-                    let myHourData = HourData(hourDictionary: hour)
-                    if let myHourData = myHourData{
-                        array.append(myHourData)
-                    }
-                }
-                self.hourlyWeather = array
-            }
-        } else {
-            print("Error getting data from hourlyJSON")
-        }
+        self.currentWeather = CurrentData(JSON: currentlyJSON)
+        self.dailyWeather = dailyArrayFromJSON(dailyData)
+        self.hourlyWeather = hourlyArrayFromJSON(hourlyData)
     }
 }
 
@@ -165,7 +127,6 @@ extension CurrentData: JSONDecodable{
         guard let temperature = JSON["temperature"] as? Double,
             let summary = JSON["summary"] as? String,
             let windSpeed = JSON["windSpeed"] as? Double,
-            let humidity = JSON["humidity"] as? Double,
             let precipIntensity = JSON["precipIntensity"] as? Double,
             let iconString = JSON["icon"] as? String,
             let precipProbability = JSON["precipProbability"] as? Double,
@@ -177,7 +138,6 @@ extension CurrentData: JSONDecodable{
         self.temperature = temperature
         self.summary = summary
         self.windSpeed = windSpeed
-        self.humidity = humidity
         self.precipIntensity = precipIntensity
         self.WeatherIcon = Icon(rawValue: iconString)
         self.precipProbability = precipProbability
@@ -197,6 +157,8 @@ extension DayData{
         return Date.init(timeIntervalSince1970: self.time)
     }
 }
+
+// MARK: - Protocol Extensions
 
 // MARK: HasDayName
 
@@ -249,3 +211,26 @@ extension HasAverageTemperature{
     }
 }
 
+// MARK: - Helper functions
+
+func dailyArrayFromJSON(_ dailyData: [[String : AnyObject]]) -> [DayData]{
+    var arrayOfDayData: [DayData] = []
+    for day in dailyData{
+        let myDayData = DayData(JSONDay: day)
+        if let myDayData = myDayData{
+            arrayOfDayData.append(myDayData)
+        }
+    }
+    return arrayOfDayData
+}
+
+func hourlyArrayFromJSON(_ hourlyData: [[String : AnyObject]]) -> [HourData]{
+    var arrayOfHourData: [HourData] = []
+    for hour in hourlyData{
+        let myHourData = HourData(hourDictionary: hour)
+        if let myHourData = myHourData{
+            arrayOfHourData.append(myHourData)
+        }
+    }
+    return arrayOfHourData
+}
