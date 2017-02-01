@@ -17,14 +17,11 @@ final class Animations{
     }
     
      class func playCheckmarkAnimationOnce(inImageView imageView: UIImageView){
-
         DispatchQueue.main.async {
-
             if imageView.isAnimating {return}
             if (checkmarkImages.count == 0){
                 self.setupAnimation()
             }
-            
             imageView.isHidden = false
             imageView.animationImages = checkmarkImages
             imageView.animationDuration = 1
@@ -33,3 +30,4 @@ final class Animations{
         }
      }
 }
+

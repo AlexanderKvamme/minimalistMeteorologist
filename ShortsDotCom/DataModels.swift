@@ -10,11 +10,22 @@ import Foundation
 
 // MARK: - Data structures
 
+struct DayData: HasDayName, HasDayNumber, hasWindSpeedInPreferredUnit, hasAverageTemperatureInPreferredUnits{
+    let summary: String
+    let weatherIcon: WeatherIcon
+    let time: Double
+    let precipIntensity: Double?
+    let precipProbability: Double
+    let precipIcon: PrecipitationIcon
+    var windSpeed: Double
+    var hourData: [HourData]?
+}
+
 struct HourData: HasDayNumber{
     let apparentTemperature: Double
     let cloudCover: Double
-    let weatherIcon: Icon
-    let precipIntensity: Double
+    let weatherIcon: WeatherIcon
+    let precipIntensity: Double?
     let precipProbability: Double
     let precipType: PrecipitationIcon
     let summary: String
@@ -26,7 +37,7 @@ struct HourData: HasDayNumber{
 struct CurrentData: HasDayName{
     let temperature: Double
     let summary: String
-    let WeatherIcon: Icon
+    let weatherIcon: WeatherIcon
     let time: Double
     let precipIntensity: Double?
     let precipProbability: Double
@@ -38,17 +49,6 @@ struct ExtendedCurrentData{
     var currentWeather: CurrentData?
     var dailyWeather: [DayData]?
     var hourlyWeather: [HourData]?
-}
-
-struct DayData: HasDayName, windSpeedInPreferredUnit, HasDayNumber, HasAverageTemperature{
-    let summary: String
-    let weatherIcon: Icon
-    let time: Double
-    let precipIntensity: Double?
-    let precipProbability: Double
-    let precipIcon: PrecipitationIcon
-    var windSpeed: Double
-    var hourData: [HourData]?
 }
 
 // MARK: Failable initializers
@@ -70,13 +70,13 @@ extension HourData{
         }
         self.apparentTemperature = apparentTemperature
         self.cloudCover = cloudCover
-        self.weatherIcon = Icon(rawValue: icon)
+        self.weatherIcon = WeatherIcon(rawValue: icon)
         self.summary = summary
         self.temperature = temperature
         self.time = time
         self.windSpeed = windSpeed
-        self.precipIntensity = precipIntensity
         self.precipProbability = precipProbability
+        self.precipIntensity = precipProbability != 0 ? precipIntensity : nil
         self.precipType = precipProbability != 0 ? .init(rawValue: hourDictionary["precipType"] as! String) : .undefined
     }
 }
@@ -112,7 +112,7 @@ extension DayData{
                 return nil
         }
         self.summary = summary
-        self.weatherIcon = Icon(rawValue: weatherIconString)
+        self.weatherIcon = WeatherIcon(rawValue: weatherIconString)
         self.windSpeed = windSpeed
         self.time = time
         self.precipProbability = precipProbability
@@ -139,98 +139,9 @@ extension CurrentData: JSONDecodable{
         self.summary = summary
         self.windSpeed = windSpeed
         self.precipIntensity = precipIntensity
-        self.WeatherIcon = Icon(rawValue: iconString)
+        self.weatherIcon = WeatherIcon(rawValue: iconString)
         self.precipProbability = precipProbability
         self.time = time
         self.precipIcon = precipProbability != 0 ? .init(rawValue: precipType) : .undefined
     }
-}
-
-extension DayData{
-    var formattedDate: String {
-        let date = Date(timeIntervalSince1970: self.time)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter.string(from: date)
-    }
-    var date: Date {
-        return Date.init(timeIntervalSince1970: self.time)
-    }
-}
-
-// MARK: - Protocol Extensions
-
-// MARK: HasDayName
-
-protocol HasDayName{
-    var dayName: String { get }
-    var time: Double { get }
-}
-
-extension HasDayName{
-    var dayName: String{
-        let date = Date(timeIntervalSince1970: self.time)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let dayOfWeekString = dateFormatter.string(from: date)
-        return dayOfWeekString
-    }
-}
-
-// MARK: HasDayNumber
-
-protocol HasDayNumber{
-    var dayNumber: Int { get }
-    var time: Double { get }
-}
-
-extension HasDayNumber{
-    var dayNumber: Int{
-        let calendar = Calendar.current
-        let date = Date(timeIntervalSince1970: self.time)
-        let components = calendar.dateComponents([.day,.month,.year], from: date)
-        return components.day!
-    }
-}
-
-// MARK: HasAverageTemperature
-
-protocol HasAverageTemperature {
-    var hourData: [HourData]? { get set}
-}
-
-extension HasAverageTemperature{
-    var averageTemperature: Double{
-        var sum: Double = 0
-        if let hourData = hourData{
-            for hour in hourData{
-                sum += hour.temperature
-            }
-        }
-        return sum/Double(hourData!.count)
-    }
-}
-
-// MARK: - Helper functions
-
-func dailyArrayFromJSON(_ dailyData: [[String : AnyObject]]) -> [DayData]{
-    var arrayOfDayData: [DayData] = []
-    for day in dailyData{
-        let myDayData = DayData(JSONDay: day)
-        if let myDayData = myDayData{
-            arrayOfDayData.append(myDayData)
-        }
-    }
-    return arrayOfDayData
-}
-
-func hourlyArrayFromJSON(_ hourlyData: [[String : AnyObject]]) -> [HourData]{
-    var arrayOfHourData: [HourData] = []
-    for hour in hourlyData{
-        let myHourData = HourData(hourDictionary: hour)
-        if let myHourData = myHourData{
-            arrayOfHourData.append(myHourData)
-        }
-    }
-    return arrayOfHourData
 }

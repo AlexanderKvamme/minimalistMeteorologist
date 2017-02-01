@@ -339,10 +339,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
           
             let iconName = day.precipIcon.rawValue
             stack2Image.image = UIImage(named: iconName)
-//            } else {
-//                stack2Image.image = UIImage(named: PrecipitationIcon.undefined.rawValue)
-//            }
-            stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
+            guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
+                stack1Label.text = "Missing data"
+                return
+            }
+            stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
         }
     }
     
@@ -397,7 +398,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 let iconName = day.precipIcon.rawValue
                     stack2Image.image = UIImage(named: iconName)
                 
-                stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
+                guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
+                    stack1Label.text = "Missing data"
+                    return
+                }
+                stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
             }
         }
     }
@@ -429,9 +434,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 let iconName = day.precipIcon.rawValue
                     stack2Image.image = UIImage(named: iconName)
                 
-
-                
-                stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
+                guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
+                    stack1Label.text = "Missing data"
+                    return
+                }
+                stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
             }
         }
     }
