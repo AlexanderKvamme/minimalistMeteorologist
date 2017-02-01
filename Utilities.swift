@@ -2,6 +2,15 @@
 import Foundation
 import UIKit
 
+extension Double{
+    var asPercentage: Double {
+        return self * 100
+    }
+    var asIntegerPercentage: Int {
+        return Int(self * 100)
+    }
+}
+
 extension UILabel {
     func sizeToFitHeight() {
         let size:CGSize = self.sizeThatFits(CGSize(width: self.frame.size.width, height: .greatestFiniteMagnitude))
