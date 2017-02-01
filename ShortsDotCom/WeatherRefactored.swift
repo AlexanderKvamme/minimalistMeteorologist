@@ -28,54 +28,33 @@ struct HourData: HasDayNumber{
     let windSpeed: Double
 }
 
-struct MinuteData{
-    let time: Double
-    let precipIntensity: Double
-    let precipIntensityError: Double
-    let precipProbability: Double
-    let precipType: String
-}
-
 struct CurrentData: HasDayName{
     let temperature: Double
     let summary: String
     let WeatherIcon: Icon
-    let precipIcon: PrecipitationIcon
     let time: Double
     let precipIntensity: Double?
     let precipProbability: Double
+    let precipIcon: PrecipitationIcon
     let windSpeed: Double
     let humidity: Double
-    let precipType: String
 }
 
 struct ExtendedCurrentData{
     var currentWeather: CurrentData?
     var dailyWeather: [DayData]?
     var hourlyWeather: [HourData]?
-    var minutelyWeather: [MinuteData]?
 }
 
-struct DayData: HasDayName, windSpeedInPreferredUnit, HasDayNumber{
+struct DayData: HasDayName, windSpeedInPreferredUnit, HasDayNumber, HasAverageTemperature{
     let summary: String
     let weatherIcon: Icon
     let time: Double
     let precipIntensity: Double?
-    let precipProbability: Double?
-    let precipType: String?
-    let precipIcon: PrecipitationIcon?
+    let precipProbability: Double
+    let precipIcon: PrecipitationIcon
     var windSpeed: Double
-    let humidity: Double?
     var hourData: [HourData]?
-    var averageTemperature: Double{
-        var sum: Double = 0
-        if let hourData = hourData{
-            for hour in hourData{
-                sum += hour.temperature
-            }
-        }
-        return sum/Double(hourData!.count)
-    }
 }
 
 // MARK: Failable initializers
@@ -106,20 +85,15 @@ extension HourData{
         self.humidity = humidity
         self.weatherIcon = Icon(rawValue: icon)
         self.ozone = ozone
-        self.precipIntensity = precipIntensity
-        self.precipProbability = precipProbability
         self.pressure = pressure
         self.summary = summary
         self.temperature = temperature
         self.time = time
         self.windBearing = windBearing
         self.windSpeed = windSpeed
-        
-        if precipProbability != 0 {
-            self.precipType = PrecipitationIcon(rawValue: hourDictionary["precipType"] as! String)
-        } else {
-            self.precipType = PrecipitationIcon.undefined
-        }
+        self.precipIntensity = precipIntensity
+        self.precipProbability = precipProbability
+        self.precipType = precipProbability != 0 ? .init(rawValue: hourDictionary["precipType"] as! String) : .undefined
     }
 }
 
@@ -167,34 +141,21 @@ extension DayData{
     
     init?(JSONDay: [String : AnyObject]){
         guard let summary = JSONDay["summary"] as? String,
-            let weatherIconString = JSONDay["icon"] as? String,
-            let windSpeed = JSONDay["windSpeed"] as? Double,
-            let time = JSONDay["time"] as? Double
+        let weatherIconString = JSONDay["icon"] as? String,
+        let windSpeed = JSONDay["windSpeed"] as? Double,
+        let time = JSONDay["time"] as? Double,
+        let precipType = JSONDay["precipType"] as? String,
+        let precipProbability = JSONDay["precipProbability"] as? Double
             else {
                 return nil
-        }
-        if let precipProbability = JSONDay["precipProbability"] as? Double{
-            self.precipProbability = precipProbability
-        } else {
-            self.precipProbability = nil
-        }
-        if let precipIntensity = JSONDay["precipIntensity"] as? Double{
-            self.precipIntensity = precipIntensity
-        } else {
-            self.precipIntensity = nil
-        }
-        if let precipType = JSONDay["precipType"] as? String{
-            self.precipType = precipType
-            self.precipIcon = PrecipitationIcon.init(rawValue: precipType)
-        } else {
-            self.precipType = "Precipitation"
-            self.precipIcon = PrecipitationIcon.undefined
         }
         self.summary = summary
         self.weatherIcon = Icon(rawValue: weatherIconString)
         self.windSpeed = windSpeed
-        self.humidity = nil
         self.time = time
+        self.precipProbability = precipProbability
+        self.precipIcon = precipProbability != 0 ? .init(rawValue: precipType) : .undefined
+        self.precipIntensity = precipProbability != 0 ? JSONDay["precipIntensity"] as? Double : nil
     }
 }
 
@@ -208,6 +169,7 @@ extension CurrentData: JSONDecodable{
             let precipIntensity = JSON["precipIntensity"] as? Double,
             let iconString = JSON["icon"] as? String,
             let precipProbability = JSON["precipProbability"] as? Double,
+            let precipType = JSON["precipType"] as? String,
             let time = JSON["time"] as? Double
             else {
                 return nil
@@ -220,13 +182,7 @@ extension CurrentData: JSONDecodable{
         self.WeatherIcon = Icon(rawValue: iconString)
         self.precipProbability = precipProbability
         self.time = time
-        if precipProbability != 0 {
-            self.precipType = (JSON["precipType"] as? String)!
-            self.precipIcon = .init(rawValue: self.precipType)
-        } else {
-            self.precipType = "Precipitation"
-            self.precipIcon = .undefined
-        }
+        self.precipIcon = precipProbability != 0 ? .init(rawValue: precipType) : .undefined
     }
 }
 

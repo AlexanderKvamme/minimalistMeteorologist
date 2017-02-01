@@ -334,16 +334,14 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
             setLabel(label: summaryLabel, summary: day.summary)
             stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value))) + " " + day.windSpeedInPreferredUnit.unit.symbol
-            if let chanceOfRain = day.precipProbability?.asIntegerPercentage{
-                stack2Label.text = "\(chanceOfRain)%"
-            } else {
-                stack2Label.text = "?"
-            }
-            if let iconName = day.precipIcon?.rawValue{
-                stack2Image.image = UIImage(named: iconName)
-            } else {
-                stack2Image.image = UIImage(named: PrecipitationIcon.undefined.rawValue)
-            }
+            let chanceOfRain = day.precipProbability.asIntegerPercentage
+            stack2Label.text = "\(chanceOfRain)%"
+          
+            let iconName = day.precipIcon.rawValue
+            stack2Image.image = UIImage(named: iconName)
+//            } else {
+//                stack2Image.image = UIImage(named: PrecipitationIcon.undefined.rawValue)
+//            }
             stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
         }
     }
@@ -393,16 +391,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 setLabel(label: summaryLabel, summary: day.summary)
                 stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value)))  + " " + day.windSpeedInPreferredUnit.unit.symbol
                 
-                if let chanceOfRain = day.precipProbability?.asIntegerPercentage{
+                let chanceOfRain = day.precipProbability.asIntegerPercentage
                     stack2Label.text = "\(chanceOfRain)%"
-                } else {
-                    stack2Label.text = "?"
-                }
-                if let iconName = day.precipIcon?.rawValue{
+             
+                let iconName = day.precipIcon.rawValue
                     stack2Image.image = UIImage(named: iconName)
-                } else {
-                    stack2Image.image = UIImage(named: PrecipitationIcon.undefined.rawValue)
-                }
                 
                 stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
             }
@@ -430,16 +423,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
                 stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value))) + " " + day.windSpeedInPreferredUnit.unit.symbol
 
-                if let chanceOfRain = day.precipProbability?.asIntegerPercentage{
+                let chanceOfRain = day.precipProbability.asIntegerPercentage
                     stack2Label.text = "\(chanceOfRain)%"
-                } else {
-                    stack2Label.text = "?"
-                }
-                if let iconName = day.precipIcon?.rawValue{
+           
+                let iconName = day.precipIcon.rawValue
                     stack2Image.image = UIImage(named: iconName)
-                } else {
-                    stack2Image.image = UIImage(named: PrecipitationIcon.undefined.rawValue)
-                }
+                
 
                 
                 stack1Label.text = String(Int(round(day.averageTemperatureInPreferredUnit.value))) + " " + day.averageTemperatureInPreferredUnit.unit.symbol
