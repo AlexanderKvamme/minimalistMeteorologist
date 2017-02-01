@@ -274,3 +274,22 @@ extension HasDayNumber{
         return components.day!
     }
 }
+
+// MARK: HasAverageTemperature
+
+protocol HasAverageTemperature {
+    var hourData: [HourData]? { get set}
+}
+
+extension HasAverageTemperature{
+    var averageTemperature: Double{
+        var sum: Double = 0
+        if let hourData = hourData{
+            for hour in hourData{
+                sum += hour.temperature
+            }
+        }
+        return sum/Double(hourData!.count)
+    }
+}
+
