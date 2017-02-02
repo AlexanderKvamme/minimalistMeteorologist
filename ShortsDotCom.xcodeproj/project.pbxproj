@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */; };
 		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
-		DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */; };
+		DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */; };
 		DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FF9E71D7B08A900A1B06F /* APIClient.swift */; };
 		DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */; };
 		DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */; };
@@ -229,7 +229,7 @@
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
 		DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourBasedLineChartFormatter.swift; sourceTree = "<group>"; };
+		DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampFormatter.swift; sourceTree = "<group>"; };
 		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
@@ -507,7 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */,
-				DD0F132E1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift */,
+				DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */,
 			);
 			name = Today;
 			sourceTree = "<group>";
@@ -1102,7 +1102,7 @@
 				DD3760111DB508C0009AE7FC /* SpringButton.swift in Sources */,
 				DD37600E1DB508C0009AE7FC /* SoundPlayer.swift in Sources */,
 				DD3760151DB508C0009AE7FC /* SpringTextView.swift in Sources */,
-				DD0F132F1DF9B6D10077FB36 /* HourBasedLineChartFormatter.swift in Sources */,
+				DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */,
 				DD3760051DB508C0009AE7FC /* DesignableTextField.swift in Sources */,
 				DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */,
 				DD3760061DB508C0009AE7FC /* DesignableTextView.swift in Sources */,

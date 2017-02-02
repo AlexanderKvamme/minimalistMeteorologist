@@ -286,7 +286,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             valuesToGraph.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
         }
         
-        let hourBasedFormatter = HourBasedLineChartFormatter()
+        let hourBasedFormatter = TimeStampFormatter()
         let xAxis = XAxis()
         xAxis.valueFormatter = hourBasedFormatter
         lineChartView.xAxis.valueFormatter = hourBasedFormatter

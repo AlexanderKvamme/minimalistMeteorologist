@@ -9,22 +9,23 @@
 import Foundation
 import Charts
 
-class HourBasedLineChartFormatter: NSObject, IAxisValueFormatter{
+class TimeStampFormatter: NSObject, IAxisValueFormatter{
     
+    // Userd by Charts to get HH:MM format along the x-axis
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let newInt = Int(value)
-        var newString = String(newInt)
-        if newString.length == 3{
-            newString = "0" + newString
+        var stringForm = String(Int(value))
+        if stringForm.length == 3{
+            stringForm = "0" + stringForm
         }
-        if newString.length == 1{
-            newString = "0000"
+        // if time input is 0, add zeroes manually: 00:00
+        if stringForm.length == 1{
+            stringForm = "0000"
         }
-        let newCharacters  = newString.characters
+        let charForm  = stringForm.characters
         var HH: String = ""
         var MM: String = ""
         var i = 0
-        for character in newCharacters{
+        for character in charForm{
             if i < 2{
                 HH.append(character)
             }else{

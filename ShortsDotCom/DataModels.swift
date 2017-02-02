@@ -85,7 +85,6 @@ extension ExtendedCurrentData: JSONDecodable{
     
     init?(JSON fullJSON: [String : AnyObject]) {
         guard let currentlyJSON = fullJSON["currently"] as? [String : AnyObject],
-            
             let dailyJSON = fullJSON["daily"] as? [String : AnyObject],
             let dailyData = dailyJSON["data"] as? [[String : AnyObject]],
             let hourlyJSON = fullJSON["hourly"] as? [String : AnyObject],
@@ -93,6 +92,7 @@ extension ExtendedCurrentData: JSONDecodable{
             else {
                 return nil
         }
+        
         self.currentWeather = CurrentData(JSON: currentlyJSON)
         self.dailyWeather = dailyArrayFromJSON(dailyData)
         self.hourlyWeather = hourlyArrayFromJSON(hourlyData)
@@ -106,7 +106,6 @@ extension DayData{
         let weatherIconString = JSONDay["icon"] as? String,
         let windSpeed = JSONDay["windSpeed"] as? Double,
         let time = JSONDay["time"] as? Double,
-        let precipType = JSONDay["precipType"] as? String,
         let precipProbability = JSONDay["precipProbability"] as? Double
             else {
                 return nil
@@ -116,7 +115,8 @@ extension DayData{
         self.windSpeed = windSpeed
         self.time = time
         self.precipProbability = precipProbability
-        self.precipIcon = precipProbability != 0 ? .init(rawValue: precipType) : .undefined
+        self.precipIcon = precipProbability != 0 ? .init(rawValue: JSONDay["precipType"] as! String) : .undefined
+        
         self.precipIntensity = precipProbability != 0 ? JSONDay["precipIntensity"] as? Double : nil
     }
 }

@@ -114,6 +114,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
         }
     }
+    
+    // FIXME: - en dag for lite
 
     func fetchWeather(){
         forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
@@ -126,12 +128,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                     var dayIndex = 0
                     var newHourlyArray = [HourData]()
                     for hour in fetchedHours {
-                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
-                            newHourlyArray.append(hour)
-                        } else{
-                            latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = newHourlyArray
-                            newHourlyArray.removeAll()
-                            dayIndex += 1
+                        if fetchedDays.count != dayIndex{
+                            if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
+                                newHourlyArray.append(hour)
+                            } else{
+                                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = newHourlyArray
+                                newHourlyArray.removeAll()
+                                dayIndex += 1
+                            }
                         }
                     }
                 }
