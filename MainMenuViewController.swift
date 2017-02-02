@@ -51,18 +51,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         setObservers()
     }
     
-    func setObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeFinishedHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
-            notification in
-            if self.presentedViewController == nil {
-                showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
-            }
-        }
-    }
     
     // MARK: - viewDidDisappear - update rootViewController
     
@@ -89,6 +77,36 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: - Helper Methods
+
+    func fetchWeather(){
+        forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
+            self.toggleLoadingMode(false)
+            switch apiresult{
+            
+            case .success(let result):
+                latestExtendedWeatherFetch = result
+                if let fetchedDays = latestExtendedWeatherFetch?.dailyWeather, let fetchedHours = latestExtendedWeatherFetch?.hourlyWeather{
+                    var dayIndex = 0
+                    var organizedHours = [HourData]()
+                    for hour in fetchedHours where dayIndex < fetchedDays.count{
+                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
+                            organizedHours.append(hour)
+                        } else{
+                            latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
+                            organizedHours.removeAll()
+                            dayIndex += 1
+                        }
+                    }
+                }
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
+                
+            case .failure(let error as NSError):
+                self.toggleLoadingMode(true)
+                showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+            default: break
+            }
+        }
+    }
     
     func toggleLoadingMode(_ status: Bool){
         switch status{
@@ -115,36 +133,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // FIXME: - en dag for lite
-
-    func fetchWeather(){
-        forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
-            self.toggleLoadingMode(false)
-            switch apiresult{
-            
-            case .success(let result):
-                latestExtendedWeatherFetch = result
-                if let fetchedDays = latestExtendedWeatherFetch?.dailyWeather, let fetchedHours = latestExtendedWeatherFetch?.hourlyWeather{
-                    var dayIndex = 0
-                    var newHourlyArray = [HourData]()
-                    for hour in fetchedHours {
-                        if fetchedDays.count != dayIndex{
-                            if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
-                                newHourlyArray.append(hour)
-                            } else{
-                                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = newHourlyArray
-                                newHourlyArray.removeAll()
-                                dayIndex += 1
-                            }
-                        }
-                    }
-                }
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
-                
-            case .failure(let error as NSError):
-                self.toggleLoadingMode(true)
-                showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
-            default: break
+    func setObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeFinishedHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
+            notification in
+            if self.presentedViewController == nil {
+                showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
             }
         }
     }

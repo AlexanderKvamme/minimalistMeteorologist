@@ -58,13 +58,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set label animation destinations
+        // label animation destinations
         headerLabelPositionLeft = dayLabel.frame.midX + headerXShift
         headerLabelPositionRight = dayLabel.frame.midX - headerXShift
         headerLabelPositionY = dayLabel.frame.midY
         headerLabelpositionX = dayLabel.frame.midX
 
-        // setup
         getChartDataForIndexedDay()
         setChartLayout()
         setChartData()
@@ -88,15 +87,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         
         if gesture.state == .began {
             if gesture.velocity(in: view).x > 0{
-                
                 // Animate Left
                 animationDirection = .left
                 animateToXPos = CGPoint(x: headerLabelPositionLeft!, y: headerLabelPositionY!)
                 setAnimation(direction: AnimationDirection.left)
                 dayLabel.textAlignment = .left
-                
             } else {
-                
                 // Animate Right
                 animationDirection = AnimationDirection.right
                 animateToXPos = CGPoint(x: view.bounds.width - (dayLabel.frame.size.width/2), y: headerLabelPositionY)
@@ -110,7 +106,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         if gesture.state == .ended{
             dayLabel.textAlignment = .center
             if abs(gesture.translation(in: self.view).x) > 100{
-                
+ 
                 switch animationDirection!{
                 case .left:
                     displayPreviousDay()
@@ -119,7 +115,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 }
                 dayLabel.sizeToFit()
             }
-            
             // animate UI back to original position
             swipeAnimation.isReversed = true
             let v = gesture.velocity(in: view)
@@ -130,9 +125,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func setAnimation(direction: AnimationDirection){
-        
         self.swipeAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
-            
             let dayLabelPos = self.dayLabel.center.y
             let dateLabelYPos = self.dateLabel.center.y
             let dateLabelXShift: CGFloat = 20
@@ -150,7 +143,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             
             // Set animation direction
             if direction == AnimationDirection.left{
-                
                 self.dayLabel.center = CGPoint(x: self.headerLabelPositionLeft, y: dayLabelPos)
                 self.dateLabel.center = CGPoint(x: self.headerLabelPositionLeft + dateLabelXShift, y: dateLabelYPos)
                 self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: iconTranslationAmount, y: 0)
@@ -207,7 +199,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: - Swipe Recognizers And Handlers
     
     func addSwipeRecognizers(){
-        
         var swipeRightGestureRecognizer = UISwipeGestureRecognizer()
         swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeRightHandler))
         swipeRightGestureRecognizer.direction = .right
@@ -233,7 +224,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: - UI Setup
     
     func setUI(){
-        
         stackHeader.alpha = 0.3
         graphHeader.alpha = 0.3
         stack3Image.image = UIImage(named: "weathercock.png")
@@ -241,7 +231,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func setChartLayout(){
-        
         lineChartView.layer.borderColor = UIColor.black.cgColor
         lineChartView.layer.borderWidth = 0
         lineChartView.isUserInteractionEnabled = false
@@ -274,13 +263,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func setChartData() {
-        
         for timestamp in timestamps{
             shortenedTimestamps.append(shortenTimestamp(timestamp))
         }
-        
         var valuesToGraph: [ChartDataEntry] = [ChartDataEntry]()
-    
         
         for i in 0 ..< temperatures.count {
             valuesToGraph.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
@@ -407,6 +393,63 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         }
     }
     
+    
+    
+    // FIXME: - CURRENT TODO, REPLACE ALL THREE DAYDISLAY METHODS AND MAKE ONE NEW
+    
+    func displayDay(at index: Int){
+
+        if index < 0  || index > dayIndex-1{
+            print("Exceeding avaiable days")
+            return
+        }
+        
+        // ønsket index er i range, oppdaterer index
+        
+        print("not exceeding. proceding")
+        
+        //decide day to get
+        
+        // get day
+        
+        // update chartdata
+        
+        // set ui
+        
+    }
+    
+    // FIXME: - TEMP CHART FUNCTIONS
+    
+    func updateChart(){
+        getChartDataForIndexedDay() // sjekk opp idenne
+        setChartData()
+        setChartLayout()
+    }
+    
+    func updateUIWith(day: DayData){
+        dayLabel.text = day.dayName.uppercased()
+        dateLabel.text = day.formattedDate
+        weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
+        summaryLabel.text = day.summary
+        setLabel(label: summaryLabel, summary: day.summary)
+        
+        stack3Label.text = String(Int(round(day.windSpeedInPreferredUnit.value))) + " " + day.windSpeedInPreferredUnit.unit.symbol
+        
+        let chanceOfRain = day.precipProbability.asIntegerPercentage
+        stack2Label.text = "\(chanceOfRain)%"
+        
+        let iconName = day.precipIcon.rawValue
+        stack2Image.image = UIImage(named: iconName)
+        
+        guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
+            stack1Label.text = "Missing data"
+            return
+        }
+        stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
+    }
+    
+// MARK: - GOING TO REPLACE THESE
+    
     func displayPreviousDay(){
         
         if dayIndex == 0{
@@ -416,6 +459,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             if let day = latestExtendedWeatherFetch?.dailyWeather?[dayIndex-1]{
                 
                 dayIndex -= 1
+                
                 getChartDataForIndexedDay()
                 setChartData()
                 setChartLayout()
