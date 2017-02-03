@@ -111,7 +111,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     func toggleLoadingMode(_ status: Bool){
         switch status{
         case true:
-            print("case true")
             self.isFetching = true
             self.activityIndicator.startAnimating()
             self.activityIndicator.isHidden = false
@@ -121,7 +120,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             self.settingsButton.isUserInteractionEnabled = false
             
         case false:
-            print("case false")
             self.isFetching = false
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true

@@ -1,15 +1,7 @@
-//
-//  TodayViewController.swift
-//  ShortsDotCom
-//
-//  Created by Alexander Kvamme on 08/12/2016.
-//  Copyright © 2016 Alexander Kvamme. All rights reserved.
-//
+
 
 import UIKit
 import Charts
-
-// FIXME: Gjør om til egen metode og send inn left or right for å unngå duplicate
 
 class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecognizerDelegate{
     
@@ -30,15 +22,13 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var iconStack: UIStackView!
     @IBOutlet weak var graphHeader: UILabel!
     
+    // MARK: - Properties
+    
     var imageStack = [UIImageView]()
     var viewStack = [UIView]()
     
-    // MARK: - Properties
-    
     let combinedLineColor = UIColor.black //Dots and lines for the graph
     var temperatures : [Double] = []
-    var shortenedTimestamps = [Double]()
-    var timestamps: [Double] = []
     var dayIndex: Int = 0
     let maxSummaryLines = 3
     
@@ -48,11 +38,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     var superAnimation: UIViewPropertyAnimator!
-    var animateToXPos: CGPoint!
     var headerLabelPositionLeft: CGFloat!
     var headerLabelPositionRight: CGFloat!
-    var headerLabelpositionX: CGFloat!
-    var headerLabelPositionY: CGFloat!
+    //var headerLabelpositionX: CGFloat!
+    //var headerLabelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     var headerXShift: CGFloat = 10 // animation x-distance
     
@@ -64,6 +53,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
         
         setUI()
+        setChartLayout()
         setHeaderAnimationDestination()
         displayDay(at: dayIndex)
         addSwipeAndPanRecognizers()
@@ -269,9 +259,67 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         dayIndex = requestedIndex
     }
     
+    // MARK: - Charts Methods
+    
+    func getChartData(forDay requestedDay: Int) -> [ChartDataEntry] {
+        var temperatures: [Double] = []
+        var shortenedTimestamps: [Double] = []
+        var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
+        guard let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData else { fatalError() }
+        for hour in hours{
+            shortenedTimestamps.append(shortenTimestamp(hour.time))
+            if hour.temperature >= -0.5 && hour.temperature <= 0{
+                temperatures.append(0)
+            } else{
+                temperatures.append(hour.temperature)
+            }
+            if shortenTimestamp(hour.time) == 0 { // Prevent including temperatures past midnight
+                break
+            }
+        }
+        for i in 0 ..< temperatures.count {
+            valuePairs.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
+        }
+        return valuePairs
+    }
+    
     // FIXME: - Refaktoriser Chart methods
     
-    // MARK: - Charts Methods
+    func setChartData(withDataEntries dataEntries: [ChartDataEntry]) {
+
+        let xAxis = XAxis()
+        xAxis.valueFormatter = TimeStampFormatter()
+        lineChartView.xAxis.valueFormatter = TimeStampFormatter()
+        
+        let set1: LineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
+        set1.axisDependency = .left
+        set1.setColor(combinedLineColor)
+        set1.setCircleColor(combinedLineColor)
+        set1.lineWidth = 2.0
+        set1.circleRadius = 4.0
+        set1.fillAlpha = 65 / 255.0
+        set1.fillColor = combinedLineColor
+        set1.highlightColor = .white
+        set1.highlightEnabled = false
+        set1.drawCircleHoleEnabled = true
+        set1.circleHoleRadius = 2.0
+        
+        // TODO: - Funker korrekt når jeg displayer første dag ved loading, med" not enough data provided", men når jeg swipe til neste, og så tilbake, så vil den ikke vise dagen i det hele tatt
+//        print("set1 entry count: ", set1.entryCount)
+//        if set1.entryCount == 1 { return }
+
+        let format = NumberFormatter()
+        format.generatesDecimalNumbers = false
+        let formatter = DefaultValueFormatter(formatter:format)
+        lineChartView.lineData?.setValueFormatter(formatter)
+        set1.valueFormatter = formatter
+        var dataSets = [LineChartDataSet]()
+        dataSets.append(set1)
+        let data: LineChartData = LineChartData(dataSets: dataSets)
+        data.setValueTextColor(.black)
+        self.lineChartView.data = data
+        adjustChartLayout(forDataEntries: dataEntries)
+    }
     
     func setChartLayout(){
         lineChartView.layer.borderColor = UIColor.black.cgColor
@@ -299,91 +347,20 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         lineChartView.xAxis.drawLabelsEnabled = true
         lineChartView.xAxis.drawAxisLineEnabled = false
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.xAxis.axisMinimum = shortenedTimestamps[0]
         lineChartView.xAxis.granularity = 2
         lineChartView.setExtraOffsets(left: 20, top: 0, right: 20, bottom: 10)
         //self.lineChartView.chartDescription?.text = "Temperatures this day in INSERT UNIT TYPE"
     }
-    
-    func setChartData() {
-        for timestamp in timestamps{
-            shortenedTimestamps.append(shortenTimestamp(timestamp))
-        }
-        var valuesToGraph: [ChartDataEntry] = [ChartDataEntry]()
-        
-        for i in 0 ..< temperatures.count {
-            valuesToGraph.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
-        }
-        
-        let hourBasedFormatter = TimeStampFormatter()
-        let xAxis = XAxis()
-        xAxis.valueFormatter = hourBasedFormatter
-        lineChartView.xAxis.valueFormatter = hourBasedFormatter
-        
-        for i in 0 ... (timestamps.count-1){
-            shortenedTimestamps.append(shortenTimestamp(timestamps[i]))
-        }
-        
-        let set1: LineChartDataSet = LineChartDataSet(values: valuesToGraph, label: nil)
-        set1.axisDependency = .left
-        set1.setColor(combinedLineColor)
-        set1.setCircleColor(combinedLineColor)
-        set1.lineWidth = 2.0
-        set1.circleRadius = 4.0
-        set1.fillAlpha = 65 / 255.0
-        set1.fillColor = combinedLineColor
-        set1.highlightColor = .white
-        set1.highlightEnabled = false
-        set1.drawCircleHoleEnabled = true
-        set1.circleHoleRadius = 2.0
-        
-        // FIXME: - Funker korrekt når jeg displayer første dag ved loading, med" not enough data provided", men når jeg swipe til neste, og så tilbake, så vil den ikke vise dagen i det hele tatt
-//        print("set1 entry count: ", set1.entryCount)
-//        if set1.entryCount == 1 { return }
 
-        let format = NumberFormatter()
-        format.generatesDecimalNumbers = false
-        let formatter = DefaultValueFormatter(formatter:format)
-        lineChartView.lineData?.setValueFormatter(formatter)
-        set1.valueFormatter = formatter
-        var dataSets = [LineChartDataSet]()
-        dataSets.append(set1)
-        let data: LineChartData = LineChartData(dataSets: dataSets)
-        data.setValueTextColor(.black)
-        self.lineChartView.data = data
-        print("set1: ", set1)
-    }
-    
-    func getChartData(forDay requestedDay: Int){
-        if let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData{
-            var temperatureArray: [Double] = []
-            var timestampArray: [Double] = []
-            var shortenedTimestampArray: [Double] = []
-            
-            for hour in hours{
-                if hour.temperature >= -0.5 && hour.temperature <= 0{
-                    temperatureArray.append(0)
-                } else{
-                    temperatureArray.append(hour.temperature)
-                }
-                timestampArray.append(hour.time)
-                shortenedTimestampArray.append(shortenTimestamp(hour.time))
-                if shortenTimestamp(hour.time) == 0{
-                    break // End of day reached
-                }
-            }
-            temperatures = temperatureArray
-            timestamps = timestampArray
-            shortenedTimestamps = shortenedTimestampArray
-        } else {
-            // send new extendedDataRequest or wait for the previous one to finish
-        }
+    func adjustChartLayout(forDataEntries dataset: [ChartDataEntry]){
+        let firstTimestamp = dataset[0].x
+        lineChartView.xAxis.axisMinimum = firstTimestamp
+        lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
     }
     
     func updateChart(withDay day: Int){
-        getChartData(forDay: day)
-        setChartData()
-        setChartLayout()
+        let newDataEntries = getChartData(forDay: day)
+        setChartData(withDataEntries: newDataEntries)
     }
     
     // MARK: - Helper Methods
@@ -393,8 +370,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func setHeaderAnimationDestination(){
         headerLabelPositionLeft = dayLabel.frame.midX + headerXShift
         headerLabelPositionRight = dayLabel.frame.midX - headerXShift
-        headerLabelPositionY = dayLabel.frame.midY
-        headerLabelpositionX = dayLabel.frame.midX
+        //headerLabelPositionY = dayLabel.frame.midY
+        //headerLabelpositionX = dayLabel.frame.midX
     }
     
     // Typography methods
@@ -452,6 +429,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: Motion Began
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        viewDidLoad()
+        //viewDidLoad()
     }
 }

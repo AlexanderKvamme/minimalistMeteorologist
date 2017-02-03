@@ -11,7 +11,7 @@ import Charts
 
 class TimeStampFormatter: NSObject, IAxisValueFormatter{
     
-    // Userd by Charts to get HH:MM format along the x-axis
+    // Used by Charts to get HH:MM format along the x-axis
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         var stringForm = String(Int(value))
         if stringForm.length == 3{
@@ -25,6 +25,8 @@ class TimeStampFormatter: NSObject, IAxisValueFormatter{
         var HH: String = ""
         var MM: String = ""
         var i = 0
+        
+        // FIXME: - Maybe do this manually, its more readable
         for character in charForm{
             if i < 2{
                 HH.append(character)
