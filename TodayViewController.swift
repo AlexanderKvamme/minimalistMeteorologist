@@ -47,7 +47,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         case right
     }
     
-    var swipeAnimation: UIViewPropertyAnimator!
+    var superAnimation: UIViewPropertyAnimator!
     var animateToXPos: CGPoint!
     var headerLabelPositionLeft: CGFloat!
     var headerLabelPositionRight: CGFloat!
@@ -60,7 +60,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imageStack = [self.stack1Image, self.stack2Image, self.stack3Image]
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
         
@@ -69,7 +68,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         displayDay(at: dayIndex)
         addSwipeAndPanRecognizers()
     }
-    
     
     // MARK: - UI Setup
     
@@ -82,6 +80,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func updateUIWith(day: DayData){
         dayLabel.text = day.dayName.uppercased()
+        dayLabel.sizeToFit()
         dateLabel.text = day.formattedDate
         weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
         summaryLabel.text = day.summary
@@ -99,33 +98,26 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
 
     // MARK: - Animation Methods
     
-    // FIXME: - Clean up
-    
     func moveViewsWithPan(gesture: UIPanGestureRecognizer){
+        // if swiped down
         if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) && gesture.state == .ended{
             swipeDownHandler()
         }
+        // if pan just started
         if gesture.state == .began {
             if gesture.velocity(in: view).x > 0{
-                
-                // if gesture.isleftPan(in: view)
-                
                 animationDirection = .left
-                prepareAnimation(forDirection: .left)
-                dayLabel.textAlignment = .left
             } else {
                 animationDirection = .right
-                prepareAnimation(forDirection: .right)
-                dayLabel.textAlignment = .right
             }
-            
-            
-            
-            
+            prepareAnimation(forDirection: animationDirection)
         }
-        swipeAnimation.fractionComplete = abs(gesture.translation(in: self.view).x/100)
+    
+        // if mid pan
+        superAnimation.fractionComplete = abs(gesture.translation(in: self.view).x/100)
+        
+        // if pan ended
         if gesture.state == .ended{
-            dayLabel.textAlignment = .center
             if abs(gesture.translation(in: self.view).x) > 100{
                 switch animationDirection!{
                 case .left:
@@ -133,16 +125,18 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 case .right:
                     displayDay(at: dayIndex+1)
                 }
-                dayLabel.sizeToFit()
             }
-            
-            // if end of swipe, animate back to original position
-            swipeAnimation.isReversed = true
-            let v = gesture.velocity(in: view)
-            let velocity = CGVector(dx: v.x / 200, dy: v.y / 200)
-            let timingParameters = UISpringTimingParameters(mass: 200, stiffness: 50, damping: 100, initialVelocity: velocity)
-            swipeAnimation.continueAnimation(withTimingParameters: timingParameters, durationFactor: 0.2)
+            animateBackToOriginalLayout(fromCurrentGesture: gesture)
         }
+    }
+    
+    func animateBackToOriginalLayout(fromCurrentGesture gesture: UIPanGestureRecognizer){
+        dayLabel.textAlignment = .center
+        superAnimation.isReversed = true
+        let v = gesture.velocity(in: view)
+        let velocity = CGVector(dx: v.x / 200, dy: v.y / 200)
+        let timingParameters = UISpringTimingParameters(mass: 200, stiffness: 50, damping: 100, initialVelocity: velocity)
+        superAnimation.continueAnimation(withTimingParameters: timingParameters, durationFactor: 0.2)
     }
     
     func slideUI(direction: AnimationDirection){
@@ -193,11 +187,13 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     func slideLabels(_ labels: [UILabel], direction: AnimationDirection, additionalSlide: CGFloat){
         switch direction{
         case .right:
+            dayLabel.textAlignment = .right
             for label in labels{
                 let frame = label.frame
                 label.frame = CGRect(x: frame.minX - additionalSlide, y: frame.minY, width: frame.width, height: frame.height)
             }
         case .left:
+            dayLabel.textAlignment = .left
             for label in labels{
                 let frame = label.frame
                 label.frame = CGRect(x: frame.minX + additionalSlide, y: frame.minY, width: frame.width, height: frame.height)
@@ -222,7 +218,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func prepareAnimation(forDirection direction: AnimationDirection){
-        self.swipeAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
+        self.superAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
             
             if direction == .left{
                 self.slideUI(direction: .left)
@@ -245,22 +241,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         self.stack3Label.alpha = 0
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // MARK: - Swipe Recognizers And Handlers
+    // MARK: - Swipe And Pan Recognizers And Handlers
     
     func addSwipeAndPanRecognizers(){
         var swipeDownGestureRecognizer = UISwipeGestureRecognizer()
@@ -274,11 +255,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         performSegue(withIdentifier: "unwindToMainMenu", sender: self)
     }
     
-    
     // MARK: - Data Methods
     
     func displayDay(at requestedIndex: Int){
-        if requestedIndex < 0  || requestedIndex > latestExtendedWeatherFetch!.dailyWeather!.count-1{// eller 2
+        if requestedIndex < 0  || requestedIndex > latestExtendedWeatherFetch!.dailyWeather!.count-1{// last day or two are not accurate
             return
         }
         guard let requestedDay = latestExtendedWeatherFetch?.dailyWeather?[requestedIndex] else {
@@ -288,6 +268,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         updateUIWith(day: requestedDay)
         dayIndex = requestedIndex
     }
+    
+    // FIXME: - Refaktoriser Chart methods
     
     // MARK: - Charts Methods
     
@@ -454,6 +436,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         return String(chars)
     }
     
+    // FIXME: - Kan denne flyttes inn i formatteren?
+    
     func shortenTimestamp(_ value: Double) -> Double {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -470,5 +454,4 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         viewDidLoad()
     }
-    
 }
