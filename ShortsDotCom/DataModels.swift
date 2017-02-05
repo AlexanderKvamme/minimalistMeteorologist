@@ -1,10 +1,4 @@
-//
-//  WeatherRefactored.swift
-//  ShortsDotCom
-//
-//  Created by Alexander Kvamme on 31/01/2017.
-//  Copyright © 2017 Alexander Kvamme. All rights reserved.
-//
+
 
 import Foundation
 
@@ -145,3 +139,4 @@ extension CurrentData: JSONDecodable{
         self.precipIcon = precipProbability != 0 ? .init(rawValue: precipType) : .undefined
     }
 }
+

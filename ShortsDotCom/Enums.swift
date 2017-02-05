@@ -1,13 +1,5 @@
 
 
-//
-//  CurrentWeather.swift
-//  ShortsDotCom
-//
-//  Created by Alexander Kvamme on 05/09/16.
-//  Copyright © 2016 Alexander Kvamme. All rights reserved.
-//
-
 import Foundation
 
 // MARK: - Enum
@@ -61,6 +53,4 @@ enum PrecipitationIcon: String{
         }
     }
 }
-
-
 

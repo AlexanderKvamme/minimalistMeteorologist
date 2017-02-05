@@ -1,10 +1,4 @@
-//
-//  Location.swift
-//  LocationFinderExtreme
-//
-//  Created by Alexander Kvamme on 11/10/2016.
-//  Copyright © 2016 Alexander Kvamme. All rights reserved.
-//
+
 
 import Foundation
 import CoreLocation
@@ -108,3 +102,4 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         })
     }
 }
+

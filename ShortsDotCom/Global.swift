@@ -1,32 +1,7 @@
-//
-//  Global.swift
-//  ShortsDotCom
-//
-//  Created by Alexander Kvamme on 31/10/2016.
-//  Copyright © 2016 Alexander Kvamme. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
-
-/*
- 
- Table of content:
- -----------------
- 
- Globals:
- - Variables
- 
- Enums:
- - unitSystem
- - unitsOfMeasurement
- 
- Functions:
- - showAlert()
- - setUserDefaultsIfInitialRun()
- - getCurrentWeekNumber()
-
-*/
 
 // MARK: - Globals
 
@@ -154,3 +129,4 @@ extension CurrentData{
         return formatter.string(from: today)
     }
 }
+
