@@ -40,8 +40,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     var superAnimation: UIViewPropertyAnimator!
     var headerLabelPositionLeft: CGFloat!
     var headerLabelPositionRight: CGFloat!
-    //var headerLabelpositionX: CGFloat!
-    //var headerLabelPositionY: CGFloat!
     var animationDirection: AnimationDirection!
     var headerXShift: CGFloat = 10 // animation x-distance
     
@@ -49,12 +47,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imageStack = [self.stack1Image, self.stack2Image, self.stack3Image]
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
         
         setUI()
         setChartLayout()
-        setHeaderAnimationDestination()
         displayDay(at: dayIndex)
         addSwipeAndPanRecognizers()
     }
@@ -68,19 +66,22 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         stack1Image.image = UIImage(named: "temperature.png")
     }
     
-    func updateUIWith(day: DayData){
+    func updateUIWith(newDay day: DayData){
+        let temperatureLabel = stack1Label!
+        let windLabel = stack3Label!
+        let precipitationLabel = stack2Label!
+        let precipitationImage = stack2Image!
         dayLabel.text = day.dayName.uppercased()
         dayLabel.sizeToFit()
         dateLabel.text = day.formattedDate
         weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
         summaryLabel.text = day.summary
         setLabel(label: summaryLabel, summary: day.summary)
-        stack3Label.text = "\(Int(round(day.windSpeedInPreferredUnit.value))) + \(day.windSpeedInPreferredUnit.unit.symbol)"
-        stack2Label.text = "\(day.precipProbability.asIntegerPercentage)%"
-        stack2Image.image = UIImage(named: day.precipIcon.rawValue)
-        
+        windLabel.text = "\(Int(round(day.windSpeedInPreferredUnit.value)))\(day.windSpeedInPreferredUnit.unit.symbol)"
+        precipitationLabel.text = "\(day.precipProbability.asIntegerPercentage)%"
+        precipitationImage.image = UIImage(named: day.precipIcon.rawValue)
         guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
-            stack1Label.text = "Missing data"
+            temperatureLabel.text = "Missing data"
             return
         }
         stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
@@ -88,7 +89,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
 
     // MARK: - Animation Methods
     
+    // MARK: - Animation superAnimation
+    
     func moveViewsWithPan(gesture: UIPanGestureRecognizer){
+        
         // if swiped down
         if (gesture.translation(in: view).y > 50 && abs(gesture.translation(in: view).x) < 50) && gesture.state == .ended{
             swipeDownHandler()
@@ -102,7 +106,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             }
             prepareAnimation(forDirection: animationDirection)
         }
-    
+        
         // if mid pan
         superAnimation.fractionComplete = abs(gesture.translation(in: self.view).x/100)
         
@@ -131,7 +135,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func slideUI(direction: AnimationDirection){
         let labelStack: [UILabel] = [self.stack1Label!, self.stack2Label!, self.stack3Label!]
-        
         if direction == .left{
             slideComponents(.left)
             slideLabels(labelStack, direction: .left, additionalSlide: 5)
@@ -143,34 +146,23 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func slideComponents(_ direction: AnimationDirection){
-        let dayLabelPos = self.dayLabel.center.y
-        let dateLabelYPos = self.dateLabel.center.y
-        let dateLabelXShift: CGFloat = 20
         let iconRotationAmount: CGFloat = 0.05
-        let iconDownscaleAmount: CGFloat = 0.75
-        let iconTranslationAmount: CGFloat = 100
-        let summaryYShift: CGFloat = -8
-        let summaryXShift: CGFloat = 40
         let summaryRotation = -CGFloat.pi * 0.005
-        let iconStackXShift: CGFloat = 10
-        let iconStackYShift: CGFloat = 0
-        let precipitationIconDownscaleAmount: CGFloat = 0.50
-        
         switch direction{
         case .left:
-            self.dayLabel.center = CGPoint(x: self.headerLabelPositionLeft, y: dayLabelPos)
-            self.dateLabel.center = CGPoint(x: self.headerLabelPositionLeft + dateLabelXShift, y: dateLabelYPos)
-            self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: iconTranslationAmount, y: 0)
-            self.summaryLabel.transform = CGAffineTransform(translationX: summaryXShift, y: summaryYShift).rotated(by: summaryRotation)
-            self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
-            self.iconStack.transform = CGAffineTransform(translationX: iconStackXShift, y: iconStackYShift)
+            self.dayLabel.center = CGPoint(x: self.dayLabel.center.x - 20, y: self.dayLabel.center.y)
+            self.dateLabel.center = CGPoint(x: self.dateLabel.center.x + 20, y: self.dateLabel.center.y)
+            self.summaryLabel.transform = CGAffineTransform(translationX: 40, y: -8).rotated(by: summaryRotation)
+            self.iconStack.transform = CGAffineTransform(translationX: 10, y: 0)
+            self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: 0.50, y: 0.50)
+            self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -iconRotationAmount).scaledBy(x: 0.75, y: 0.75).translatedBy(x: 100, y: 0)
         case .right:
-            self.dayLabel.center = CGPoint(x: self.headerLabelPositionRight, y: dayLabelPos)
-            self.dateLabel.center = CGPoint(x: self.headerLabelPositionRight - dateLabelXShift, y: dateLabelYPos)
-            self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: iconDownscaleAmount, y: iconDownscaleAmount).translatedBy(x: -iconTranslationAmount, y: 0)
-            self.summaryLabel.transform = CGAffineTransform(translationX: -summaryXShift, y: summaryYShift).rotated(by: -summaryRotation)
-            self.iconStack.transform = CGAffineTransform(translationX: -iconStackXShift, y: iconStackYShift)
-            self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: precipitationIconDownscaleAmount, y: precipitationIconDownscaleAmount)
+            self.dayLabel.center = CGPoint(x: self.dayLabel.center.x + 20, y: self.dayLabel.center.y)
+            self.dateLabel.center = CGPoint(x: self.dateLabel.center.x - 20, y: self.dateLabel.center.y)
+            self.summaryLabel.transform = CGAffineTransform(translationX: -40, y: -8).rotated(by: -summaryRotation)
+            self.iconStack.transform = CGAffineTransform(translationX: -10, y: 0)
+            self.stack2Image.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: 0.50, y: 0.50)
+            self.weatherIcon.transform = CGAffineTransform(rotationAngle: CGFloat.pi * iconRotationAmount).scaledBy(x: 0.75, y: 0.75).translatedBy(x: -100, y: 0)
         }
     }
     
@@ -209,12 +201,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func prepareAnimation(forDirection direction: AnimationDirection){
         self.superAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
-            
             if direction == .left{
                 self.slideUI(direction: .left)
                 self.twistImages(self.imageStack, direction: .left)
             }
-            
             if direction == .right {
                 self.slideUI(direction: .right)
                 self.twistImages(self.imageStack, direction: .right)
@@ -255,22 +245,21 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             return
         }
         updateChart(withDay: requestedIndex)
-        updateUIWith(day: requestedDay)
+        updateUIWith(newDay: requestedDay)
         dayIndex = requestedIndex
     }
     
     // MARK: - Charts Methods
     
     func getChartData(forDay requestedDay: Int) -> [ChartDataEntry] {
+        
         var temperatures: [Double] = []
-        var shortenedTimestamps: [Double] = []
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
         guard let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData else { fatalError() }
         for hour in hours{
-            shortenedTimestamps.append(shortenTimestamp(hour.time))
-            if hour.temperature >= -0.5 && hour.temperature <= 0{
+            if round(hour.temperature) == -0.0 {
                 temperatures.append(0)
-            } else{
+            } else {
                 temperatures.append(hour.temperature)
             }
             if shortenTimestamp(hour.time) == 0 { // Prevent including temperatures past midnight
@@ -278,15 +267,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             }
         }
         for i in 0 ..< temperatures.count {
-            valuePairs.append(ChartDataEntry(x: shortenedTimestamps[i], y: temperatures[i]))
+            valuePairs.append(ChartDataEntry(x: shortenTimestamp(hours[i].time), y: temperatures[i]))
         }
         return valuePairs
     }
     
-    // FIXME: - Refaktoriser Chart methods
-    
     func setChartData(withDataEntries dataEntries: [ChartDataEntry]) {
-
         let xAxis = XAxis()
         xAxis.valueFormatter = TimeStampFormatter()
         lineChartView.xAxis.valueFormatter = TimeStampFormatter()
@@ -299,25 +285,22 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         set1.circleRadius = 4.0
         set1.fillAlpha = 65 / 255.0
         set1.fillColor = combinedLineColor
-        set1.highlightColor = .white
         set1.highlightEnabled = false
         set1.drawCircleHoleEnabled = true
         set1.circleHoleRadius = 2.0
         
-        // TODO: - Funker korrekt når jeg displayer første dag ved loading, med" not enough data provided", men når jeg swipe til neste, og så tilbake, så vil den ikke vise dagen i det hele tatt
-//        print("set1 entry count: ", set1.entryCount)
-//        if set1.entryCount == 1 { return }
-
         let format = NumberFormatter()
-        format.generatesDecimalNumbers = false
+        format.generatesDecimalNumbers = true
         let formatter = DefaultValueFormatter(formatter:format)
         lineChartView.lineData?.setValueFormatter(formatter)
         set1.valueFormatter = formatter
+        
         var dataSets = [LineChartDataSet]()
         dataSets.append(set1)
         let data: LineChartData = LineChartData(dataSets: dataSets)
         data.setValueTextColor(.black)
         self.lineChartView.data = data
+        
         adjustChartLayout(forDataEntries: dataEntries)
     }
     
@@ -325,7 +308,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         lineChartView.layer.borderColor = UIColor.black.cgColor
         lineChartView.layer.borderWidth = 0
         lineChartView.isUserInteractionEnabled = false
-        lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
         lineChartView.delegate = self
         lineChartView.chartDescription?.text = ""
         lineChartView.drawGridBackgroundEnabled = false
@@ -353,9 +335,21 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
 
     func adjustChartLayout(forDataEntries dataset: [ChartDataEntry]){
-        let firstTimestamp = dataset[0].x
-        lineChartView.xAxis.axisMinimum = firstTimestamp
-        lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
+        lineChartView.xAxis.axisMinimum = dataset[0].x
+        let titleFont = UIFont(name: "Poly-Regular", size: 16)!
+        lineChartView.noDataFont = titleFont
+        lineChartView.contentMode = .center
+        if dataset.count == 1 {
+            if let preferredUnit = latestExtendedWeatherFetch?.dailyWeather?[0].averageTemperatureInPreferredUnit?.unit.symbol {
+                lineChartView.noDataText = "Current temperature is \(Int(round(dataset[0].y)))\(preferredUnit)"
+            }
+            lineChartView.clear()
+        }
+        if dataset.count < 5 {
+            lineChartView.animate(xAxisDuration: 0.1, yAxisDuration: 0.0)
+        } else {
+            lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
+        }
     }
     
     func updateChart(withDay day: Int){
@@ -364,16 +358,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     // MARK: - Helper Methods
-    
-    // Animation methods
-    
-    func setHeaderAnimationDestination(){
-        headerLabelPositionLeft = dayLabel.frame.midX + headerXShift
-        headerLabelPositionRight = dayLabel.frame.midX - headerXShift
-        //headerLabelPositionY = dayLabel.frame.midY
-        //headerLabelpositionX = dayLabel.frame.midX
-    }
-    
+
     // Typography methods
     
     func setLabel(label: UILabel, summary: String){
@@ -392,6 +377,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func balanceTextAlignment(_ text: String, overLines: Int) -> String {
+        // used to balance the text over X amount of lines, without creating typographic orphans.
         var i = [Int]()
         var x = [Int]()
         var chars = Array(text.characters)
@@ -413,8 +399,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         return String(chars)
     }
     
-    // FIXME: - Kan denne flyttes inn i formatteren?
-    
     func shortenTimestamp(_ value: Double) -> Double {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -425,10 +409,5 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         let newNumber: Double = Double(hour) * 100 + Double(minute)
         return newNumber
     }
-    
-    // MARK: Motion Began
-    
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        //viewDidLoad()
-    }
 }
+

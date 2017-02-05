@@ -79,7 +79,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Helper Methods
 
     func fetchWeather(){
-        forecastClient.fetchExtendedCurrentWeather(currentCoordinate) { apiresult in
+        forecastClient.fetchExtendedCurrentWeather(forCoordinate: currentCoordinate) { apiresult in
             self.toggleLoadingMode(false)
             switch apiresult{
             
