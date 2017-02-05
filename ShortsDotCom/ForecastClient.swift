@@ -64,12 +64,8 @@ class ForecastAPIClient: APIClient {
     func fetchExtendedCurrentWeather(forCoordinate coordinate: Coordinate, completion: @escaping (APIResult<ExtendedCurrentData>) -> Void){
         let request = createExtendedRequestWithCoordinate(coordinate)
         fetch(request: request, parse: { json -> ExtendedCurrentData? in
-             if let fullWeatherDict = json as? [String : AnyObject] {
-                return ExtendedCurrentData(JSON:fullWeatherDict)
-             }
-             else {
-                return nil
-             }
+            return ExtendedCurrentData(JSON: json)
+            
         }, completion: completion)
     }
 }

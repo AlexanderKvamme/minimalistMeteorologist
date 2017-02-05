@@ -58,42 +58,28 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     // Update function
     
     func updateLocation(){
-        
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
-        
         self.locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
-        // TASK: TODO - Vise feilmelding hvor det står at bruker må enable Location Services
-        
         NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.locationManagerFailed), object: self)
-        
-        
         print("locationManager failed. Enable Location services.")
     }
-    
     
     // Task: - Reverse Geocoder
     
     func startReverseGeocoding(_ location: CLLocation){
-        
         geoCoder?.reverseGeocodeLocation(location, completionHandler: { (placemark, error) in
-            
             if error != nil{
-                
-                // TASK: - TODO error message to screen
-                
+                print("error found. returning")
                 return
             }
             
             if let lastMark = placemark?.last{
-                
-                print("\nLast registered placemark:\n \(lastMark.locality) \n")
-                
+                print("\nLast registered placemark:\n \(lastMark.locality), \(lastMark.country) \n")
                 self.country = lastMark.country!
                 self.locality = lastMark.locality!
                 

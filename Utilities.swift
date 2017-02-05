@@ -3,6 +3,8 @@
 import Foundation
 import UIKit
 
+// MARK: - Double Extensions
+
 extension Double{
     var asPercentage: Double {
         return self * 100
@@ -11,6 +13,8 @@ extension Double{
         return Int(self * 100)
     }
 }
+
+// MARK: - UILabel Extensions
 
 extension UILabel {
     func sizeToFitHeight() {
@@ -21,7 +25,7 @@ extension UILabel {
     }
 }
 
-// makes a new UILabel with infinite height and infinite number of lines and sees if the height of the resulting UILabel is higher than the UILabel in question. If so, the UILabel in question has been truncated
+// makes a new UILabel with infinite height and infinite number of lines and sees if the height of the resulting UILabel is higher than the UILabel in question. If so, the UILabel in question has been truncate
 
 extension UILabel {
     func willBeTruncated() -> Bool {

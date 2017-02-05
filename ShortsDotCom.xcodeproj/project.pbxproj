@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		68FCB37C9D7E24303BD274ED /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */; };
+		D0DF77E0016C87987F3588A8 /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */; };
 		DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */; };
 		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
 		DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */; };
@@ -220,14 +220,14 @@
 		DDA277161D786516001B5FBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277141D786516001B5FBD /* Main.storyboard */; };
 		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
+		DDAB1E171E47988F0071A623 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDAB1E161E47988F0071A623 /* Charts.framework */; };
 		DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B11E2D31BF0030E45A /* OnboardingView.swift */; };
 		DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B51E2D39610030E45A /* OnboardingViewController.swift */; };
-		DDEDDEE71E2D424B00D298EE /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShortsDotCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
+		7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShortsDotCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampFormatter.swift; sourceTree = "<group>"; };
@@ -443,10 +443,10 @@
 		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDAB1E161E47988F0071A623 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/ShortsDotCom-cvqbthhdljzexpeintkwcfzusths/Build/Products/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
 		DDE215B11E2D31BF0030E45A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DDE215B51E2D39610030E45A /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DDED7F9F1E2571E7002B7E1C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_ShortsDotCom.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ShortsDotCom-ghuyujaxsdtkxvabwrlpykixxvwd/Build/Products/Debug-iphonesimulator/Pods_ShortsDotCom.framework"; sourceTree = "<group>"; };
 		F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -455,8 +455,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDEDDEE71E2D424B00D298EE /* Pods_ShortsDotCom.framework in Frameworks */,
-				68FCB37C9D7E24303BD274ED /* Pods_ShortsDotCom.framework in Frameworks */,
+				DDAB1E171E47988F0071A623 /* Charts.framework in Frameworks */,
+				D0DF77E0016C87987F3588A8 /* Pods_ShortsDotCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,9 +466,9 @@
 		289B8FFC5DB462C0910F0E7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDEDDEE61E2D424A00D298EE /* Pods_ShortsDotCom.framework */,
+				DDAB1E161E47988F0071A623 /* Charts.framework */,
 				DDED7F9F1E2571E7002B7E1C /* MapKit.framework */,
-				1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */,
+				7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1209,7 +1209,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1250,7 +1250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

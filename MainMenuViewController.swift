@@ -3,8 +3,6 @@
 import UIKit
 import CoreLocation
 
-var latestExtendedWeatherFetch: ExtendedCurrentData? = nil
-
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: - Properties
@@ -73,6 +71,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Helper Methods
 
     func fetchWeather(){
+        guard let currentCoordinate = currentCoordinate else {
+            return
+        }
         forecastClient.fetchExtendedCurrentWeather(forCoordinate: currentCoordinate) { apiresult in
             self.toggleLoadingMode(false)
             switch apiresult{
@@ -164,4 +165,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 }
+
+
+// MARK: - Helper methods
+
+func setUserDefaultsIfInitialRun(){
+    let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
+    if currentPreferredUnits == nil {
+        UserDefaults.standard.set("SI", forKey: "preferredUnits")
+    }
+}
+
 

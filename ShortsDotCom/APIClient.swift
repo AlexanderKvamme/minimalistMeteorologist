@@ -42,14 +42,10 @@ protocol APIClient {
 }
 
 extension APIClient{
-    
     func JSONTaskWithRequest(request: URLRequest, completion: @escaping JSONTaskCompletion) -> JSONTask{
         let task = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let HTTPResponse = response as? HTTPURLResponse else {
-                let userInfo = [
-                    NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment:"")
-                ]
-                
+                let userInfo = [NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment:"")]
                 let error = NSError(domain: AMKNetworkingErrorDomain, code: MissingHTTPResponseError, userInfo: userInfo)
                 completion(nil, nil, error)
                 return
