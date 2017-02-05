@@ -8,6 +8,6 @@ target 'ShortsDotCom' do
   # Pods for ShortsDotCom
   pod 'Charts'
   pod 'paper-onboarding'
-  pod 'Spring'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 
 end

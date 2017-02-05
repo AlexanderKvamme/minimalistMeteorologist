@@ -2,6 +2,7 @@
 
 import UIKit
 import CoreLocation
+import Spring
 
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 

@@ -1,6 +1,7 @@
 
 
 import UIKit
+import Spring
 
 class SettingsViewController: UIViewController {
     let defaults = UserDefaults.standard

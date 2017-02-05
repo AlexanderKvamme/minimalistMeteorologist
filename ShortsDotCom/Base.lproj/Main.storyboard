@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-a3-4xE">
-                                <rect key="frame" x="0.0" y="296.5" width="320" height="271.5"/>
+                                <rect key="frame" x="0.0" y="297" width="320" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mwt-fZ-gmn">
                                     <size key="itemSize" width="120" height="160"/>
@@ -128,23 +127,23 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpp-Rh-2AR">
-                                <rect key="frame" x="42.5" y="220" width="236.5" height="26.5"/>
+                                <rect key="frame" x="42" y="220" width="237" height="27"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-14-equ">
-                                <rect key="frame" x="150" y="264.5" width="20" height="20"/>
+                                <rect key="frame" x="150" y="265" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5UQ-5o-VfK" userLabel="animationView">
-                                <rect key="frame" x="130" y="254.5" width="60" height="39"/>
+                                <rect key="frame" x="130" y="255" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Zds-A0-8r5"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Test, Testingtown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-kz-elv">
-                                <rect key="frame" x="0.0" y="245.5" width="320" height="12"/>
+                                <rect key="frame" x="0.0" y="246" width="320" height="12"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -299,9 +298,6 @@
                                         <state key="normal" title="THIS WEEK">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="I7e-2P-p60" kind="presentation" id="CZJ-mA-OE6"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8G-6M-DZ4">
                                         <rect key="frame" x="0.0" y="128" width="242" height="64"/>
@@ -352,16 +348,11 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_shakeToRefresh_under" translatesAutoresizingMaskIntoConstraints="NO" id="lAl-Ea-Z6C">
                                 <rect key="frame" x="39" y="385" width="112" height="31"/>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_enableGPS" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-hH-x0c" customClass="SpringImageView" customModule="ShortsDotCom" customModuleProvider="target">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_enableGPS" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-hH-x0c">
                                 <rect key="frame" x="39" y="60" width="242" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="yry-Mu-cDw"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="Shake"/>
-                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -554,7 +545,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-42-AJI">
-                                <rect key="frame" x="140.5" y="72.5" width="39" height="17"/>
+                                <rect key="frame" x="141" y="72.5" width="39" height="17"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -642,118 +633,6 @@
             </objects>
             <point key="canvasLocation" x="221" y="1999"/>
         </scene>
-        <!--Week Table View Controller-->
-        <scene sceneID="4u3-Vx-bGo">
-            <objects>
-                <tableViewController id="I7e-2P-p60" customClass="WeekTableViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="641" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q5j-Q8-r4f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeekTableViewCell" rowHeight="641" id="lo1-YR-Jao" customClass="WeekTableViewCell" customModule="ShortsDotCom" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="641"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo1-YR-Jao" id="NLg-FB-sdq">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrY-Q4-4aG">
-                                            <rect key="frame" x="-14.5" y="125" width="349" height="390"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                            </accessibility>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="300"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnf-4N-bm5">
-                                            <rect key="frame" x="46" y="268" width="229" height="104"/>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="80"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT WEEK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-NX-u1O">
-                                            <rect key="frame" x="146" y="351" width="129" height="23"/>
-                                            <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="0DA-2c-pgF"/>
-                                        <constraint firstItem="XVv-NX-u1O" firstAttribute="top" secondItem="Jnf-4N-bm5" secondAttribute="firstBaseline" id="3sT-gK-ljf"/>
-                                        <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="C8C-A1-bY1"/>
-                                        <constraint firstItem="XVv-NX-u1O" firstAttribute="trailing" secondItem="Jnf-4N-bm5" secondAttribute="trailing" id="Lbb-go-NSG"/>
-                                        <constraint firstItem="ZrY-Q4-4aG" firstAttribute="centerY" secondItem="NLg-FB-sdq" secondAttribute="centerY" id="QNu-KT-tEY"/>
-                                        <constraint firstItem="Jnf-4N-bm5" firstAttribute="centerX" secondItem="NLg-FB-sdq" secondAttribute="centerX" id="b6h-BU-amw"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outlet property="currentWeekLabel" destination="XVv-NX-u1O" id="0Kb-n6-MGm"/>
-                                    <outlet property="weekNumberLabel" destination="ZrY-Q4-4aG" id="6FU-QL-Mb6"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="I7e-2P-p60" id="t3I-ok-znN"/>
-                            <outlet property="delegate" destination="I7e-2P-p60" id="9Hg-eI-KF6"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <segue destination="qXv-aD-If9" kind="unwind" identifier="WeeksToMain" unwindAction="unwindToMainMenuWithSegue:" id="HWY-FW-iUE"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LeY-WH-aKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="qXv-aD-If9" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1546" y="1137"/>
-        </scene>
-        <!--Weeks Detailed Table View Controller-->
-        <scene sceneID="rT0-2y-1Kc">
-            <objects>
-                <tableViewController storyboardIdentifier="WeeksDetailedTableViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6yA-LD-TX5" customClass="WeeksDetailedTableViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="aiF-ES-XfH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK 32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="m0F-9t-qFV">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <accessibility key="accessibilityConfiguration">
-                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                            </accessibility>
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="50"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayTableViewCell" rowHeight="75" id="2OD-kz-Ynv" customClass="DayTableViewCell" customModule="ShortsDotCom" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2OD-kz-Ynv" id="h3q-Ls-Bn6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <gestureRecognizers/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="6yA-LD-TX5" id="Q9H-Tf-hj8"/>
-                            <outlet property="delegate" destination="6yA-LD-TX5" id="Nrz-7s-6gY"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="weekHeaderLabel" destination="m0F-9t-qFV" id="Qha-sH-YdM"/>
-                        <segue destination="Erg-uO-5UJ" kind="unwind" identifier="unwindToWeeks" unwindAction="unwindToWeeksWithSegue:" id="odf-ra-LZS"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="huh-hb-pPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Erg-uO-5UJ" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2372" y="1136.5817091454273"/>
-        </scene>
         <!--Settings View Controller-->
         <scene sceneID="5s6-1q-lyU">
             <objects>
@@ -781,7 +660,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-Gk-1UU" userLabel="SettingsView" customClass="DesignableView" customModule="ShortsDotCom" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-Gk-1UU" userLabel="SettingsView" customClass="DesignableView" customModule="Spring">
                                 <rect key="frame" x="36" y="483" width="248" height="75"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vRG-uj-sME">
