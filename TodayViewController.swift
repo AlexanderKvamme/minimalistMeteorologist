@@ -77,7 +77,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         weatherIcon.image = UIImage(named: day.weatherIcon.rawValue)
         summaryLabel.text = day.summary
         setLabel(label: summaryLabel, summary: day.summary)
-        windLabel.text = "\(Int(round(day.windSpeedInPreferredUnit.value)))\(day.windSpeedInPreferredUnit.unit.symbol)"
+        windLabel.text = "\(Int(round(day.windSpeedInPreferredUnit.value))) \(day.windSpeedInPreferredUnit.unit.symbol)"
         precipitationLabel.text = "\(day.precipProbability.asIntegerPercentage)%"
         precipitationImage.image = UIImage(named: day.precipIcon.rawValue)
         guard let averageTemperature = day.averageTemperatureInPreferredUnit else {
@@ -89,7 +89,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
 
     // MARK: - Animation Methods
     
-    // MARK: - Animation superAnimation
+    // MARK: - Main Animation
     
     func moveViewsWithPan(gesture: UIPanGestureRecognizer){
         
@@ -238,12 +238,22 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: - Data Methods
     
     func displayDay(at requestedIndex: Int){
-        if requestedIndex < 0  || requestedIndex > latestExtendedWeatherFetch!.dailyWeather!.count-1{// last day or two are not accurate
+        var daysWithHourData = 0
+        for day in latestExtendedWeatherFetch!.dailyWeather!{
+            if day.hourData != nil {
+                daysWithHourData += 1
+            }
+        }
+
+        if requestedIndex < 0  || requestedIndex >= daysWithHourData{
+         print("Not enough hourData to graph this day")
             return
         }
+        
         guard let requestedDay = latestExtendedWeatherFetch?.dailyWeather?[requestedIndex] else {
             return
         }
+        
         updateChart(withDay: requestedIndex)
         updateUIWith(newDay: requestedDay)
         dayIndex = requestedIndex
@@ -251,11 +261,18 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     // MARK: - Charts Methods
     
-    func getChartData(forDay requestedDay: Int) -> [ChartDataEntry] {
-        
+    func getChartData(forDay requestedDay: Int) -> [ChartDataEntry]? {
+        print("prøver å finne requestedDay:", requestedDay)
         var temperatures: [Double] = []
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
-        guard let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData else { fatalError() }
+        //print("printer requestedDay:\n")
+        //print(latestExtendedWeatherFetch?.dailyWeather?[requestedDay])
+        guard let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData else {
+            //FIXME: - Here
+            print("problem with getting chart data for day: ",requestedDay)
+            print("does not contain hourData")
+            return nil
+        }
         for hour in hours{
             if round(hour.temperature) == -0.0 {
                 temperatures.append(0)
@@ -353,8 +370,11 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func updateChart(withDay day: Int){
-        let newDataEntries = getChartData(forDay: day)
-        setChartData(withDataEntries: newDataEntries)
+        if let newDataEntries = getChartData(forDay: day){
+            print("dataCount")
+            print(newDataEntries.count)
+            setChartData(withDataEntries: newDataEntries)
+        }
     }
     
     // MARK: - Helper Methods

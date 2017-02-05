@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68FCB37C9D7E24303BD274ED /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A8A1BA6EC75AC628081CD /* Pods_ShortsDotCom.framework */; };
 		DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */; };
 		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
 		DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */; };
@@ -455,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDEDDEE71E2D424B00D298EE /* Pods_ShortsDotCom.framework in Frameworks */,
+				68FCB37C9D7E24303BD274ED /* Pods_ShortsDotCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
