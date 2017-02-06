@@ -8,10 +8,10 @@ final class Animations{
     // MARK: - Animation Resources
     
     static var checkmarkImages: [UIImage] = []
-
+    
     class func setupAnimation(){
-        for i in 40...79 {
-            let filename = String(format: "loading_%05d", i)
+        for i in 00...39 {
+            let filename = String(format: "checkmark%02d", i)
             if let image = UIImage(named: filename) {
                 checkmarkImages.append(image)
             }
