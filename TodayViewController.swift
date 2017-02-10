@@ -37,14 +37,14 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         case right
     }
     
-    enum deviceSize{
+    enum DeviceSize{
         case Smallest
         case Small
         case Big
         case Biggest
         
-        init(screenSize: CGFloat){
-            switch screenSize{
+        init(deviceHeight: CGFloat){
+            switch deviceHeight{
             case 480: // iphone 3 and 4
                 self = .Smallest
                 
@@ -71,6 +71,12 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let deviceScreenHeight = view.frame.size.height
+        print("deviceScreenHeight:" , deviceScreenHeight)
+        
+        let deviceSize = DeviceSize(deviceHeight: deviceScreenHeight)
+        print("deviceSize: ", deviceSize)
         
         imageStack = [self.stack1Image, self.stack2Image, self.stack3Image]
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
@@ -286,7 +292,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: - Charts Methods
     
     func getChartData(forDay requestedDay: Int) -> [ChartDataEntry]? {
-        print("prøver å finne requestedDay:", requestedDay)
+        
         var temperatures: [Double] = []
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
         //print("printer requestedDay:\n")
@@ -395,8 +401,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func updateChart(withDay day: Int){
         if let newDataEntries = getChartData(forDay: day){
-            print("dataCount")
-            print(newDataEntries.count)
             setChartData(withDataEntries: newDataEntries)
         }
     }
