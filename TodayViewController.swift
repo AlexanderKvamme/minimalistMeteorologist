@@ -37,6 +37,30 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         case right
     }
     
+    enum deviceSize{
+        case Smallest
+        case Small
+        case Big
+        case Biggest
+        
+        init(screenSize: CGFloat){
+            switch screenSize{
+            case 480: // iphone 3 and 4
+                self = .Smallest
+                
+            case 568: // iphone 5
+                self = .Small
+                
+            case 667: // iphone 6 without display zoom
+                self = .Big
+
+            default:
+                self = .Biggest
+                
+            }
+        }
+    }
+    
     var superAnimation: UIViewPropertyAnimator!
     var headerLabelPositionLeft: CGFloat!
     var headerLabelPositionRight: CGFloat!
