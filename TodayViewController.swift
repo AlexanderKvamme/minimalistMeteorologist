@@ -11,6 +11,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var weatherIconHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var stackHeader: UILabel!
     @IBOutlet weak var stack1Image: UIImageView!
@@ -21,6 +23,20 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var stack3Label: UILabel!
     @IBOutlet weak var iconStack: UIStackView!
     @IBOutlet weak var graphHeader: UILabel!
+    
+    @IBOutlet weak var spaceOverDayName: UIView!
+    
+    @IBOutlet weak var spaceOverDayNameHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var spaceUnderDayName: UIView!
+    @IBOutlet weak var spaceUnderDayNameHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tripleStackHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var spaceOverTemperatureHeightConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var spaceOverGraph: UIView!
+    
+    @IBOutlet weak var spaceUnderGraphHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -71,12 +87,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let deviceScreenHeight = view.frame.size.height
-        print("deviceScreenHeight:" , deviceScreenHeight)
-        
-        let deviceSize = DeviceSize(deviceHeight: deviceScreenHeight)
-        print("deviceSize: ", deviceSize)
+
+        if DeviceSize(deviceHeight: view.frame.size.height) == .Small {
+            resizeUIElements()
+        }
         
         imageStack = [self.stack1Image, self.stack2Image, self.stack3Image]
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
@@ -85,6 +99,18 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         setChartLayout()
         displayDay(at: dayIndex)
         addSwipeAndPanRecognizers()
+    }
+    
+    // FIXME: - Resize elements for smaller iphones
+    
+    func resizeUIElements(){
+        self.spaceOverDayName.translatesAutoresizingMaskIntoConstraints = false
+        self.spaceOverDayNameHeightConstraint.constant = 0
+        self.spaceUnderDayNameHeightConstraint.constant = 5
+        self.weatherIconHeightConstraint.constant = 100
+        self.tripleStackHeightConstraint.constant = 20
+        self.spaceOverTemperatureHeightConstraint.constant = 5
+        self.spaceUnderGraphHeightConstraint.constant = 5
     }
     
     // MARK: - UI Setup

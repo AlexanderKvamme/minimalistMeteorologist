@@ -616,6 +616,13 @@
                         <outlet property="graphHeader" destination="ZTA-4B-9J0" id="QKl-YK-4Ly"/>
                         <outlet property="iconStack" destination="yRV-9D-0xs" id="skU-up-uYx"/>
                         <outlet property="lineChartView" destination="zpb-gL-nlZ" id="3Tv-at-dQn"/>
+                        <outlet property="spaceOverDayName" destination="FgC-Ro-OKR" id="Lg9-gn-ows"/>
+                        <outlet property="spaceOverDayNameHeightConstraint" destination="l1k-Lr-mry" id="6aM-w6-FyY"/>
+                        <outlet property="spaceOverGraph" destination="8kE-xb-gvW" id="hAX-gv-RuR"/>
+                        <outlet property="spaceOverTemperatureHeightConstraint" destination="pk1-sC-bJo" id="cia-5a-84I"/>
+                        <outlet property="spaceUnderDayName" destination="Olg-nQ-HnZ" id="Yfg-l3-HBx"/>
+                        <outlet property="spaceUnderDayNameHeightConstraint" destination="Hsi-YG-SCX" id="Wvv-eU-epW"/>
+                        <outlet property="spaceUnderGraphHeightConstraint" destination="GDx-PX-voT" id="jSv-0D-iH3"/>
                         <outlet property="stack1Image" destination="wj8-Vh-pBP" id="9PN-VT-m8X"/>
                         <outlet property="stack1Label" destination="8MY-bd-QKF" id="ilY-7U-qUO"/>
                         <outlet property="stack2Image" destination="Yhb-4D-8zJ" id="f6Q-VA-BAH"/>
@@ -624,7 +631,9 @@
                         <outlet property="stack3Label" destination="H2D-Dd-vEu" id="nVF-Qj-DNZ"/>
                         <outlet property="stackHeader" destination="H9k-Iq-ZGN" id="iYm-kW-gTF"/>
                         <outlet property="summaryLabel" destination="b6y-UU-P4t" id="n6t-4N-e5H"/>
+                        <outlet property="tripleStackHeightConstraint" destination="ZQw-8j-Hms" id="c0B-4f-HvA"/>
                         <outlet property="weatherIcon" destination="Dxc-nI-hGe" id="xJ4-0X-zHl"/>
+                        <outlet property="weatherIconHeightConstraint" destination="Kcd-IE-qhU" id="J0P-6x-tGV"/>
                         <segue destination="B1N-SW-bWT" kind="unwind" identifier="unwindToMainMenu" unwindAction="unwindToMainMenuWithSegue:" id="EaH-mf-lxq"/>
                     </connections>
                 </viewController>
