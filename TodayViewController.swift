@@ -11,6 +11,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var weatherIconHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var stackHeader: UILabel!
     @IBOutlet weak var stack1Image: UIImageView!
@@ -21,6 +23,20 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     @IBOutlet weak var stack3Label: UILabel!
     @IBOutlet weak var iconStack: UIStackView!
     @IBOutlet weak var graphHeader: UILabel!
+    
+    @IBOutlet weak var spaceOverDayName: UIView!
+    
+    @IBOutlet weak var spaceOverDayNameHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var spaceUnderDayName: UIView!
+    @IBOutlet weak var spaceUnderDayNameHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tripleStackHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var spaceOverTemperatureHeightConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var spaceOverGraph: UIView!
+    
+    @IBOutlet weak var spaceUnderGraphHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -37,6 +53,30 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         case right
     }
     
+    enum DeviceSize{
+        case Smallest
+        case Small
+        case Big
+        case Biggest
+        
+        init(deviceHeight: CGFloat){
+            switch deviceHeight{
+            case 480: // iphone 3 and 4
+                self = .Smallest
+                
+            case 568: // iphone 5
+                self = .Small
+                
+            case 667: // iphone 6 without display zoom
+                self = .Big
+
+            default:
+                self = .Biggest
+                
+            }
+        }
+    }
+    
     var superAnimation: UIViewPropertyAnimator!
     var headerLabelPositionLeft: CGFloat!
     var headerLabelPositionRight: CGFloat!
@@ -47,6 +87,10 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if DeviceSize(deviceHeight: view.frame.size.height) == .Small {
+            resizeUIElements()
+        }
         
         imageStack = [self.stack1Image, self.stack2Image, self.stack3Image]
         viewStack = [self.dayLabel, self.dateLabel, self.weatherIcon, self.summaryLabel, self.stack2Image, self.iconStack, self.stack1Label, self.stack2Label, self.stack3Label]
@@ -55,6 +99,18 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         setChartLayout()
         displayDay(at: dayIndex)
         addSwipeAndPanRecognizers()
+    }
+    
+    // FIXME: - Resize elements for smaller iphones
+    
+    func resizeUIElements(){
+        self.spaceOverDayName.translatesAutoresizingMaskIntoConstraints = false
+        self.spaceOverDayNameHeightConstraint.constant = 0
+        self.spaceUnderDayNameHeightConstraint.constant = 5
+        self.weatherIconHeightConstraint.constant = 100
+        self.tripleStackHeightConstraint.constant = 20
+        self.spaceOverTemperatureHeightConstraint.constant = 5
+        self.spaceUnderGraphHeightConstraint.constant = 5
     }
     
     // MARK: - UI Setup
@@ -262,7 +318,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     // MARK: - Charts Methods
     
     func getChartData(forDay requestedDay: Int) -> [ChartDataEntry]? {
-        print("prøver å finne requestedDay:", requestedDay)
+        
         var temperatures: [Double] = []
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
         //print("printer requestedDay:\n")
@@ -371,8 +427,6 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func updateChart(withDay day: Int){
         if let newDataEntries = getChartData(forDay: day){
-            print("dataCount")
-            print(newDataEntries.count)
             setChartData(withDataEntries: newDataEntries)
         }
     }
