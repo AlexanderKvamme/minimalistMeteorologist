@@ -67,7 +67,7 @@ extension APIClient{
                         }
                 
                 case 403:
-                    NotificationCenter.default.post(name: Notification.Name(rawValue:Notifications.fetchCurrentWeatherDidFail), object: nil, userInfo:  ["errorCode": 20, "errorMessage": "this is the errormessage"])
+                    NotificationCenter.default.post(name: Notification.Name(rawValue:NotificationNames.fetchCurrentWeatherDidFail), object: nil, userInfo:  ["errorCode": 20, "errorMessage": "this is the errormessage"])
                     
                 default:
                     print("Received HTTPResponse with statuscode: \(HTTPResponse.statusCode) - not handled ")

@@ -7,6 +7,7 @@ import Spring
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: - Properties
+    var yrClient = YrClient()
     
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -43,7 +44,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         setObservers()
     }
-    
     
     // MARK: - viewDidDisappear - update rootViewController
     
@@ -84,8 +84,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 if let fetchedDays = latestExtendedWeatherFetch?.dailyWeather, let fetchedHours = latestExtendedWeatherFetch?.hourlyWeather{
                     var dayIndex = 0
                     var organizedHours = [HourData]()
-                    for hour in fetchedHours where dayIndex < fetchedDays.count{
-                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber{
+                    for hour in fetchedHours where dayIndex < fetchedDays.count {
+                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber {
                             organizedHours.append(hour)
                         } else{
                             latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
@@ -94,12 +94,42 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: self)
+                
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
                 
             case .failure(let error as NSError):
                 self.toggleLoadingMode(true)
                 showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
             default: break
+            }
+        }
+    }
+    
+    // FIXME: - Do things
+    
+    func fetchWeatherFromYr(){
+        // This is run from the reverseGeocodeHandler after updating self.currentLocation so the location data is available in the UserLocation singleton
+        // Format reverseGeocode location to a XML request and send to yr.no
+        
+        let country = UserLocation.sharedInstance.country
+        let adminArea = UserLocation.sharedInstance.administrativeArea
+        let locality = UserLocation.sharedInstance.locality
+        let subLocality = UserLocation.sharedInstance.subLocality
+        
+        let urlString = "http://www.yr.no/place/\(country)/\(adminArea)/\(locality)/\(subLocality)/forecast_hour_by_hour.xml"
+
+        yrClient.fetchHourlyDataFromYr(URL: urlString) { (result) in
+            switch result {
+            case .Success(let r):
+                // FIXME: - Use the Hours
+                print("SUCCESS: result received in main menu")
+                  NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
+                  NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
+//                print("with r: \(r)")
+            case .Failure(let e):
+                print("i got back failure with e: \(e)")
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: self)
             }
         }
     }
@@ -128,21 +158,39 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeFinishedHandler), name: NSNotification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: Notifications.settingsDidUpdate), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: Notifications.locationManagerFailed), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchDidFinishHandler), name: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFinish), object: nil)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notifications.fetchCurrentWeatherDidFail), object: nil, queue: nil) {
-            notification in
-            if self.presentedViewController == nil {
-                showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
-            }
-        }
+        // Location based
+        NotificationCenter.default.addObserver(self, selector: #selector(locationManagerFailedHandler), name: NSNotification.Name(rawValue: NotificationNames.locationManagerFailed), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reverseGeocodeFinishedHandler), name: NSNotification.Name(rawValue: NotificationNames.reverseGeocodingDidFinish), object: nil)
+        
+        // Networking
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchDidFinishHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchFromDarkSkyFailed), name: NSNotification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFail), object: nil)
+        
+        // Yr
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrDidFinishHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrFailedHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: nil)
+        
+        // System
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: NotificationNames.settingsDidUpdate), object: nil)
     }
     
     // MARK: - Handlers for observers
+    func fetchWeatherFromYrDidFinishHandler(){
+        print("finished fetching hour data from Yr handler")
+    }
+    
+    func fetchWeatherFromYrFailedHandler(){
+        print("Failed fetching hours from Yr")
+    }
+    
+    func fetchFromDarkSkyFailed() {
+        if self.presentedViewController == nil {
+            showAlert(viewController: self, title: "Server denied fetch", message: "Please try again later", error: nil)
+        }
+    }
     
     func fetchDidFinishHandler(){
+        print("fetch finished")
         self.shakeToRefreshImage.isHidden = true
         self.enableGPSImage.isHidden = true
     }
@@ -161,6 +209,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         if let latestGPS = UserLocation.sharedInstance.coordinate{
             currentCoordinate = latestGPS
             fetchWeather()
+            fetchWeatherFromYr()
+            // FIXME: - move into fetchWeather when finished
+            // Dette er inni reverseGeocodeHandler, så dette er ETTER vi har returnert resultat. Vi har en
         } else {
             showAlert(viewController: self, title: "Error fetching gps", message: "We can fetch weather for you if you let us access Location Services. Please enable Location Services in your settings and restart the app to update GPS.", error: nil)
         }
@@ -176,5 +227,4 @@ func setUserDefaultsIfInitialRun(){
         UserDefaults.standard.set("SI", forKey: "preferredUnits")
     }
 }
-
 

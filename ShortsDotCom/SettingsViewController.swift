@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
         case 3: defaults.set(UnitsOfMeasurementSegmentedControl.titleForSegment(at: index), forKey: "preferredUnits")
         default: break
         }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.settingsDidUpdate), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.settingsDidUpdate), object: self)
     }
     
     @IBAction func BackgroundButtonDidTouch(_ sender: AnyObject) {

@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D0DF77E0016C87987F3588A8 /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */; };
+		DD0020AA1EA8F4AF00D2D8E2 /* YrHourData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0020A91EA8F4AF00D2D8E2 /* YrHourData.swift */; };
+		DD0020AC1EA8F4C900D2D8E2 /* YrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0020AB1EA8F4C900D2D8E2 /* YrClient.swift */; };
 		DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */; };
 		DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */; };
 		DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */; };
 		DD0FF9E81D7B08A900A1B06F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FF9E71D7B08A900A1B06F /* APIClient.swift */; };
+		DD102CD51EAB6B610012B8AA /* YrXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD102CD41EAB6B610012B8AA /* YrXMLParser.swift */; };
 		DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */; };
 		DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */; };
 		DD19ECD81DAE802D00986C39 /* Activity Indicators@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19EC601DAE802D00986C39 /* Activity Indicators@2x.png */; };
@@ -140,7 +143,7 @@
 		DD4DCBBB1DE5AA4F0003C791 /* partly-cloudy-night.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */; };
 		DD4DCBBC1DE5AA4F0003C791 /* partly-cloudy-night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBB91DE5AA4F0003C791 /* partly-cloudy-night@2x.png */; };
 		DD4DCBBD1DE5AA4F0003C791 /* partly-cloudy-night@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBBA1DE5AA4F0003C791 /* partly-cloudy-night@3x.png */; };
-		DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */; };
+		DDA0A0D51DB27BBF00011F94 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */; };
 		DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F51DB3A9A500011F94 /* weathercock.png */; };
 		DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */; };
 		DDA0A0FA1DB3A9A500011F94 /* weathercock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */; };
@@ -159,10 +162,13 @@
 /* Begin PBXFileReference section */
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
 		7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShortsDotCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD0020A91EA8F4AF00D2D8E2 /* YrHourData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YrHourData.swift; sourceTree = "<group>"; };
+		DD0020AB1EA8F4C900D2D8E2 /* YrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YrClient.swift; sourceTree = "<group>"; };
 		DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		DD0F132C1DF9B5BA0077FB36 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		DD0F132E1DF9B6D10077FB36 /* TimeStampFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampFormatter.swift; sourceTree = "<group>"; };
 		DD0FF9E71D7B08A900A1B06F /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		DD102CD41EAB6B610012B8AA /* YrXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YrXMLParser.swift; sourceTree = "<group>"; };
 		DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ShortsDotCom/SettingsViewController.swift; sourceTree = "<group>"; };
 		DD19EC5F1DAE802D00986C39 /* Activity Indicators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators.png"; sourceTree = "<group>"; };
 		DD19EC601DAE802D00986C39 /* Activity Indicators@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity Indicators@2x.png"; sourceTree = "<group>"; };
@@ -291,7 +297,7 @@
 		DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night.png"; sourceTree = "<group>"; };
 		DD4DCBB91DE5AA4F0003C791 /* partly-cloudy-night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night@2x.png"; sourceTree = "<group>"; };
 		DD4DCBBA1DE5AA4F0003C791 /* partly-cloudy-night@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night@3x.png"; sourceTree = "<group>"; };
-		DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenterKeys.swift; sourceTree = "<group>"; };
+		DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
 		DDA0A0F71DB3A9A500011F94 /* weathercock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@3x.png"; sourceTree = "<group>"; };
@@ -341,6 +347,16 @@
 				6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD0020A81EA8F47A00D2D8E2 /* Yr.no */ = {
+			isa = PBXGroup;
+			children = (
+				DD0020A91EA8F4AF00D2D8E2 /* YrHourData.swift */,
+				DD0020AB1EA8F4C900D2D8E2 /* YrClient.swift */,
+				DD102CD41EAB6B610012B8AA /* YrXMLParser.swift */,
+			);
+			name = Yr.no;
 			sourceTree = "<group>";
 		};
 		DD0484541E48BB4E00926521 /* Animations */ = {
@@ -538,6 +554,7 @@
 		DDA277041D786516001B5FBD = {
 			isa = PBXGroup;
 			children = (
+				DD0020A81EA8F47A00D2D8E2 /* Yr.no */,
 				DD0484541E48BB4E00926521 /* Animations */,
 				DDE215B01E2D31650030E45A /* Onboarding */,
 				DD0F13321DFAD2090077FB36 /* Data */,
@@ -573,7 +590,7 @@
 				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 				DDA277101D786516001B5FBD /* AppDelegate.swift */,
 				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
-				DDA0A0D41DB27BBF00011F94 /* NotificationCenterKeys.swift */,
+				DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */,
 			);
 			path = ShortsDotCom;
 			sourceTree = "<group>";
@@ -851,15 +868,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD0F132F1DF9B6D10077FB36 /* TimeStampFormatter.swift in Sources */,
+				DD102CD51EAB6B610012B8AA /* YrXMLParser.swift in Sources */,
 				DD2736CE1DC7B4E0008F2389 /* Global.swift in Sources */,
 				DD300BB91D7DBB6000AF95C9 /* Enums.swift in Sources */,
 				DD300BB71D7DAE8100AF95C9 /* ForecastClient.swift in Sources */,
 				DD0F132D1DF9B5BA0077FB36 /* TodayViewController.swift in Sources */,
-				DDA0A0D51DB27BBF00011F94 /* NotificationCenterKeys.swift in Sources */,
+				DDA0A0D51DB27BBF00011F94 /* NotificationNames.swift in Sources */,
 				DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */,
 				DD16A27C1DB56F3200B5BAD1 /* SettingsViewController.swift in Sources */,
+				DD0020AA1EA8F4AF00D2D8E2 /* YrHourData.swift in Sources */,
 				DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */,
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,
+				DD0020AC1EA8F4C900D2D8E2 /* YrClient.swift in Sources */,
 				DD239A8D1E40BEF90082CCD8 /* DataModels.swift in Sources */,
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
 				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,

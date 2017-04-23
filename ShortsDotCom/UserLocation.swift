@@ -17,6 +17,8 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     var geoCoder: CLGeocoder?
     var country = ""
     var locality = ""
+    var subLocality = ""
+    var administrativeArea = ""
     var locationName: String {
         if country != "" {
         return "in \(locality), \(country)"
@@ -52,7 +54,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         self.startReverseGeocoding(CLLocation(latitude: center.latitude, longitude: center.longitude))
         
         // post notification
-        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.userLocationGPSDidUpdate), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
     }
     
     // Update function
@@ -65,7 +67,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.locationManagerFailed), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.locationManagerFailed), object: self)
         print("locationManager failed. Enable Location services.")
     }
     
@@ -79,13 +81,33 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
             }
             
             if let lastMark = placemark?.last{
-                print("\nLast registered placemark:\n \(lastMark.locality), \(lastMark.country) \n")
+                self.printPlacemark(lastMark)
                 self.country = lastMark.country!
                 self.locality = lastMark.locality!
+                self.subLocality = lastMark.subLocality!
+                self.administrativeArea = lastMark.administrativeArea!
                 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.reverseGeocodingDidFinish), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.reverseGeocodingDidFinish), object: self)
             }
         })
+    }
+    
+    // MARK: - Helper methods
+    
+    func printPlacemark(_ placemark: CLPlacemark) {
+        print("country: ", placemark.country as Any)
+        print("locality: ", placemark.locality as Any)
+        //print("isoCountryCode: ", placemark.isoCountryCode as Any)
+        //print("location: ", placemark.location as Any)
+        //print("name: ", placemark.name as Any)
+        //print("region: ", placemark.region as Any)
+        if placemark.subAdministrativeArea != nil {
+                print("subAdmininstrative area:", placemark.subAdministrativeArea as Any)
+        }
+        print("Admininstrative area:", placemark.administrativeArea as Any)
+        print("sublocality:", placemark.subLocality as Any)
+        //print("postalCode:" ,placemark.postalCode as Any)
+        //print("subThoroughfare: ", placemark.subThoroughfare as Any)
     }
 }
 
