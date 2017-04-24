@@ -8,25 +8,36 @@
 
 import Foundation
 
-struct YrHourData: CustomStringConvertible {
-    
-    var timeStringTo: Double
-    var timeStringFrom: Double
-    var temperatureValue: Int
+struct YrHourData: CustomStringConvertible, HasDayNumber {
+    var timeTo: Double
+    var timeFrom: Double
+    var time: Double
+    private var temperatureInCelcius: Int // Default unit from Yr
     var temperatureUnit: String
+    var temperature: Double {
+        // returns temperature dependent if user preference for unit
+        let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")!
+        switch currentPreferredUnits{
+        case "US":
+            // convert to fahrenheit
+            return Double(temperatureInCelcius) * 9/5 + 32
+        default: return Double(temperatureInCelcius)
+        }
+    }
     
     init(to: Double, from: Double, temperatureUnit: String, temperatureValue: String) {
-        self.timeStringTo = to
-        self.timeStringFrom = from
+        self.timeTo = to
+        self.timeFrom = from
+        self.time = from // used for hasDayNumber calculations
         self.temperatureUnit = temperatureUnit
         if let double = Int(temperatureValue) {
-            self.temperatureValue = double
+            self.temperatureInCelcius = double
         } else {
             fatalError("YrHourData could not cast to double")
         }
     }
     
     var description: String {
-        return "\(timeStringFrom) -- \(timeStringTo) -- \(temperatureValue) -- \(temperatureUnit)"
+        return "\(timeFrom) -- \(timeTo) -- \(temperatureInCelcius) -- \(temperatureUnit)"
     }
 }

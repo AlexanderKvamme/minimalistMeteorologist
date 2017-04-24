@@ -31,41 +31,6 @@ class YrClient: NSObject, XMLParserDelegate {
             })
         }
     }
-    
-    // FIXME: - Async fetch med completion handler
-    
-    func fetchHourlyWeather(completion: @escaping (XMLResult) -> Void){
-        
-        //        // Når vi kaller på denne må vi sende med en completionHandler funksjon { APIResult<[YrHourData]>
-        //        fetch(request: request, parse: { json -> ExtendedCurrentData? in
-        //            return ExtendedCurrentData(JSON: json)
-        //        }, completion: completion)
-    }
-    
-    // fetchmetoden
-    func fetch(completion: @escaping (APIResult<[YrHourData]>) -> Void ){
-        
-        DispatchQueue.main.async {
-            //YrXMLParser.beginParsing()
-        }
-        
-        //            DispatchQueue.main.async(execute: { () -> Void in
-        //
-        //                guard let json = json else {
-        //                    if let error = error {
-        //                        completion(APIResult.failure(error))
-        //                    }
-        //                    return
-        //                }
-        //                if let value = parse(json) {
-        //                    completion(APIResult.success(value))
-        //                } else {
-        //                    let error = NSError(domain: AMKNetworkingErrorDomain, code: JSONParsingError, userInfo: nil)
-        //                    completion(APIResult.failure(error))
-        //                }
-        //            })
-        //        task.resume()
-    }
 }
 
 enum XMLResult {

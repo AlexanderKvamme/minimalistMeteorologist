@@ -8,7 +8,7 @@ import UIKit
 var currentCoordinate: Coordinate?
 let forecastAPIKey = "fdb7fc33b542deec6680877abc34465a"
 var forecastClient = ForecastAPIClient(APIKey: forecastAPIKey)
-var latestExtendedWeatherFetch: ExtendedCurrentData? = nil
+var latestExtendedWeatherFetch = ExtendedCurrentData()
 
 // MARK: - Global Functions
 

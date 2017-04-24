@@ -23,7 +23,7 @@ struct HourData: HasDayNumber{
     let precipProbability: Double
     let precipType: PrecipitationIcon
     let summary: String
-    let temperature: Double
+    var temperature: Double // will sometimes be updated with values from separate API (Yr.no)
     let time: Double
     let windSpeed: Double
 }
@@ -43,6 +43,7 @@ struct ExtendedCurrentData{
     var currentWeather: CurrentData?
     var dailyWeather: [DayData]?
     var hourlyWeather: [HourData]?
+    var hourlyWeatherFromYr: [YrHourData]?
 }
 
 // MARK: Failable initializers
@@ -110,7 +111,6 @@ extension DayData{
         self.time = time
         self.precipProbability = precipProbability
         self.precipIcon = precipProbability != 0 ? .init(rawValue: JSONDay["precipType"] as! String) : .undefined
-        
         self.precipIntensity = precipProbability != 0 ? JSONDay["precipIntensity"] as? Double : nil
     }
 }

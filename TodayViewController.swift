@@ -295,7 +295,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     func displayDay(at requestedIndex: Int){
         var daysWithHourData = 0
-        for day in latestExtendedWeatherFetch!.dailyWeather!{
+        for day in latestExtendedWeatherFetch.dailyWeather!{
             if day.hourData != nil {
                 daysWithHourData += 1
             }
@@ -306,7 +306,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
             return
         }
         
-        guard let requestedDay = latestExtendedWeatherFetch?.dailyWeather?[requestedIndex] else {
+        guard let requestedDay = latestExtendedWeatherFetch.dailyWeather?[requestedIndex] else {
             return
         }
         
@@ -323,7 +323,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
         //print("printer requestedDay:\n")
         //print(latestExtendedWeatherFetch?.dailyWeather?[requestedDay])
-        guard let hours = latestExtendedWeatherFetch?.dailyWeather?[requestedDay].hourData else {
+        guard let hours = latestExtendedWeatherFetch.dailyWeather?[requestedDay].hourData else {
             //FIXME: - Here
             print("problem with getting chart data for day: ",requestedDay)
             print("does not contain hourData")
@@ -413,7 +413,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         lineChartView.noDataFont = titleFont
         lineChartView.contentMode = .center
         if dataset.count == 1 {
-            if let preferredUnit = latestExtendedWeatherFetch?.dailyWeather?[0].averageTemperatureInPreferredUnit?.unit.symbol {
+            if let preferredUnit = latestExtendedWeatherFetch.dailyWeather?[0].averageTemperatureInPreferredUnit?.unit.symbol {
                 lineChartView.noDataText = "Current temperature is \(Int(round(dataset[0].y)))\(preferredUnit)"
             }
             lineChartView.clear()

@@ -77,24 +77,29 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
         forecastClient.fetchExtendedCurrentWeather(forCoordinate: currentCoordinate) { apiresult in
             self.toggleLoadingMode(false)
-            switch apiresult{
             
+            switch apiresult{
             case .success(let result):
-                latestExtendedWeatherFetch = result
-                if let fetchedDays = latestExtendedWeatherFetch?.dailyWeather, let fetchedHours = latestExtendedWeatherFetch?.hourlyWeather{
+                // update global variable
+                latestExtendedWeatherFetch.currentWeather = result.currentWeather
+                latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
+                latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
+                
+                if let fetchedDays = latestExtendedWeatherFetch.dailyWeather, let fetchedHours = latestExtendedWeatherFetch.hourlyWeather{
                     var dayIndex = 0
                     var organizedHours = [HourData]()
                     for hour in fetchedHours where dayIndex < fetchedDays.count {
                         if hour.dayNumber == fetchedDays[dayIndex].dayNumber {
                             organizedHours.append(hour)
                         } else{
-                            latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
+                            latestExtendedWeatherFetch.dailyWeather![dayIndex].hourData = organizedHours
                             organizedHours.removeAll()
                             dayIndex += 1
                         }
                     }
                 }
-                
+                // FIXME: - complete these
+                self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
                 
@@ -106,7 +111,18 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // FIXME: - Do things
+    func replaceDarkSkyHourDataWithAvaiableHourFromYr() {
+        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours)
+        guard var yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr, var darkSkyHours = latestExtendedWeatherFetch.hourlyWeather else {
+            print("no yrHours stored in global value 'latestExtendedWeatherFetch' yet.")
+            return
+        }
+
+        for i in 0 ..< yrHours.count {
+            darkSkyHours[i].temperature = yrHours[i].temperature
+            print("temp[\(i)] \(darkSkyHours[i].temperature) updated to \(yrHours[i].temperature)")
+        }
+    }
     
     func fetchWeatherFromYr(){
         // This is run from the reverseGeocodeHandler after updating self.currentLocation so the location data is available in the UserLocation singleton
@@ -121,9 +137,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
         yrClient.fetchHourlyDataFromYr(URL: urlString) { (result) in
             switch result {
-            case .Success(let r):
+            case .Success(let resultingYrData):
                 // FIXME: - Use the Hours
+                print("res is \(resultingYrData)")
+                latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData
+                
+//                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
                 print("SUCCESS: result received in main menu")
+                print("SUCCESS count: ", resultingYrData.count)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
 //                print("with r: \(r)")
