@@ -362,6 +362,8 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         set1.drawCircleHoleEnabled = true
         set1.circleHoleRadius = 2.0
         
+        // FIXME: - send inn set2
+        
         let format = NumberFormatter()
         format.generatesDecimalNumbers = true
         let formatter = DefaultValueFormatter(formatter:format)
@@ -426,6 +428,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     func updateChart(withDay day: Int){
+        
         if let newDataEntries = getChartData(forDay: day){
             setChartData(withDataEntries: newDataEntries)
         }
