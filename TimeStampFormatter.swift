@@ -1,7 +1,6 @@
 
 
 import Foundation
-import Charts
 
 class TimeStampFormatter: NSObject, IAxisValueFormatter{
     // Used by Charts to get HH:MM format along the x-axis

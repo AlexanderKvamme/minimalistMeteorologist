@@ -2,7 +2,6 @@
  
  
  import UIKit
- import Charts
  
  class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecognizerDelegate{
     
