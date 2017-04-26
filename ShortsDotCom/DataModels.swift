@@ -44,6 +44,7 @@ struct ExtendedCurrentData{
     var dailyWeather: [DayData]?
     var hourlyWeather: [HourData]?
     var hourlyWeatherFromYr: [YrHourData]?
+    var currentDayPrecipication: [Bool]?
 }
 
 // MARK: Failable initializers

@@ -1,9 +1,10 @@
-
-
-import UIKit
-import Charts
-
-class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecognizerDelegate{
+ 
+ 
+ 
+ import UIKit
+ import Charts
+ 
+ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecognizerDelegate{
     
     // MARK: - Outlets
     
@@ -69,7 +70,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 
             case 667: // iphone 6 without display zoom
                 self = .Big
-
+                
             default:
                 self = .Biggest
                 
@@ -87,7 +88,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if DeviceSize(deviceHeight: view.frame.size.height) == .Small {
             resizeUIElements()
         }
@@ -142,7 +143,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         }
         stack1Label.text = String(Int(round(averageTemperature.value))) + " " + averageTemperature.unit.symbol
     }
-
+    
     // MARK: - Animation Methods
     
     // MARK: - Main Animation
@@ -265,7 +266,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 self.slideUI(direction: .right)
                 self.twistImages(self.imageStack, direction: .right)
             }
-           self.fadeLabels()
+            self.fadeLabels()
         }
     }
     
@@ -300,16 +301,16 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
                 daysWithHourData += 1
             }
         }
-
+        
         if requestedIndex < 0  || requestedIndex >= daysWithHourData{
-         print("Not enough hourData to graph this day")
+            print("Not enough hourData to graph this day")
             return
         }
         
         guard let requestedDay = latestExtendedWeatherFetch.dailyWeather?[requestedIndex] else {
             return
         }
-        
+        updateGlobalWithPrecipitaionBools(day: requestedDay)
         updateChart(withDay: requestedIndex)
         updateUIWith(newDay: requestedDay)
         dayIndex = requestedIndex
@@ -408,7 +409,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         lineChartView.setExtraOffsets(left: 20, top: 0, right: 20, bottom: 10)
         //self.lineChartView.chartDescription?.text = "Temperatures this day in INSERT UNIT TYPE"
     }
-
+    
     func adjustChartLayout(forDataEntries dataset: [ChartDataEntry]){
         lineChartView.xAxis.axisMinimum = dataset[0].x
         let titleFont = UIFont(name: "Poly-Regular", size: 16)!
@@ -435,7 +436,7 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
     }
     
     // MARK: - Helper Methods
-
+    
     // Typography methods
     
     func setLabel(label: UILabel, summary: String){
@@ -486,5 +487,14 @@ class TodayViewController: UIViewController, ChartViewDelegate, UIGestureRecogni
         let newNumber: Double = Double(hour) * 100 + Double(minute)
         return newNumber
     }
-}
-
+    
+    func updateGlobalWithPrecipitaionBools(day: DayData) {
+        // loops through the currently active day, makes bool series representing wether or not it will rain
+        latestExtendedWeatherFetch.currentDayPrecipication = nil
+        guard let hours = day.hourData else { return }
+        for hour in hours {
+            let b = (hour.precipIntensity == nil) ? false : true
+            latestExtendedWeatherFetch.currentDayPrecipication?.append(b)
+        }
+    }
+ }
