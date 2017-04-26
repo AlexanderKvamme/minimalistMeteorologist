@@ -143,7 +143,6 @@
 		DD4DCBBB1DE5AA4F0003C791 /* partly-cloudy-night.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */; };
 		DD4DCBBC1DE5AA4F0003C791 /* partly-cloudy-night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBB91DE5AA4F0003C791 /* partly-cloudy-night@2x.png */; };
 		DD4DCBBD1DE5AA4F0003C791 /* partly-cloudy-night@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4DCBBA1DE5AA4F0003C791 /* partly-cloudy-night@3x.png */; };
-		DD66BB371EB0AE6000EE32FE /* CustomLineChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD66BB361EB0AE6000EE32FE /* CustomLineChartRenderer.swift */; };
 		DDA0A0D51DB27BBF00011F94 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */; };
 		DDA0A0F81DB3A9A500011F94 /* weathercock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F51DB3A9A500011F94 /* weathercock.png */; };
 		DDA0A0F91DB3A9A500011F94 /* weathercock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */; };
@@ -298,7 +297,6 @@
 		DD4DCBB81DE5AA4F0003C791 /* partly-cloudy-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night.png"; sourceTree = "<group>"; };
 		DD4DCBB91DE5AA4F0003C791 /* partly-cloudy-night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night@2x.png"; sourceTree = "<group>"; };
 		DD4DCBBA1DE5AA4F0003C791 /* partly-cloudy-night@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "partly-cloudy-night@3x.png"; sourceTree = "<group>"; };
-		DD66BB361EB0AE6000EE32FE /* CustomLineChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLineChartRenderer.swift; sourceTree = "<group>"; };
 		DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		DDA0A0F51DB3A9A500011F94 /* weathercock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weathercock.png; sourceTree = "<group>"; };
 		DDA0A0F61DB3A9A500011F94 /* weathercock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weathercock@2x.png"; sourceTree = "<group>"; };
@@ -544,14 +542,6 @@
 			path = weatherIcons;
 			sourceTree = "<group>";
 		};
-		DD66BB351EB0AE3A00EE32FE /* Charts Customization */ = {
-			isa = PBXGroup;
-			children = (
-				DD66BB361EB0AE6000EE32FE /* CustomLineChartRenderer.swift */,
-			);
-			name = "Charts Customization";
-			sourceTree = "<group>";
-		};
 		DD84EC3E1DBBC212000E7C96 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,7 +561,6 @@
 				DDB19B5E1DEC4DEE00E8C012 /* Main Menu */,
 				DD2C3AAD1DF1E1E300DA953C /* Today */,
 				DD28BEE51DD936F100C742D3 /* Fonts */,
-				DD66BB351EB0AE3A00EE32FE /* Charts Customization */,
 				DD65E3911D943AE6008198CC /* weatherIcons */,
 				DDA2770F1D786516001B5FBD /* ShortsDotCom */,
 				DD84EC3E1DBBC212000E7C96 /* Helper Classes */,
@@ -892,7 +881,6 @@
 				DD19ED501DAE807B00986C39 /* UserLocation.swift in Sources */,
 				DD0020AC1EA8F4C900D2D8E2 /* YrClient.swift in Sources */,
 				DD239A8D1E40BEF90082CCD8 /* DataModels.swift in Sources */,
-				DD66BB371EB0AE6000EE32FE /* CustomLineChartRenderer.swift in Sources */,
 				DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */,
 				DD2DE17E1DE6FCA100BB0473 /* MainMenuViewController.swift in Sources */,
 				DD2736CC1DC42F4B008F2389 /* Animations.swift in Sources */,
