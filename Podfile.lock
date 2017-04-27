@@ -1,12 +1,8 @@
 PODS:
-  - Charts (3.0.1):
-    - Charts/Core (= 3.0.1)
-  - Charts/Core (3.0.1)
   - paper-onboarding (2.0.1)
   - Spring (1.0.3)
 
 DEPENDENCIES:
-  - Charts
   - paper-onboarding
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
 
@@ -21,10 +17,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   paper-onboarding: a8e001214d9ce9decf78e160b3823f396dbd51ac
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: 3595b2562f0004b72e38b7ff3e3b0e63e8695a7d
+PODFILE CHECKSUM: 5d492573a19777a46189f6a60f3b07fd2f052ee0
 
 COCOAPODS: 1.2.0

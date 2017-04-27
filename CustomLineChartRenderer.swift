@@ -1,23 +1,7 @@
-//
-//  LineChartRenderer.swift
-//  Charts
-//
-//  Copyright 2015 Daniel Cohen Gindi & Philipp Jahoda
-//  A port of MPAndroidChart for iOS
-//  Licensed under Apache License 2.0
-//
-//  https://github.com/danielgindi/Charts
-//
-
+import UIKit
 import Foundation
-import CoreGraphics
 
-#if !os(OSX)
-    import UIKit
-#endif
-
-
-open class LineChartRenderer: LineRadarRenderer
+class CustomLineChartRenderer: LineRadarRenderer
 {
     open weak var dataProvider: LineChartDataProvider?
     
@@ -253,10 +237,10 @@ open class LineChartRenderer: LineRadarRenderer
     
     open func drawCubicFill(
         context: CGContext,
-                dataSet: ILineChartDataSet,
-                spline: CGMutablePath,
-                matrix: CGAffineTransform,
-                bounds: XBounds)
+        dataSet: ILineChartDataSet,
+        spline: CGMutablePath,
+        matrix: CGAffineTransform,
+        bounds: XBounds)
     {
         guard
             let dataProvider = dataProvider
@@ -268,7 +252,7 @@ open class LineChartRenderer: LineRadarRenderer
         }
         
         let fillMin = dataSet.fillFormatter?.getFillLinePosition(dataSet: dataSet, dataProvider: dataProvider) ?? 0.0
-
+        
         var pt1 = CGPoint(x: CGFloat(dataSet.entryForIndex(bounds.min + bounds.range)?.x ?? 0.0), y: fillMin)
         var pt2 = CGPoint(x: CGFloat(dataSet.entryForIndex(bounds.min)?.x ?? 0.0), y: fillMin)
         pt1 = pt1.applying(matrix)
@@ -319,7 +303,7 @@ open class LineChartRenderer: LineRadarRenderer
         context.saveGState()
         
         context.setLineCap(dataSet.lineCapType)
-
+        
         // more than 1 color
         if dataSet.colors.count > 1
         {
@@ -359,7 +343,7 @@ open class LineChartRenderer: LineRadarRenderer
                 {
                     _lineSegments[1] = _lineSegments[0]
                 }
-
+                
                 for i in 0..<_lineSegments.count
                 {
                     _lineSegments[i] = _lineSegments[i].applying(valueToPixelMatrix)
@@ -426,8 +410,8 @@ open class LineChartRenderer: LineRadarRenderer
                     }
                     
                     context.addLine(to: CGPoint(
-                            x: CGFloat(e2.x),
-                            y: CGFloat(e2.y * phaseY)
+                        x: CGFloat(e2.x),
+                        y: CGFloat(e2.y * phaseY)
                         ).applying(valueToPixelMatrix))
                 }
                 
@@ -583,13 +567,149 @@ open class LineChartRenderer: LineRadarRenderer
         }
     }
     
+    // FIXME: - Draw customs her
+    
     open override func drawExtras(context: CGContext)
     {
-        drawCircles(context: context)
+        
+        let hasPrecipitation: [Bool] = [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+        
+        // get data
+        //print("custom drawing circles")
+        guard
+            let dataProvider = dataProvider, // dataProvider holder all dataen til grafen som blir sendt inn
+            let lineData = dataProvider.lineData, // nærmere dataen
+            let animator = animator, // animasjonssettings
+            let viewPortHandler = self.viewPortHandler
+            else { return }
+        
+        let phaseY = animator.phaseY // fase 1, 2, 3 osv av animasjonen
+        
+        let dataSets = lineData.dataSets // datasettene. Kanskje jeg her kan finne dataen
+        
+        var pt = CGPoint()
+        var rect = CGRect()
+        
+        context.saveGState() // lagrer animasjonssettings...Line weight, thickness, colors osv.
+        
+        
+        // antall datasett, jeg har bare et sett,
+        for i in 0 ..< dataSets.count
+        {
+            // konverter til ønsket format
+            guard let dataSet = lineData.getDataSetByIndex(i) as? ILineChartDataSet else { continue }
+            
+            if !dataSet.isVisible || !dataSet.isDrawCirclesEnabled || dataSet.entryCount == 0
+            {
+                continue
+            }
+            // Transformer class that contains all matrices and is responsible for transforming values into pixels on the screen and backwards.
+            let trans = dataProvider.getTransformer(forAxis: dataSet.axisDependency)
+            let valueToPixelMatrix = trans.valueToPixelMatrix
+            
+            /// Class representing the bounds of the current viewport in terms of indices in the values array of a DataSet.
+            _xBounds.set(chart: dataProvider, dataSet: dataSet, animator: animator)
+            
+            // Faktisk sirkeldesign
+            
+            let circleRadius = dataSet.circleRadius
+            let circleDiameter = circleRadius * 2.0
+            let circleHoleRadius = dataSet.circleHoleRadius
+            let circleHoleDiameter = circleHoleRadius * 2.0
+            
+            let drawCircleHole = dataSet.isDrawCircleHoleEnabled &&
+                circleHoleRadius < circleRadius &&
+                circleHoleRadius > 0.0
+            var drawTransparentCircleHole = drawCircleHole &&
+                (dataSet.circleHoleColor == nil ||
+                    dataSet.circleHoleColor == NSUIColor.clear)
+            
+            //print("At this point im going to work with each individual entry (HH:00) and a temperature: ")
+            
+            // Strider gjennom alle x punkter i viewporten, med ønsket bredde definert i Today
+            for j in stride(from: _xBounds.min, through: _xBounds.range + _xBounds.min, by: 1)
+            {
+                print(hasPrecipitation[j])
+                //if hasPrecipitation[j] { continue }
+                guard let e = dataSet.entryForIndex(j) else { break }
+                
+                pt.x = CGFloat(e.x)
+                pt.y = CGFloat(e.y * phaseY)
+                pt = pt.applying(valueToPixelMatrix)
+                
+                if (!viewPortHandler.isInBoundsRight(pt.x))
+                {
+                    break
+                }
+                
+                // make sure the circles don't do shitty things outside bounds
+                if (!viewPortHandler.isInBoundsLeft(pt.x) || !viewPortHandler.isInBoundsY(pt.y))
+                {
+                    continue
+                }
+                
+                // setter ønsket farge i contexten så vi kan bruke fill senere.
+                context.setFillColor(dataSet.getCircleColor(atIndex: j)!.cgColor)
+                
+                var scaleFactor = CGFloat()
+                scaleFactor = hasPrecipitation[j] ? 1.2 : 1
+                //scaleFactor = 1
+                
+                rect.origin.x = pt.x - circleRadius * scaleFactor // setter recten vi skal tegne, midt i punktet pt.x og pt.y
+                rect.origin.y = pt.y - circleRadius * scaleFactor
+                rect.size.width = circleDiameter * scaleFactor // legnden av rektangelet vi skal fylle med en sirkel
+                rect.size.height = circleDiameter * scaleFactor
+                
+                // Fill circles which has precipitation
+                drawTransparentCircleHole = hasPrecipitation[j]
+                if drawTransparentCircleHole
+                {
+                    // Begin path for circle with hole
+                    context.beginPath()
+                    context.addEllipse(in: rect)
+                    
+                    // Cut hole in path
+                    rect.origin.x = pt.x - circleHoleRadius
+                    rect.origin.y = pt.y - circleHoleRadius
+                    rect.size.width = circleHoleDiameter
+                    rect.size.height = circleHoleDiameter
+                    //context.addEllipse(in: rect)
+                    
+                    // Fill in-between
+                    context.fillPath(using: .evenOdd)
+                    // Even odd algorithm for determining drawing of overlaps:
+                    // https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_paths/dq_paths.html
+                }
+                else
+                {
+                    
+                    context.fillEllipse(in: rect)
+                    
+                    if drawCircleHole
+                    {
+                        context.setFillColor(dataSet.circleHoleColor!.cgColor)
+                        
+                        // The hole rect
+                        rect.origin.x = pt.x - circleHoleRadius
+                        rect.origin.y = pt.y - circleHoleRadius
+                        rect.size.width = circleHoleDiameter
+                        rect.size.height = circleHoleDiameter
+                        
+                        context.fillEllipse(in: rect)
+                    }
+                }
+            }
+        }
+        
+        context.restoreGState()
+        
+        // FIXME: - Then call the original implementation of drawCircles
+        //drawCircles(context: context)
     }
     
     fileprivate func drawCircles(context: CGContext)
     {
+        //print("custom drawing circles")
         guard
             let dataProvider = dataProvider,
             let lineData = dataProvider.lineData,
@@ -635,7 +755,7 @@ open class LineChartRenderer: LineRadarRenderer
             for j in stride(from: _xBounds.min, through: _xBounds.range + _xBounds.min, by: 1)
             {
                 guard let e = dataSet.entryForIndex(j) else { break }
-
+                
                 pt.x = CGFloat(e.x)
                 pt.y = CGFloat(e.y * phaseY)
                 pt = pt.applying(valueToPixelMatrix)
@@ -681,7 +801,7 @@ open class LineChartRenderer: LineRadarRenderer
                     if drawCircleHole
                     {
                         context.setFillColor(dataSet.circleHoleColor!.cgColor)
-                     
+                        
                         // The hole rect
                         rect.origin.x = pt.x - circleHoleRadius
                         rect.origin.y = pt.y - circleHoleRadius
@@ -721,7 +841,7 @@ open class LineChartRenderer: LineRadarRenderer
             {
                 continue
             }
-        
+            
             context.setStrokeColor(set.highlightColor.cgColor)
             context.setLineWidth(set.highlightLineWidth)
             if set.highlightLineDashLengths != nil

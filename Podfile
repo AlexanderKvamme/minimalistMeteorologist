@@ -6,7 +6,6 @@ target 'ShortsDotCom' do
   use_frameworks!
 
   # Pods for ShortsDotCom
-  pod 'Charts'
   pod 'paper-onboarding'
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 
