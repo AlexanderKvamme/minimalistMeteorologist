@@ -574,7 +574,6 @@ class CustomLineChartRenderer: LineRadarRenderer
         
         var hasPrecipitation = [Bool]()
         if let unwrappedPrecipitation = latestExtendedWeatherFetch.currentDayPrecipication {
-            print("unwrapped:", unwrappedPrecipitation)
             hasPrecipitation = unwrappedPrecipitation
         }
         
@@ -654,8 +653,7 @@ class CustomLineChartRenderer: LineRadarRenderer
                 context.setFillColor(dataSet.getCircleColor(atIndex: j)!.cgColor)
                 
                 var scaleFactor = CGFloat()
-                scaleFactor = hasPrecipitation[j] ? 1.2 : 1
-                //scaleFactor = 1
+                scaleFactor = hasPrecipitation[j] ? 1 : 1 // should filled circles which indicate rain be bigger?
                 
                 rect.origin.x = pt.x - circleRadius * scaleFactor // setter recten vi skal tegne, midt i punktet pt.x og pt.y
                 rect.origin.y = pt.y - circleRadius * scaleFactor

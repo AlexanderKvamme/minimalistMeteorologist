@@ -88,14 +88,6 @@
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("today start. printing hours")
-        var temp = [Double]()
-        
-        for hour in latestExtendedWeatherFetch.hourlyWeather! {
-            temp.append(hour.temperature)
-        }
-        print(temp)
-        
         if DeviceSize(deviceHeight: view.frame.size.height) == .Small {
             resizeUIElements()
         }
@@ -329,8 +321,7 @@
         
         var temperatures: [Double] = []
         var valuePairs: [ChartDataEntry] = [ChartDataEntry]()
-        //print("printer requestedDay:\n")
-        //print(latestExtendedWeatherFetch?.dailyWeather?[requestedDay])
+        
         guard let hours = latestExtendedWeatherFetch.dailyWeather?[requestedDay].hourData else {
             //FIXME: - Here
             print("problem with getting chart data for day: ",requestedDay)

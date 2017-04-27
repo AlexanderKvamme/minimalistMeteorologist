@@ -123,12 +123,10 @@ extension ExtendedCurrentData{
         }
         
         for hour in hours {
-            print("   hour had this data when calculating: ", hour)
             precipitationBool.append(hour.isChanceOfPrecipitation)
         }
         
         latestExtendedWeatherFetch.currentDayPrecipication = precipitationBool
-        print("updateGlobalWithPrecipitaionBools ended: ", precipitationBool)
     }
 }
 

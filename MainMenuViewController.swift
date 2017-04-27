@@ -4,6 +4,8 @@ import UIKit
 import CoreLocation
 import Spring
 
+/*Runs two fetches from  yr and from darksky.. Darksky is less accurate, so after the darksky data is modelled, replaceDarkSkyHourDataWithAvailableHourFromYr() is run to update the first 48 hours with more accurate values, and some additional values such as isChanceOfPrecipitation*/
+
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: - Properties
@@ -86,10 +88,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
                 latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
                 
-                // FIXME: - complete these
                 self.replaceDarkSkyHourDataWithAvailableHourFromYr()
-                print("after replacing darkyskyHoursData with yr:")
-                //printPrecipitationBools(in: latestExtendedWeatherFetch.hourlyWeather)
                 
                 if let
                     fetchedDays = latestExtendedWeatherFetch.dailyWeather,
@@ -126,10 +125,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
 
         for i in 0 ..< yrHours.count {
-            //latestExtendedWeatherFetch.hourlyWeather?[i].precipProbability = latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].precip
-            print("testing for pres: ", hourHasPrecipitation(yrHours[i]))
             if hourHasPrecipitation(yrHours[i]) {
-                print("isChanceOfPrecipitation: ", latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation)
                     latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation = true
             }
             
@@ -138,10 +134,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func hourHasPrecipitation(_ hour: YrHourData) -> Bool {
-        print("pres testing this hour: ")
-        print("pres min: ", hour.precipitationMinValue)
-        print("pres max: ", hour.precipitationMaxValue)
-        print("checken: \(hour.precipitationMinValue != nil), \(hour.precipitationMaxValue != nil)")
+        
         if hour.precipitationMinValue != nil && hour.precipitationMaxValue != nil {
             return true
         }
@@ -162,14 +155,13 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         yrClient.fetchHourlyDataFromYr(URL: urlString) { (result) in
             switch result {
             case .Success(let resultingYrData):
-                // FIXME: - Use the Hours
-                latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData
                 
-//                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
-                print("SUCCESS count: ", resultingYrData.count)
+                latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData // update global value (to let Charts access it)
+                
+                // post notifications
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
-//                print("with r: \(r)")
+
             case .Failure(let e):
                 print("i got back failure with e: \(e)")
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: self)
@@ -219,7 +211,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Handlers for observers
     func fetchWeatherFromYrDidFinishHandler(){
-        print("finished fetching hour data from Yr handler")
+        //print("finished fetching hour data from Yr handler")
     }
     
     func fetchWeatherFromYrFailedHandler(){
@@ -233,7 +225,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func fetchDidFinishHandler(){
-        print("fetch finished")
         self.shakeToRefreshImage.isHidden = true
         self.enableGPSImage.isHidden = true
     }
