@@ -80,12 +80,36 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             
             switch apiresult{
             case .success(let result):
+                
+                print("Success: darksky hourly fra result.hourlyWeather.temp: ")
+                var temp = [Double]()
+                for hour in result.hourlyWeather! {
+                    temp.append(hour.temperature)
+                }
+                print(temp)
+                
                 // update global variable
                 latestExtendedWeatherFetch.currentWeather = result.currentWeather
                 latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
                 latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
                 
-                if let fetchedDays = latestExtendedWeatherFetch.dailyWeather, let fetchedHours = latestExtendedWeatherFetch.hourlyWeather{
+                // FIXME: - complete these
+                self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
+                
+                print("timer fra extended.hourlyWeatherFromYr!")
+                print("FIXME: timene har ikke blitt oppdatert i denne closuren, kanskje fordi den har kopiert en instance av globalen?")
+                var temp2 = [Double]()
+                for hour in latestExtendedWeatherFetch.hourlyWeatherFromYr! {
+                    temp2.append(hour.temperature)
+                }
+                print(temp2)
+                print()
+                
+                
+                if let
+                    fetchedDays = latestExtendedWeatherFetch.dailyWeather,
+                    let fetchedHours = latestExtendedWeatherFetch.hourlyWeather {
+                    
                     var dayIndex = 0
                     var organizedHours = [HourData]()
                     for hour in fetchedHours where dayIndex < fetchedDays.count {
@@ -98,8 +122,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-                // FIXME: - complete these
-                self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
+                
+                print ("FØR fetchDidFinishHandler kalles")
+                print ("")
+                var temp3 = [Double]()
+                for hour in latestExtendedWeatherFetch.hourlyWeather! {
+                    temp3.append(hour.temperature)
+                }
+                print(temp3)
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
                 
@@ -119,9 +149,20 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
 
         for i in 0 ..< yrHours.count {
-            darkSkyHours[i].temperature = yrHours[i].temperature
-            print("temp[\(i)] \(darkSkyHours[i].temperature) updated to \(yrHours[i].temperature)")
+            print("gonna change \(latestExtendedWeatherFetch.hourlyWeather?[i].temperature) updated to yrs value of: \(latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)")
+        
+            latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
+            
         }
+        
+        
+        print ("I SLUTTEN AV replaceDarkSkyHourDataWithAvaiableHourFromYr ")
+        print ("")
+        var temp3 = [Double]()
+        for hour in latestExtendedWeatherFetch.hourlyWeather! {
+            temp3.append(hour.temperature)
+        }
+        print(temp3)
     }
     
     func fetchWeatherFromYr(){
@@ -139,7 +180,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .Success(let resultingYrData):
                 // FIXME: - Use the Hours
-                print("res is \(resultingYrData)")
                 latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData
                 
 //                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
@@ -190,7 +230,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         // Yr
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrDidFinishHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrFailedHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: nil)
-        
+
         // System
         NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: NotificationNames.settingsDidUpdate), object: nil)
     }
@@ -214,6 +254,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         print("fetch finished")
         self.shakeToRefreshImage.isHidden = true
         self.enableGPSImage.isHidden = true
+        
+        print ("fetchDidFinishHandler temperaturer")
+        print ("feile temperaturer her igjen... Kan være det er noe med capture list og sånn i closuren")
+        var temp = [Double]()
+        for hour in latestExtendedWeatherFetch.hourlyWeather! {
+            temp.append(hour.temperature)
+        }
+        print(temp)
     }
 
     func locationManagerFailedHandler(){

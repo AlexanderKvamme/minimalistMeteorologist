@@ -47,7 +47,7 @@ extension HasDayNumber{
         let calendar = Calendar.current
         let date = Date(timeIntervalSince1970: self.time)
         let components = calendar.dateComponents([.day,.month,.year], from: date)
-        print("HasDayNumber made day \(components.day!) out of \(self.time)")
+        //print("HasDayNumber made day \(components.day!) out of \(self.time)")
         return components.day!
     }
 }

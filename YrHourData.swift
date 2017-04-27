@@ -35,6 +35,7 @@ struct YrHourData: CustomStringConvertible, HasDayNumber {
         } else {
             fatalError("YrHourData could not cast to double")
         }
+        print("fetched hour \(self)")
     }
     
     var description: String {

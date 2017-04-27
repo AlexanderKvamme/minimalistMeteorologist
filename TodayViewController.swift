@@ -88,6 +88,14 @@
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("today start. printing hours")
+        var temp = [Double]()
+        
+        for hour in latestExtendedWeatherFetch.hourlyWeather! {
+            temp.append(hour.temperature)
+        }
+        print(temp)
+        
         if DeviceSize(deviceHeight: view.frame.size.height) == .Small {
             resizeUIElements()
         }
@@ -488,12 +496,22 @@
     }
     
     func updateGlobalWithPrecipitaionBools(day: DayData) {
+        var precipitationBool = [Bool]()
+        var b: Bool!
+        
         // loops through the currently active day, makes bool series representing wether or not it will rain
-        latestExtendedWeatherFetch.currentDayPrecipication = nil
-        guard let hours = day.hourData else { return }
-        for hour in hours {
-            let b = (hour.precipIntensity == nil) ? false : true
-            latestExtendedWeatherFetch.currentDayPrecipication?.append(b)
+        latestExtendedWeatherFetch.currentDayPrecipication = nil // reset
+        
+        guard let hours = day.hourData else {
+            print("no hours unwrapped in prec global")
+            return
         }
+        for hour in hours {
+            b = (hour.precipIntensity == nil) ? false : true
+            precipitationBool.append(b)
+        }
+        
+        latestExtendedWeatherFetch.currentDayPrecipication = precipitationBool
+        print("updateGlobalWithPrecipitaionBools end: ", precipitationBool)
     }
  }
