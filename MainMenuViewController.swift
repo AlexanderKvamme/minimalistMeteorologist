@@ -82,11 +82,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let result):
                 
                 print("Success: darksky hourly fra result.hourlyWeather.temp: ")
-                var temp = [Double]()
-                for hour in result.hourlyWeather! {
-                    temp.append(hour.temperature)
-                }
-                print(temp)
+                printTemperatures(in: result.hourlyWeather!)
                 
                 // update global variable
                 latestExtendedWeatherFetch.currentWeather = result.currentWeather
@@ -97,14 +93,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
                 
                 print("timer fra extended.hourlyWeatherFromYr!")
-                print("FIXME: timene har ikke blitt oppdatert i denne closuren, kanskje fordi den har kopiert en instance av globalen?")
-                var temp2 = [Double]()
-                for hour in latestExtendedWeatherFetch.hourlyWeatherFromYr! {
-                    temp2.append(hour.temperature)
-                }
-                print(temp2)
-                print()
-                
+                printTemperatures(in: latestExtendedWeatherFetch.hourlyWeatherFromYr!)                
                 
                 if let
                     fetchedDays = latestExtendedWeatherFetch.dailyWeather,
@@ -122,14 +111,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-                
-                print ("FØR fetchDidFinishHandler kalles")
-                print ("")
-                var temp3 = [Double]()
-                for hour in latestExtendedWeatherFetch.hourlyWeather! {
-                    temp3.append(hour.temperature)
-                }
-                print(temp3)
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
                 
@@ -152,17 +133,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             print("gonna change \(latestExtendedWeatherFetch.hourlyWeather?[i].temperature) updated to yrs value of: \(latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)")
         
             latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
-            
         }
-        
-        
-        print ("I SLUTTEN AV replaceDarkSkyHourDataWithAvaiableHourFromYr ")
-        print ("")
-        var temp3 = [Double]()
-        for hour in latestExtendedWeatherFetch.hourlyWeather! {
-            temp3.append(hour.temperature)
-        }
-        print(temp3)
     }
     
     func fetchWeatherFromYr(){
@@ -183,7 +154,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData
                 
 //                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
-                print("SUCCESS: result received in main menu")
                 print("SUCCESS count: ", resultingYrData.count)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
@@ -254,14 +224,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         print("fetch finished")
         self.shakeToRefreshImage.isHidden = true
         self.enableGPSImage.isHidden = true
-        
-        print ("fetchDidFinishHandler temperaturer")
-        print ("feile temperaturer her igjen... Kan være det er noe med capture list og sånn i closuren")
-        var temp = [Double]()
-        for hour in latestExtendedWeatherFetch.hourlyWeather! {
-            temp.append(hour.temperature)
-        }
-        print(temp)
     }
 
     func locationManagerFailedHandler(){

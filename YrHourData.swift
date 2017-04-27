@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct YrHourData: CustomStringConvertible, HasDayNumber {
+struct YrHourData: CustomStringConvertible, HasDayNumber, hasHourlyTemperature {
     var timeTo: Double
     var timeFrom: Double
     var time: Double
@@ -35,7 +35,6 @@ struct YrHourData: CustomStringConvertible, HasDayNumber {
         } else {
             fatalError("YrHourData could not cast to double")
         }
-        print("fetched hour \(self)")
     }
     
     var description: String {

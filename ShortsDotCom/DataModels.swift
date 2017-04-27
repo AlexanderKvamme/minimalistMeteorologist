@@ -15,7 +15,7 @@ struct DayData: HasDayName, HasDayNumber, hasWindSpeedInPreferredUnit, hasAverag
     var hourData: [HourData]?
 }
 
-struct HourData: HasDayNumber{
+struct HourData: HasDayNumber, hasHourlyTemperature {
     let apparentTemperature: Double
     let cloudCover: Double
     let weatherIcon: WeatherIcon

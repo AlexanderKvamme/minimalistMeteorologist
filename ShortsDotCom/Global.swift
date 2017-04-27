@@ -19,3 +19,14 @@ func showAlert(viewController: UIViewController, title: String, message: String,
     viewController.present(alertController, animated: true, completion: nil)
 }
 
+// quickPrint
+
+func printTemperatures<T: hasHourlyTemperature>(in arrayOfDoubles: [T]) {
+    print("QUICKPRINT: ") 
+    var array = [Double]()
+    
+    for hour in arrayOfDoubles {
+        array.append(hour.temperature)
+    }
+    print(array)
+}

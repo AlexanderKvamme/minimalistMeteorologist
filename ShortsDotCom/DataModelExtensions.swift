@@ -99,6 +99,34 @@ extension hasWindSpeedInPreferredUnit{
     }
 }
 
+// MARK: - 
+
+protocol hasHourlyTemperature {
+    var temperature: Double { get }
+}
+
+extension ExtendedCurrentData{
+    func updateGlobalWithPrecipitaionBoolsFromYr(day: DayData) {
+        var precipitationBool = [Bool]()
+        var b: Bool!
+        
+        // loops through the currently active day, makes bool series representing wether or not it will rain
+        latestExtendedWeatherFetch.currentDayPrecipication = nil // reset
+        
+        guard let hours = day.hourData else {
+            print("no hours unwrapped in prec global")
+            return
+        }
+        for hour in hours {
+            b = (hour.precipIntensity == nil) ? false : true
+            precipitationBool.append(b)
+        }
+        
+        latestExtendedWeatherFetch.currentDayPrecipication = precipitationBool
+        print("updateGlobalWithPrecipitaionBools end: ", precipitationBool)
+    }
+}
+
 // MARK: - Helper Methods
 
 func averageTemperatureFromHours(_ hours: [HourData]) -> Double{

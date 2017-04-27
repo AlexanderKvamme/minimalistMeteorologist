@@ -317,7 +317,7 @@
         guard let requestedDay = latestExtendedWeatherFetch.dailyWeather?[requestedIndex] else {
             return
         }
-        updateGlobalWithPrecipitaionBools(day: requestedDay)
+        latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBoolsFromYr(day: requestedDay)
         updateChart(withDay: requestedIndex)
         updateUIWith(newDay: requestedDay)
         dayIndex = requestedIndex
@@ -493,25 +493,5 @@
         let minute = Calendar.current.component(.minute, from: date)
         let newNumber: Double = Double(hour) * 100 + Double(minute)
         return newNumber
-    }
-    
-    func updateGlobalWithPrecipitaionBools(day: DayData) {
-        var precipitationBool = [Bool]()
-        var b: Bool!
-        
-        // loops through the currently active day, makes bool series representing wether or not it will rain
-        latestExtendedWeatherFetch.currentDayPrecipication = nil // reset
-        
-        guard let hours = day.hourData else {
-            print("no hours unwrapped in prec global")
-            return
-        }
-        for hour in hours {
-            b = (hour.precipIntensity == nil) ? false : true
-            precipitationBool.append(b)
-        }
-        
-        latestExtendedWeatherFetch.currentDayPrecipication = precipitationBool
-        print("updateGlobalWithPrecipitaionBools end: ", precipitationBool)
     }
  }
