@@ -19,6 +19,9 @@ class YrXMLParser: NSObject, XMLParserDelegate {
     var parsedTimeFrom = ""
     var parsedTemperatureValue = ""
     var parsedTemperatureUnit = ""
+    var parsedPrecipitationValue: Double = 0
+    var parsedPrecipitationMinValue: Double? = nil
+    var parsedPrecipitationMaxValue: Double? = nil
     var inTabular = false
     
     // FIXME: - Fetch metode
@@ -88,6 +91,17 @@ class YrXMLParser: NSObject, XMLParserDelegate {
             if let unit = attributeDict["unit"] {
                 parsedTemperatureUnit = unit
             }
+        case "precipitation":
+            if let value = attributeDict["value"] {
+                parsedPrecipitationValue = Double(value)!
+            }
+            if let minValue = attributeDict["minvalue"] {
+                parsedPrecipitationMinValue = Double(minValue)
+            } else { parsedPrecipitationMinValue = nil }
+            if let maxValue = attributeDict["maxvalue"] {
+                parsedPrecipitationMaxValue = Double(maxValue)
+            } else { parsedPrecipitationMaxValue = nil }
+            
         default:
             break
             //print("elementName:", elementName)
@@ -118,7 +132,6 @@ class YrXMLParser: NSObject, XMLParserDelegate {
     
     // MARK: Helper methods
     
-    
     private func printResultingHours() {
         for hourData in hourDataArray {
             print(hourData)
@@ -141,7 +154,7 @@ class YrXMLParser: NSObject, XMLParserDelegate {
         let UNIXFormattedTo = getUNIXTimeFrom8601Format(parsedTimeTo, offsetInMin: parsedOffset)
         let UNIXFormattedFrom = getUNIXTimeFrom8601Format(parsedTimeFrom, offsetInMin: parsedOffset)
         
-        let newHour = YrHourData(to: UNIXFormattedTo, from: UNIXFormattedFrom, temperatureUnit: parsedTemperatureUnit, temperatureValue: parsedTemperatureValue)
+        let newHour = YrHourData(to: UNIXFormattedTo, from: UNIXFormattedFrom, temperatureUnit: parsedTemperatureUnit, temperatureValue: parsedTemperatureValue, precipitationValue: parsedPrecipitationValue, precipitationMinValue: parsedPrecipitationMinValue, precipitationMaxValue: parsedPrecipitationMaxValue)
         
         array.append(newHour)
     }

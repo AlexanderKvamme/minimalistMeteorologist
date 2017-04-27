@@ -81,19 +81,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             switch apiresult{
             case .success(let result):
                 
-                print("Success: darksky hourly fra result.hourlyWeather.temp: ")
-                printTemperatures(in: result.hourlyWeather!)
-                
                 // update global variable
                 latestExtendedWeatherFetch.currentWeather = result.currentWeather
                 latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
                 latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
                 
                 // FIXME: - complete these
-                self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
-                
-                print("timer fra extended.hourlyWeatherFromYr!")
-                printTemperatures(in: latestExtendedWeatherFetch.hourlyWeatherFromYr!)                
+                self.replaceDarkSkyHourDataWithAvailableHourFromYr()
+                print("after replacing darkyskyHoursData with yr:")
+                //printPrecipitationBools(in: latestExtendedWeatherFetch.hourlyWeather)
                 
                 if let
                     fetchedDays = latestExtendedWeatherFetch.dailyWeather,
@@ -122,18 +118,34 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func replaceDarkSkyHourDataWithAvaiableHourFromYr() {
-        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours)
-        guard var yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr, var darkSkyHours = latestExtendedWeatherFetch.hourlyWeather else {
-            print("no yrHours stored in global value 'latestExtendedWeatherFetch' yet.")
+    func replaceDarkSkyHourDataWithAvailableHourFromYr() {
+        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours). Replaces temperatures and precipitation
+        guard let yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr else {
+            print("ERROR: no yrHours stored in global value 'latestExtendedWeatherFetch'.")
             return
         }
 
         for i in 0 ..< yrHours.count {
-            print("gonna change \(latestExtendedWeatherFetch.hourlyWeather?[i].temperature) updated to yrs value of: \(latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)")
-        
+            //latestExtendedWeatherFetch.hourlyWeather?[i].precipProbability = latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].precip
+            print("testing for pres: ", hourHasPrecipitation(yrHours[i]))
+            if hourHasPrecipitation(yrHours[i]) {
+                print("isChanceOfPrecipitation: ", latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation)
+                    latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation = true
+            }
+            
             latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
         }
+    }
+    
+    func hourHasPrecipitation(_ hour: YrHourData) -> Bool {
+        print("pres testing this hour: ")
+        print("pres min: ", hour.precipitationMinValue)
+        print("pres max: ", hour.precipitationMaxValue)
+        print("checken: \(hour.precipitationMinValue != nil), \(hour.precipitationMaxValue != nil)")
+        if hour.precipitationMinValue != nil && hour.precipitationMaxValue != nil {
+            return true
+        }
+        return false
     }
     
     func fetchWeatherFromYr(){

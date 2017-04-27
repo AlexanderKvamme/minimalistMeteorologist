@@ -30,3 +30,14 @@ func printTemperatures<T: hasHourlyTemperature>(in arrayOfDoubles: [T]) {
     }
     print(array)
 }
+
+func printPrecipitationBools(in hours: [HourData]) {
+    var array: [Bool]!
+    var b: Bool!
+    
+    for hour in hours{
+        b = hour.isChanceOfPrecipitation
+        array.append(b)
+    }
+    print(array)
+}
