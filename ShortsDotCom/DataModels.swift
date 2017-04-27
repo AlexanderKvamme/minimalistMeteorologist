@@ -15,7 +15,7 @@ struct DayData: HasDayName, HasDayNumber, hasWindSpeedInPreferredUnit, hasAverag
     var hourData: [HourData]?
 }
 
-struct HourData: HasDayNumber{
+struct HourData: HasDayNumber, hasHourlyTemperature {
     let apparentTemperature: Double
     let cloudCover: Double
     let weatherIcon: WeatherIcon
@@ -24,6 +24,7 @@ struct HourData: HasDayNumber{
     let precipType: PrecipitationIcon
     let summary: String
     var temperature: Double // will sometimes be updated with values from separate API (Yr.no)
+    var isChanceOfPrecipitation = false // assumes no, is set true if hourly data from Yr disputes this.
     let time: Double
     let windSpeed: Double
 }

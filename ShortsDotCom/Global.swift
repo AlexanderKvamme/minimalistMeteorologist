@@ -19,3 +19,25 @@ func showAlert(viewController: UIViewController, title: String, message: String,
     viewController.present(alertController, animated: true, completion: nil)
 }
 
+// quickPrint
+
+func printTemperatures<T: hasHourlyTemperature>(in arrayOfDoubles: [T]) {
+    print("QUICKPRINT: ") 
+    var array = [Double]()
+    
+    for hour in arrayOfDoubles {
+        array.append(hour.temperature)
+    }
+    print(array)
+}
+
+func printPrecipitationBools(in hours: [HourData]) {
+    var array: [Bool]!
+    var b: Bool!
+    
+    for hour in hours{
+        b = hour.isChanceOfPrecipitation
+        array.append(b)
+    }
+    print(array)
+}

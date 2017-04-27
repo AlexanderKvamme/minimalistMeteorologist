@@ -80,12 +80,21 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             
             switch apiresult{
             case .success(let result):
+                
                 // update global variable
                 latestExtendedWeatherFetch.currentWeather = result.currentWeather
                 latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
                 latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
                 
-                if let fetchedDays = latestExtendedWeatherFetch.dailyWeather, let fetchedHours = latestExtendedWeatherFetch.hourlyWeather{
+                // FIXME: - complete these
+                self.replaceDarkSkyHourDataWithAvailableHourFromYr()
+                print("after replacing darkyskyHoursData with yr:")
+                //printPrecipitationBools(in: latestExtendedWeatherFetch.hourlyWeather)
+                
+                if let
+                    fetchedDays = latestExtendedWeatherFetch.dailyWeather,
+                    let fetchedHours = latestExtendedWeatherFetch.hourlyWeather {
+                    
                     var dayIndex = 0
                     var organizedHours = [HourData]()
                     for hour in fetchedHours where dayIndex < fetchedDays.count {
@@ -98,8 +107,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
-                // FIXME: - complete these
-                self.replaceDarkSkyHourDataWithAvaiableHourFromYr()
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
                 
@@ -111,17 +118,34 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func replaceDarkSkyHourDataWithAvaiableHourFromYr() {
-        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours)
-        guard var yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr, var darkSkyHours = latestExtendedWeatherFetch.hourlyWeather else {
-            print("no yrHours stored in global value 'latestExtendedWeatherFetch' yet.")
+    func replaceDarkSkyHourDataWithAvailableHourFromYr() {
+        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours). Replaces temperatures and precipitation
+        guard let yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr else {
+            print("ERROR: no yrHours stored in global value 'latestExtendedWeatherFetch'.")
             return
         }
 
         for i in 0 ..< yrHours.count {
-            darkSkyHours[i].temperature = yrHours[i].temperature
-            print("temp[\(i)] \(darkSkyHours[i].temperature) updated to \(yrHours[i].temperature)")
+            //latestExtendedWeatherFetch.hourlyWeather?[i].precipProbability = latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].precip
+            print("testing for pres: ", hourHasPrecipitation(yrHours[i]))
+            if hourHasPrecipitation(yrHours[i]) {
+                print("isChanceOfPrecipitation: ", latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation)
+                    latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation = true
+            }
+            
+            latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
         }
+    }
+    
+    func hourHasPrecipitation(_ hour: YrHourData) -> Bool {
+        print("pres testing this hour: ")
+        print("pres min: ", hour.precipitationMinValue)
+        print("pres max: ", hour.precipitationMaxValue)
+        print("checken: \(hour.precipitationMinValue != nil), \(hour.precipitationMaxValue != nil)")
+        if hour.precipitationMinValue != nil && hour.precipitationMaxValue != nil {
+            return true
+        }
+        return false
     }
     
     func fetchWeatherFromYr(){
@@ -139,11 +163,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .Success(let resultingYrData):
                 // FIXME: - Use the Hours
-                print("res is \(resultingYrData)")
                 latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData
                 
 //                latestExtendedWeatherFetch!.dailyWeather![dayIndex].hourData = organizedHours
-                print("SUCCESS: result received in main menu")
                 print("SUCCESS count: ", resultingYrData.count)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
                   NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
@@ -190,7 +212,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         // Yr
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrDidFinishHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherFromYrFailedHandler), name: NSNotification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: nil)
-        
+
         // System
         NotificationCenter.default.addObserver(self, selector: #selector(settingsDidUpdate), name: NSNotification.Name(rawValue: NotificationNames.settingsDidUpdate), object: nil)
     }

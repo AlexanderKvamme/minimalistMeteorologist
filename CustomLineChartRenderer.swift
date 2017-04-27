@@ -572,7 +572,11 @@ class CustomLineChartRenderer: LineRadarRenderer
     open override func drawExtras(context: CGContext)
     {
         
-        let hasPrecipitation: [Bool] = [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+        var hasPrecipitation = [Bool]()
+        if let unwrappedPrecipitation = latestExtendedWeatherFetch.currentDayPrecipication {
+            print("unwrapped:", unwrappedPrecipitation)
+            hasPrecipitation = unwrappedPrecipitation
+        }
         
         // get data
         //print("custom drawing circles")
@@ -591,7 +595,6 @@ class CustomLineChartRenderer: LineRadarRenderer
         var rect = CGRect()
         
         context.saveGState() // lagrer animasjonssettings...Line weight, thickness, colors osv.
-        
         
         // antall datasett, jeg har bare et sett,
         for i in 0 ..< dataSets.count
@@ -629,7 +632,6 @@ class CustomLineChartRenderer: LineRadarRenderer
             // Strider gjennom alle x punkter i viewporten, med ønsket bredde definert i Today
             for j in stride(from: _xBounds.min, through: _xBounds.range + _xBounds.min, by: 1)
             {
-                print(hasPrecipitation[j])
                 //if hasPrecipitation[j] { continue }
                 guard let e = dataSet.entryForIndex(j) else { break }
                 

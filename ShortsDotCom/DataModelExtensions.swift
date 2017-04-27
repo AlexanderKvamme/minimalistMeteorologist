@@ -47,7 +47,7 @@ extension HasDayNumber{
         let calendar = Calendar.current
         let date = Date(timeIntervalSince1970: self.time)
         let components = calendar.dateComponents([.day,.month,.year], from: date)
-        print("HasDayNumber made day \(components.day!) out of \(self.time)")
+        //print("HasDayNumber made day \(components.day!) out of \(self.time)")
         return components.day!
     }
 }
@@ -96,6 +96,39 @@ extension hasWindSpeedInPreferredUnit{
             return Measurement(value: round(self.windSpeed), unit: UnitSpeed.milesPerHour)
         default: return Measurement(value: round(self.windSpeed), unit: UnitSpeed.metersPerSecond)
         }
+    }
+}
+
+// MARK: - 
+
+protocol hasHourlyTemperature {
+    var temperature: Double { get }
+}
+
+extension ExtendedCurrentData{
+    func updateGlobalWithPrecipitaionBoolsFromYr(day: DayData) {
+        
+        // called when TOday gonna show a new day : latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBoolsFromYr(day: requestedDay)
+        
+        // Går inn i den aktuelle dagen som vises i graph, setter dagens precipitationBools til nil, og så går den gjennom time for time i mottattDag.hourdata.precipIntensity og bestemmer derifra om dagen skal telle som regn eller ikke.
+        var precipitationBool = [Bool]()
+        var b: Bool!
+        
+        // loops through the currently active day, makes bool series representing wether or not it will rain
+        //latestExtendedWeatherFetch.currentDayPrecipication = nil // reset
+        
+        guard let hours = day.hourData else {
+            print("no hours unwrapped in prec global")
+            return
+        }
+        
+        for hour in hours {
+            print("   hour had this data when calculating: ", hour)
+            precipitationBool.append(hour.isChanceOfPrecipitation)
+        }
+        
+        latestExtendedWeatherFetch.currentDayPrecipication = precipitationBool
+        print("updateGlobalWithPrecipitaionBools ended: ", precipitationBool)
     }
 }
 
