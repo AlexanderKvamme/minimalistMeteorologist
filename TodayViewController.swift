@@ -309,7 +309,7 @@
         guard let requestedDay = latestExtendedWeatherFetch.dailyWeather?[requestedIndex] else {
             return
         }
-        latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBoolsFromYr(day: requestedDay)
+        latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBools(day: requestedDay)
         updateChart(withDay: requestedIndex)
         updateUIWith(newDay: requestedDay)
         dayIndex = requestedIndex

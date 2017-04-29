@@ -6,6 +6,8 @@ target 'ShortsDotCom' do
   use_frameworks!
 
   # Pods for ShortsDotCom
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
   pod 'paper-onboarding'
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 

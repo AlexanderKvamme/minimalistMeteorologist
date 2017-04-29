@@ -292,6 +292,7 @@
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
 		DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B11E2D31BF0030E45A /* OnboardingView.swift */; };
 		DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B51E2D39610030E45A /* OnboardingViewController.swift */; };
+		DDE8491C1EB3CF5B00AA9DC3 /* mapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = DDE8491B1EB3CF5B00AA9DC3 /* mapStyle.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -607,6 +608,7 @@
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDE215B11E2D31BF0030E45A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DDE215B51E2D39610030E45A /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DDE8491B1EB3CF5B00AA9DC3 /* mapStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyle.json; sourceTree = "<group>"; };
 		DDED7F9F1E2571E7002B7E1C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F50281A74A6AF98BCF6FBFC7 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1193,6 +1195,7 @@
 			children = (
 				DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */,
 				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
+				DDE8491B1EB3CF5B00AA9DC3 /* mapStyle.json */,
 			);
 			name = "Main Menu";
 			sourceTree = "<group>";
@@ -1368,6 +1371,7 @@
 				DD19ECD81DAE802D00986C39 /* Activity Indicators@2x.png in Resources */,
 				DD19ECF01DAE802D00986C39 /* fog.png in Resources */,
 				DD19ED071DAE802D00986C39 /* Group 2@3x.png in Resources */,
+				DDE8491C1EB3CF5B00AA9DC3 /* mapStyle.json in Resources */,
 				DD19ED3D1DAE802D00986C39 /* Sleet@2x.png in Resources */,
 				DD1F340A1E1D982500A83BF3 /* Moon Bold.otf in Resources */,
 				DD19ED0E1DAE802D00986C39 /* logo@1x.png in Resources */,

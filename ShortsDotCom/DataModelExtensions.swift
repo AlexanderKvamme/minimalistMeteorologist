@@ -106,22 +106,17 @@ protocol hasHourlyTemperature {
 }
 
 extension ExtendedCurrentData{
-    func updateGlobalWithPrecipitaionBoolsFromYr(day: DayData) {
+    func updateGlobalWithPrecipitaionBools(day: DayData) {
         
-        // called when TOday gonna show a new day : latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBoolsFromYr(day: requestedDay)
         
-        // Går inn i den aktuelle dagen som vises i graph, setter dagens precipitationBools til nil, og så går den gjennom time for time i mottattDag.hourdata.precipIntensity og bestemmer derifra om dagen skal telle som regn eller ikke.
+        // called when Today is gonna show a new day : latestExtendedWeatherFetch.updateGlobalWithPrecipitaionBoolsFromYr(day: requestedDay)
+        
         var precipitationBool = [Bool]()
-        var b: Bool!
-        
-        // loops through the currently active day, makes bool series representing wether or not it will rain
-        //latestExtendedWeatherFetch.currentDayPrecipication = nil // reset
         
         guard let hours = day.hourData else {
             print("no hours unwrapped in prec global")
             return
         }
-        
         for hour in hours {
             precipitationBool.append(hour.isChanceOfPrecipitation)
         }

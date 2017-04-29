@@ -7,54 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		035F419BB6C8EA346907AFB08CC0321D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD7BC7E8A1A011D818577A9A3F2B53 /* BlurView.swift */; };
-		08F20B451B3502BDA781009D40B1EF47 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2F12F6BC062F808326F43D1D12D7E /* AsyncButton.swift */; };
-		0AD0A509862D64C06B08804035B46CA2 /* SpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2032B17B9039557595FE461B23845 /* SpringButton.swift */; };
-		133AE3D1F92C4F94CE1DDC0DE2B931AB /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C70B1C9C322DFBE6473FD2A7648827 /* SpringView.swift */; };
-		19846B3FFBB621B84360D368193E07F2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ADE545DC86FFB6EC06D57F9205D96D /* LoadingView.swift */; };
+		035F419BB6C8EA346907AFB08CC0321D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E1F067B2874E8E9447A7FF6B551618 /* BlurView.swift */; };
+		08F20B451B3502BDA781009D40B1EF47 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216830B5C46E657FE60F66CB692A0A0 /* AsyncButton.swift */; };
+		0AD0A509862D64C06B08804035B46CA2 /* SpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FD264A41BB475216B0E7144D68B65E /* SpringButton.swift */; };
+		133AE3D1F92C4F94CE1DDC0DE2B931AB /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF13DF8F35452F89BF354BF869283F3 /* SpringView.swift */; };
+		19846B3FFBB621B84360D368193E07F2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E0EAB02A7C94200B2F43B7ECEEDFB /* LoadingView.swift */; };
 		1B3E573931895FE25ADDD2DAC950564F /* Pods-ShortsDotCom-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3DDF9C697AA7EC0FFEDA6F6FD1ED4C /* Pods-ShortsDotCom-dummy.m */; };
-		20A9CA88FE960E765E14E30CAC6E32BE /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B889B3772F91AAE26DA98F9BCD64DF6B /* SoundPlayer.swift */; };
+		20A9CA88FE960E765E14E30CAC6E32BE /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8380B8571473B00718899BED34E89E9 /* SoundPlayer.swift */; };
 		221412B92B381B83D6ACF574A245A6DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		2304D2065EA9F14F95F371EE90AE9CF6 /* DesignableTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E2363364C4A1A595FACA98D0AB327 /* DesignableTabBarController.swift */; };
-		25C0DF61C1DD740B20E418DBFBFC393B /* GestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5264A71BD54A49C111BB7D24CE4C9D22 /* GestureControl.swift */; };
-		2DC81B0437C844193CFE5C9F80EAC682 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224E23EAF884E6CFD84342917966840 /* UnwindSegue.swift */; };
-		3980061737DDA8580B62DD5EC9699AFC /* FillAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83766AD550C81E76C6F71284AD4D291C /* FillAnimationView.swift */; };
-		3BFC8F8216039B9AD9EC68307E21A339 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD72FA0F7F3AC043E8BB588E2AA305 /* TransitionManager.swift */; };
-		3F92768CA8DE21677A0D50415BF7F2BF /* Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252F618D3808766777E4005FD09C4CD9 /* Spring.swift */; };
-		426373FA1D3F2326C82396BC30B7AA8A /* SpringLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741446838CFB04D183D370D14D0D1430 /* SpringLabel.swift */; };
-		42915072935C34D188F71AE8AA9FAF65 /* paper-onboarding-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D67A8A644CFEA3E35D7CA6CA9C324C9E /* paper-onboarding-dummy.m */; };
-		4D853B0980046C7C343567E96DE81651 /* Spring-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6D84B2763D5F266DCAF982F82A862B /* Spring-dummy.m */; };
-		543E493541B8D51B1B7EB73926A8257B /* PageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56649AA70E79B9B201BA3038E7E0978 /* PageContainer.swift */; };
-		572DE6F65D6D4ED68F8901FD1A29CBE8 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148B97BB1565C59206FD4A9D11D95EE /* AsyncImageView.swift */; };
-		5BFC69890299408E025F8EA4B31421AE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A2CD5D67BFBD33FA63A7272637F15F /* ImageLoader.swift */; };
-		5C346BA2FE722FFD9AECA2B065CA75E1 /* OnboardingContantViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D6728AAF715004F00EDD94681AD0B8 /* OnboardingContantViewItem.swift */; };
-		5DDEBAEE4C43C6242005E97A84D34F07 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665CE977D044509BA54B1FAD208FAC46 /* Misc.swift */; };
-		5F0C5A517734D194AE84DB648EC1966E /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA01A96C1F0B94D38613CCD96285D374 /* AutoTextView.swift */; };
-		601386AE5CE3E0891E2A6425C3032EC5 /* Configuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4AEC63472997F94796A9E7F4FEC23C /* Configuring.swift */; };
-		61E63A0D078976C7F2A4BA652F06B739 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728EC7C63CE872494D4339E3C3DF0F7C /* LoadingView.xib */; };
-		6444B3C3FEB425C7F4EE9489CEA6BD7E /* SpringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81A976947EE41222539D10365AF6E62 /* SpringTextField.swift */; };
-		650E0F76470A33E1983D547F76233C72 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE255E60289F780DBAA2AF823FAE73 /* DesignableView.swift */; };
+		2304D2065EA9F14F95F371EE90AE9CF6 /* DesignableTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD5FA1219E6330B4962111D451B6E0 /* DesignableTabBarController.swift */; };
+		25C0DF61C1DD740B20E418DBFBFC393B /* GestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31A61FF8937C68B8991C4C41E1676D /* GestureControl.swift */; };
+		2DC81B0437C844193CFE5C9F80EAC682 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72DA9104978A0BFB9E212EA1284D8FF /* UnwindSegue.swift */; };
+		3980061737DDA8580B62DD5EC9699AFC /* FillAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC275C8FFBFC02789116C30E2890A0 /* FillAnimationView.swift */; };
+		3BFC8F8216039B9AD9EC68307E21A339 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775378F7BBB984E1E7148B327E39841 /* TransitionManager.swift */; };
+		3F92768CA8DE21677A0D50415BF7F2BF /* Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED379B28EA7DB39288624B11F785655C /* Spring.swift */; };
+		426373FA1D3F2326C82396BC30B7AA8A /* SpringLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85DADD9FDA8F98896AD842A7CFE5507 /* SpringLabel.swift */; };
+		42915072935C34D188F71AE8AA9FAF65 /* paper-onboarding-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 69335BB7EB9028F5C2504EC0280C3E45 /* paper-onboarding-dummy.m */; };
+		4D853B0980046C7C343567E96DE81651 /* Spring-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA2186A747D00544F78BAA58018874 /* Spring-dummy.m */; };
+		543E493541B8D51B1B7EB73926A8257B /* PageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A032CDC915C6BA541770042A028C1 /* PageContainer.swift */; };
+		572DE6F65D6D4ED68F8901FD1A29CBE8 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE7FF6F0E18383770FD8C65AD1E438 /* AsyncImageView.swift */; };
+		5BFC69890299408E025F8EA4B31421AE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6169E5BE7A8B6572FD5BA36263FF2A0E /* ImageLoader.swift */; };
+		5C346BA2FE722FFD9AECA2B065CA75E1 /* OnboardingContantViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61F7557A46C1EE499BB05F0433F751 /* OnboardingContantViewItem.swift */; };
+		5DDEBAEE4C43C6242005E97A84D34F07 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA10405A01AB1F801E304D7402CA5 /* Misc.swift */; };
+		5F0C5A517734D194AE84DB648EC1966E /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A0F93C432E2B95DC4ABD822D7E465 /* AutoTextView.swift */; };
+		601386AE5CE3E0891E2A6425C3032EC5 /* Configuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598436E68557B9BBCC0B00ABF0DD04F8 /* Configuring.swift */; };
+		61E63A0D078976C7F2A4BA652F06B739 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1D73E4AFDE5B5F0B23BD279B1DC950 /* LoadingView.xib */; };
+		6444B3C3FEB425C7F4EE9489CEA6BD7E /* SpringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA3A16A20E5609D236D3AA3CED0ED0 /* SpringTextField.swift */; };
+		650E0F76470A33E1983D547F76233C72 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3FF070E71A6E9B22DFCF71BC9EEFB2 /* DesignableView.swift */; };
 		745ECAB7F1B7AA476687321CDDC6A50E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		83D170AC140A698A60E1CE243E534B6A /* PaperOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDEA4330CF82F451809D0E8340372D /* PaperOnboarding.swift */; };
-		8E895125808B83D6859AEA494673B1E4 /* DesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7632E1C3BB8AA38631030C008A59C9 /* DesignableLabel.swift */; };
-		94E7CF97B76B6EB5F54CCAD493B570B7 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3E1333FCF1503E5487BD2A536FC41 /* PageView.swift */; };
-		9507C8DEF417930BFBE1E778B4C55BA6 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A0FF5C322069B784EFB6408581FFC6 /* DesignableButton.swift */; };
+		83D170AC140A698A60E1CE243E534B6A /* PaperOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B5F20A1E173B083A533D311CBE53E /* PaperOnboarding.swift */; };
+		8E895125808B83D6859AEA494673B1E4 /* DesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B970AC19AE4E5A11D61DEB554E44BB /* DesignableLabel.swift */; };
+		94E7CF97B76B6EB5F54CCAD493B570B7 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D964AF1DBBE7F1E44B3249F2D11901B /* PageView.swift */; };
+		9507C8DEF417930BFBE1E778B4C55BA6 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30176C76EBAEADD926CB955AA7E45F38 /* DesignableButton.swift */; };
 		965D67434E3F3E0B1D44A4D7447CBE97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		99C04FB68C8C57460D0C8EEEAB06193C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5A389D457CE9580513E93018E82A1 /* SpringImageView.swift */; };
-		9A1AAA915C5789DFAF83F47F30A1C2D6 /* PageViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA6455D105824702FA2DF2C1E04CDE /* PageViewItem.swift */; };
-		A376D8C60B21FFAEEE95DB842B5FE1B0 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB28A71AC309B6C431AF45F72446FE8 /* OnboardingContentView.swift */; };
-		A5E1DE8024010C60D9251A2EECBBC255 /* SpringTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D3AB5856CCCA01F57B0EB25C6CC665 /* SpringTextView.swift */; };
-		A6ECB2E349126F77E464C916CE23156C /* ConstraintsHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961406719EBCE3FF773D69F6DB48429 /* ConstraintsHalper.swift */; };
-		A89CE3CA4AF10051602001C4D66CB686 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD8F0C10AB6C36EB38A0B0A9D81783 /* DesignableTextView.swift */; };
-		B091AC5C96FA203D662A5F04200B955D /* paper-onboarding-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D0FD14488739EC1C9DEBCC3EA981F11 /* paper-onboarding-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B494EEB74C1B69FD71A4F96F38173C83 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C757DCF7106B4187D88C525BB2B6E10C /* DesignableImageView.swift */; };
-		B9F60C54F057B3FA1A5D24DB0A30CE70 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6C2932DCCC856DB53808EE951C24A /* TransitionZoom.swift */; };
-		BB68AD0807EB2D6D9105E6F660A4345F /* Spring-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B345F40FB87DC338539941B5DA80AA /* Spring-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E40AA0BAD7190EE44E8A98ED58F31A67 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F654D9492133E988ED1728F02DD7193A /* SpringAnimation.swift */; };
+		99C04FB68C8C57460D0C8EEEAB06193C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F944BCD012B174CEBBF7496B732E6ED1 /* SpringImageView.swift */; };
+		9A1AAA915C5789DFAF83F47F30A1C2D6 /* PageViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33501CE93579559F43A272CCEF4A48 /* PageViewItem.swift */; };
+		A376D8C60B21FFAEEE95DB842B5FE1B0 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4AC88922970D29DA21F4790A05172A /* OnboardingContentView.swift */; };
+		A5E1DE8024010C60D9251A2EECBBC255 /* SpringTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD670BFDC45DC6FC905C0222BF6141 /* SpringTextView.swift */; };
+		A6ECB2E349126F77E464C916CE23156C /* ConstraintsHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF918508F75017D7137CB20828EE229 /* ConstraintsHalper.swift */; };
+		A89CE3CA4AF10051602001C4D66CB686 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D84D56A41D96CF67C408D84396BBD /* DesignableTextView.swift */; };
+		B091AC5C96FA203D662A5F04200B955D /* paper-onboarding-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA5347A98B1E0D375BF80A381E34ABE /* paper-onboarding-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B494EEB74C1B69FD71A4F96F38173C83 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD610A2A9F90358942F7882B556188 /* DesignableImageView.swift */; };
+		B9F60C54F057B3FA1A5D24DB0A30CE70 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E632CD3104D23A87189B8764F5225 /* TransitionZoom.swift */; };
+		BB68AD0807EB2D6D9105E6F660A4345F /* Spring-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DE18F89FCA434267E02285614BDA7740 /* Spring-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E40AA0BAD7190EE44E8A98ED58F31A67 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793DD96AF9AEFA58D8C219FC160EFA2 /* SpringAnimation.swift */; };
 		E7B89EEF69DC863742A599BE4CB56E07 /* Pods-ShortsDotCom-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F1DADFC734E499974B8A139BAD408E8 /* Pods-ShortsDotCom-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2B3D36AC81EFEB94D2D86BCB82ED6B /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977AB5767795AC508B17407E77905B5 /* DesignableTextField.swift */; };
-		EC8930AA78BEA51D8FD50AAC2D0BA775 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A710C839D7AF1C92CA99950D4892E8F7 /* KeyboardLayoutConstraint.swift */; };
-		F8EDE6B7AD1F065401BE5C42CA7FF5F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B45604B946424150B34C9F062185AC8 /* Images.xcassets */; };
+		EA2B3D36AC81EFEB94D2D86BCB82ED6B /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802C6321630559ABA172C8CC129AE027 /* DesignableTextField.swift */; };
+		EC8930AA78BEA51D8FD50AAC2D0BA775 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56DCF03E5B33D5A7078F0AD62787667 /* KeyboardLayoutConstraint.swift */; };
+		F8EDE6B7AD1F065401BE5C42CA7FF5F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945E9A11556D2FB98C1B000409CD01C8 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,71 +75,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00BD72FA0F7F3AC043E8BB588E2AA305 /* TransitionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionManager.swift; path = Spring/TransitionManager.swift; sourceTree = "<group>"; };
-		0488A4D89B105ECF2773B65A57E08E70 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0055E70CEC4BE9CD6DE1D07A8E234886 /* paper-onboarding.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "paper-onboarding.modulemap"; sourceTree = "<group>"; };
 		05C1ADC55ADDEBD430236C34F03DF593 /* Pods-ShortsDotCom-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShortsDotCom-frameworks.sh"; sourceTree = "<group>"; };
 		063B3D4FF1C7DF2DCD8F92CCD837003F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EEDEA4330CF82F451809D0E8340372D /* PaperOnboarding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaperOnboarding.swift; path = Source/PaperOnboarding.swift; sourceTree = "<group>"; };
-		1D0FD14488739EC1C9DEBCC3EA981F11 /* paper-onboarding-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "paper-onboarding-umbrella.h"; sourceTree = "<group>"; };
-		252F618D3808766777E4005FD09C4CD9 /* Spring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spring.swift; path = Spring/Spring.swift; sourceTree = "<group>"; };
-		2A62C3CB98AB630057F2870C7AAAF29A /* paper-onboarding-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "paper-onboarding-prefix.pch"; sourceTree = "<group>"; };
-		2CB28A71AC309B6C431AF45F72446FE8 /* OnboardingContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OnboardingContentView.swift; path = Source/OnboardingContantView/OnboardingContentView.swift; sourceTree = "<group>"; };
+		0ABA3A16A20E5609D236D3AA3CED0ED0 /* SpringTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringTextField.swift; path = Spring/SpringTextField.swift; sourceTree = "<group>"; };
+		0E61F7557A46C1EE499BB05F0433F751 /* OnboardingContantViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OnboardingContantViewItem.swift; path = Source/OnboardingContantView/Item/OnboardingContantViewItem.swift; sourceTree = "<group>"; };
+		171E632CD3104D23A87189B8764F5225 /* TransitionZoom.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionZoom.swift; path = Spring/TransitionZoom.swift; sourceTree = "<group>"; };
+		17B970AC19AE4E5A11D61DEB554E44BB /* DesignableLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableLabel.swift; path = Spring/DesignableLabel.swift; sourceTree = "<group>"; };
+		184B5F20A1E173B083A533D311CBE53E /* PaperOnboarding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaperOnboarding.swift; path = Source/PaperOnboarding.swift; sourceTree = "<group>"; };
+		256E0EAB02A7C94200B2F43B7ECEEDFB /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Spring/LoadingView.swift; sourceTree = "<group>"; };
+		30176C76EBAEADD926CB955AA7E45F38 /* DesignableButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableButton.swift; path = Spring/DesignableButton.swift; sourceTree = "<group>"; };
+		318CFBB14AB9D5247F9B018CCBC7D074 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		34BEECCE89B0E0B110A35FA7F5BCFAE1 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
-		35A0FF5C322069B784EFB6408581FFC6 /* DesignableButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableButton.swift; path = Spring/DesignableButton.swift; sourceTree = "<group>"; };
-		3977AB5767795AC508B17407E77905B5 /* DesignableTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTextField.swift; path = Spring/DesignableTextField.swift; sourceTree = "<group>"; };
+		38FE7FF6F0E18383770FD8C65AD1E438 /* AsyncImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncImageView.swift; path = Spring/AsyncImageView.swift; sourceTree = "<group>"; };
+		3AF1CDB7B090987E86FE897DC91D031B /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		3F1DADFC734E499974B8A139BAD408E8 /* Pods-ShortsDotCom-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ShortsDotCom-umbrella.h"; sourceTree = "<group>"; };
-		41B345F40FB87DC338539941B5DA80AA /* Spring-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spring-umbrella.h"; sourceTree = "<group>"; };
-		42ADE545DC86FFB6EC06D57F9205D96D /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Spring/LoadingView.swift; sourceTree = "<group>"; };
-		45BD8F0C10AB6C36EB38A0B0A9D81783 /* DesignableTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTextView.swift; path = Spring/DesignableTextView.swift; sourceTree = "<group>"; };
-		4A4E2363364C4A1A595FACA98D0AB327 /* DesignableTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTabBarController.swift; path = Spring/DesignableTabBarController.swift; sourceTree = "<group>"; };
-		4FE6C2932DCCC856DB53808EE951C24A /* TransitionZoom.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionZoom.swift; path = Spring/TransitionZoom.swift; sourceTree = "<group>"; };
+		44BA06881458A37901B5A48B5FFAD582 /* Spring-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spring-prefix.pch"; sourceTree = "<group>"; };
+		46E1F067B2874E8E9447A7FF6B551618 /* BlurView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = Spring/BlurView.swift; sourceTree = "<group>"; };
 		51CEA4872C65DFB7CBF7948D9467D080 /* Pods-ShortsDotCom-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ShortsDotCom-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5264A71BD54A49C111BB7D24CE4C9D22 /* GestureControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GestureControl.swift; path = Source/GestureControl/GestureControl.swift; sourceTree = "<group>"; };
-		59D3AB5856CCCA01F57B0EB25C6CC665 /* SpringTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringTextView.swift; path = Spring/SpringTextView.swift; sourceTree = "<group>"; };
-		5CA3E1333FCF1503E5487BD2A536FC41 /* PageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageView.swift; path = Source/PageView/PageView.swift; sourceTree = "<group>"; };
-		665CE977D044509BA54B1FAD208FAC46 /* Misc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Misc.swift; path = Spring/Misc.swift; sourceTree = "<group>"; };
-		66A2CD5D67BFBD33FA63A7272637F15F /* ImageLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageLoader.swift; path = Spring/ImageLoader.swift; sourceTree = "<group>"; };
-		6C57CBE2BCC3181CB5CC64D87FEE4E7F /* Spring.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Spring.xcconfig; sourceTree = "<group>"; };
-		728EC7C63CE872494D4339E3C3DF0F7C /* LoadingView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = LoadingView.xib; path = Spring/LoadingView.xib; sourceTree = "<group>"; };
-		741446838CFB04D183D370D14D0D1430 /* SpringLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringLabel.swift; path = Spring/SpringLabel.swift; sourceTree = "<group>"; };
-		7961406719EBCE3FF773D69F6DB48429 /* ConstraintsHalper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintsHalper.swift; path = Source/Helpers/ConstraintsHalper.swift; sourceTree = "<group>"; };
-		7D4AEC63472997F94796A9E7F4FEC23C /* Configuring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuring.swift; path = Source/Helpers/Configuring.swift; sourceTree = "<group>"; };
-		7D7632E1C3BB8AA38631030C008A59C9 /* DesignableLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableLabel.swift; path = Spring/DesignableLabel.swift; sourceTree = "<group>"; };
-		82A5A389D457CE9580513E93018E82A1 /* SpringImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringImageView.swift; path = Spring/SpringImageView.swift; sourceTree = "<group>"; };
-		83766AD550C81E76C6F71284AD4D291C /* FillAnimationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FillAnimationView.swift; path = Source/FillAnimatinView/FillAnimationView.swift; sourceTree = "<group>"; };
-		85F17505B65DDD2785438A08FEBE898D /* Spring.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Spring.modulemap; sourceTree = "<group>"; };
-		8B45604B946424150B34C9F062185AC8 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpringApp/Images.xcassets; sourceTree = "<group>"; };
+		598436E68557B9BBCC0B00ABF0DD04F8 /* Configuring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuring.swift; path = Source/Helpers/Configuring.swift; sourceTree = "<group>"; };
+		5C3FF070E71A6E9B22DFCF71BC9EEFB2 /* DesignableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableView.swift; path = Spring/DesignableView.swift; sourceTree = "<group>"; };
+		5D964AF1DBBE7F1E44B3249F2D11901B /* PageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageView.swift; path = Source/PageView/PageView.swift; sourceTree = "<group>"; };
+		60CD670BFDC45DC6FC905C0222BF6141 /* SpringTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringTextView.swift; path = Spring/SpringTextView.swift; sourceTree = "<group>"; };
+		6169E5BE7A8B6572FD5BA36263FF2A0E /* ImageLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageLoader.swift; path = Spring/ImageLoader.swift; sourceTree = "<group>"; };
+		62BD7479A88BA59BCE204EF2573C1A6F /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		69335BB7EB9028F5C2504EC0280C3E45 /* paper-onboarding-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "paper-onboarding-dummy.m"; sourceTree = "<group>"; };
+		6B53F05BE7767B43358591B69E488CA2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		6E00652BCF47C48AD58A18924AFDB324 /* paper-onboarding.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "paper-onboarding.xcconfig"; sourceTree = "<group>"; };
+		6FDA2186A747D00544F78BAA58018874 /* Spring-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Spring-dummy.m"; sourceTree = "<group>"; };
+		79E09DE01D0FBC8D92F6C4F8C6CA6FCD /* Spring.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Spring.modulemap; sourceTree = "<group>"; };
+		802C6321630559ABA172C8CC129AE027 /* DesignableTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTextField.swift; path = Spring/DesignableTextField.swift; sourceTree = "<group>"; };
+		8775378F7BBB984E1E7148B327E39841 /* TransitionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionManager.swift; path = Spring/TransitionManager.swift; sourceTree = "<group>"; };
+		905A032CDC915C6BA541770042A028C1 /* PageContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageContainer.swift; path = Source/PageView/PageContainerView/PageContainer.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		95D6728AAF715004F00EDD94681AD0B8 /* OnboardingContantViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OnboardingContantViewItem.swift; path = Source/OnboardingContantView/Item/OnboardingContantViewItem.swift; sourceTree = "<group>"; };
-		96AD7BC7E8A1A011D818577A9A3F2B53 /* BlurView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = Spring/BlurView.swift; sourceTree = "<group>"; };
+		945E9A11556D2FB98C1B000409CD01C8 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpringApp/Images.xcassets; sourceTree = "<group>"; };
 		9E55511EE82AF49238194D3F7584584B /* Pods-ShortsDotCom-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShortsDotCom-resources.sh"; sourceTree = "<group>"; };
+		9F39EBE89951BF29C9A85F859DAD768D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9607C13699D6E0DCDCF9F54E133ACB /* Pods-ShortsDotCom-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ShortsDotCom-acknowledgements.plist"; sourceTree = "<group>"; };
-		A0EE255E60289F780DBAA2AF823FAE73 /* DesignableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableView.swift; path = Spring/DesignableView.swift; sourceTree = "<group>"; };
-		A148B97BB1565C59206FD4A9D11D95EE /* AsyncImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncImageView.swift; path = Spring/AsyncImageView.swift; sourceTree = "<group>"; };
-		A4B2032B17B9039557595FE461B23845 /* SpringButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringButton.swift; path = Spring/SpringButton.swift; sourceTree = "<group>"; };
-		A710C839D7AF1C92CA99950D4892E8F7 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardLayoutConstraint.swift; path = Spring/KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+		A216830B5C46E657FE60F66CB692A0A0 /* AsyncButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncButton.swift; path = Spring/AsyncButton.swift; sourceTree = "<group>"; };
+		A56DCF03E5B33D5A7078F0AD62787667 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardLayoutConstraint.swift; path = Spring/KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+		ABAD5FA1219E6330B4962111D451B6E0 /* DesignableTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTabBarController.swift; path = Spring/DesignableTabBarController.swift; sourceTree = "<group>"; };
+		AEF918508F75017D7137CB20828EE229 /* ConstraintsHalper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintsHalper.swift; path = Source/Helpers/ConstraintsHalper.swift; sourceTree = "<group>"; };
 		AFB7AA4F469D53015EA970D4F7F2F1BA /* paper_onboarding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = paper_onboarding.framework; path = "paper-onboarding.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B81A976947EE41222539D10365AF6E62 /* SpringTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringTextField.swift; path = Spring/SpringTextField.swift; sourceTree = "<group>"; };
-		B889B3772F91AAE26DA98F9BCD64DF6B /* SoundPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoundPlayer.swift; path = Spring/SoundPlayer.swift; sourceTree = "<group>"; };
-		BA01A96C1F0B94D38613CCD96285D374 /* AutoTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoTextView.swift; path = Spring/AutoTextView.swift; sourceTree = "<group>"; };
+		B4EC275C8FFBFC02789116C30E2890A0 /* FillAnimationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FillAnimationView.swift; path = Source/FillAnimatinView/FillAnimationView.swift; sourceTree = "<group>"; };
+		B793DD96AF9AEFA58D8C219FC160EFA2 /* SpringAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringAnimation.swift; path = Spring/SpringAnimation.swift; sourceTree = "<group>"; };
+		BAA5347A98B1E0D375BF80A381E34ABE /* paper-onboarding-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "paper-onboarding-umbrella.h"; sourceTree = "<group>"; };
+		BC6A0F93C432E2B95DC4ABD822D7E465 /* AutoTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoTextView.swift; path = Spring/AutoTextView.swift; sourceTree = "<group>"; };
 		BCD9EA18147B075D7BC1C6B24E45405A /* Pods-ShortsDotCom.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ShortsDotCom.modulemap"; sourceTree = "<group>"; };
-		BE56D2AD79F8E591B82C443E99ACE18A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF9BB15A9DEF391559447F51E78FA1E0 /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ShortsDotCom.framework; path = "Pods-ShortsDotCom.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3886887512D3478AA8CF0AAFE1E22A3 /* paper-onboarding.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "paper-onboarding.modulemap"; sourceTree = "<group>"; };
-		C5AA6455D105824702FA2DF2C1E04CDE /* PageViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageViewItem.swift; path = Source/PageView/Item/PageViewItem.swift; sourceTree = "<group>"; };
-		C757DCF7106B4187D88C525BB2B6E10C /* DesignableImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableImageView.swift; path = Spring/DesignableImageView.swift; sourceTree = "<group>"; };
-		CAF4A7EABEC7348E5C2077E0E8EE73C1 /* Spring-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spring-prefix.pch"; sourceTree = "<group>"; };
+		C57076E95E70F62AD807EC15673D40FB /* paper-onboarding-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "paper-onboarding-prefix.pch"; sourceTree = "<group>"; };
+		C79CA10405A01AB1F801E304D7402CA5 /* Misc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Misc.swift; path = Spring/Misc.swift; sourceTree = "<group>"; };
+		C85DADD9FDA8F98896AD842A7CFE5507 /* SpringLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringLabel.swift; path = Spring/SpringLabel.swift; sourceTree = "<group>"; };
+		C9EB907AC36DE35D0CC1B5319CA08AA7 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CD3DDF9C697AA7EC0FFEDA6F6FD1ED4C /* Pods-ShortsDotCom-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ShortsDotCom-dummy.m"; sourceTree = "<group>"; };
-		D224E23EAF884E6CFD84342917966840 /* UnwindSegue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnwindSegue.swift; path = Spring/UnwindSegue.swift; sourceTree = "<group>"; };
-		D4C70B1C9C322DFBE6473FD2A7648827 /* SpringView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringView.swift; path = Spring/SpringView.swift; sourceTree = "<group>"; };
-		D67A8A644CFEA3E35D7CA6CA9C324C9E /* paper-onboarding-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "paper-onboarding-dummy.m"; sourceTree = "<group>"; };
-		D7B2F12F6BC062F808326F43D1D12D7E /* AsyncButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncButton.swift; path = Spring/AsyncButton.swift; sourceTree = "<group>"; };
-		EB4B4CF4D66EFD5E1FBA21EF3482B720 /* paper-onboarding.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "paper-onboarding.xcconfig"; sourceTree = "<group>"; };
+		D2FD610A2A9F90358942F7882B556188 /* DesignableImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableImageView.swift; path = Spring/DesignableImageView.swift; sourceTree = "<group>"; };
+		D72DA9104978A0BFB9E212EA1284D8FF /* UnwindSegue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnwindSegue.swift; path = Spring/UnwindSegue.swift; sourceTree = "<group>"; };
+		DD1D73E4AFDE5B5F0B23BD279B1DC950 /* LoadingView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = LoadingView.xib; path = Spring/LoadingView.xib; sourceTree = "<group>"; };
+		DE18F89FCA434267E02285614BDA7740 /* Spring-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spring-umbrella.h"; sourceTree = "<group>"; };
+		DE86F72F7D19F084A73DA4D95AE33DF7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF2D84D56A41D96CF67C408D84396BBD /* DesignableTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTextView.swift; path = Spring/DesignableTextView.swift; sourceTree = "<group>"; };
+		DFF13DF8F35452F89BF354BF869283F3 /* SpringView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringView.swift; path = Spring/SpringView.swift; sourceTree = "<group>"; };
+		E8380B8571473B00718899BED34E89E9 /* SoundPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoundPlayer.swift; path = Spring/SoundPlayer.swift; sourceTree = "<group>"; };
+		E8FD264A41BB475216B0E7144D68B65E /* SpringButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringButton.swift; path = Spring/SpringButton.swift; sourceTree = "<group>"; };
+		EC4AC88922970D29DA21F4790A05172A /* OnboardingContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OnboardingContentView.swift; path = Source/OnboardingContantView/OnboardingContentView.swift; sourceTree = "<group>"; };
 		ECE67E6E72194E0865B1F9F9259E7577 /* Pods-ShortsDotCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShortsDotCom.debug.xcconfig"; sourceTree = "<group>"; };
-		ED6D84B2763D5F266DCAF982F82A862B /* Spring-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Spring-dummy.m"; sourceTree = "<group>"; };
-		F56649AA70E79B9B201BA3038E7E0978 /* PageContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageContainer.swift; path = Source/PageView/PageContainerView/PageContainer.swift; sourceTree = "<group>"; };
-		F654D9492133E988ED1728F02DD7193A /* SpringAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringAnimation.swift; path = Spring/SpringAnimation.swift; sourceTree = "<group>"; };
+		ED379B28EA7DB39288624B11F785655C /* Spring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spring.swift; path = Spring/Spring.swift; sourceTree = "<group>"; };
+		EE31A61FF8937C68B8991C4C41E1676D /* GestureControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GestureControl.swift; path = Source/GestureControl/GestureControl.swift; sourceTree = "<group>"; };
+		F4D2EF776C1CD63FA6B2E0290269F097 /* Spring.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Spring.xcconfig; sourceTree = "<group>"; };
+		F6BF05A0633227F58AF3966C32FD0128 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		F944BCD012B174CEBBF7496B732E6ED1 /* SpringImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringImageView.swift; path = Spring/SpringImageView.swift; sourceTree = "<group>"; };
+		FA33501CE93579559F43A272CCEF4A48 /* PageViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageViewItem.swift; path = Source/PageView/Item/PageViewItem.swift; sourceTree = "<group>"; };
 		FA5969F712E254226538296D471E94D5 /* Spring.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Spring.framework; path = Spring.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -171,6 +177,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		137B77D94980BB94DA07EDED09639496 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				44201B4F6A8E16CBD036B561923DB9A0 /* Base */,
+				26CFEB647473E46CBDE75B7C348DEB4A /* Maps */,
+			);
+			name = GoogleMaps;
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		26CFEB647473E46CBDE75B7C348DEB4A /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				EF4DE215F9EE7C24F779FCA00A3EB918 /* Frameworks */,
+				4786FF4A41D2C2113682726A2BA80E1D /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		27ABD7D96BAA70E3915EB9C6E20EAB02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,46 +206,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		342A14530CFCA18B70C789983086BF04 /* Pods */ = {
+		35396DA57259F27182AEF92AF04DB76C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F5ABAF09934FF8FB53BB67EF4AEE1F3 /* paper-onboarding */,
-				77E9A168B93C2496BEA75D307F1E0FB5 /* Spring */,
+				318CFBB14AB9D5247F9B018CCBC7D074 /* GoogleMapsBase.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F5ABAF09934FF8FB53BB67EF4AEE1F3 /* paper-onboarding */ = {
+		44201B4F6A8E16CBD036B561923DB9A0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				7D4AEC63472997F94796A9E7F4FEC23C /* Configuring.swift */,
-				7961406719EBCE3FF773D69F6DB48429 /* ConstraintsHalper.swift */,
-				83766AD550C81E76C6F71284AD4D291C /* FillAnimationView.swift */,
-				5264A71BD54A49C111BB7D24CE4C9D22 /* GestureControl.swift */,
-				95D6728AAF715004F00EDD94681AD0B8 /* OnboardingContantViewItem.swift */,
-				2CB28A71AC309B6C431AF45F72446FE8 /* OnboardingContentView.swift */,
-				F56649AA70E79B9B201BA3038E7E0978 /* PageContainer.swift */,
-				5CA3E1333FCF1503E5487BD2A536FC41 /* PageView.swift */,
-				C5AA6455D105824702FA2DF2C1E04CDE /* PageViewItem.swift */,
-				0EEDEA4330CF82F451809D0E8340372D /* PaperOnboarding.swift */,
-				4B3C58B0AC5069D13EA80B85DE6B4594 /* Support Files */,
+				35396DA57259F27182AEF92AF04DB76C /* Frameworks */,
 			);
-			name = "paper-onboarding";
-			path = "paper-onboarding";
+			name = Base;
 			sourceTree = "<group>";
 		};
-		4B3C58B0AC5069D13EA80B85DE6B4594 /* Support Files */ = {
+		4786FF4A41D2C2113682726A2BA80E1D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0488A4D89B105ECF2773B65A57E08E70 /* Info.plist */,
-				C3886887512D3478AA8CF0AAFE1E22A3 /* paper-onboarding.modulemap */,
-				EB4B4CF4D66EFD5E1FBA21EF3482B720 /* paper-onboarding.xcconfig */,
-				D67A8A644CFEA3E35D7CA6CA9C324C9E /* paper-onboarding-dummy.m */,
-				2A62C3CB98AB630057F2870C7AAAF29A /* paper-onboarding-prefix.pch */,
-				1D0FD14488739EC1C9DEBCC3EA981F11 /* paper-onboarding-umbrella.h */,
+				6B53F05BE7767B43358591B69E488CA2 /* GoogleMaps.bundle */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/paper-onboarding";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		51FC2039EF742D0BA1EBCBD57295537B /* Pods-ShortsDotCom */ = {
@@ -241,18 +248,77 @@
 			path = "Target Support Files/Pods-ShortsDotCom";
 			sourceTree = "<group>";
 		};
-		6B0A9405D0E74AFFE3FD6EF47A247FA6 /* Support Files */ = {
+		597138BD96069F1DB2333FC277B07C59 /* Spring */ = {
 			isa = PBXGroup;
 			children = (
-				BE56D2AD79F8E591B82C443E99ACE18A /* Info.plist */,
-				85F17505B65DDD2785438A08FEBE898D /* Spring.modulemap */,
-				6C57CBE2BCC3181CB5CC64D87FEE4E7F /* Spring.xcconfig */,
-				ED6D84B2763D5F266DCAF982F82A862B /* Spring-dummy.m */,
-				CAF4A7EABEC7348E5C2077E0E8EE73C1 /* Spring-prefix.pch */,
-				41B345F40FB87DC338539941B5DA80AA /* Spring-umbrella.h */,
+				A216830B5C46E657FE60F66CB692A0A0 /* AsyncButton.swift */,
+				38FE7FF6F0E18383770FD8C65AD1E438 /* AsyncImageView.swift */,
+				BC6A0F93C432E2B95DC4ABD822D7E465 /* AutoTextView.swift */,
+				46E1F067B2874E8E9447A7FF6B551618 /* BlurView.swift */,
+				30176C76EBAEADD926CB955AA7E45F38 /* DesignableButton.swift */,
+				D2FD610A2A9F90358942F7882B556188 /* DesignableImageView.swift */,
+				17B970AC19AE4E5A11D61DEB554E44BB /* DesignableLabel.swift */,
+				ABAD5FA1219E6330B4962111D451B6E0 /* DesignableTabBarController.swift */,
+				802C6321630559ABA172C8CC129AE027 /* DesignableTextField.swift */,
+				DF2D84D56A41D96CF67C408D84396BBD /* DesignableTextView.swift */,
+				5C3FF070E71A6E9B22DFCF71BC9EEFB2 /* DesignableView.swift */,
+				6169E5BE7A8B6572FD5BA36263FF2A0E /* ImageLoader.swift */,
+				A56DCF03E5B33D5A7078F0AD62787667 /* KeyboardLayoutConstraint.swift */,
+				256E0EAB02A7C94200B2F43B7ECEEDFB /* LoadingView.swift */,
+				C79CA10405A01AB1F801E304D7402CA5 /* Misc.swift */,
+				E8380B8571473B00718899BED34E89E9 /* SoundPlayer.swift */,
+				ED379B28EA7DB39288624B11F785655C /* Spring.swift */,
+				B793DD96AF9AEFA58D8C219FC160EFA2 /* SpringAnimation.swift */,
+				E8FD264A41BB475216B0E7144D68B65E /* SpringButton.swift */,
+				F944BCD012B174CEBBF7496B732E6ED1 /* SpringImageView.swift */,
+				C85DADD9FDA8F98896AD842A7CFE5507 /* SpringLabel.swift */,
+				0ABA3A16A20E5609D236D3AA3CED0ED0 /* SpringTextField.swift */,
+				60CD670BFDC45DC6FC905C0222BF6141 /* SpringTextView.swift */,
+				DFF13DF8F35452F89BF354BF869283F3 /* SpringView.swift */,
+				8775378F7BBB984E1E7148B327E39841 /* TransitionManager.swift */,
+				171E632CD3104D23A87189B8764F5225 /* TransitionZoom.swift */,
+				D72DA9104978A0BFB9E212EA1284D8FF /* UnwindSegue.swift */,
+				61959B2F1DE0A761FA9FA3175D30B73F /* Resources */,
+				F3DD77E701BE9CEB88402C74816FAA26 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Spring";
+			name = Spring;
+			path = Spring;
+			sourceTree = "<group>";
+		};
+		5CA8EA8E7B0AF700631A7E1CB9EB0356 /* paper-onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				598436E68557B9BBCC0B00ABF0DD04F8 /* Configuring.swift */,
+				AEF918508F75017D7137CB20828EE229 /* ConstraintsHalper.swift */,
+				B4EC275C8FFBFC02789116C30E2890A0 /* FillAnimationView.swift */,
+				EE31A61FF8937C68B8991C4C41E1676D /* GestureControl.swift */,
+				0E61F7557A46C1EE499BB05F0433F751 /* OnboardingContantViewItem.swift */,
+				EC4AC88922970D29DA21F4790A05172A /* OnboardingContentView.swift */,
+				905A032CDC915C6BA541770042A028C1 /* PageContainer.swift */,
+				5D964AF1DBBE7F1E44B3249F2D11901B /* PageView.swift */,
+				FA33501CE93579559F43A272CCEF4A48 /* PageViewItem.swift */,
+				184B5F20A1E173B083A533D311CBE53E /* PaperOnboarding.swift */,
+				AD15B44A1031710B8F7E22C30312C4A3 /* Support Files */,
+			);
+			name = "paper-onboarding";
+			path = "paper-onboarding";
+			sourceTree = "<group>";
+		};
+		61959B2F1DE0A761FA9FA3175D30B73F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				945E9A11556D2FB98C1B000409CD01C8 /* Images.xcassets */,
+				DD1D73E4AFDE5B5F0B23BD279B1DC950 /* LoadingView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		74B1D39994E5E6E9E653ED638CD14889 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62BD7479A88BA59BCE204EF2573C1A6F /* GooglePlaces.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
@@ -263,49 +329,12 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		77E9A168B93C2496BEA75D307F1E0FB5 /* Spring */ = {
-			isa = PBXGroup;
-			children = (
-				D7B2F12F6BC062F808326F43D1D12D7E /* AsyncButton.swift */,
-				A148B97BB1565C59206FD4A9D11D95EE /* AsyncImageView.swift */,
-				BA01A96C1F0B94D38613CCD96285D374 /* AutoTextView.swift */,
-				96AD7BC7E8A1A011D818577A9A3F2B53 /* BlurView.swift */,
-				35A0FF5C322069B784EFB6408581FFC6 /* DesignableButton.swift */,
-				C757DCF7106B4187D88C525BB2B6E10C /* DesignableImageView.swift */,
-				7D7632E1C3BB8AA38631030C008A59C9 /* DesignableLabel.swift */,
-				4A4E2363364C4A1A595FACA98D0AB327 /* DesignableTabBarController.swift */,
-				3977AB5767795AC508B17407E77905B5 /* DesignableTextField.swift */,
-				45BD8F0C10AB6C36EB38A0B0A9D81783 /* DesignableTextView.swift */,
-				A0EE255E60289F780DBAA2AF823FAE73 /* DesignableView.swift */,
-				66A2CD5D67BFBD33FA63A7272637F15F /* ImageLoader.swift */,
-				A710C839D7AF1C92CA99950D4892E8F7 /* KeyboardLayoutConstraint.swift */,
-				42ADE545DC86FFB6EC06D57F9205D96D /* LoadingView.swift */,
-				665CE977D044509BA54B1FAD208FAC46 /* Misc.swift */,
-				B889B3772F91AAE26DA98F9BCD64DF6B /* SoundPlayer.swift */,
-				252F618D3808766777E4005FD09C4CD9 /* Spring.swift */,
-				F654D9492133E988ED1728F02DD7193A /* SpringAnimation.swift */,
-				A4B2032B17B9039557595FE461B23845 /* SpringButton.swift */,
-				82A5A389D457CE9580513E93018E82A1 /* SpringImageView.swift */,
-				741446838CFB04D183D370D14D0D1430 /* SpringLabel.swift */,
-				B81A976947EE41222539D10365AF6E62 /* SpringTextField.swift */,
-				59D3AB5856CCCA01F57B0EB25C6CC665 /* SpringTextView.swift */,
-				D4C70B1C9C322DFBE6473FD2A7648827 /* SpringView.swift */,
-				00BD72FA0F7F3AC043E8BB588E2AA305 /* TransitionManager.swift */,
-				4FE6C2932DCCC856DB53808EE951C24A /* TransitionZoom.swift */,
-				D224E23EAF884E6CFD84342917966840 /* UnwindSegue.swift */,
-				9ECE759DFDB6500A4ABC49410992CF82 /* Resources */,
-				6B0A9405D0E74AFFE3FD6EF47A247FA6 /* Support Files */,
-			);
-			name = Spring;
-			path = Spring;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				342A14530CFCA18B70C789983086BF04 /* Pods */,
+				C11D6C0EC6FEF1785CB1D61BB0D7054B /* Pods */,
 				27ABD7D96BAA70E3915EB9C6E20EAB02 /* Products */,
 				890D1077C798110DA581F654A13D1944 /* Targets Support Files */,
 			);
@@ -319,13 +348,18 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9ECE759DFDB6500A4ABC49410992CF82 /* Resources */ = {
+		AD15B44A1031710B8F7E22C30312C4A3 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				8B45604B946424150B34C9F062185AC8 /* Images.xcassets */,
-				728EC7C63CE872494D4339E3C3DF0F7C /* LoadingView.xib */,
+				9F39EBE89951BF29C9A85F859DAD768D /* Info.plist */,
+				0055E70CEC4BE9CD6DE1D07A8E234886 /* paper-onboarding.modulemap */,
+				6E00652BCF47C48AD58A18924AFDB324 /* paper-onboarding.xcconfig */,
+				69335BB7EB9028F5C2504EC0280C3E45 /* paper-onboarding-dummy.m */,
+				C57076E95E70F62AD807EC15673D40FB /* paper-onboarding-prefix.pch */,
+				BAA5347A98B1E0D375BF80A381E34ABE /* paper-onboarding-umbrella.h */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/paper-onboarding";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -334,6 +368,58 @@
 				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C11D6C0EC6FEF1785CB1D61BB0D7054B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				137B77D94980BB94DA07EDED09639496 /* GoogleMaps */,
+				E9AAEC86B7EAAA2FEE819F44CA225BE1 /* GooglePlaces */,
+				5CA8EA8E7B0AF700631A7E1CB9EB0356 /* paper-onboarding */,
+				597138BD96069F1DB2333FC277B07C59 /* Spring */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D451A5C7556E448A3168E1F30F728A74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9EB907AC36DE35D0CC1B5319CA08AA7 /* GooglePlaces.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9AAEC86B7EAAA2FEE819F44CA225BE1 /* GooglePlaces */ = {
+			isa = PBXGroup;
+			children = (
+				D451A5C7556E448A3168E1F30F728A74 /* Frameworks */,
+				74B1D39994E5E6E9E653ED638CD14889 /* Resources */,
+			);
+			name = GooglePlaces;
+			path = GooglePlaces;
+			sourceTree = "<group>";
+		};
+		EF4DE215F9EE7C24F779FCA00A3EB918 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6BF05A0633227F58AF3966C32FD0128 /* GoogleMaps.framework */,
+				3AF1CDB7B090987E86FE897DC91D031B /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3DD77E701BE9CEB88402C74816FAA26 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE86F72F7D19F084A73DA4D95AE33DF7 /* Info.plist */,
+				79E09DE01D0FBC8D92F6C4F8C6CA6FCD /* Spring.modulemap */,
+				F4D2EF776C1CD63FA6B2E0290269F097 /* Spring.xcconfig */,
+				6FDA2186A747D00544F78BAA58018874 /* Spring-dummy.m */,
+				44BA06881458A37901B5A48B5FFAD582 /* Spring-prefix.pch */,
+				DE18F89FCA434267E02285614BDA7740 /* Spring-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Spring";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,7 +672,7 @@
 		};
 		2AE674FC89D0EE31C573663B07D0715F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB4B4CF4D66EFD5E1FBA21EF3482B720 /* paper-onboarding.xcconfig */;
+			baseConfigurationReference = 6E00652BCF47C48AD58A18924AFDB324 /* paper-onboarding.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -653,7 +739,7 @@
 		};
 		55004DBBCD1D19A36F18E9A2F0C329BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C57CBE2BCC3181CB5CC64D87FEE4E7F /* Spring.xcconfig */;
+			baseConfigurationReference = F4D2EF776C1CD63FA6B2E0290269F097 /* Spring.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -686,7 +772,7 @@
 		};
 		65842CAAD60510A32E96798C95974E34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB4B4CF4D66EFD5E1FBA21EF3482B720 /* paper-onboarding.xcconfig */;
+			baseConfigurationReference = 6E00652BCF47C48AD58A18924AFDB324 /* paper-onboarding.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -719,7 +805,7 @@
 		};
 		8152A455A23C213B7D809CC073BB7ECF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C57CBE2BCC3181CB5CC64D87FEE4E7F /* Spring.xcconfig */;
+			baseConfigurationReference = F4D2EF776C1CD63FA6B2E0290269F097 /* Spring.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
