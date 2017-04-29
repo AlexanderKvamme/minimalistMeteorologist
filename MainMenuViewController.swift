@@ -7,11 +7,14 @@ import GoogleMaps
 
 /*Runs two fetches from  yr and from darksky.. Darksky is less accurate, so after the darksky data is modelled, replaceDarkSkyHourDataWithAvailableHourFromYr() is run to update the first 48 hours with more accurate values, and some additional values such as isChanceOfPrecipitation*/
 
+var midScreen = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+
 class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: - Properties
     var yrClient = YrClient()
     
+    @IBOutlet weak var animationStack: UIView! // checkmark animation and activity indicator
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -25,6 +28,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     var buttonOutline = UIView()
     
     var isFetching = false
+    var mainButtonWidth: CGFloat = 100
     
     // MARK: - viewDidLoad
     
@@ -32,17 +36,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         setupMainButton()
-        
-        // - Map start
-        GMSServices.provideAPIKey("AIzaSyD18MznE0DNTMCWnTQNVWaYxHUZ8ClXDGE")
-        
-        //mapView = GMSMapView.map(withFrame: mapFrame, camera: camera)
-        //let currentLocation = CLLocationCoordinate2D.init(latitude: 37.621212, longitude: -122.378945)
 
-        // - Map End
+        GMSServices.provideAPIKey("AIzaSyD18MznE0DNTMCWnTQNVWaYxHUZ8ClXDGE")
         
         setUserDefaultsIfInitialRun()
         buttonStack.isUserInteractionEnabled = false
+        activityIndicator.isUserInteractionEnabled = false
+        checkmarkView.isUserInteractionEnabled = false
+        animationStack.isUserInteractionEnabled = false
+        
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices"){
             toggleLoadingMode(true)
             UserLocation.sharedInstance.updateLocation()
@@ -181,31 +183,58 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     private func toggleLoadingMode(_ status: Bool){
         switch status{
         case true:
-            UIView.animate(withDuration: 0.5, animations: { 
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut , animations: {
+                
+                // animated fade in of label, and fade in of text
                 self.mainButton.titleLabel?.alpha = 0
+                self.mainButton.alpha = 0
+                //self.mainButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+                self.mainButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                self.mainButton.layer.cornerRadius = 25
+                //self.mainButton.backgroundColor = .white
+            }, completion: { (_) in
+//                self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
             })
+
             self.animateButtonOutline(visible: true)
             self.isFetching = true
             self.activityIndicator.startAnimating()
             self.activityIndicator.isHidden = false
-            self.buttonStack.alpha = 0.4
+            self.mainButton.backgroundColor = .white
             self.settingsButton.alpha = 0.4
             self.buttonStack.isUserInteractionEnabled = false
             self.settingsButton.isUserInteractionEnabled = false
             
         case false:
-            UIView.animate(withDuration: 0.5, animations: {
-                self.mainButton.titleLabel?.alpha = 1
+            UIView.animate(withDuration: 0.5,
+                           delay: 1,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseInOut ,
+                           animations: {
+                            self.mainButton.alpha = 1
+                            //self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                            self.mainButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+                            self.mainButton.layer.cornerRadius = 50
+                //self.mainButton.backgroundColor = .white
+            }, completion: { (_) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.mainButton.titleLabel?.alpha = 1
+                })
+                
+                //                self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
             })
             self.animateButtonOutline(visible: false)
             self.isFetching = false
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
-            self.buttonStack.alpha = 1
+            //self.buttonStack.alpha = 1
+            self.mainButton.backgroundColor = .black
             self.settingsButton.alpha = 1
             self.buttonStack.isUserInteractionEnabled = true
             self.settingsButton.isUserInteractionEnabled = true
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
+            self.view.bringSubview(toFront: self.mainButton)
         }
     }
     
@@ -302,27 +331,36 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setupMainButton() {
-
         mainButton.setTitleColor(.white, for: .normal)
         mainButton.setTitle("GO", for: .normal)
         var pos = mainButton.frame
-        let buttonRect = CGRect(x: pos.minX, y: pos.minY, width: 100, height: 100)
+        let buttonRect = CGRect(x: pos.minX, y: pos.minY, width: mainButtonWidth, height: mainButtonWidth)
         mainButton.frame = buttonRect
         mainButton.backgroundColor = .black
         mainButton.layer.cornerRadius = 50
         mainButton.translatesAutoresizingMaskIntoConstraints = true
         mainButton.setNeedsLayout()
         mainButton.titleLabel?.alpha = 0
-        pos = mainButton.frame
         
+        setupAnimationStack()
         makeOutlineViewAroundButton()
+    }
+    
+    private func setupAnimationStack() {
+        let frameWidth: CGFloat = 40
+        let xPos = view.frame.midX - frameWidth/2
+        let yPos = view.frame.midY - frameWidth/2
+        // activityIndicator.color = .white
+        
+        // Move stack to center
+        animationStack.frame = CGRect(x: xPos, y: yPos, width: frameWidth, height: frameWidth)
+        animationStack.translatesAutoresizingMaskIntoConstraints = true
     }
     
     func makeOutlineViewAroundButton() {
         let outlineWidth: CGFloat = mainButton.frame.width + 20
         let circleCornerRadius = outlineWidth / 2
         
-        // FIXME: - pos
         buttonOutline = UIView(frame: CGRect(x: view.frame.midX - outlineWidth/2,
                                              y: view.frame.midY - outlineWidth/2,
                                              width: outlineWidth,
@@ -342,8 +380,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         switch visible {
         case true:
             UIView.animate(withDuration: duration, animations: { 
-                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
-                self.buttonOutline.alpha = 0
+                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+                //self.buttonOutline.alpha = 0
             }, completion: { (_) in
                 //
             })

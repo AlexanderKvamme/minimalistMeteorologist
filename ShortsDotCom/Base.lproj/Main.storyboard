@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5DG-sa-ZvL" userLabel="Menu Buttons">
-                                <rect key="frame" x="112.5" y="252" width="95" height="64"/>
+                                <rect key="frame" x="113" y="252" width="95" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8G-6M-DZ4">
                                         <rect key="frame" x="0.0" y="0.0" width="95" height="64"/>
@@ -150,10 +150,10 @@
                                 </constraints>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_shakeToRefresh_under" translatesAutoresizingMaskIntoConstraints="NO" id="lAl-Ea-Z6C">
-                                <rect key="frame" x="112.5" y="321" width="112" height="31"/>
+                                <rect key="frame" x="113" y="321" width="112" height="31"/>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_enableGPS" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-hH-x0c">
-                                <rect key="frame" x="64.5" y="-4" width="191" height="120"/>
+                                <rect key="frame" x="65" y="-4" width="191" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="yry-Mu-cDw"/>
                                 </constraints>
@@ -175,6 +175,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="diX-qX-Adf" id="38l-u4-SST"/>
+                        <outlet property="animationStack" destination="76p-jt-ar6" id="ucM-b7-UxQ"/>
                         <outlet property="buttonStack" destination="5DG-sa-ZvL" id="CQZ-mZ-rIj"/>
                         <outlet property="checkmarkView" destination="kJc-hR-UpC" id="D1G-oc-2Mt"/>
                         <outlet property="enableGPSImage" destination="EcV-hH-x0c" id="7hS-kt-Pqi"/>
@@ -348,7 +349,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-42-AJI">
-                                <rect key="frame" x="140.5" y="72.5" width="39" height="17"/>
+                                <rect key="frame" x="141" y="72.5" width="39" height="17"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
