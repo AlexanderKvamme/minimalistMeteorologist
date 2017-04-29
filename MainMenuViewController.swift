@@ -17,7 +17,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var checkmarkView: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
-    @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var shakeToRefreshImage: UIImageView!
     @IBOutlet weak var enableGPSImage: UIImageView!
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
@@ -44,8 +43,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         setUserDefaultsIfInitialRun()
         buttonStack.isUserInteractionEnabled = false
-        todayButton.layer.borderWidth = 2
-        todayButton.layer.borderColor = UIColor.black.cgColor
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices"){
             toggleLoadingMode(true)
             UserLocation.sharedInstance.updateLocation()
@@ -184,6 +181,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     private func toggleLoadingMode(_ status: Bool){
         switch status{
         case true:
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.mainButton.titleLabel?.alpha = 0
+            })
             self.animateButtonOutline(visible: true)
             self.isFetching = true
             self.activityIndicator.startAnimating()
@@ -194,6 +194,9 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             self.settingsButton.isUserInteractionEnabled = false
             
         case false:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.mainButton.titleLabel?.alpha = 1
+            })
             self.animateButtonOutline(visible: false)
             self.isFetching = false
             self.activityIndicator.stopAnimating()
@@ -299,24 +302,32 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setupMainButton() {
-        mainButton.backgroundColor = .black
+
         mainButton.setTitleColor(.white, for: .normal)
         mainButton.setTitle("GO", for: .normal)
         var pos = mainButton.frame
         let buttonRect = CGRect(x: pos.minX, y: pos.minY, width: 100, height: 100)
         mainButton.frame = buttonRect
+        mainButton.backgroundColor = .black
         mainButton.layer.cornerRadius = 50
         mainButton.translatesAutoresizingMaskIntoConstraints = true
         mainButton.setNeedsLayout()
-        
+        mainButton.titleLabel?.alpha = 0
         pos = mainButton.frame
         
-        // make stroked button under the button
+        makeOutlineViewAroundButton()
+    }
+    
+    func makeOutlineViewAroundButton() {
+        let outlineWidth: CGFloat = mainButton.frame.width + 20
+        let circleCornerRadius = outlineWidth / 2
         
-        let circleWidth: CGFloat = mainButton.frame.width + 20
-        let circleCornerRadius = circleWidth / 2
+        // FIXME: - pos
+        buttonOutline = UIView(frame: CGRect(x: view.frame.midX - outlineWidth/2,
+                                             y: view.frame.midY - outlineWidth/2,
+                                             width: outlineWidth,
+                                             height: outlineWidth))
         
-        buttonOutline = UIView(frame: CGRect(x: view.frame.midX - circleWidth/2, y: view.frame.midY - circleWidth/2, width: circleWidth, height: circleWidth))
         buttonOutline.layer.cornerRadius = circleCornerRadius
         buttonOutline.layer.borderColor = UIColor.black.cgColor
         buttonOutline.layer.borderWidth = 5
@@ -330,27 +341,26 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         let duration = 0.3
         switch visible {
         case true:
-            UIView.animate(withDuration: duration) {
-            self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
-            self.buttonOutline.alpha = 0
-            }
+            UIView.animate(withDuration: duration, animations: { 
+                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
+                self.buttonOutline.alpha = 0
+            }, completion: { (_) in
+                //
+            })
         case false:
             UIView.animate(withDuration: duration, delay: 1, options: UIViewAnimationOptions.curveEaseInOut, animations: {
                 self.buttonOutline.transform = CGAffineTransform.init(scaleX: 1, y: 1)
                 self.buttonOutline.alpha = 1
-            }, completion: { (_) in
-                //
             })
         }
     }
 
 // MARK: - Helper methods
 
-func setUserDefaultsIfInitialRun(){
-    let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
-    if currentPreferredUnits == nil {
-        UserDefaults.standard.set("SI", forKey: "preferredUnits")
+    func setUserDefaultsIfInitialRun(){
+        let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
+        if currentPreferredUnits == nil {
+            UserDefaults.standard.set("SI", forKey: "preferredUnits")
+        }
     }
-}
-
 }

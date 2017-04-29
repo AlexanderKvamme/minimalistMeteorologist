@@ -19,183 +19,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="ShortsDotCom" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-a3-4xE">
-                                <rect key="frame" x="0.0" y="297" width="320" height="271"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mwt-fZ-gmn">
-                                    <size key="itemSize" width="120" height="160"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCellPrototypeImage" id="atV-P8-Uah" customClass="MyCollectionViewCell" customModule="ShortsDotCom" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8Q-FQ-yY6">
-                                                    <rect key="frame" x="0.0" y="124" width="120" height="28"/>
-                                                    <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-n6-76N">
-                                                    <rect key="frame" x="0.0" y="10" width="120" height="109"/>
-                                                </imageView>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="D8Q-FQ-yY6" firstAttribute="top" secondItem="I7e-n6-76N" secondAttribute="bottom" constant="5" id="2UT-HW-hJ6"/>
-                                            <constraint firstItem="D8Q-FQ-yY6" firstAttribute="centerX" secondItem="I7e-n6-76N" secondAttribute="centerX" id="33D-Dv-lte"/>
-                                            <constraint firstItem="D8Q-FQ-yY6" firstAttribute="top" secondItem="atV-P8-Uah" secondAttribute="topMargin" constant="116" id="Eqy-Kh-GE2"/>
-                                            <constraint firstItem="I7e-n6-76N" firstAttribute="leading" secondItem="atV-P8-Uah" secondAttribute="leading" id="Esg-68-TeN"/>
-                                            <constraint firstItem="I7e-n6-76N" firstAttribute="top" secondItem="atV-P8-Uah" secondAttribute="top" constant="10" id="H1S-vu-dzO"/>
-                                            <constraint firstAttribute="trailing" secondItem="I7e-n6-76N" secondAttribute="trailing" id="KjG-Ep-PFR"/>
-                                            <constraint firstItem="D8Q-FQ-yY6" firstAttribute="width" secondItem="I7e-n6-76N" secondAttribute="width" id="dkl-H6-h8P"/>
-                                            <constraint firstItem="D8Q-FQ-yY6" firstAttribute="bottom" secondItem="atV-P8-Uah" secondAttribute="bottomMargin" id="vBk-hW-bmP"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="imageViewPrototype" destination="I7e-n6-76N" id="1OK-6f-uha"/>
-                                            <outlet property="textFieldPrototype" destination="D8Q-FQ-yY6" id="ZE9-WS-E5o"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCellPrototypeText" id="87j-q1-1vi" customClass="MyCollectionViewCellPercent" customModule="ShortsDotCom" customModuleProvider="target">
-                                        <rect key="frame" x="200" y="0.0" width="120" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-dy-ptK">
-                                                    <rect key="frame" x="8" y="124" width="104" height="28"/>
-                                                    <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-KV-dsc">
-                                                    <rect key="frame" x="8" y="45" width="104" height="42"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                                    </accessibility>
-                                                    <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="40"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="PaH-dy-ptK" firstAttribute="bottom" secondItem="87j-q1-1vi" secondAttribute="bottomMargin" id="3wm-uT-fcc"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="PaH-dy-ptK" secondAttribute="trailing" id="9mu-86-jU2"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="G5f-KV-dsc" secondAttribute="trailing" id="A5i-cU-ZON"/>
-                                            <constraint firstItem="G5f-KV-dsc" firstAttribute="centerX" secondItem="87j-q1-1vi" secondAttribute="centerX" id="Jnh-MQ-7Nn"/>
-                                            <constraint firstItem="PaH-dy-ptK" firstAttribute="top" secondItem="87j-q1-1vi" secondAttribute="topMargin" constant="116" id="TUe-y7-qPR"/>
-                                            <constraint firstItem="PaH-dy-ptK" firstAttribute="centerX" secondItem="87j-q1-1vi" secondAttribute="centerX" id="gcO-9D-1mx"/>
-                                            <constraint firstItem="PaH-dy-ptK" firstAttribute="leading" secondItem="87j-q1-1vi" secondAttribute="leadingMargin" id="ix7-gc-uk7"/>
-                                            <constraint firstItem="G5f-KV-dsc" firstAttribute="centerX" secondItem="PaH-dy-ptK" secondAttribute="centerX" id="o0K-zO-qXc"/>
-                                            <constraint firstItem="G5f-KV-dsc" firstAttribute="centerX" secondItem="87j-q1-1vi" secondAttribute="centerX" id="obi-EC-7hI"/>
-                                            <constraint firstItem="PaH-dy-ptK" firstAttribute="top" secondItem="G5f-KV-dsc" secondAttribute="bottom" constant="37" id="uiR-JJ-ODE"/>
-                                            <constraint firstItem="G5f-KV-dsc" firstAttribute="leading" secondItem="87j-q1-1vi" secondAttribute="leadingMargin" id="zZI-QB-lgR"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="textFieldHeader" destination="G5f-KV-dsc" id="BQy-vp-0Qy"/>
-                                            <outlet property="textFieldPrototype" destination="PaH-dy-ptK" id="6f9-VU-WzD"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="To2-RP-rVa"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gNh-Qj-Rkj"/>
-                                </connections>
-                            </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-p0-XsK">
-                                <rect key="frame" x="75" y="20" width="170" height="180"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="YyB-cA-hBI"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpp-Rh-2AR">
-                                <rect key="frame" x="42" y="220" width="237" height="27"/>
-                                <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-14-equ">
-                                <rect key="frame" x="150" y="265" width="20" height="20"/>
-                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5UQ-5o-VfK" userLabel="animationView">
-                                <rect key="frame" x="130" y="255" width="60" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Zds-A0-8r5"/>
-                                </constraints>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Test, Testingtown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-kz-elv">
-                                <rect key="frame" x="0.0" y="246" width="320" height="12"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="xfJ-p0-XsK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1Kt-B1-cTb"/>
-                            <constraint firstItem="5UQ-5o-VfK" firstAttribute="top" secondItem="Vpp-Rh-2AR" secondAttribute="bottom" constant="8" symbolic="YES" id="3ru-wm-w6Q"/>
-                            <constraint firstItem="Vpp-Rh-2AR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4uJ-bw-7BY"/>
-                            <constraint firstAttribute="trailing" secondItem="Cbl-a3-4xE" secondAttribute="trailing" id="5W9-7Z-e2L"/>
-                            <constraint firstItem="kKR-14-equ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="99a-3a-QNE"/>
-                            <constraint firstItem="mpk-kz-elv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bqz-7b-GyE"/>
-                            <constraint firstItem="Cbl-a3-4xE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Kni-8n-932"/>
-                            <constraint firstAttribute="trailing" secondItem="xfJ-p0-XsK" secondAttribute="trailing" constant="75" id="LCq-Ks-roc"/>
-                            <constraint firstItem="kKR-14-equ" firstAttribute="top" secondItem="Vpp-Rh-2AR" secondAttribute="bottom" constant="17.5" id="LE0-hY-SYF"/>
-                            <constraint firstItem="Cbl-a3-4xE" firstAttribute="top" secondItem="Vpp-Rh-2AR" secondAttribute="bottom" constant="50" id="NL5-Dv-TxR"/>
-                            <constraint firstItem="mpk-kz-elv" firstAttribute="top" secondItem="Vpp-Rh-2AR" secondAttribute="bottom" constant="-1.5" id="XMV-2O-LbQ"/>
-                            <constraint firstItem="5UQ-5o-VfK" firstAttribute="centerY" secondItem="kKR-14-equ" secondAttribute="centerY" id="bx4-mj-vRq"/>
-                            <constraint firstItem="xfJ-p0-XsK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="75" id="fZw-7V-tzT"/>
-                            <constraint firstItem="mpk-kz-elv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="kzK-3O-6lt"/>
-                            <constraint firstItem="Vpp-Rh-2AR" firstAttribute="top" secondItem="xfJ-p0-XsK" secondAttribute="bottom" constant="20" id="r1A-8m-HIa"/>
-                            <constraint firstItem="5UQ-5o-VfK" firstAttribute="centerX" secondItem="kKR-14-equ" secondAttribute="centerX" id="uB6-RK-JHl"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cbl-a3-4xE" secondAttribute="bottom" id="uRj-yS-emN"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="I5S-nd-GT4" appends="YES" id="uV7-AV-Gkm"/>
-                        </connections>
-                    </view>
-                    <navigationItem key="navigationItem" id="ETk-z9-VbC"/>
-                    <connections>
-                        <outlet property="CollectionViewRef" destination="Cbl-a3-4xE" id="tlp-2L-lvu"/>
-                        <outlet property="activityIndicator" destination="kKR-14-equ" id="H90-PV-tlU"/>
-                        <outlet property="animationView" destination="5UQ-5o-VfK" id="brB-wq-dL2"/>
-                        <outlet property="cityAndCountryTextField" destination="mpk-kz-elv" id="08x-wF-7rT"/>
-                        <outlet property="collectionViewRef" destination="Cbl-a3-4xE" id="Sha-Se-9IL"/>
-                        <outlet property="flowLayout" destination="mwt-fZ-gmn" id="kJI-4Z-Dcu"/>
-                        <outlet property="headerImage" destination="xfJ-p0-XsK" id="KtG-Rc-mLr"/>
-                        <outlet property="headerText" destination="Vpp-Rh-2AR" id="VYm-or-foQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="pV2-pO-idl" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="right" id="I5S-nd-GT4">
-                    <connections>
-                        <segue destination="pV2-pO-idl" kind="unwind" unwindAction="unwindToViewController:" id="e6W-ZE-t8a"/>
-                    </connections>
-                </swipeGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1372" y="313.49325337331339"/>
-        </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="dEu-nu-yGd">
             <objects>
@@ -300,7 +123,6 @@
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                                 <state key="normal" image="settingsButton.png"/>
                                 <connections>
-                                    <action selector="settingsButtonIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vnf-KZ-oss"/>
                                     <segue destination="Yst-fw-VUa" kind="presentation" id="BaT-Gy-wsK"/>
                                 </connections>
                             </button>
@@ -359,7 +181,6 @@
                         <outlet property="mainButton" destination="v8G-6M-DZ4" id="8Te-c6-RR9"/>
                         <outlet property="settingsButton" destination="tyg-P1-L2g" id="8FJ-Rz-Png"/>
                         <outlet property="shakeToRefreshImage" destination="lAl-Ea-Z6C" id="1mR-YJ-d8B"/>
-                        <outlet property="todayButton" destination="v8G-6M-DZ4" id="R81-HN-oy7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ew-VB-dsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,7 +348,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-42-AJI">
-                                <rect key="frame" x="141" y="72.5" width="39" height="17"/>
+                                <rect key="frame" x="140.5" y="72.5" width="39" height="17"/>
                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
