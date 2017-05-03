@@ -75,17 +75,34 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     
     func startReverseGeocoding(_ location: CLLocation){
         geoCoder?.reverseGeocodeLocation(location, completionHandler: { (placemark, error) in
+            
             if error != nil{
                 print("error found. returning")
                 return
             }
             
             if let lastMark = placemark?.last{
+                
                 self.printPlacemark(lastMark)
-                self.country = lastMark.country!
-                self.locality = lastMark.locality!
-                self.subLocality = lastMark.subLocality!
-                self.administrativeArea = lastMark.administrativeArea!
+                
+                // unwrap
+                if let country = lastMark.country {
+                    self.country = country
+                }
+                if let locality = lastMark.locality {
+                    self.locality = locality
+                }
+                //self.country = lastMark.country!
+                //self.locality = lastMark.locality!
+                if let subLocality = lastMark.subLocality {
+                    self.subLocality = subLocality
+                }
+                //self.subLocality = lastMark.subLocality!
+                
+                if let adminArea = lastMark.administrativeArea {
+                    self.administrativeArea = adminArea
+                }
+                //self.administrativeArea = lastMark.administrativeArea!
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.reverseGeocodingDidFinish), object: self)
             }
@@ -95,12 +112,14 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     // MARK: - Helper methods
     
     func printPlacemark(_ placemark: CLPlacemark) {
+        print()
         print("country: ", placemark.country as Any)
         print("locality: ", placemark.locality as Any)
-        //print("isoCountryCode: ", placemark.isoCountryCode as Any)
-        //print("location: ", placemark.location as Any)
-        //print("name: ", placemark.name as Any)
-        //print("region: ", placemark.region as Any)
+        print("isoCountryCode: ", placemark.isoCountryCode as Any)
+        //print("location: ", placemark.location as Any) // CLLocation radius
+        print("name: ", placemark.name as Any)
+        print(placemark.areasOfInterest)
+        //print("region: ", placemark.region as Any) eCLCircualrRegion
         if placemark.subAdministrativeArea != nil {
                 print("subAdmininstrative area:", placemark.subAdministrativeArea as Any)
         }
@@ -108,6 +127,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         print("sublocality:", placemark.subLocality as Any)
         //print("postalCode:" ,placemark.postalCode as Any)
         //print("subThoroughfare: ", placemark.subThoroughfare as Any)
+        print()
     }
 }
 

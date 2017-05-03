@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D0DF77E0016C87987F3588A8 /* Pods_ShortsDotCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */; };
+		DD0018201EBA304C00675D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD00181F1EBA304C00675D22 /* Assets.xcassets */; };
+		DD0018221EBA347A00675D22 /* UIButtonAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0018211EBA347A00675D22 /* UIButtonAnimations.swift */; };
+		DD0018241EBA3A6800675D22 /* UILabelAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0018231EBA3A6800675D22 /* UILabelAnimations.swift */; };
 		DD0020AA1EA8F4AF00D2D8E2 /* YrHourData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0020A91EA8F4AF00D2D8E2 /* YrHourData.swift */; };
 		DD0020AC1EA8F4C900D2D8E2 /* YrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0020AB1EA8F4C900D2D8E2 /* YrClient.swift */; };
 		DD0A30FE1E422250006A2320 /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */; };
@@ -288,7 +291,6 @@
 		DDA0A1001DB3B20400011F94 /* settingsButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA0A0FD1DB3B20400011F94 /* settingsButton@3x.png */; };
 		DDA277111D786516001B5FBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA277101D786516001B5FBD /* AppDelegate.swift */; };
 		DDA277161D786516001B5FBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277141D786516001B5FBD /* Main.storyboard */; };
-		DDA277181D786516001B5FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA277171D786516001B5FBD /* Assets.xcassets */; };
 		DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA277191D786516001B5FBD /* LaunchScreen.storyboard */; };
 		DDE215B21E2D31BF0030E45A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B11E2D31BF0030E45A /* OnboardingView.swift */; };
 		DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE215B51E2D39610030E45A /* OnboardingViewController.swift */; };
@@ -321,6 +323,9 @@
 /* Begin PBXFileReference section */
 		6B5B50045B86770289652715 /* Pods-ShortsDotCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShortsDotCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShortsDotCom/Pods-ShortsDotCom.release.xcconfig"; sourceTree = "<group>"; };
 		7A95B27AF3F7596596D36066 /* Pods_ShortsDotCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShortsDotCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD00181F1EBA304C00675D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD0018211EBA347A00675D22 /* UIButtonAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonAnimations.swift; sourceTree = "<group>"; };
+		DD0018231EBA3A6800675D22 /* UILabelAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelAnimations.swift; sourceTree = "<group>"; };
 		DD0020A91EA8F4AF00D2D8E2 /* YrHourData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YrHourData.swift; sourceTree = "<group>"; };
 		DD0020AB1EA8F4C900D2D8E2 /* YrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YrClient.swift; sourceTree = "<group>"; };
 		DD0A30FD1E422250006A2320 /* DataModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
@@ -434,7 +439,7 @@
 		DD19ECD61DAE802D00986C39 /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind@3x.png"; sourceTree = "<group>"; };
 		DD19ED4F1DAE807B00986C39 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		DD239A8C1E40BEF90082CCD8 /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
-		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		DD2736CB1DC42F4B008F2389 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Animations.swift; path = ShortsDotCom/Animations.swift; sourceTree = "<group>"; };
 		DD2736CD1DC7B4E0008F2389 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = ShortsDotCom/Global.swift; sourceTree = "<group>"; };
 		DD28BEE61DD9370B00C742D3 /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
 		DD28BEE71DD9370B00C742D3 /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
@@ -603,7 +608,6 @@
 		DDA2770D1D786516001B5FBD /* ShortsDotCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortsDotCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDA277101D786516001B5FBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDA277151D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DDA277171D786516001B5FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDA2771A1D786516001B5FBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDA2771C1D786516001B5FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDE215B11E2D31BF0030E45A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -656,16 +660,9 @@
 		DD0484541E48BB4E00926521 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				DD0484551E48BB5800926521 /* Checkmark */,
+				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 			);
 			name = Animations;
-			sourceTree = "<group>";
-		};
-		DD0484551E48BB5800926521 /* Checkmark */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Checkmark;
 			sourceTree = "<group>";
 		};
 		DD0F13321DFAD2090077FB36 /* Data */ = {
@@ -1176,13 +1173,12 @@
 		DDA2770F1D786516001B5FBD /* ShortsDotCom */ = {
 			isa = PBXGroup;
 			children = (
-				DDA277171D786516001B5FBD /* Assets.xcassets */,
 				DDA277191D786516001B5FBD /* LaunchScreen.storyboard */,
 				DDA2771C1D786516001B5FBD /* Info.plist */,
 				DD300BB61D7DAE8100AF95C9 /* ForecastClient.swift */,
 				DD19ED4F1DAE807B00986C39 /* UserLocation.swift */,
+				DD00181F1EBA304C00675D22 /* Assets.xcassets */,
 				DDA277141D786516001B5FBD /* Main.storyboard */,
-				DD2736CB1DC42F4B008F2389 /* Animations.swift */,
 				DDA277101D786516001B5FBD /* AppDelegate.swift */,
 				DD0FF9E71D7B08A900A1B06F /* APIClient.swift */,
 				DDA0A0D41DB27BBF00011F94 /* NotificationNames.swift */,
@@ -1194,6 +1190,8 @@
 			isa = PBXGroup;
 			children = (
 				DD2DE17D1DE6FCA100BB0473 /* MainMenuViewController.swift */,
+				DD0018211EBA347A00675D22 /* UIButtonAnimations.swift */,
+				DD0018231EBA3A6800675D22 /* UILabelAnimations.swift */,
 				DD16A27B1DB56F3200B5BAD1 /* SettingsViewController.swift */,
 				DDE8491B1EB3CF5B00AA9DC3 /* mapStyle.json */,
 			);
@@ -1346,7 +1344,6 @@
 				DD19ED461DAE802D00986C39 /* unexpectedEnum.png in Resources */,
 				DD19ECD71DAE802D00986C39 /* Activity Indicators.png in Resources */,
 				DDA2771B1D786516001B5FBD /* LaunchScreen.storyboard in Resources */,
-				DDA277181D786516001B5FBD /* Assets.xcassets in Resources */,
 				DD19ED211DAE802D00986C39 /* precipitationDefault Copy.png in Resources */,
 				DD2BF8E41E20C47500661983 /* temperature@3x.png in Resources */,
 				DD19ED131DAE802D00986C39 /* Moon@3x.png in Resources */,
@@ -1364,6 +1361,7 @@
 				DD19ECF21DAE802D00986C39 /* fog@3x.png in Resources */,
 				DD19ED4D1DAE802D00986C39 /* wind@2x.png in Resources */,
 				DD19ED3E1DAE802D00986C39 /* Sleet@3x.png in Resources */,
+				DD0018201EBA304C00675D22 /* Assets.xcassets in Resources */,
 				DD4DCBBC1DE5AA4F0003C791 /* partly-cloudy-night@2x.png in Resources */,
 				DD19ECD91DAE802D00986C39 /* Activity Indicators@3x.png in Resources */,
 				DD1F340B1E1D982500A83BF3 /* Moon Light.otf in Resources */,
@@ -1568,6 +1566,7 @@
 				DD294DB01EB1571D003FE805 /* PieRadarChartViewBase.swift in Sources */,
 				DDE215B61E2D39610030E45A /* OnboardingViewController.swift in Sources */,
 				DD294DD11EB1571D003FE805 /* LineChartDataSet.swift in Sources */,
+				DD0018221EBA347A00675D22 /* UIButtonAnimations.swift in Sources */,
 				DD294DF81EB1571D003FE805 /* Range.swift in Sources */,
 				DD294DEA1EB1571D003FE805 /* DefaultValueFormatter.swift in Sources */,
 				DD294DCC1EB1571D003FE805 /* ChartDataEntry.swift in Sources */,
@@ -1586,6 +1585,7 @@
 				DD294DEB1EB1571D003FE805 /* IAxisValueFormatter.swift in Sources */,
 				DD294E181EB1571D003FE805 /* CircleShapeRenderer.swift in Sources */,
 				DD294DCB1EB1571D003FE805 /* ChartData.swift in Sources */,
+				DD0018241EBA3A6800675D22 /* UILabelAnimations.swift in Sources */,
 				DD294DC61EB1571D003FE805 /* BubbleChartDataEntry.swift in Sources */,
 				DD294E231EB1571D003FE805 /* YAxisRendererHorizontalBarChart.swift in Sources */,
 				DD294E0B1EB1571D003FE805 /* CandleStickChartRenderer.swift in Sources */,

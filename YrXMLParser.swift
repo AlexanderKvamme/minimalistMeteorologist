@@ -52,12 +52,8 @@ class YrXMLParser: NSObject, XMLParserDelegate {
         parser.delegate = self
         
         if !parser.parse(){ // returns false if errors occured
-            print("Data Errors Exist:")
             let error = parser.parserError!
-            print("Error Description:\(error.localizedDescription)")
-            print("Error reason:\(error.localizedDescription)")
-            print("Line number: \(parser.lineNumber)")
-            return XMLResult.Failure(error: "Some error occured in XML handling")
+            return XMLResult.Failure(error: "Some error occured in XML handling: \(error)")
         }
         return XMLResult.Success(result: hourDataArray)
     }

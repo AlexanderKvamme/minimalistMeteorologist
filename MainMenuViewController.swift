@@ -5,7 +5,7 @@ import CoreLocation
 import Spring
 import GoogleMaps
 
-/*Runs two fetches from  yr and from darksky.. Darksky is less accurate, so after the darksky data is modelled, replaceDarkSkyHourDataWithAvailableHourFromYr() is run to update the first 48 hours with more accurate values, and some additional values such as isChanceOfPrecipitation*/
+/*Runs two fetches from  yr and from darksky.. Darksky is less accurate, so after the darksky data is modelled, replaceDarkSkyHourData() is run to update the first 48 hours with more accurate values, and some additional values such as isChanceOfPrecipitation*/
 
 var midScreen = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
@@ -13,37 +13,32 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: - Properties
     var yrClient = YrClient()
+    var mapView: GMSMapView!
+    var mainButton = UIButton()
+    var buttonOutline = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var checkmarkView = UIImageView()
+    var activityContainer = UIView()
     
-    @IBOutlet weak var animationStack: UIView! // checkmark animation and activity indicator
-    @IBOutlet weak var mainButton: UIButton!
-    @IBOutlet weak var buttonStack: UIStackView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var checkmarkView: UIImageView!
+    var mainButtonSize: CGFloat = 90
+    var animateBackDuration = 0.5
+    
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var shakeToRefreshImage: UIImageView!
     @IBOutlet weak var enableGPSImage: UIImageView!
+
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {}
-    
-    var mapView: GMSMapView!
-    var buttonOutline = UIView()
-    
+
     var isFetching = false
-    var mainButtonWidth: CGFloat = 100
     
-    // MARK: - viewDidLoad
+    // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMainButton()
-
-        GMSServices.provideAPIKey("AIzaSyD18MznE0DNTMCWnTQNVWaYxHUZ8ClXDGE")
-        
         setUserDefaultsIfInitialRun()
-        buttonStack.isUserInteractionEnabled = false
-        activityIndicator.isUserInteractionEnabled = false
-        checkmarkView.isUserInteractionEnabled = false
-        animationStack.isUserInteractionEnabled = false
+        setupGoogleMaps()
+        setupUIComponents()
         
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices"){
             toggleLoadingMode(true)
@@ -64,8 +59,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         UIApplication.shared.keyWindow?.rootViewController = self // Stops unwind from "TODAY" from unwinding further back, to Onboarding
     }
     
-    // MARK: - motionBegan
-    
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         if UserDefaults.standard.bool(forKey: "willAllowLocationServices") && isFetching == false {
             toggleLoadingMode(true)
@@ -82,159 +75,171 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - Helper Methods
+    // MARK: - UI Methods
 
-    func fetchWeather(){
-        guard let currentCoordinate = currentCoordinate else {
-            return
-        }
-        forecastClient.fetchExtendedCurrentWeather(forCoordinate: currentCoordinate) { apiresult in
-            self.toggleLoadingMode(false)
-            
-            switch apiresult{
-            case .success(let result):
-                
-                // update global variable
-                latestExtendedWeatherFetch.currentWeather = result.currentWeather
-                latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
-                latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
-                
-                self.replaceDarkSkyHourDataWithAvailableHourFromYr()
-                
-                if let
-                    fetchedDays = latestExtendedWeatherFetch.dailyWeather,
-                    let fetchedHours = latestExtendedWeatherFetch.hourlyWeather {
-                    
-                    var dayIndex = 0
-                    var organizedHours = [HourData]()
-                    for hour in fetchedHours where dayIndex < fetchedDays.count {
-                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber {
-                            organizedHours.append(hour)
-                        } else{
-                            latestExtendedWeatherFetch.dailyWeather![dayIndex].hourData = organizedHours
-                            organizedHours.removeAll()
-                            dayIndex += 1
-                        }
-                    }
-                }
-                
-                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
-                
-            case .failure(let error as NSError):
-                self.toggleLoadingMode(true)
-                showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
-            default: break
-            }
-        }
+    private func setupUIComponents() {
+        makeSettingsButton()
+        makeMainButton()
+        makeOutlineViewAroundButton()
+        makeActivityContainer()
     }
     
-    func replaceDarkSkyHourDataWithAvailableHourFromYr() {
-        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours). Replaces temperatures and precipitation
-        guard let yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr else {
-            print("ERROR: no yrHours stored in global value 'latestExtendedWeatherFetch'.")
-            return
-        }
-
-        for i in 0 ..< yrHours.count {
-            if hourHasPrecipitation(yrHours[i]) {
-                    latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation = true
-            }
-            
-            latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
-        }
+    private func makeSettingsButton() {
+        let size: CGFloat = 20
+        let bottomSpacing: CGFloat = 10
+        let btnSize = CGSize(width: size, height: size)
+        let position = CGPoint(x: midScreen.x - size/2, y: UIScreen.main.bounds.maxY - size - bottomSpacing)
+        
+        let btn = UIButton(frame: CGRect(origin: position, size: btnSize))
+        btn.setBackgroundImage(UIImage(named: "settingsButton.png"), for: .normal)
+        btn.addTarget(self, action: #selector(settingsButtonDidTouch), for: .touchUpInside)
+        
+        view.addSubview(btn)
     }
     
-    func hourHasPrecipitation(_ hour: YrHourData) -> Bool {
-        
-        if hour.precipitationMinValue != nil && hour.precipitationMaxValue != nil {
-            return true
-        }
-        return false
+    private func makeMainButton() {
+        mainButton.frame.size = CGSize(width: mainButtonSize, height: mainButtonSize)
+        mainButton.center = midScreen
+        mainButton.backgroundColor = .black
+        mainButton.setTitleColor(.white, for: .normal)
+        mainButton.setTitle("GO", for: .normal)
+        mainButton.titleLabel?.font = UIFont(name: "Futura", size: 24)
+        mainButton.layer.cornerRadius = mainButtonSize/2
+        mainButton.addTarget(self, action: #selector(mainButtonDidTouch), for: .touchUpInside)
+        view.addSubview(mainButton)
     }
     
-    func fetchWeatherFromYr(){
-        // This is run from the reverseGeocodeHandler after updating self.currentLocation so the location data is available in the UserLocation singleton
-        // Format reverseGeocode location to a XML request and send to yr.no
+    private func makeActivityContainer() {
         
-        let country = UserLocation.sharedInstance.country
-        let adminArea = UserLocation.sharedInstance.administrativeArea
-        let locality = UserLocation.sharedInstance.locality
-        let subLocality = UserLocation.sharedInstance.subLocality
+        let size = 40
         
-        let urlString = "http://www.yr.no/place/\(country)/\(adminArea)/\(locality)/\(subLocality)/forecast_hour_by_hour.xml"
+        // Make container
+        activityContainer = UIView()
+        activityContainer.frame.size = CGSize(width: size, height: size)
+        
+        // Make activity indicator
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame.size = CGSize(width: size, height: size)
+        activityIndicator.isHidden = false
+        activityIndicator.isUserInteractionEnabled = false
+        activityIndicator.color = .black
+        
+        // Make view to animate checkmark in
+        checkmarkView = UIImageView()
+        checkmarkView.frame.size = CGSize(width: size, height: size)
+        
+        // Add to container and view
+        activityContainer.addSubview(activityIndicator)
+        activityContainer.addSubview(checkmarkView)
+        activityContainer.center = midScreen
+        view.addSubview(activityContainer)
+    }
+    
+    func makeOutlineViewAroundButton() {
+        let outlineWidth: CGFloat = mainButton.frame.width + 20
+        let circleCornerRadius = outlineWidth / 2
+        
+        buttonOutline = UIView(frame: CGRect(x: view.frame.midX - outlineWidth/2,
+                                             y: view.frame.midY - outlineWidth/2,
+                                             width: outlineWidth,
+                                             height: outlineWidth))
+        
+        buttonOutline.layer.cornerRadius = circleCornerRadius
+        buttonOutline.layer.borderColor = UIColor.black.cgColor
+        buttonOutline.layer.borderWidth = 5
+        buttonOutline.isUserInteractionEnabled = false
+        buttonOutline.alpha = 1
+        view.addSubview(buttonOutline)
+        view.bringSubview(toFront: buttonOutline)
+        
+    }
 
-        yrClient.fetchHourlyDataFromYr(URL: urlString) { (result) in
-            switch result {
-            case .Success(let resultingYrData):
-                
-                latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData // update global value (to let Charts access it)
-                
-                // post notifications
-                  NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
-                  NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
-
-            case .Failure(let e):
-                print("i got back failure with e: \(e)")
-                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: self)
-            }
+    // MARK: - Button handlers
+    
+    func settingsButtonDidTouch(){
+        print("settingsButton did touch")
+    }
+    
+    func mainButtonDidTouch() {
+        print("main button did touch")
+    }
+    
+    // MARK: - Animation Methods
+    
+    private func animateButtonOutline(visible: Bool) {
+        
+        switch visible {
+        case true:
+            UIView.animate(withDuration: animateBackDuration, delay: 0, options: .curveEaseInOut, animations: { 
+                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+            }, completion: { (road) in
+                //
+            })
+       
+        case false:
+            UIView.animate(withDuration: animateBackDuration, delay: 0.8, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            })
         }
     }
     
     private func toggleLoadingMode(_ status: Bool){
+        
+        //view.layoutIfNeeded() // make sure animations complete before triggering a new one
+        
         switch status{
         case true:
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut , animations: {
-                
-                // animated fade in of label, and fade in of text
-                self.mainButton.titleLabel?.alpha = 0
-                self.mainButton.alpha = 0
-                //self.mainButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-                self.mainButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-                self.mainButton.layer.cornerRadius = 25
-                //self.mainButton.backgroundColor = .white
-            }, completion: { (_) in
-//                self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-            })
-
+            animateMainButtonLoading(true)
+            
             self.animateButtonOutline(visible: true)
             self.isFetching = true
             self.activityIndicator.startAnimating()
             self.activityIndicator.isHidden = false
-            self.mainButton.backgroundColor = .white
             self.settingsButton.alpha = 0.4
-            self.buttonStack.isUserInteractionEnabled = false
             self.settingsButton.isUserInteractionEnabled = false
             
         case false:
-            UIView.animate(withDuration: 0.5,
-                           delay: 1,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 0.5,
-                           options: .curveEaseInOut ,
-                           animations: {
-                            self.mainButton.alpha = 1
-                            //self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-                            self.mainButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-                            self.mainButton.layer.cornerRadius = 50
-                //self.mainButton.backgroundColor = .white
-            }, completion: { (_) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.mainButton.titleLabel?.alpha = 1
-                })
-                
-                //                self.mainButton.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-            })
+            animateMainButtonLoading(false)
+            
             self.animateButtonOutline(visible: false)
             self.isFetching = false
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
-            //self.buttonStack.alpha = 1
-            self.mainButton.backgroundColor = .black
             self.settingsButton.alpha = 1
-            self.buttonStack.isUserInteractionEnabled = true
             self.settingsButton.isUserInteractionEnabled = true
             Animations.playCheckmarkAnimationOnce(inImageView: self.checkmarkView)
-            self.view.bringSubview(toFront: self.mainButton)
+        }
+    }
+    
+    private func animateMainButtonLoading(_ b: Bool) {
+        let duration = 1.0
+        let scale: CGFloat = 0.5
+
+        switch b {
+        case true:
+            // animate smaller
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                
+                self.mainButton.transform = CGAffineTransform(scaleX: scale, y: scale)
+                self.mainButton.backgroundColor = .white
+                self.mainButton.titleLabel?.alpha = 0
+                
+            }, completion: { (_) in
+                //
+            })
+            
+        case false:
+            // animate back
+            checkmarkView.stopAnimating()
+            
+            UIView.animate(withDuration: animateBackDuration, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                
+                self.mainButton.transform = CGAffineTransform.identity
+                self.mainButton.backgroundColor = .black
+            
+            }, completion: { (_) in
+                self.mainButton.titleLabel?.fadeIn()
+            })
         }
     }
     
@@ -257,7 +262,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Handlers for observers
     func fetchWeatherFromYrDidFinishHandler(){
-        //print("finished fetching hour data from Yr handler")
+        print("finished fetching hour data from Yr. handler")
     }
     
     func fetchWeatherFromYrFailedHandler(){
@@ -306,7 +311,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         let mapFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         mapView = GMSMapView.map(withFrame: mapFrame, camera: camera)
         
-        // style
+        // Map Styling
         
         do {
             // Set the map style by passing the URL of the local file.
@@ -330,70 +335,25 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }, completion: nil)
     }
     
-    private func setupMainButton() {
-        mainButton.setTitleColor(.white, for: .normal)
-        mainButton.setTitle("GO", for: .normal)
-        var pos = mainButton.frame
-        let buttonRect = CGRect(x: pos.minX, y: pos.minY, width: mainButtonWidth, height: mainButtonWidth)
-        mainButton.frame = buttonRect
-        mainButton.backgroundColor = .black
-        mainButton.layer.cornerRadius = 50
-        mainButton.translatesAutoresizingMaskIntoConstraints = true
-        mainButton.setNeedsLayout()
-        mainButton.titleLabel?.alpha = 0
-        
-        setupAnimationStack()
-        makeOutlineViewAroundButton()
+    // MARK: - Helper methods
+    
+    private func setupGoogleMaps() {
+        GMSServices.provideAPIKey("AIzaSyD18MznE0DNTMCWnTQNVWaYxHUZ8ClXDGE")
     }
     
-    private func setupAnimationStack() {
-        let frameWidth: CGFloat = 40
-        let xPos = view.frame.midX - frameWidth/2
-        let yPos = view.frame.midY - frameWidth/2
-        // activityIndicator.color = .white
+    private func setupTranslatesAutoresizingMaskIntoConstraints(_ b: Bool) {
+        let b = false
         
-        // Move stack to center
-        animationStack.frame = CGRect(x: xPos, y: yPos, width: frameWidth, height: frameWidth)
-        animationStack.translatesAutoresizingMaskIntoConstraints = true
-    }
-    
-    func makeOutlineViewAroundButton() {
-        let outlineWidth: CGFloat = mainButton.frame.width + 20
-        let circleCornerRadius = outlineWidth / 2
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = b
+        checkmarkView.translatesAutoresizingMaskIntoConstraints = b
+        activityContainer.translatesAutoresizingMaskIntoConstraints = b
         
-        buttonOutline = UIView(frame: CGRect(x: view.frame.midX - outlineWidth/2,
-                                             y: view.frame.midY - outlineWidth/2,
-                                             width: outlineWidth,
-                                             height: outlineWidth))
-        
-        buttonOutline.layer.cornerRadius = circleCornerRadius
-        buttonOutline.layer.borderColor = UIColor.black.cgColor
-        buttonOutline.layer.borderWidth = 5
-        buttonOutline.isUserInteractionEnabled = false
-        buttonOutline.alpha = 0
-        view.addSubview(buttonOutline)
-        view.bringSubview(toFront: buttonOutline)
+        mainButton.translatesAutoresizingMaskIntoConstraints = b
+        settingsButton.translatesAutoresizingMaskIntoConstraints = b
+        shakeToRefreshImage.translatesAutoresizingMaskIntoConstraints = b
+        enableGPSImage.translatesAutoresizingMaskIntoConstraints = b
+        view.translatesAutoresizingMaskIntoConstraints = b
     }
-    
-    private func animateButtonOutline(visible: Bool) {
-        let duration = 0.3
-        switch visible {
-        case true:
-            UIView.animate(withDuration: duration, animations: { 
-                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-                //self.buttonOutline.alpha = 0
-            }, completion: { (_) in
-                //
-            })
-        case false:
-            UIView.animate(withDuration: duration, delay: 1, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-                self.buttonOutline.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-                self.buttonOutline.alpha = 1
-            })
-        }
-    }
-
-// MARK: - Helper methods
 
     func setUserDefaultsIfInitialRun(){
         let currentPreferredUnits = UserDefaults.standard.string(forKey: "preferredUnits")
@@ -401,4 +361,110 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             UserDefaults.standard.set("SI", forKey: "preferredUnits")
         }
     }
+    
+    // MARK: - API Methods
+    
+    func fetchWeather(){
+        guard let currentCoordinate = currentCoordinate else {
+            return
+        }
+        forecastClient.fetchExtendedCurrentWeather(forCoordinate: currentCoordinate) { apiresult in
+            self.toggleLoadingMode(false)
+            
+            switch apiresult{
+            case .success(let result):
+                
+                // update global variable
+                latestExtendedWeatherFetch.currentWeather = result.currentWeather
+                latestExtendedWeatherFetch.dailyWeather = result.dailyWeather
+                latestExtendedWeatherFetch.hourlyWeather = result.hourlyWeather
+                
+                self.replaceDarkSkyHourData()
+                
+                if let
+                    fetchedDays = latestExtendedWeatherFetch.dailyWeather,
+                    let fetchedHours = latestExtendedWeatherFetch.hourlyWeather {
+                    
+                    var dayIndex = 0
+                    var organizedHours = [HourData]()
+                    for hour in fetchedHours where dayIndex < fetchedDays.count {
+                        if hour.dayNumber == fetchedDays[dayIndex].dayNumber {
+                            organizedHours.append(hour)
+                        } else{
+                            latestExtendedWeatherFetch.dailyWeather![dayIndex].hourData = organizedHours
+                            organizedHours.removeAll()
+                            dayIndex += 1
+                        }
+                    }
+                }
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchCurrentWeatherDidFinish), object: self)
+                
+            case .failure(let error as NSError):
+                self.toggleLoadingMode(true)
+                showAlert(viewController: self, title: "Error fetching data", message: "Could not update weather data. Error: \(error.localizedDescription). \n\n Check your internet connection", error: error)
+            default: break
+            }
+        }
+    }
+    
+    func replaceDarkSkyHourData() {
+        // The first 48 hours are available from yr and are much more accurate than DarkSky, so here the first hours from Darksky are replaced with the avaiable hourData from yr. (The first 48 hours). Replaces temperatures and precipitation
+        guard let yrHours = latestExtendedWeatherFetch.hourlyWeatherFromYr else {
+            print("\nERROR: no yrHours stored in global value 'latestExtendedWeatherFetch'. Exiting replaceDarkSkyHourData")
+            return
+        }
+        
+        for i in 0 ..< yrHours.count {
+            if hourHasPrecipitation(yrHours[i]) {
+                latestExtendedWeatherFetch.hourlyWeather?[i].isChanceOfPrecipitation = true
+            }
+            
+            latestExtendedWeatherFetch.hourlyWeather?[i].temperature = (latestExtendedWeatherFetch.hourlyWeatherFromYr?[i].temperature)!
+        }
+    }
+    
+    func hourHasPrecipitation(_ hour: YrHourData) -> Bool {
+        
+        if hour.precipitationMinValue != nil && hour.precipitationMaxValue != nil {
+            return true
+        }
+        return false
+    }
+    
+    func fetchWeatherFromYr(){
+        // This is run from the reverseGeocodeHandler after updating self.currentLocation so the location data is available in the UserLocation singleton
+        // Format reverseGeocode location to a XML request and send to yr.no
+        
+        let country = UserLocation.sharedInstance.country
+        let adminArea = UserLocation.sharedInstance.administrativeArea
+        let locality = UserLocation.sharedInstance.locality
+        let subLocality = UserLocation.sharedInstance.subLocality
+        
+        //if country == nil || adminArea == nil || locality == nil || subLocality == nil {
+        if country == nil || adminArea == nil || locality == nil {
+            print("Not enough geodata to construct Yr request")
+            return
+        }
+        
+        let urlString = "http://www.yr.no/place/\(country)/\(adminArea)/\(locality)/\(subLocality)/forecast_hour_by_hour.xml"
+        print("yr request: ", urlString)
+        
+        yrClient.fetchHourlyDataFromYr(URL: urlString) { (result) in
+            switch result {
+            case .Success(let resultingYrData):
+                
+                latestExtendedWeatherFetch.hourlyWeatherFromYr = resultingYrData // update global value (to let Charts access it)
+                
+                // post notifications
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.userLocationGPSDidUpdate), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrDidFinish), object: self)
+                
+            case .Failure(let e):
+                print("i got back failure with e: \(e)")
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationNames.fetchWeatherFromYrFailed), object: self)
+            }
+        }
+    }
 }
+
